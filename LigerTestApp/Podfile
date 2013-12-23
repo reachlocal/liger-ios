@@ -1,0 +1,15 @@
+platform :ios, "6.1"
+
+pod 'Liger', path: './..'
+
+
+pod 'Cordova', '3.1.0'
+pod 'UIColor-HTMLColors', '1.0.0'
+
+#target "Liger" do
+#end
+
+target "LigerTests" do
+	pod 'OCMock'
+end
+

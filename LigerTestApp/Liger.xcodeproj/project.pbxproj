@@ -1,0 +1,667 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2F67C4088BA240879B9DBC7A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23EDECACD8554D4BB0B9F70E /* libPods.a */; };
+		32110721182866F600AE0D71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32110720182866F600AE0D71 /* Foundation.framework */; };
+		32110723182866F600AE0D71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32110722182866F600AE0D71 /* CoreGraphics.framework */; };
+		32110725182866F600AE0D71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32110724182866F600AE0D71 /* UIKit.framework */; };
+		3211072B182866F600AE0D71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32110729182866F600AE0D71 /* InfoPlist.strings */; };
+		3211072D182866F600AE0D71 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211072C182866F600AE0D71 /* main.m */; };
+		32110733182866F600AE0D71 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32110732182866F600AE0D71 /* Images.xcassets */; };
+		3211073A182866F600AE0D71 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32110739182866F600AE0D71 /* XCTest.framework */; };
+		3211073B182866F600AE0D71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32110720182866F600AE0D71 /* Foundation.framework */; };
+		3211073C182866F600AE0D71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32110724182866F600AE0D71 /* UIKit.framework */; };
+		32110744182866F600AE0D71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32110742182866F600AE0D71 /* InfoPlist.strings */; };
+		321107781828674500AE0D71 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 321107771828674500AE0D71 /* config.xml */; };
+		3211077A1828674D00AE0D71 /* app in Resources */ = {isa = PBXBuildFile; fileRef = 321107791828674D00AE0D71 /* app */; };
+		324FE47A185100E700C94585 /* LGREmailImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 324FE479185100E700C94585 /* LGREmailImportedTest.m */; };
+		324FE47D185107CA00C94585 /* LGRViewController+MessageUITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 324FE47C185107CA00C94585 /* LGRViewController+MessageUITest.m */; };
+		324FE481185116F800C94585 /* LGRMessageImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 324FE480185116F800C94585 /* LGRMessageImportedTest.m */; };
+		3265E228184514C300E81DA8 /* LGRViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265E227184514C300E81DA8 /* LGRViewControllerTest.m */; };
+		326CFA6A1844F78300BEB092 /* LGRSlideViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 326CFA691844F78300BEB092 /* LGRSlideViewControllerTest.m */; };
+		326CFA6C1844F7C400BEB092 /* LGRMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 326CFA6B1844F7C400BEB092 /* LGRMenuViewControllerTest.m */; };
+		326CFA6E1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 326CFA6D1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m */; };
+		326CFA701844F7FF00BEB092 /* LGRHTMLMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 326CFA6F1844F7FF00BEB092 /* LGRHTMLMenuViewControllerTest.m */; };
+		3281642F183A7A050059A464 /* LGRNativePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3281642D183A7A050059A464 /* LGRNativePagesViewController.m */; };
+		32816430183A7A050059A464 /* LGRNativePagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */; };
+		3281644D183C126B0059A464 /* LGRApperanceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32816448183C126B0059A464 /* LGRApperanceTest.m */; };
+		3281644E183C126B0059A464 /* LGRAppTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3281644A183C126B0059A464 /* LGRAppTest.m */; };
+		32A920151868CE280039433B /* LGRMenuCell1Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A920141868CE280039433B /* LGRMenuCell1Test.m */; };
+		32A920171868D3E70039433B /* LGRMenuCell2Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A920161868D3E70039433B /* LGRMenuCell2Test.m */; };
+		32E5379918453E77001E3373 /* LGRPageFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E5379818453E77001E3373 /* LGRPageFactoryTest.m */; };
+		32E5379B18454A62001E3373 /* LGRHTMLViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E5379A18454A62001E3373 /* LGRHTMLViewControllerTest.m */; };
+		32E537A418454BAE001E3373 /* LGRBrowserViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E537A318454BAE001E3373 /* LGRBrowserViewControllerTest.m */; };
+		AF1EEEDD6AFF4623933D18AD /* libPods-LigerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6007059D8C44A7F95AE18FC /* libPods-LigerTests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3211073D182866F600AE0D71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32110715182866F600AE0D71 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3211071C182866F600AE0D71;
+			remoteInfo = Liger;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		23EDECACD8554D4BB0B9F70E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3211071D182866F600AE0D71 /* Liger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		32110720182866F600AE0D71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		32110722182866F600AE0D71 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		32110724182866F600AE0D71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		32110728182866F600AE0D71 /* Liger-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Liger-Info.plist"; sourceTree = "<group>"; };
+		3211072A182866F600AE0D71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3211072C182866F600AE0D71 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3211072E182866F600AE0D71 /* Liger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Liger-Prefix.pch"; sourceTree = "<group>"; };
+		32110732182866F600AE0D71 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		32110738182866F600AE0D71 /* LigerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LigerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		32110739182866F600AE0D71 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		32110741182866F600AE0D71 /* LigerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LigerTests-Info.plist"; sourceTree = "<group>"; };
+		32110743182866F600AE0D71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		321107771828674500AE0D71 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		321107791828674D00AE0D71 /* app */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app; sourceTree = "<group>"; };
+		324FE479185100E700C94585 /* LGREmailImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGREmailImportedTest.m; path = iOS/LGREmailImportedTest.m; sourceTree = "<group>"; };
+		324FE47C185107CA00C94585 /* LGRViewController+MessageUITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LGRViewController+MessageUITest.m"; path = "iOS/LGRViewController+MessageUITest.m"; sourceTree = "<group>"; };
+		324FE480185116F800C94585 /* LGRMessageImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRMessageImportedTest.m; path = iOS/LGRMessageImportedTest.m; sourceTree = "<group>"; };
+		3265E227184514C300E81DA8 /* LGRViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRViewControllerTest.m; path = Generic/LGRViewControllerTest.m; sourceTree = "<group>"; };
+		326CFA691844F78300BEB092 /* LGRSlideViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRSlideViewControllerTest.m; sourceTree = "<group>"; };
+		326CFA6B1844F7C400BEB092 /* LGRMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRMenuViewControllerTest.m; path = LigerTests/Menu/LGRMenuViewControllerTest.m; sourceTree = SOURCE_ROOT; };
+		326CFA6D1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRAppMenuViewControllerTest.m; path = LigerTests/Menu/LGRAppMenuViewControllerTest.m; sourceTree = SOURCE_ROOT; };
+		326CFA6F1844F7FF00BEB092 /* LGRHTMLMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRHTMLMenuViewControllerTest.m; path = LigerTests/Menu/LGRHTMLMenuViewControllerTest.m; sourceTree = SOURCE_ROOT; };
+		3281642C183A7A050059A464 /* LGRNativePagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LGRNativePagesViewController.h; path = LigerViewControllers/LGRNativePagesViewController.h; sourceTree = "<group>"; };
+		3281642D183A7A050059A464 /* LGRNativePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRNativePagesViewController.m; path = LigerViewControllers/LGRNativePagesViewController.m; sourceTree = "<group>"; };
+		3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LGRNativePagesViewController.xib; path = LigerViewControllers/LGRNativePagesViewController.xib; sourceTree = "<group>"; };
+		32816448183C126B0059A464 /* LGRApperanceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRApperanceTest.m; sourceTree = "<group>"; };
+		3281644A183C126B0059A464 /* LGRAppTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRAppTest.m; sourceTree = "<group>"; };
+		32A920141868CE280039433B /* LGRMenuCell1Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRMenuCell1Test.m; path = LigerTests/Menu/LGRMenuCell1Test.m; sourceTree = SOURCE_ROOT; };
+		32A920161868D3E70039433B /* LGRMenuCell2Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRMenuCell2Test.m; path = LigerTests/Menu/LGRMenuCell2Test.m; sourceTree = SOURCE_ROOT; };
+		32E5379818453E77001E3373 /* LGRPageFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRPageFactoryTest.m; path = Generic/LGRPageFactoryTest.m; sourceTree = "<group>"; };
+		32E5379A18454A62001E3373 /* LGRHTMLViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRHTMLViewControllerTest.m; path = Generic/LGRHTMLViewControllerTest.m; sourceTree = "<group>"; };
+		32E537A318454BAE001E3373 /* LGRBrowserViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRBrowserViewControllerTest.m; path = Native/LGRBrowserViewControllerTest.m; sourceTree = "<group>"; };
+		3391277704124C03803DAF80 /* Pods-LigerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LigerTests.xcconfig"; path = "Pods/Pods-LigerTests.xcconfig"; sourceTree = "<group>"; };
+		77FEB30B8B4943AAAE6D47AA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		F6007059D8C44A7F95AE18FC /* libPods-LigerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LigerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3211071A182866F600AE0D71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32110723182866F600AE0D71 /* CoreGraphics.framework in Frameworks */,
+				32110725182866F600AE0D71 /* UIKit.framework in Frameworks */,
+				32110721182866F600AE0D71 /* Foundation.framework in Frameworks */,
+				2F67C4088BA240879B9DBC7A /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32110735182866F600AE0D71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3211073A182866F600AE0D71 /* XCTest.framework in Frameworks */,
+				3211073C182866F600AE0D71 /* UIKit.framework in Frameworks */,
+				3211073B182866F600AE0D71 /* Foundation.framework in Frameworks */,
+				AF1EEEDD6AFF4623933D18AD /* libPods-LigerTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		32110714182866F600AE0D71 = {
+			isa = PBXGroup;
+			children = (
+				32110726182866F600AE0D71 /* Liger */,
+				3211073F182866F600AE0D71 /* LigerTests */,
+				3211071F182866F600AE0D71 /* Frameworks */,
+				3211071E182866F600AE0D71 /* Products */,
+				77FEB30B8B4943AAAE6D47AA /* Pods.xcconfig */,
+				3391277704124C03803DAF80 /* Pods-LigerTests.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		3211071E182866F600AE0D71 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3211071D182866F600AE0D71 /* Liger.app */,
+				32110738182866F600AE0D71 /* LigerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3211071F182866F600AE0D71 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32110720182866F600AE0D71 /* Foundation.framework */,
+				32110722182866F600AE0D71 /* CoreGraphics.framework */,
+				32110724182866F600AE0D71 /* UIKit.framework */,
+				32110739182866F600AE0D71 /* XCTest.framework */,
+				23EDECACD8554D4BB0B9F70E /* libPods.a */,
+				F6007059D8C44A7F95AE18FC /* libPods-LigerTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		32110726182866F600AE0D71 /* Liger */ = {
+			isa = PBXGroup;
+			children = (
+				321107791828674D00AE0D71 /* app */,
+				321107761828674500AE0D71 /* cordova */,
+				32110732182866F600AE0D71 /* Images.xcassets */,
+				3281642B183A79C60059A464 /* LigerViewControllers */,
+				32110727182866F600AE0D71 /* Supporting Files */,
+			);
+			path = Liger;
+			sourceTree = "<group>";
+		};
+		32110727182866F600AE0D71 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32110728182866F600AE0D71 /* Liger-Info.plist */,
+				32110729182866F600AE0D71 /* InfoPlist.strings */,
+				3211072C182866F600AE0D71 /* main.m */,
+				3211072E182866F600AE0D71 /* Liger-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3211073F182866F600AE0D71 /* LigerTests */ = {
+			isa = PBXGroup;
+			children = (
+				324FE477185100BE00C94585 /* iOS */,
+				32816446183C126B0059A464 /* App */,
+				326CFA7118450F6600BEB092 /* Generic */,
+				326CFA68184447C800BEB092 /* Menu */,
+				32E537A218454B97001E3373 /* Native */,
+				32110740182866F600AE0D71 /* Supporting Files */,
+			);
+			path = LigerTests;
+			sourceTree = "<group>";
+		};
+		32110740182866F600AE0D71 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32110741182866F600AE0D71 /* LigerTests-Info.plist */,
+				32110742182866F600AE0D71 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		321107761828674500AE0D71 /* cordova */ = {
+			isa = PBXGroup;
+			children = (
+				321107771828674500AE0D71 /* config.xml */,
+			);
+			path = cordova;
+			sourceTree = "<group>";
+		};
+		324FE477185100BE00C94585 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				324FE480185116F800C94585 /* LGRMessageImportedTest.m */,
+				324FE479185100E700C94585 /* LGREmailImportedTest.m */,
+				324FE47C185107CA00C94585 /* LGRViewController+MessageUITest.m */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		326CFA68184447C800BEB092 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				326CFA691844F78300BEB092 /* LGRSlideViewControllerTest.m */,
+				326CFA6B1844F7C400BEB092 /* LGRMenuViewControllerTest.m */,
+				326CFA6D1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m */,
+				326CFA6F1844F7FF00BEB092 /* LGRHTMLMenuViewControllerTest.m */,
+				32A920141868CE280039433B /* LGRMenuCell1Test.m */,
+				32A920161868D3E70039433B /* LGRMenuCell2Test.m */,
+			);
+			name = Menu;
+			path = App;
+			sourceTree = "<group>";
+		};
+		326CFA7118450F6600BEB092 /* Generic */ = {
+			isa = PBXGroup;
+			children = (
+				3265E227184514C300E81DA8 /* LGRViewControllerTest.m */,
+				32E5379818453E77001E3373 /* LGRPageFactoryTest.m */,
+				32E5379A18454A62001E3373 /* LGRHTMLViewControllerTest.m */,
+			);
+			name = Generic;
+			sourceTree = "<group>";
+		};
+		3281642B183A79C60059A464 /* LigerViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3281642C183A7A050059A464 /* LGRNativePagesViewController.h */,
+				3281642D183A7A050059A464 /* LGRNativePagesViewController.m */,
+				3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */,
+			);
+			name = LigerViewControllers;
+			sourceTree = "<group>";
+		};
+		32816446183C126B0059A464 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				32816448183C126B0059A464 /* LGRApperanceTest.m */,
+				3281644A183C126B0059A464 /* LGRAppTest.m */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		32E537A218454B97001E3373 /* Native */ = {
+			isa = PBXGroup;
+			children = (
+				32E537A318454BAE001E3373 /* LGRBrowserViewControllerTest.m */,
+			);
+			name = Native;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3211071C182866F600AE0D71 /* Liger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32110749182866F600AE0D71 /* Build configuration list for PBXNativeTarget "Liger" */;
+			buildPhases = (
+				FDC44E2D2B924ADABC76DD14 /* Check Pods Manifest.lock */,
+				32110719182866F600AE0D71 /* Sources */,
+				3211071A182866F600AE0D71 /* Frameworks */,
+				3211071B182866F600AE0D71 /* Resources */,
+				0EB7C1FB756149839AC8A08F /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Liger;
+			productName = Liger;
+			productReference = 3211071D182866F600AE0D71 /* Liger.app */;
+			productType = "com.apple.product-type.application";
+		};
+		32110737182866F600AE0D71 /* LigerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3211074C182866F600AE0D71 /* Build configuration list for PBXNativeTarget "LigerTests" */;
+			buildPhases = (
+				4DDA6AE631EC4E288D99D181 /* Check Pods Manifest.lock */,
+				32110734182866F600AE0D71 /* Sources */,
+				32110735182866F600AE0D71 /* Frameworks */,
+				32110736182866F600AE0D71 /* Resources */,
+				036F97DBFE5245CE81456905 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3211073E182866F600AE0D71 /* PBXTargetDependency */,
+			);
+			name = LigerTests;
+			productName = LigerTests;
+			productReference = 32110738182866F600AE0D71 /* LigerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		32110715182866F600AE0D71 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = LGR;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "John Gustafsson";
+				TargetAttributes = {
+					32110737182866F600AE0D71 = {
+						TestTargetID = 3211071C182866F600AE0D71;
+					};
+				};
+			};
+			buildConfigurationList = 32110718182866F600AE0D71 /* Build configuration list for PBXProject "Liger" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 32110714182866F600AE0D71;
+			productRefGroup = 3211071E182866F600AE0D71 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3211071C182866F600AE0D71 /* Liger */,
+				32110737182866F600AE0D71 /* LigerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3211071B182866F600AE0D71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32816430183A7A050059A464 /* LGRNativePagesViewController.xib in Resources */,
+				3211077A1828674D00AE0D71 /* app in Resources */,
+				3211072B182866F600AE0D71 /* InfoPlist.strings in Resources */,
+				32110733182866F600AE0D71 /* Images.xcassets in Resources */,
+				321107781828674500AE0D71 /* config.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32110736182866F600AE0D71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32110744182866F600AE0D71 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		036F97DBFE5245CE81456905 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-LigerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0EB7C1FB756149839AC8A08F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4DDA6AE631EC4E288D99D181 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FDC44E2D2B924ADABC76DD14 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32110719182866F600AE0D71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3211072D182866F600AE0D71 /* main.m in Sources */,
+				3281642F183A7A050059A464 /* LGRNativePagesViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32110734182866F600AE0D71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326CFA6E1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m in Sources */,
+				32E5379B18454A62001E3373 /* LGRHTMLViewControllerTest.m in Sources */,
+				324FE47D185107CA00C94585 /* LGRViewController+MessageUITest.m in Sources */,
+				32E5379918453E77001E3373 /* LGRPageFactoryTest.m in Sources */,
+				326CFA6A1844F78300BEB092 /* LGRSlideViewControllerTest.m in Sources */,
+				32A920171868D3E70039433B /* LGRMenuCell2Test.m in Sources */,
+				3265E228184514C300E81DA8 /* LGRViewControllerTest.m in Sources */,
+				32E537A418454BAE001E3373 /* LGRBrowserViewControllerTest.m in Sources */,
+				326CFA701844F7FF00BEB092 /* LGRHTMLMenuViewControllerTest.m in Sources */,
+				32A920151868CE280039433B /* LGRMenuCell1Test.m in Sources */,
+				3281644D183C126B0059A464 /* LGRApperanceTest.m in Sources */,
+				3281644E183C126B0059A464 /* LGRAppTest.m in Sources */,
+				326CFA6C1844F7C400BEB092 /* LGRMenuViewControllerTest.m in Sources */,
+				324FE481185116F800C94585 /* LGRMessageImportedTest.m in Sources */,
+				324FE47A185100E700C94585 /* LGREmailImportedTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3211073E182866F600AE0D71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3211071C182866F600AE0D71 /* Liger */;
+			targetProxy = 3211073D182866F600AE0D71 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		32110729182866F600AE0D71 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3211072A182866F600AE0D71 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		32110742182866F600AE0D71 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32110743182866F600AE0D71 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		32110747182866F600AE0D71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		32110748182866F600AE0D71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3211074A182866F600AE0D71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77FEB30B8B4943AAAE6D47AA /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Liger/Liger-Prefix.pch";
+				INFOPLIST_FILE = "Liger/Liger-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3211074B182866F600AE0D71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77FEB30B8B4943AAAE6D47AA /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Liger/Liger-Prefix.pch";
+				INFOPLIST_FILE = "Liger/Liger-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3211074D182866F600AE0D71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3391277704124C03803DAF80 /* Pods-LigerTests.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Liger.app/Liger";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Liger/Liger-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "LigerTests/LigerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3211074E182866F600AE0D71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3391277704124C03803DAF80 /* Pods-LigerTests.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Liger.app/Liger";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Liger/Liger-Prefix.pch";
+				INFOPLIST_FILE = "LigerTests/LigerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32110718182866F600AE0D71 /* Build configuration list for PBXProject "Liger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32110747182866F600AE0D71 /* Debug */,
+				32110748182866F600AE0D71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32110749182866F600AE0D71 /* Build configuration list for PBXNativeTarget "Liger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3211074A182866F600AE0D71 /* Debug */,
+				3211074B182866F600AE0D71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3211074C182866F600AE0D71 /* Build configuration list for PBXNativeTarget "LigerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3211074D182866F600AE0D71 /* Debug */,
+				3211074E182866F600AE0D71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 32110715182866F600AE0D71 /* Project object */;
+}

@@ -1,0 +1,5 @@
+#include "Pods-Liger.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/Liger" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/Cordova" "${PODS_ROOT}/Headers/Liger" "${PODS_ROOT}/Headers/OCMock" "${PODS_ROOT}/Headers/UIColor-HTMLColors"
+OTHER_LDFLAGS = -ObjC
+PODS_ROOT = ${SRCROOT}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>First Page</title>
+
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <script type="text/javascript" src="vendor/cordova.js"></script>
+    <script type="text/javascript" src="js/libs/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="vendor/liger.js"></script>
+    <script type="text/javascript" src="vendor/page.js"></script>
+    <script type="text/javascript" src="js/pages/firstPage.js"></script>
+</head>
+<body>
+    <div id="pages_container"></div>
+    <script>
+        PAGE.initialize("firstPage");
+    </script>
+
+	<h3>Args</h3>
+	<div id="args" style="background-color:#CCC; border:1px solid #999;">
+	</div>
+	<div id="inits">Inits:</div>
+
+	<h3>Methods</h3>
+    <form style="text-align: center">
+		<button id="openPage">Open Second Page</button><br />
+		<br />
+		<button id="refreshPage">Refresh Page Test</button><br />
+		<button id="toolbarPage">Toolbar Page Test</button><br />
+		<br />
+		<button id="openDialog">Open Dialog</button><br />
+		<button id="openDialogWithTitle">Open Dialog With Title</button>
+	</form>
+</body>
+</html>

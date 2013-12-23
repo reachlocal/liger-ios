@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<title>System</title>
+			
+			<!-- Sets initial viewport load and disables zooming  -->
+			<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+				
+				<script type="text/javascript" src="vendor/cordova.js"></script>
+				<script type="text/javascript" src="js/libs/jquery-2.0.3.min.js"></script>
+				<script type="text/javascript" src="vendor/page.js"></script>
+				<script type="text/javascript" src="vendor/liger.js"></script>
+				<script type="text/javascript" src="js/pages/system.js"></script>
+	</head>
+	<body>
+		<div id="system_container"></div>
+		<script>
+			PAGE.initialize("system");
+			</script>
+		
+		<h3>Args</h3>
+		<div id="args" style="background-color:#CCC; border:1px solid #999;">
+		</div>
+		<div id="inits">Inits:</div>
+		
+		<h3>System pages</h3>
+		<form style="text-align: center">
+			<button id="browser">Browser</button><br />
+			<button id="email">Email</button><br />
+			<button id="message">Message</button><br />
+			<button id="image">Image</button><br />
+			<button id="twitter">Twitter</button><br />
+			<button id="facebook">Facebook</button><br />
+			<button id="sinaweibo">Sina Weibo</button><br />
+			<button id="tencentweibo">Tencent Weibo</button><br />
+		</form>
+		
+		<img id="inline_image" />
+	</body>
+</html>
