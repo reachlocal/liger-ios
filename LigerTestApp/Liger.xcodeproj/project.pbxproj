@@ -28,6 +28,7 @@
 		326CFA6C1844F7C400BEB092 /* LGRMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 326CFA6B1844F7C400BEB092 /* LGRMenuViewControllerTest.m */; };
 		326CFA6E1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 326CFA6D1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m */; };
 		326CFA701844F7FF00BEB092 /* LGRHTMLMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 326CFA6F1844F7FF00BEB092 /* LGRHTMLMenuViewControllerTest.m */; };
+		32786FBD1869E40400A7F192 /* LGRLigerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32786FBC1869E40400A7F192 /* LGRLigerTest.m */; };
 		3281642F183A7A050059A464 /* LGRNativePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3281642D183A7A050059A464 /* LGRNativePagesViewController.m */; };
 		32816430183A7A050059A464 /* LGRNativePagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */; };
 		3281644D183C126B0059A464 /* LGRApperanceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32816448183C126B0059A464 /* LGRApperanceTest.m */; };
@@ -75,6 +76,7 @@
 		326CFA6B1844F7C400BEB092 /* LGRMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRMenuViewControllerTest.m; path = LigerTests/Menu/LGRMenuViewControllerTest.m; sourceTree = SOURCE_ROOT; };
 		326CFA6D1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRAppMenuViewControllerTest.m; path = LigerTests/Menu/LGRAppMenuViewControllerTest.m; sourceTree = SOURCE_ROOT; };
 		326CFA6F1844F7FF00BEB092 /* LGRHTMLMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRHTMLMenuViewControllerTest.m; path = LigerTests/Menu/LGRHTMLMenuViewControllerTest.m; sourceTree = SOURCE_ROOT; };
+		32786FBC1869E40400A7F192 /* LGRLigerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRLigerTest.m; path = Cordova/LGRLigerTest.m; sourceTree = "<group>"; };
 		3281642C183A7A050059A464 /* LGRNativePagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LGRNativePagesViewController.h; path = LigerViewControllers/LGRNativePagesViewController.h; sourceTree = "<group>"; };
 		3281642D183A7A050059A464 /* LGRNativePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGRNativePagesViewController.m; path = LigerViewControllers/LGRNativePagesViewController.m; sourceTree = "<group>"; };
 		3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LGRNativePagesViewController.xib; path = LigerViewControllers/LGRNativePagesViewController.xib; sourceTree = "<group>"; };
@@ -176,9 +178,10 @@
 		3211073F182866F600AE0D71 /* LigerTests */ = {
 			isa = PBXGroup;
 			children = (
-				324FE477185100BE00C94585 /* iOS */,
 				32816446183C126B0059A464 /* App */,
+				32786FBB1869E3D100A7F192 /* Cordova */,
 				326CFA7118450F6600BEB092 /* Generic */,
+				324FE477185100BE00C94585 /* iOS */,
 				326CFA68184447C800BEB092 /* Menu */,
 				32E537A218454B97001E3373 /* Native */,
 				32110740182866F600AE0D71 /* Supporting Files */,
@@ -235,6 +238,14 @@
 				32E5379A18454A62001E3373 /* LGRHTMLViewControllerTest.m */,
 			);
 			name = Generic;
+			sourceTree = "<group>";
+		};
+		32786FBB1869E3D100A7F192 /* Cordova */ = {
+			isa = PBXGroup;
+			children = (
+				32786FBC1869E40400A7F192 /* LGRLigerTest.m */,
+			);
+			name = Cordova;
 			sourceTree = "<group>";
 		};
 		3281642B183A79C60059A464 /* LigerViewControllers */ = {
@@ -440,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				326CFA6E1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m in Sources */,
+				32786FBD1869E40400A7F192 /* LGRLigerTest.m in Sources */,
 				32E5379B18454A62001E3373 /* LGRHTMLViewControllerTest.m in Sources */,
 				324FE47D185107CA00C94585 /* LGRViewController+MessageUITest.m in Sources */,
 				32E5379918453E77001E3373 /* LGRPageFactoryTest.m in Sources */,
