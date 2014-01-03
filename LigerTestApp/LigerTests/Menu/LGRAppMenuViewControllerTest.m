@@ -26,10 +26,10 @@
 {
 	NSDictionary *args = @{@"menu": @[@[
 								   @{
-									   @"accessibilityLabel" : @"pages",
+									   @"accessibilityLabel" : @"firstPage",
 									   @"iconText" : @"P",
-									   @"name" : @"Pages",
-									   @"page" : @"pages"
+									   @"name" : @"First Page",
+									   @"page" : @"firstPage"
 									   },
 								   @{
 									   @"accessibilityLabel" : @"nativePages",
@@ -54,10 +54,10 @@
 {
 	NSDictionary *args = @{@"menu": @[@[
 										  @{
-											  @"accessibilityLabel" : @"pages",
+											  @"accessibilityLabel" : @"firstPage",
 											  @"iconText" : @"P",
-											  @"name" : @"Pages",
-											  @"page" : @"pages"
+											  @"name" : @"First Page",
+											  @"page" : @"firstPage"
 											  },
 										  @{
 											  @"accessibilityLabel" : @"nativePages",
