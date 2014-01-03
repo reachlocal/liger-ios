@@ -57,7 +57,7 @@
 	[[mock expect] pushViewController:[OCMArg any] animated:[OCMArg any]];
 	[[[((id)liger) stub] andReturn:mock] navigationController];
 
-	[liger openPage:@"pages" title:@"pages" args:@{} success:^{} fail:^{}];
+	[liger openPage:@"firstPage" title:@"First Page" args:@{} success:^{} fail:^{}];
 	
 	XCTAssertNoThrow([mock verify], @"Verify failed");
 }
@@ -99,7 +99,7 @@
 	[[((id)liger) expect] presentViewController:[OCMArg any] animated:[OCMArg any] completion:[OCMArg any]];
 	[[((id)liger) stub] presentViewController:[OCMArg any] animated:[OCMArg any] completion:[OCMArg any]];
 	
-	[liger openDialog:@"pages" title:@"pages" args:@{} success:^{} fail:^{}];
+	[liger openDialog:@"firstPage" title:@"First Page" args:@{} success:^{} fail:^{}];
 	
 	XCTAssertNoThrow([(id)liger verify], @"Verify failed");
 }

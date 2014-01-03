@@ -28,7 +28,7 @@
 		XCTFail(@"Should not be called by an openPage.");
 	};
 	
-	[menu openPage:@"pages" title:@"pages" args:@{} success:^{} fail:^{}];
+	[menu openPage:@"firstPage" title:@"First Page" args:@{} success:^{} fail:^{}];
 }
 
 - (void)testClosePage
@@ -75,7 +75,7 @@
 	[[((id)menu) expect] presentViewController:[OCMArg any] animated:[OCMArg any] completion:[OCMArg any]];
 	[[((id)menu) stub] presentViewController:[OCMArg any] animated:[OCMArg any] completion:[OCMArg any]];
 	
-	[menu openDialog:@"pages" title:@"pages" args:@{} success:^{} fail:^{}];
+	[menu openDialog:@"firstPage" title:@"First Page" args:@{} success:^{} fail:^{}];
 	
 	XCTAssertNoThrow([(id)menu verify], @"Verify failed");
 }
