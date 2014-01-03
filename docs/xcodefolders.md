@@ -1,7 +1,0 @@
-Xcode
-
-
-Yellow
-
-Blue
-
