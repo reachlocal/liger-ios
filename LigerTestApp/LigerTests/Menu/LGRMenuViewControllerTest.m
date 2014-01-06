@@ -72,8 +72,8 @@
 	};
 
 	// The order of expect + stub is important and should be expect then stub
-	[[((id)menu) expect] presentViewController:[OCMArg any] animated:[OCMArg any] completion:[OCMArg any]];
-	[[((id)menu) stub] presentViewController:[OCMArg any] animated:[OCMArg any] completion:[OCMArg any]];
+	[[((id)menu) expect] presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY];
+	[[((id)menu) stub] presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY];
 	
 	[menu openDialog:@"firstPage" title:@"First Page" args:@{} success:^{} fail:^{}];
 	

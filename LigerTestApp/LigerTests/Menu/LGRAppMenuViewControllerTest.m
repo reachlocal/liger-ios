@@ -77,7 +77,7 @@
 	};
 	
 	menu = [OCMockObject partialMockForObject:menu];
-	[[(id)menu expect] presentViewController:[OCMArg any] animated:[OCMArg any] completion:[OCMArg checkWithBlock:^BOOL(id param)
+	[[(id)menu expect] presentViewController:OCMOCK_ANY animated:YES completion:[OCMArg checkWithBlock:^BOOL(id param)
 	{
 		void (^passedBlock)() = param;
 		passedBlock();

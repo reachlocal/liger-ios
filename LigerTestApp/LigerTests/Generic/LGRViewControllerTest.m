@@ -54,7 +54,7 @@
 	
 	id mock = [OCMockObject mockForClass:UINavigationController.class];
 	[[[mock stub] andReturn:[((OCPartialMockObject*)liger) realObject]] topViewController];
-	[[mock expect] pushViewController:[OCMArg any] animated:[OCMArg any]];
+	[[mock expect] pushViewController:OCMOCK_ANY animated:YES];
 	[[[((id)liger) stub] andReturn:mock] navigationController];
 
 	[liger openPage:@"firstPage" title:@"First Page" args:@{} success:^{} fail:^{}];
@@ -68,7 +68,7 @@
 	liger = [OCMockObject partialMockForObject:liger];
 	
 	id mock = [OCMockObject mockForClass:LGRViewController.class];
-	[[mock expect] childUpdates:[OCMArg any]];
+	[[mock expect] childUpdates:OCMOCK_ANY];
 	[[[((id)liger) stub] andReturn:mock] ligerParent];
 	
 	[liger updateParent:nil args:@{} success:^{} fail:^{}];
@@ -82,7 +82,7 @@
 	liger = [OCMockObject partialMockForObject:liger];
 	
 	id mock = [OCMockObject mockForClass:UINavigationController.class];
-	[[mock expect] popViewControllerAnimated:[OCMArg any]];
+	[[[mock expect] ignoringNonObjectArgs] popViewControllerAnimated:YES];
 	[[[((id)liger) stub] andReturn:mock] navigationController];
 	
 	[liger closePage:nil success:^{} fail:^{}];
@@ -96,8 +96,8 @@
 	liger = [OCMockObject partialMockForObject:liger];
 	
 	// The order of expect + stub is important and should be expect then stub
-	[[((id)liger) expect] presentViewController:[OCMArg any] animated:[OCMArg any] completion:[OCMArg any]];
-	[[((id)liger) stub] presentViewController:[OCMArg any] animated:[OCMArg any] completion:[OCMArg any]];
+	[[((id)liger) expect] presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY];
+	[[((id)liger) stub] presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY];
 	
 	[liger openDialog:@"firstPage" title:@"First Page" args:@{} success:^{} fail:^{}];
 	
@@ -110,7 +110,7 @@
 	liger = [OCMockObject partialMockForObject:liger];
 	
 	id mock = [OCMockObject mockForClass:UINavigationController.class];
-	[[mock expect] dismissViewControllerAnimated:[OCMArg any] completion:[OCMArg any]];
+	[[mock expect] dismissViewControllerAnimated:YES completion:OCMOCK_ANY];
 	[[[((id)liger) stub] andReturn:mock] presentingViewController];
 
 	[liger closeDialog:nil success:^{} fail:^{}];

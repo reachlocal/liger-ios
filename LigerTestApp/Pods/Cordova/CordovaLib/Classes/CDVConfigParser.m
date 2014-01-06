@@ -82,7 +82,7 @@
 
 - (void)parser:(NSXMLParser*)parser parseErrorOccurred:(NSError*)parseError
 {
-    NSAssert(NO, @"config.xml parse error line %ld col %ld", [parser lineNumber], (long)[parser columnNumber]);
+    NSAssert(NO, @"config.xml parse error line %ld col %ld", (long)[parser lineNumber], (long)[parser columnNumber]);
 }
 
 @end
