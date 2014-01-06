@@ -3,4 +3,3 @@ language: objective-c
 install: ''
 xcode_workspace: Liger.xcworkspace
 xcode_scheme: Liger
-script: xctool WARNING_CFLAGS="-Wno-gnu" -workspace Liger.xcworkspace -scheme Liger build test
