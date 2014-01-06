@@ -23,7 +23,7 @@
 	LGRViewController *control = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
 	control = [OCMockObject partialMockForObject:control];
 
-	[[((id)control) expect] dismissViewControllerAnimated:[OCMArg any] completion:[OCMArg any]];
+	[[((id)control) expect] dismissViewControllerAnimated:YES completion:OCMOCK_ANY];
 
 	[control mailComposeController:nil didFinishWithResult:MFMailComposeResultSent error:nil];
 	
@@ -35,7 +35,7 @@
 	LGRViewController *control = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
 	control = [OCMockObject partialMockForObject:control];
 	
-	[[((id)control) expect] dismissViewControllerAnimated:[OCMArg any] completion:[OCMArg any]];
+	[[((id)control) expect] dismissViewControllerAnimated:YES completion:OCMOCK_ANY];
 	
 	[control messageComposeViewController:nil didFinishWithResult:MessageComposeResultSent];
 

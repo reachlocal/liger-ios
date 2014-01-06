@@ -36,8 +36,8 @@
 - (void)testopenPage
 {
 	id viewController = [OCMockObject mockForClass:LGRViewController.class];
-	[[viewController expect] openPage:[OCMArg any] title:@"Home" args:@{} success:[OCMArg any] fail:[OCMArg any]];
-	[[viewController stub] openPage:[OCMArg any] title:[OCMArg any] args:[OCMArg any] success:[OCMArg any] fail:[OCMArg any]];
+	[[viewController expect] openPage:OCMOCK_ANY title:@"Home" args:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
+	[[viewController stub] openPage:OCMOCK_ANY title:OCMOCK_ANY args:OCMOCK_ANY success:OCMOCK_ANY fail:OCMOCK_ANY];
 	
 	[[[(id)self.ligerPlugin stub] andReturn:viewController] ligerViewController];
 	
@@ -54,8 +54,8 @@
 - (void)testOpenDialog
 {
 	id viewController = [OCMockObject mockForClass:LGRViewController.class];
-	[[viewController expect] openDialog:[OCMArg any] title:nil args:@{} success:[OCMArg any] fail:[OCMArg any]];
-	[[viewController stub] openDialog:[OCMArg any] title:[OCMArg any] args:[OCMArg any] success:[OCMArg any] fail:[OCMArg any]];
+	[[viewController expect] openDialog:OCMOCK_ANY title:nil args:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
+	[[viewController stub] openDialog:OCMOCK_ANY title:OCMOCK_ANY args:OCMOCK_ANY success:OCMOCK_ANY fail:OCMOCK_ANY];
 
 	[[[(id)self.ligerPlugin stub] andReturn:viewController] ligerViewController];
 	
@@ -70,8 +70,8 @@
 - (void)testOpenDialogWithTitle
 {
 	id viewController = [OCMockObject mockForClass:LGRViewController.class];
-	[[viewController expect] openDialog:[OCMArg any] title:@"Home" args:@{} success:[OCMArg any] fail:[OCMArg any]];
-	[[viewController stub] openDialog:[OCMArg any] title:[OCMArg any] args:[OCMArg any] success:[OCMArg any] fail:[OCMArg any]];
+	[[viewController expect] openDialog:OCMOCK_ANY title:@"Home" args:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
+	[[viewController stub] openDialog:OCMOCK_ANY title:OCMOCK_ANY args:OCMOCK_ANY success:OCMOCK_ANY fail:OCMOCK_ANY];
 	
 	[[[(id)self.ligerPlugin stub] andReturn:viewController] ligerViewController];
 	
@@ -86,8 +86,8 @@
 - (void)testCloseDialog
 {
 	id viewController = [OCMockObject mockForClass:LGRViewController.class];
-	[[viewController expect] closeDialog:@{} success:[OCMArg any] fail:[OCMArg any]];
-	[[viewController stub] closeDialog:[OCMArg any] success:[OCMArg any] fail:[OCMArg any]];
+	[[viewController expect] closeDialog:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
+	[[viewController stub] closeDialog:OCMOCK_ANY success:OCMOCK_ANY fail:OCMOCK_ANY];
 	
 	[[[(id)self.ligerPlugin stub] andReturn:viewController] ligerViewController];
 	
@@ -104,8 +104,8 @@
 	id viewController = [OCMockObject mockForClass:LGRViewController.class];
 	[[[(id)self.ligerPlugin stub] andReturn:viewController] ligerViewController];
 	
-	[[viewController expect] setToolbarItems:[OCMArg any]];
-	[[viewController stub] setToolbarItems:[OCMArg any]];
+	[[viewController expect] setToolbarItems:OCMOCK_ANY];
+	[[viewController stub] setToolbarItems:OCMOCK_ANY];
 	
 	
 	NSArray *args = @[@{@"icon": @"h", @"callback": @"console.log('test');"},
@@ -127,8 +127,8 @@
 {
 	id viewController = [OCMockObject mockForClass:LGRViewController.class];
 	[[[(id)self.ligerPlugin stub] andReturn:viewController] ligerViewController];
-	[[(id)self.ligerPlugin expect] sendOK:[OCMArg any] messageAsDictionary:[OCMArg any]];
-	[[[(id)self.ligerPlugin stub] andReturn:viewController] sendOK:[OCMArg any] messageAsDictionary:[OCMArg any]];
+	[[(id)self.ligerPlugin expect] sendOK:OCMOCK_ANY messageAsDictionary:OCMOCK_ANY];
+	[[[(id)self.ligerPlugin stub] andReturn:viewController] sendOK:OCMOCK_ANY messageAsDictionary:OCMOCK_ANY];
 
 	[[viewController expect] args];
 	[[[viewController stub] andReturn:@{}] args];
