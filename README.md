@@ -4,6 +4,8 @@ Liger is thin layer added to iOS or Android to enabled developing using both nat
 
 Some will use Liger to write a prototype app in HTML and implement a native version later. Some will write a fully quality app in web views alone. Yet other's will mix and match. Some might even be inclined to write a fully native app in Liger from the start! No matter which way you being and end your app journey in Liger we hope you enjoy it and that we've added value.
 
+# CI [![Build Status](https://api.travis-ci.org/reachlocal/liger-ios.png)](https://travis-ci.org/reachlocal/liger-ios)
+
 ## If you are a Liger beginner you can look at our tutorials for creating apps
 
 [For iOS developers](https://github.com/reachlocal/liger/wiki/Create-iOS-app) <br />
