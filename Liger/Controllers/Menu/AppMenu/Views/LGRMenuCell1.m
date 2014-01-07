@@ -91,11 +91,21 @@ CG_INLINE CGFloat LGRDeltaY(CGRect outer, CGRect inner)
 {
     [super setSelected:selected animated:animated];
 	if (selected) {
-		UIColor *selectedColor = self.menu1TextColorSelected ? self.menu1TextColorSelected : self.tintColor;
-		_menuName.textColor = selectedColor;
+		_menuName.textColor = [self selectedColor];
 	} else {
 		_menuName.textColor = self.menu1TextColor;
 	}
+}
+
+- (UIColor*)selectedColor
+{
+	if (self.menu1TextColorSelected)
+		return self.menu1TextColorSelected;
+	
+	if ([self respondsToSelector:@selector(tintColor)])
+		return self.tintColor;
+
+	return nil;
 }
 
 @end

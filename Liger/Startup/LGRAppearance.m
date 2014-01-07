@@ -129,16 +129,15 @@
 	[[UINavigationBar appearance] setBackgroundImage:[self barImage:[UIColor colorWithCSS:app[@"barColor"]] height:44] forBarMetrics:UIBarMetricsDefault];
 	UIColor *barText = [UIColor colorWithCSS:app[@"barText"]];
 	if (barText)
-		[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: barText}];
+		[[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeTextColor: barText}];
 
 	// Nav bar button
-	UIImage *barButton = [[UIImage imageNamed:@"menu-divider"]  resizableImageWithCapInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
-	[[UIBarButtonItem  appearanceWhenContainedIn:LGRSlideViewController.class, nil] setBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-	[[UIBarButtonItem  appearanceWhenContainedIn:LGRSlideViewController.class, nil] setTitlePositionAdjustment:UIOffsetMake(-3, 0) forBarMetrics:UIBarMetricsDefault];
+	UIImage *barButton = [self barImage:UIColor.clearColor height:32];
+	[[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 	
 	// Nav bar back button
-	UIImage *backButton = [[UIImage imageNamed:@"menu-divider"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
-	[[UIBarButtonItem appearanceWhenContainedIn:LGRSlideViewController.class, nil] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+	UIImage *backButton = [self barImage:UIColor.clearColor height:32];
+	[[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
 	// WebView (doesn't work properly so LGRWebViewController grabs this value
 	[[UIWebView appearance] setBackgroundColor:[UIColor colorWithCSS:app[@"webBackground"]]];

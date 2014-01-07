@@ -1,0 +1,5 @@
+before_install: cd LigerTestApp
+language: objective-c
+install: ''
+xcode_workspace: Liger.xcworkspace
+xcode_scheme: Liger
