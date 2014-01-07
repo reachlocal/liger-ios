@@ -8,6 +8,11 @@
 
 #import <XCTest/XCTest.h>
 #import "LGRMenuCell2.h"
+#import "OCMock.h"
+
+@interface LGRMenuCell2 (Tests)
+- (UIColor*)textColor:(BOOL)selected;
+@end
 
 @interface LGRMenuCell2Test : XCTestCase
 @property (nonatomic, strong) LGRMenuCell2 *cell;
@@ -57,6 +62,45 @@
 - (void)testMenuDetailFont
 {
 	XCTAssertNil(self.cell.menuDetailFont, @"Cell isn't in a menu and shouldn't have a font");
+}
+
+- (void)testTextColor
+{
+	XCTAssertNil([self.cell textColor:NO], @"Should be nil.");
+}
+
+- (void)testTextColorSet
+{
+	self.cell.menu2TextColor = UIColor.greenColor;
+	XCTAssertEqual(UIColor.greenColor, [self.cell textColor:NO], @"Should be the same as menu2TextColor.");
+}
+
+- (void)testSelectedColor
+{
+	XCTAssertEqual([[[UIView alloc] init] tintColor], [self.cell textColor:YES], @"Should have the tint color as basis.");
+}
+
+- (void)testSelectedColorSet
+{
+	self.cell.menu2TextColorSelected = UIColor.greenColor;
+	XCTAssertEqual(UIColor.greenColor, [self.cell textColor:YES], @"Should be the same as menu2TextColorSelected.");
+}
+
+- (BOOL)doNotRespondToSelector:(SEL)selector
+{
+	if (selector == @selector(tintColor))
+		return NO;
+
+	XCTFail(@"This should never happen, fix the test.");
+	return YES;
+}
+
+- (void)testSelectedColoriOS6
+{
+	id cell = [OCMockObject partialMockForObject:self.cell];
+	[[[cell stub] andCall:@selector(doNotRespondToSelector:) onObject:self] respondsToSelector:@selector(tintColor)];
+	
+	XCTAssertNil([cell textColor:YES], @"iOS6 doesn't respond to tint color and thus the color should be nil.");
 }
 
 @end
