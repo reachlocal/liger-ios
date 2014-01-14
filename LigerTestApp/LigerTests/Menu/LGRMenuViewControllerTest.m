@@ -11,15 +11,20 @@
 #import "OCMock.h"
 
 @interface LGRMenuViewControllerTest : XCTestCase
-
+@property(nonatomic, strong) LGRMenuViewController *menu;
 @end
 
 @implementation LGRMenuViewControllerTest
 
+- (void)setUp
+{
+	[super setUp];
+	self.menu = [[LGRMenuViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
+}
+
 - (void)testOpenPage
 {
-	LGRMenuViewController *menu = [[LGRMenuViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
-	menu = [OCMockObject partialMockForObject:menu];
+	LGRMenuViewController *menu = [OCMockObject partialMockForObject:self.menu];
 
 	menu.displayController = ^(UIViewController* controller){
 		XCTAssertNotNil(controller, @"Controller wasn't created for openPage.");
@@ -33,30 +38,30 @@
 
 - (void)testClosePage
 {
-	LGRMenuViewController *menu = [[LGRMenuViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
-	
-	menu.displayController = ^(UIViewController* controller){
+	__weak LGRMenuViewControllerTest *me = self;
+
+	me.menu.displayController = ^(UIViewController* controller){
 		XCTFail(@"Should not be called by a closePage.");
 	};
-	menu.displayDialog = ^{
+	me.menu.displayDialog = ^{
 		XCTFail(@"Should not be called by a closePage.");
 	};
 	
-	XCTAssertThrows([menu closePage:nil success:^{} fail:^{}], @"Should throw an exception as it's not supposed to be called in a menu.");
+	XCTAssertThrows([self.menu closePage:nil success:^{} fail:^{}], @"Should throw an exception as it's not supposed to be called in a menu.");
 }
 
 - (void)testUpdateParent
 {
-	LGRMenuViewController *menu = [[LGRMenuViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
+	__weak LGRMenuViewControllerTest *me = self;
 	
-	menu.displayController = ^(UIViewController* controller){
+	me.menu.displayController = ^(UIViewController* controller){
 		XCTFail(@"Should not be called by a closePage.");
 	};
-	menu.displayDialog = ^{
+	me.menu.displayDialog = ^{
 		XCTFail(@"Should not be called by a closePage.");
 	};
 	
-	XCTAssertThrows([menu updateParent:nil args:@{} success:^{} fail:^{}], @"Should throw an exception as it's not supposed to be called in a menu.");
+	XCTAssertThrows([me.menu updateParent:nil args:@{} success:^{} fail:^{}], @"Should throw an exception as it's not supposed to be called in a menu.");
 }
 
 - (void)testOpenDialog
@@ -82,16 +87,40 @@
 
 - (void)testCloseDialog
 {
-	LGRMenuViewController *menu = [[LGRMenuViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
+	__weak LGRMenuViewControllerTest *me = self;
 	
-	menu.displayController = ^(UIViewController* controller){
+	me.menu.displayController = ^(UIViewController* controller){
 		XCTFail(@"Should not be called by a closePage.");
 	};
-	menu.displayDialog = ^{
+	me.menu.displayDialog = ^{
 		XCTFail(@"Should not be called by a closePage.");
 	};
 	
-	XCTAssertThrows([menu closeDialog:nil success:^{} fail:^{}], @"Should throw an exception as it's not supposed to be called in a menu.");
+	XCTAssertThrows([me.menu closeDialog:nil success:^{} fail:^{}], @"Should throw an exception as it's not supposed to be called in a menu.");
 }
 
+- (void)testDialogClosed
+{
+	[self.menu dialogClosed:@{}];
+}
+
+- (void)testChildUpdates
+{
+	LGRViewController *liger = [[LGRMenuViewController alloc] initWithPage:@"testPage" title:nil args:@{@"Updated": @NO}];
+	
+	XCTAssertEqualObjects(liger.args, @{@"Updated": @NO}, @"Args don't match before call");
+	[liger childUpdates:@{@"Updated": @YES}];
+	XCTAssertEqualObjects(liger.args, @{@"Updated": @YES}, @"Args don't match after call");
+}
+
+- (void)testRefreshPage
+{
+	[self.menu refreshPage:YES];
+	[self.menu refreshPage:NO];
+}
+
+- (void)testPageWillAppear
+{
+	[self.menu pageWillAppear];
+}
 @end

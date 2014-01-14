@@ -155,4 +155,10 @@
  */
 - (void)refreshPage:(BOOL)wasInitiatedByUser;
 
+/**
+ 
+ */
+
+- (void)pageWillAppear;
+
 @end
