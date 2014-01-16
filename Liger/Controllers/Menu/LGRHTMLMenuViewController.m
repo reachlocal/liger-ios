@@ -62,4 +62,12 @@
 	return self.cordova.userCanRefresh;
 }
 
+- (void)pageWillAppear
+{
+	[super pageWillAppear];
+
+	NSString *js = @"if(PAGE.onPageAppear) PAGE.onPageAppear();";
+	[self.cordova.webView stringByEvaluatingJavaScriptFromString:js];
+}
+
 @end

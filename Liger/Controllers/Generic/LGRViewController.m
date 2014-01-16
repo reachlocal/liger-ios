@@ -37,6 +37,12 @@
 	return nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self pageWillAppear];
+}
+
 #pragma mark - API
 
 - (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args success:(void (^)())success fail:(void (^)())fail
@@ -158,6 +164,11 @@
 }
 
 - (void)refreshPage:(BOOL)wasInitiatedByUser
+{
+	
+}
+
+- (void)pageWillAppear
 {
 	
 }

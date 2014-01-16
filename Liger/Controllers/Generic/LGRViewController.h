@@ -155,4 +155,10 @@
  */
 - (void)refreshPage:(BOOL)wasInitiatedByUser;
 
+/**
+ Callback for when the page will appear, same as viewWillAppear: but generic for both HTML and native.
+ */
+
+- (void)pageWillAppear;
+
 @end

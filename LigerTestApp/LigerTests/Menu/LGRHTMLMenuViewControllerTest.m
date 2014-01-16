@@ -9,12 +9,24 @@
 @import XCTest;
 
 #import "LGRHTMLMenuViewController.h"
+#import "LGRCordovaViewController.h"
+
+#import "OCMock.h"
+
+@interface LGRHTMLMenuViewController (Test)
+@property (readonly) LGRCordovaViewController *cordova;
+@end
 
 @interface LGRHTMLMenuViewControllerTest : XCTestCase
-
+@property (nonatomic, strong) LGRHTMLMenuViewController *menu;
 @end
 
 @implementation LGRHTMLMenuViewControllerTest
+
+- (void)setUp
+{
+	self.menu = [[LGRHTMLMenuViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:@{}];
+}
 
 - (void)testInitWithPage
 {
@@ -31,6 +43,50 @@
 - (void)testNativePage
 {
 	XCTAssertNil([LGRHTMLMenuViewController nativePage], @"LGRHTMLMenuViewController page should not have a name");
+}
+
+- (void)testDialogClosed
+{
+	LGRViewController *liger = [OCMockObject partialMockForObject:self.menu];
+	
+	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	
+	[[[(id)liger stub] andReturn:mock] cordova];
+	[[mock expect] dialogClosed:OCMOCK_ANY];
+	
+	[liger dialogClosed:@{}];
+	
+	XCTAssertNoThrow([mock verify], @"dialogClosed should be sent to the cordova controller");
+}
+
+- (void)testChildUpdates
+{
+	LGRViewController *menu = [OCMockObject partialMockForObject:self.menu];
+	
+	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	
+	[[[(id)menu stub] andReturn:mock] cordova];
+	[[mock expect] childUpdates:OCMOCK_ANY];
+	
+	[menu childUpdates:@{}];
+	
+	XCTAssertNoThrow([mock verify], @"dialogClosed should be sent to the cordova controller");
+}
+
+- (void)testPageWillAppear
+{
+	LGRViewController *menu = [OCMockObject partialMockForObject:self.menu];
+	
+	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	id webMock = [OCMockObject mockForClass:UIWebView.class];
+	[[[mock stub] andReturn:webMock] webView];
+	[[[(id)menu stub] andReturn:mock] cordova];
+	
+	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+	
+	[menu pageWillAppear];
+	
+	XCTAssertNoThrow([mock verify], @"pageWillAppear should result in a call to stringByEvaluatingJavaScriptFromString");
 }
 
 @end
