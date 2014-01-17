@@ -30,7 +30,7 @@
 	LGRSlideViewController *slider = [[LGRSlideViewController alloc] initWithNibName:@"LGRSlideViewController" bundle:nil];
 	XCTAssert(slider.view, @"Slider has no view");
 	[slider resetApp];
-	[slider.childViewControllers[0] viewWillAppear:NO]; // We have to fake calling this as slider's view isn't hooked up to anything
+	[slider.childViewControllers[0] viewDidAppear:NO]; // We have to fake calling this as slider's view isn't hooked up to anything
 
 	XCTAssert(slider.childViewControllers.count == 2, @"Wrong number of child controllers.");
 }

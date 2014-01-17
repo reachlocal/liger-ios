@@ -96,4 +96,9 @@
 	NSAssert(NO, @"%s isn't supported in menu pages", __PRETTY_FUNCTION__);
 }
 
+- (void)pageWillAppear
+{
+	[super pageWillAppear];
+}
+
 @end

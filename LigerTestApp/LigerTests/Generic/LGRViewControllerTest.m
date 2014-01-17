@@ -13,10 +13,16 @@
 #import "LGRViewController.h"
 
 @interface LGRViewControllerTest : XCTestCase
-
+@property (nonatomic, strong) LGRViewController *liger;
 @end
 
 @implementation LGRViewControllerTest
+
+- (void)setUp
+{
+	[super setUp];
+	self.liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
+}
 
 - (void)testNativePage
 {
@@ -49,8 +55,7 @@
 
 - (void)testOpenPage
 {
-	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
-	liger = [OCMockObject partialMockForObject:liger];
+	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
 	
 	id mock = [OCMockObject mockForClass:UINavigationController.class];
 	[[[mock stub] andReturn:[((OCPartialMockObject*)liger) realObject]] topViewController];
@@ -64,8 +69,7 @@
 
 - (void)testUpdateParent
 {
-	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
-	liger = [OCMockObject partialMockForObject:liger];
+	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
 	
 	id mock = [OCMockObject mockForClass:LGRViewController.class];
 	[[mock expect] childUpdates:OCMOCK_ANY];
@@ -78,8 +82,7 @@
 
 - (void)testClosePage
 {
-	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
-	liger = [OCMockObject partialMockForObject:liger];
+	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
 	
 	id mock = [OCMockObject mockForClass:UINavigationController.class];
 	[[[mock expect] ignoringNonObjectArgs] popViewControllerAnimated:YES];
@@ -92,8 +95,7 @@
 
 - (void)testOpenDialog
 {
-	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
-	liger = [OCMockObject partialMockForObject:liger];
+	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
 	
 	// The order of expect + stub is important and should be expect then stub
 	[[((id)liger) expect] presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY];
@@ -106,8 +108,7 @@
 
 - (void)testCloseDialog
 {
-	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
-	liger = [OCMockObject partialMockForObject:liger];
+	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
 	
 	id mock = [OCMockObject mockForClass:UINavigationController.class];
 	[[mock expect] dismissViewControllerAnimated:YES completion:OCMOCK_ANY];
@@ -120,8 +121,7 @@
 
 - (void)testDialogClosed
 {
-	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
-	[liger dialogClosed:@{}]; // Should be an empty implementation, can that be tested?
+	[self.liger dialogClosed:@{}];
 }
 
 - (void)testChildUpdates
@@ -135,9 +135,13 @@
 
 - (void)testRefreshPage
 {
-	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
-	[liger refreshPage:YES];// Should be an empty implementation, can that be tested?
-	[liger refreshPage:NO];// Should be an empty implementation, can that be tested?
+	[self.liger refreshPage:YES];
+	[self.liger refreshPage:NO];
+}
+
+- (void)testPageWillAppear
+{
+	[self.liger pageWillAppear];
 }
 
 @end

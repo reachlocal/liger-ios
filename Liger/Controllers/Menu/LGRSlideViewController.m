@@ -30,6 +30,7 @@
 @property (nonatomic, strong) UIPanGestureRecognizer *openGesture;
 @property (nonatomic, strong) UIPanGestureRecognizer *closeGesture;
 @property (nonatomic, strong) NSMutableDictionary *pages;
+@property (nonatomic, strong) LGRMenuViewController *menu;
 @end
 
 @implementation LGRSlideViewController
@@ -59,12 +60,12 @@
 
 - (void)addMenuController
 {
-	LGRMenuViewController *menu = [LGRPageFactory controllerForMenuPage:LGRApp.menuPage title:nil args:@{@"menu": LGRApp.menuItems}];
-	menu.pages = self.pages;
+	self.menu = [LGRPageFactory controllerForMenuPage:LGRApp.menuPage title:nil args:@{@"menu": LGRApp.menuItems}];
+	self.menu.pages = self.pages;
 
 	__weak LGRSlideViewController *me = self;
 
-	menu.displayController = ^(UIViewController *controller) {
+	self.menu.displayController = ^(UIViewController *controller) {
 		if (![me pageController]) {
 			[me addPage:controller];
 			controller.view.frame = me.view.bounds;
@@ -85,15 +86,15 @@
 		[me fromRight:controller old:[me pageController]];
 	};
 	
-	menu.displayDialog = ^{
+	self.menu.displayDialog = ^{
 		[me toggleMenu];
 	};
 	
-	[self addChildViewController:menu];
-	[self.view addSubview:menu.view];
-	[self.view sendSubviewToBack:menu.view];
+	[self addChildViewController:self.menu];
+	[self.view addSubview:self.menu.view];
+	[self.view sendSubviewToBack:self.menu.view];
 
-	menu.view.frame = self.view.bounds;
+	self.menu.view.frame = self.view.bounds;
 }
 
 - (void)viewDidLoad
@@ -124,7 +125,7 @@
 
 - (void)toggleMenu
 {
-	[self toggleRight:[self pageController]];
+	[self toggle:[self pageController]];
 }
 
 - (void)displayMenu:(id)sender
@@ -132,9 +133,12 @@
 	[self toggleMenu];
 }
 
-- (void)toggleRight:(UIViewController*)controller
+- (void)toggle:(UIViewController*)controller
 {
 	CGRect frame = controller.view.frame;
+
+	if (frame.origin.x == 0)
+		[self.menu viewWillAppear:YES];
 
 	[self userInteractionEnabled:NO controller:controller];
 	[UIView animateWithDuration:0.2f
@@ -192,6 +196,9 @@
 
 - (void)menuOpen:(UIPanGestureRecognizer*)recogniser
 {
+	if (recogniser.state == UIGestureRecognizerStateBegan)
+		[self.menu viewWillAppear:NO];
+
 	CGPoint p = [recogniser translationInView:self.view];	
 	
 	if (p.x < 0)

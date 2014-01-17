@@ -11,6 +11,10 @@ PAGE.childUpdates = function(args){
 	$('#args').append(JSON.stringify(args));
 }
 
+PAGE.onPageAppear = function(){
+	$('#pageAppear').append('*');
+}
+
 var THIRDPAGE = {
 	
 	initialize: function(){
