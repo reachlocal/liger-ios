@@ -92,7 +92,12 @@
 		[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithCSS:app[@"barTint"]]];
 	}
 
-	[[UIWindow appearance] setTintColor:[UIColor colorWithCSS:app[@"tint"]]];
+	UIColor *tint = [UIColor colorWithCSS:app[@"tint"]];
+	[[UIWindow appearance] setTintColor:tint];
+	[[UIView appearance] setTintColor:tint];
+	[[UINavigationBar appearance] setTintColor:tint];
+	[[UIToolbar appearance] setTintColor:tint];
+
 	UIColor *barText = [UIColor colorWithCSS:app[@"barText"]];
 
 	if (barText)
