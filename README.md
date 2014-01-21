@@ -8,7 +8,7 @@ Some will use Liger to write a prototype app in HTML and implement a native vers
 
 ## If you are a Liger beginner you can look at our tutorials for creating apps
 
-[For iOS developers](https://github.com/reachlocal/liger/wiki/Create-iOS-app) <br />
+[For iOS developers](https://github.com/reachlocal/liger/wiki/Create-an-iOS-app) <br />
 
 ## If you want to dig deeper you can
 
