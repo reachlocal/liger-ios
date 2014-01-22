@@ -8,7 +8,7 @@
 
 #import "LGRApp.h"
 
-#define VERSION @4
+#define VERSION @5
 
 @interface LGRApp ()
 @property (nonatomic, strong) NSDictionary *app;
@@ -40,8 +40,8 @@
 		
 		NSAssert([json[@"appFormatVersion"] isEqualToNumber:VERSION], @"Wrong app format version of app.json, please see documentation for updating to the latest format. Do not update appFormatVersion without updating the rest of the file.");
 		NSAssert(json[@"appearance"], @"No appearance in app.json.");
-		NSAssert(json[@"menu"], @"No menu in app.json.");
-		NSAssert([json[@"menu"] count] > 0 && [json[@"menu"][0] count] > 0, @"You need a top menu in app.json");
+		NSAssert(json[@"rootPage"], @"No rootpage in app.json.");
+		NSAssert([json[@"rootPage"][@"args"] count] > 0, @"Your rootPage should have arguments (args) in app.json");
 		self.app = json;
 	}
 	return self;
@@ -54,13 +54,13 @@
 
 + (NSArray*)menuItems
 {
-	return [self app][@"menu"];
+	return [self app][@"rootPage"][@"args"];
 }
 
 + (NSString*)menuPage
 {
-	// TODO Read appMenu from app.json
-	return @"appMenu";
+	NSString *page = [self app][@"rootPage"][@"page"];
+	return page ? page : @"appMenu";
 }
 
 + (NSArray*)toolbars
