@@ -8,11 +8,11 @@ Some will use Liger to write a prototype app in HTML and implement a native vers
 
 ## If you are a Liger beginner you can look at our tutorials for creating apps
 
-[For iOS developers](https://github.com/reachlocal/liger/wiki/Create-iOS-app) <br />
+[For iOS developers](https://github.com/reachlocal/liger/wiki/Create-an-iOS-app) <br />
 
 ## If you want to dig deeper you can
 
-[Learn about Xcode folders]() <br />
+[Learn about Xcode folders](https://github.com/reachlocal/liger/wiki/Xcode-Folders) <br />
 [Read about the app.json file](https://github.com/reachlocal/liger/wiki/app.json) <br />
 [Read about the iOS architecture behind Liger]() <br />
 [Read about writing native iOS pages to add to your app](https://github.com/reachlocal/liger/wiki/Custom-iOS-pages) <br />

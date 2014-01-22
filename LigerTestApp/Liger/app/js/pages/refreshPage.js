@@ -1,7 +1,7 @@
 PAGE.refreshPage = function(){
     REFRESHPAGES.initialize();
-	// PAGE.userCanRefresh = true;
- //    PAGE.setupRefresh();
+	PAGE.userCanRefresh = true;
+	PAGE.setupRefresh();
     return true;
 }
 
