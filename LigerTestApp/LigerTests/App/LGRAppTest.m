@@ -43,7 +43,6 @@
 	for (NSDictionary *item in menu[0]) {
 		XCTAssertNotNil(item[@"name"], @"Menu item did not have a name");
 		XCTAssertNotNil(item[@"page"], @"Menu item did not have a page");
-		XCTAssertNotNil(item[@"iconText"], @"Menu item did not have text");
 		XCTAssertNotNil(item[@"accessibilityLabel"], @"Menu item did not have a name");
 	}
 	for (NSDictionary *item in menu[1]) {

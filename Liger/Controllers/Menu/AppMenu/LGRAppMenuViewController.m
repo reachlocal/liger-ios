@@ -138,9 +138,9 @@
 		args = @{};
 
 	if (dialog) {
-		[self openDialog:menuItem[@"page"] title:menuItem[@"name"] args:args success:^{} fail:^{}];
+		[self openDialog:menuItem[@"page"] title:menuItem[@"title"] args:args success:^{} fail:^{}];
 	} else {
-		[self openPage:menuItem[@"page"] title:menuItem[@"name"] args:args success:^{} fail:^{}];
+		[self openPage:menuItem[@"page"] title:menuItem[@"title"] args:args success:^{} fail:^{}];
 	}
 	return;
 }

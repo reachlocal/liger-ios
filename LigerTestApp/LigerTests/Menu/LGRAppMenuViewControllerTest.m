@@ -55,13 +55,13 @@
 	NSDictionary *args = @{@"menu": @[@[
 										  @{
 											  @"accessibilityLabel" : @"firstPage",
-											  @"iconText" : @"P",
+											  @"title" : @"First Page",
 											  @"name" : @"First Page",
 											  @"page" : @"firstPage"
 											  },
 										  @{
 											  @"accessibilityLabel" : @"nativePages",
-											  @"iconText" : @"N",
+											  @"title": @"Native Page",
 											  @"name" : @"Native Pages",
 											  @"page" : @"nativePages",
 											  @"dialog" : @YES

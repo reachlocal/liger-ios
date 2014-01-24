@@ -1,86 +1,87 @@
 {
-	"appFormatVersion": 4,
-    "menu": [
-        [
-            {
-                "name": "Page",
-                "page": "firstPage",
-                "iconText": "P",
-                "accessibilityLabel": "firstPage"
-            },
-            {
-                "name": "Native Pages",
-                "page": "nativePages",
-                "iconText": "N",
-                "accessibilityLabel": "nativePages"
-            },
-			{
-				"name": "System",
-				"page": "system",
-				"iconText": "S",
-				"accessibilityLabel": "system"
-			}
-        ],
-        [
-            {
-                "name": "Dialog",
-                "page": "dialog",
-                "detail": "static detail",
-                "accessibilityLabel": "dialog",
-				"dialog": "true"
-            },
-			{
-				"name": "Native Pages",
-				"page": "nativePages",
-				"detail": "static detail",
-				"accessibilityLabel": "nativeDialog",
-				"dialog": "true"
-			},
-			{
-				"name": "Mail us",
-				"page": "email",
-				"args" : {"subject": "Liger",
-						 "body": "Hi,\n\nI would like to tell you how much I like Liger.\n\n//Me",
-						 "toRecipients": "liger@example.com",
-						 "html": false },
-				"detail": "We like mail",
-				"accessibilityLabel": "emailDialog",
-				"dialog": "true"
-			}
-        ]
-    ],
-
-	"appearance" : {
-		"iOS" : {
-			"barColor" : "",
-			"barText" : "",
-
-			"webBackground" : "#FFF",
-			
-			"menuBackground" : "",
-			
-			"menu1Text" : "",
-			"menu2Text" : "",
-			"menuSelected" : ""
-		},
-		"iOS7" : {
-			"statusBar" : "",
-			"statusBarDialog" : "",
-
-			"barColor" : "",
-			"barTint" : "",
-			"tint" : "",
-			"barText" : "",
-
-			"webBackground" : "#FFF",
-
-			"menuBackground" : "",
-			
-			"menu1Text" : "",
-			"menu2Text" : "",
-			"menuSelected" : ""
-		}
-	},
-	
-	"pagesWithToolbars": ["toolbarPage"]
+  "appFormatVersion": 5,
+  "rootPage": {
+    "page": "appMenu",
+    "accessibilityLabel": "menu",
+    "args": [
+      [
+        {
+          "name": "Page tests",
+          "title": "First Page",
+          "page": "firstPage",
+          "accessibilityLabel": "firstPage"
+        },
+        {
+          "name": "Native Pages",
+          "title": "Native Page",
+          "page": "nativePages",
+          "accessibilityLabel": "nativePages"
+        },
+        {
+          "name": "System",
+          "title": "System Pages",
+          "page": "system",
+          "accessibilityLabel": "system"
+        }
+      ],
+      [
+        {
+          "name": "Dialog tests",
+          "page": "dialog",
+	      "title": "Dialog Page",
+          "detail": "static detail",
+          "accessibilityLabel": "dialog",
+          "dialog": "true"
+        },
+        {
+          "name": "Native Pages",
+          "page": "nativePages",
+		  "title": "Native Page",
+          "detail": "static detail",
+          "accessibilityLabel": "nativeDialog",
+          "dialog": "true"
+        },
+        {
+          "name": "Mail us",
+          "page": "email",
+          "args": {
+            "subject": "Liger",
+            "body": "Hi,\n\nI would like to tell you how much I like Liger.\n\n//Me",
+            "toRecipients": "liger@example.com",
+            "html": false
+          },
+          "detail": "We like mail",
+          "accessibilityLabel": "emailDialog",
+          "dialog": "true"
+        }
+      ]
+    ]
+  },
+  "appearance": {
+    "iOS": {
+      "barColor": "",
+      "barText": "",
+      "webBackground": "#FFF",
+      "menuBackground": "",
+      "menu1Text": "",
+      "menu2Text": "",
+      "menuSelected": ""
+    },
+    "iOS7": {
+      "statusBar": "",
+      "statusBarDialog": "",
+      "barColor": "",
+      "barTint": "",
+      "tint": "",
+      "barText": "",
+      "webBackground": "#FFF",
+      "menuBackground": "",
+      "menu1Text": "",
+      "menu2Text": "",
+      "menuSelected": ""
+    }
+  },
+  "pagesWithToolbars": [
+    "toolbarPage"
+  ]
 }
