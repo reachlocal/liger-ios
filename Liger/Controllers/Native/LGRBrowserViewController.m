@@ -42,6 +42,9 @@
 
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.args[@"link"]]];
 	[self.webView loadRequest:request];
+    
+    self.webView.scalesPageToFit = [self.args[@"allowZoom"] boolValue];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
