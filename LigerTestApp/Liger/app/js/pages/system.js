@@ -29,7 +29,7 @@ var SYSTEM = {
 		$("#browser,#mail,#message,#image,#twitter,#facebook,#sinaweibo,#tencentweibo").unbind();
 
         $("#browser").click(function(){
-			PAGE.openPage('Browser', 'browser', {link: "http://daringfireball.net"});
+            PAGE.openPage('Browser', 'browser', {link: "http://daringfireball.net", allowZoom:"false"});
 			return false;
         });
 		
