@@ -28,8 +28,9 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+	[super viewDidLoad];
 	[self.view addSubview:self.cordova.view];
+	self.cordova.view.frame = self.view.bounds; // Only needed for iOS 6
 }
 
 - (void)dialogClosed:(NSDictionary*)args
