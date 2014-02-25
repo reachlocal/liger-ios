@@ -3,7 +3,7 @@
 //  Edge
 //
 //  Created by John Gustafsson on 3/5/13.
-//  Copyright (c) 2013 ReachLocal, Inc. All rights reserved.
+//  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
 //
 
 #import "LGRAppearance.h"
