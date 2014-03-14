@@ -2,10 +2,10 @@ PODS:
   - Cordova (3.1.0):
     - Cordova/Base
   - Cordova/Base (3.1.0)
-  - Liger (0.0.7):
+  - Liger (0.0.8):
     - Cordova (= 3.1.0)
     - UIColor-HTMLColors (= 1.0.0)
-  - OCMock (2.2.1)
+  - OCMock (2.2.3)
   - UIColor-HTMLColors (1.0.0)
 
 DEPENDENCIES:
@@ -20,8 +20,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Cordova: d228f72b7c7e5823af9a8b6645f868daf81e6398
-  Liger: f882e07b17e2c1e8a314e965948ed337d43535bb
-  OCMock: 80e4cfbc71a0e1bd28caf10a9fda27da7c4c8402
+  Liger: 3575b9a7aec7eaf20f940ea8e2857af6e91b0b45
+  OCMock: 74e4ddbcef134170dcc844f91c691f13868075d7
   UIColor-HTMLColors: da4cd2f18102ace67736392ffd15d8a145e5a31f
 
-COCOAPODS: 0.28.0
+COCOAPODS: 0.29.0
