@@ -22,6 +22,8 @@ Pod::Spec.new do |s|
   s.source_files  = 'Liger/**/*.{h,m}'
   s.resources = 'Liger/**/*.{xib}'
 
+  s.resources = ['Liger/**/*.{xib}', 'Liger/**/*.png']
+
   s.requires_arc = true
 
   s.dependency 'Cordova', '3.1.0'
