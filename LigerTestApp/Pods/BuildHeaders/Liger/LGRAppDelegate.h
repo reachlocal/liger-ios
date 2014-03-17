@@ -1,1 +1,0 @@
-../../../../Liger/Startup/LGRAppDelegate.h

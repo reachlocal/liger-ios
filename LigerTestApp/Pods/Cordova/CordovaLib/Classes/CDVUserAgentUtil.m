@@ -89,14 +89,14 @@ static NSMutableArray* gPendingSetUserAgentBlocks = nil;
     if (*lockToken == 0) {
         return;
     }
-    NSAssert(gCurrentLockToken == *lockToken, @"Got token %ldd, expected %ld", (long)*lockToken, (long)gCurrentLockToken);
+    NSAssert(gCurrentLockToken == *lockToken, @"Got token %d, expected %d", *lockToken, gCurrentLockToken);
 
     VerboseLog(@"Released lock %d", *lockToken);
     if ([gPendingSetUserAgentBlocks count] > 0) {
         void (^block)() = [gPendingSetUserAgentBlocks objectAtIndex:0];
         [gPendingSetUserAgentBlocks removeObjectAtIndex:0];
         gCurrentLockToken = ++gNextLockToken;
-        NSLog(@"Gave lock %ld", (long)gCurrentLockToken);
+        NSLog(@"Gave lock %d", gCurrentLockToken);
         block(gCurrentLockToken);
     } else {
         gCurrentLockToken = 0;
@@ -106,7 +106,7 @@ static NSMutableArray* gPendingSetUserAgentBlocks = nil;
 
 + (void)setUserAgent:(NSString*)value lockToken:(NSInteger)lockToken
 {
-    NSAssert(gCurrentLockToken == lockToken, @"Got token %ld, expected %ld", (long)lockToken, (long)gCurrentLockToken);
+    NSAssert(gCurrentLockToken == lockToken, @"Got token %d, expected %d", lockToken, gCurrentLockToken);
     VerboseLog(@"User-Agent set to: %@", value);
 
     // Setting the UserAgent must occur before a UIWebView is instantiated.

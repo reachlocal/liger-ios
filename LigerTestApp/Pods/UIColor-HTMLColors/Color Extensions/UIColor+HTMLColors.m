@@ -374,7 +374,7 @@ static NSCharacterSet *CMRHexCharacters() {
 // We know we've got hex already, so assume this works
 static NSUInteger CMRParseHex(NSString *str, BOOL repeated)
 {
-    unsigned ans = 0;
+    NSUInteger ans = 0;
     if (repeated) {
         str = [NSString stringWithFormat:@"%@%@", str, str];
     }

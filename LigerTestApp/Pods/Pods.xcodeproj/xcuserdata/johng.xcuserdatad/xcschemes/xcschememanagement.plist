@@ -4,47 +4,32 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-Cordova.xcscheme</key>
+		<key>Pods-Liger-Cordova.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Liger.xcscheme</key>
+		<key>Pods-Liger-LigerMobile.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-LigerTests-Cordova.xcscheme</key>
+		<key>Pods-Liger-UIColor-HTMLColors.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-LigerTests-Liger.xcscheme</key>
+		<key>Pods-Liger.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-LigerTests-OCMock.xcscheme</key>
+		<key>Pods-LigerTests-OCMock.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-LigerTests-UIColor-HTMLColors.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-LigerTests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-UIColor-HTMLColors.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-LigerTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,47 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>05A5A37F4D654B108DB9D3D5</key>
+		<key>04517BCEDC1A4AD0AFD82FEB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2FD766DC3B764EC0893B2074</key>
+		<key>1BFC15C94D9E4EE2BAC26713</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3955777BF6E6409DA496DB57</key>
+		<key>2AD27EB880314CB6BF704165</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>77AE5072A23E4A89AE8C6818</key>
+		<key>83ED7D69703E4CB39F995319</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>86FC75D2587E47B5A88952BB</key>
+		<key>93599A3D206D415E8D148956</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>87CEFD889C6242CEB7EC2A88</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ACD710C9594543FFA82EE64A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DAF5F6549BF14CD3BBC15A3D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F9501188534F49A3978248AB</key>
+		<key>9C55487358C44D8E8531702E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
