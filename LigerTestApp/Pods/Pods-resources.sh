@@ -44,6 +44,14 @@ install_resource()
 install_resource "../../Liger/Controllers/Menu/AppMenu/LGRAppMenuViewController.xib"
 install_resource "../../Liger/Controllers/Menu/LGRSlideViewController.xib"
 install_resource "../../Liger/Controllers/Native/LGRBrowserViewController.xib"
+install_resource "../../Liger/Images/icn-back-active.png"
+install_resource "../../Liger/Images/icn-back-active@2x.png"
+install_resource "../../Liger/Images/icn-back.png"
+install_resource "../../Liger/Images/icn-back@2x.png"
+install_resource "../../Liger/Images/icn-forward-active.png"
+install_resource "../../Liger/Images/icn-forward-active@2x.png"
+install_resource "../../Liger/Images/icn-forward.png"
+install_resource "../../Liger/Images/icn-forward@2x.png"
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then

@@ -16,10 +16,11 @@
 
 - (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args
 {
+    
 	self = [super initWithPage:page title:title args:args nibName:@"LGRBrowserViewController" bundle:nil];
 	if (self) {
-		self.toolbarItems = @[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(goBack:)],
-							  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(goForward:)],
+		self.toolbarItems = @[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn-back"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)],
+							  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn-forward"] style:UIBarButtonItemStylePlain target:self action:@selector(goForward:)],
 							  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
 							  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reload:)]];
 		
