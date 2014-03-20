@@ -154,13 +154,13 @@ typedef enum {
 {
     NSString* loadToken = [webView stringByEvaluatingJavaScriptFromString:@"window.__cordovaLoadToken"];
 
-    return [[NSString stringWithFormat:@"%ld", (long)_curLoadToken] isEqualToString:loadToken];
+    return [[NSString stringWithFormat:@"%d", _curLoadToken] isEqualToString:loadToken];
 }
 
 - (void)setLoadToken:(UIWebView*)webView
 {
     _curLoadToken += 1;
-    [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.__cordovaLoadToken=%ld", (long)_curLoadToken]];
+    [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.__cordovaLoadToken=%d", _curLoadToken]];
 }
 
 - (void)pollForPageLoadStart:(UIWebView*)webView
@@ -221,7 +221,7 @@ typedef enum {
                     // Redirect case.
                     // We expect loadCount == 1.
                     if (_loadCount != 1) {
-                        NSLog(@"CDVWebViewDelegate: Detected redirect when loadCount=%ld", (long)_loadCount);
+                        NSLog(@"CDVWebViewDelegate: Detected redirect when loadCount=%d", _loadCount);
                     }
                     break;
 
@@ -237,7 +237,7 @@ typedef enum {
                         _loadCount = 0;
                         _state = STATE_WAITING_FOR_LOAD_START;
                         if (![self request:request isFragmentIdentifierToRequest:webView.request]) {
-                            NSString* description = [NSString stringWithFormat:@"CDVWebViewDelegate: Navigation started when state=%ld", (long)_state];
+                            NSString* description = [NSString stringWithFormat:@"CDVWebViewDelegate: Navigation started when state=%d", _state];
                             NSLog(@"%@", description);
                             if ([_delegate respondsToSelector:@selector(webView:didFailLoadWithError:)]) {
                                 NSDictionary* errorDictionary = @{NSLocalizedDescriptionKey : description};
@@ -286,7 +286,7 @@ typedef enum {
 
         case STATE_WAITING_FOR_LOAD_START:
             if (_loadCount != 0) {
-                NSLog(@"CDVWebViewDelegate: Unexpected loadCount in didStart. count=%ld", (long)_loadCount);
+                NSLog(@"CDVWebViewDelegate: Unexpected loadCount in didStart. count=%d", _loadCount);
             }
             fireCallback = YES;
             _state = STATE_WAITING_FOR_LOAD_FINISH;
@@ -306,7 +306,7 @@ typedef enum {
             break;
 
         default:
-            NSLog(@"CDVWebViewDelegate: Unexpected didStart with state=%ld loadCount=%ld", (long)_state, (long)_loadCount);
+            NSLog(@"CDVWebViewDelegate: Unexpected didStart with state=%d loadCount=%d", _state, _loadCount);
     }
     VerboseLog(@"webView didStartLoad (after). state=%d loadCount=%d fireCallback=%d", _state, _loadCount, fireCallback);
     if (fireCallback && [_delegate respondsToSelector:@selector(webViewDidStartLoad:)]) {

@@ -1,14 +1,14 @@
+# Uncomment this line to define a global platform for your project
 platform :ios, "6.1"
 
-pod 'Liger', path: './..'
+target "Liger" do
+       pod 'LigerMobile', path: './..'
 
-pod 'Cordova', '3.1.0'
-pod 'UIColor-HTMLColors', '1.0.0'
-
-#target "Liger" do
-#end
+       pod 'Cordova', '3.1.0'
+       pod 'UIColor-HTMLColors', '1.0.0'
+end
 
 target "LigerTests" do
-	pod 'OCMock'
+       pod 'OCMock', '2.2.3'
 end
 

@@ -1,1 +1,0 @@
-../../../../Liger/Cordova/LGRCordovaViewController.h

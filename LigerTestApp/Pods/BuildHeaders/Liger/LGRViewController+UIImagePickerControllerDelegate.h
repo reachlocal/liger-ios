@@ -1,1 +1,0 @@
-../../../../Liger/Controllers/iOS/LGRViewController+UIImagePickerControllerDelegate.h

@@ -614,8 +614,8 @@ CGFloat gAccessoryBarHeight = 0.0;
 {
     // First, ask the webview via JS if it supports the new orientation
     NSString* jsCall = [NSString stringWithFormat:
-        @"window.shouldRotateToOrientation && window.shouldRotateToOrientation(%ld);"
-        , (long)[self mapIosOrientationToJsOrientation:interfaceOrientation]];
+        @"window.shouldRotateToOrientation && window.shouldRotateToOrientation(%d);"
+        , [self mapIosOrientationToJsOrientation:interfaceOrientation]];
     NSString* res = [webView stringByEvaluatingJavaScriptFromString:jsCall];
 
     if ([res length] > 0) {
