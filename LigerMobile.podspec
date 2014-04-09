@@ -24,6 +24,6 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.dependency 'Cordova', '3.1.0'
+  s.dependency 'Cordova', '3.4.0'
   s.dependency 'UIColor-HTMLColors', '1.0.0'
 end
