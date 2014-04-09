@@ -1,27 +1,25 @@
 PODS:
-  - Cordova (3.1.0):
+  - Cordova (3.4.0):
     - Cordova/Base
-  - Cordova/Base (3.1.0)
-  - LigerMobile (0.0.8):
-    - Cordova (= 3.1.0)
+  - Cordova/Base (3.4.0)
+  - LigerMobile (0.0.9):
+    - Cordova (= 3.4.0)
     - UIColor-HTMLColors (= 1.0.0)
   - OCMock (2.2.3)
   - UIColor-HTMLColors (1.0.0)
 
 DEPENDENCIES:
-  - Cordova (= 3.1.0)
   - LigerMobile (from `./..`)
   - OCMock (= 2.2.3)
-  - UIColor-HTMLColors (= 1.0.0)
 
 EXTERNAL SOURCES:
   LigerMobile:
     :path: ./..
 
 SPEC CHECKSUMS:
-  Cordova: d228f72b7c7e5823af9a8b6645f868daf81e6398
-  LigerMobile: 5836998e6b50bea7edc9d7dd833a88a76cd75b0e
-  OCMock: 74e4ddbcef134170dcc844f91c691f13868075d7
+  Cordova: a8263c450a587014c3f8f3211bc258e035d88179
+  LigerMobile: 36159b1eb0f60565805aa332207d2b75460fc6ae
+  OCMock: ea7fe30ee99e4e3186ad47d032a301fa7e8793ec
   UIColor-HTMLColors: da4cd2f18102ace67736392ffd15d8a145e5a31f
 
 COCOAPODS: 0.29.0

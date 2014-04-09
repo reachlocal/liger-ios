@@ -3,9 +3,6 @@ platform :ios, "6.1"
 
 target "Liger" do
        pod 'LigerMobile', path: './..'
-
-       pod 'Cordova', '3.1.0'
-       pod 'UIColor-HTMLColors', '1.0.0'
 end
 
 target "LigerTests" do
