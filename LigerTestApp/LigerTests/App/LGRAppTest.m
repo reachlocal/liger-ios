@@ -7,11 +7,16 @@
 //
 
 #import "LGRApp.h"
+#import "OCMock.h"
+
+@interface LGRApp ()
++ (LGRApp*)shared;
+@property (nonatomic, strong) NSDictionary *app;
+@end
 
 @import XCTest;
 
 @interface LGRAppTest : XCTestCase
-@property (nonatomic, strong) NSDictionary *appJSON;
 @end
 
 @implementation LGRAppTest
@@ -19,20 +24,24 @@
 - (void)setUp
 {
     [super setUp];
-	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"app/app" ofType:@"json"];
-	NSData *file = [NSData dataWithContentsOfFile:filePath];
-	XCTAssertNotNil(file, @"app.json failed to load");
-	
-	NSError *error = nil;
-	self.appJSON = [NSJSONSerialization JSONObjectWithData:file options:0 error:&error];
-	
-	XCTAssertNil(error, @"app.json failed to load");
 }
 
 - (void)tearDown
 {
-    // Tear-down code here.
     [super tearDown];
+}
+
+- (void)testReadAppJson
+{
+    [super setUp];
+	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"app/app" ofType:@"json"];
+	NSData *file = [NSData dataWithContentsOfFile:filePath];
+	XCTAssertNotNil(file, @"app.json failed to load");
+
+	NSError *error = nil;
+	[NSJSONSerialization JSONObjectWithData:file options:0 error:&error];
+
+	XCTAssertNil(error, @"app.json failed to load");
 }
 
 - (void)testMenu
@@ -57,7 +66,6 @@
 {
 	NSDictionary *appearance = [LGRApp appearance];
 	XCTAssertNotNil(appearance, @"No appearance in app.json");
-	
 }
 
 - (void)testToolbar
@@ -66,4 +74,28 @@
 	XCTAssertNotNil(pagesWithToolbars, @"No toolbars in app.json");
 	XCTAssert([pagesWithToolbars isKindOfClass:NSArray.class], @"[LGRApp toolbars] didn't return an array");
 }
+
+- (void)testSetupPushNotifications
+{
+	UIRemoteNotificationType types = (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound);
+
+	id sharedApp = [OCMockObject partialMockForObject:[UIApplication sharedApplication]];
+	[[sharedApp expect] cancelAllLocalNotifications];
+	[[sharedApp expect] registerForRemoteNotificationTypes:types];
+
+	id app = [OCMockObject partialMockForObject:[LGRApp shared]];
+	[[[app stub] andReturn:@{@"notifications": @(YES)}] app];
+
+	id app2 = [OCMockObject mockForClass:LGRApp.class];
+	[[[app2 stub] andReturn:app] shared];
+
+	[LGRApp setupPushNotifications];
+
+	XCTAssertNoThrow([sharedApp verify], @"Failed expect.");
+
+	[sharedApp stopMocking];
+	[app2 stopMocking];
+	[app stopMocking];
+}
+
 @end

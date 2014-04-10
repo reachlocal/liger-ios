@@ -7,6 +7,8 @@
 //
 
 @interface LGRApp : NSObject
++ (void)setupPushNotifications;
+
 + (NSDictionary*)appearance;
 + (NSArray*)menuItems;
 + (NSString*)menuPage;
