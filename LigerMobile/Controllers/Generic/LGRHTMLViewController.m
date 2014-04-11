@@ -75,4 +75,13 @@
 	[self.cordova.webView stringByEvaluatingJavaScriptFromString:js];
 }
 
+- (void)pushNotificationTokenUpdated:(NSString *)token error:(NSError *)error
+{
+	NSString *js = @"if(PAGE.pushNotificationTokenUpdated) PAGE.pushNotificationTokenUpdated('%@', 'iOSDeviceToken', '%@');";
+	js = [NSString stringWithFormat:js, token, error ? [error localizedDescription] : @""];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+		[self.cordova.webView stringByEvaluatingJavaScriptFromString:js];
+	});
+}
+
 @end

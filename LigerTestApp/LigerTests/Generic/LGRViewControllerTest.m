@@ -70,7 +70,7 @@
 - (void)testUpdateParent
 {
 	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
-	
+
 	id mock = [OCMockObject mockForClass:LGRViewController.class];
 	[[mock expect] childUpdates:OCMOCK_ANY];
 	[[[((id)liger) stub] andReturn:mock] ligerParent];
@@ -78,6 +78,22 @@
 	[liger updateParent:nil args:@{} success:^{} fail:^{}];
 	
 	XCTAssertNoThrow([mock verify], @"Verify failed");
+}
+
+- (void)testUpdateParentDestination
+{
+	id liger = [OCMockObject partialMockForObject:self.liger];
+
+	id test2 = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test2" title:@"" args:@{}]];
+	id test = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test" title:@"" args:@{}]];
+
+	[[[liger stub] andReturn:test2] ligerParent];
+	[[[test2 stub] andReturn:test] ligerParent];
+	[[test expect] childUpdates:OCMOCK_ANY];
+
+	[liger updateParent:@"test" args:@{} success:^{} fail:^{}];
+
+	XCTAssertNoThrow([test verify], @"Verify failed");
 }
 
 - (void)testClosePage
@@ -90,6 +106,25 @@
 	
 	[liger closePage:nil success:^{} fail:^{}];
 	
+	XCTAssertNoThrow([mock verify], @"Verify failed");
+}
+
+- (void)testClosePageRewind
+{
+	id liger = [OCMockObject partialMockForObject:self.liger];
+
+	id test2 = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test2" title:@"" args:@{}]];
+	id test = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test" title:@"" args:@{}]];
+
+	[[[liger stub] andReturn:test2] ligerParent];
+	[[[test2 stub] andReturn:test] ligerParent];
+
+	id mock = [OCMockObject mockForClass:UINavigationController.class];
+	[[[mock expect] ignoringNonObjectArgs] popToViewController:OCMOCK_ANY animated:YES];
+	[[[((id)liger) stub] andReturn:mock] navigationController];
+
+	[liger closePage:@"test" success:^{} fail:^{}];
+
 	XCTAssertNoThrow([mock verify], @"Verify failed");
 }
 
@@ -142,6 +177,20 @@
 - (void)testPageWillAppear
 {
 	[self.liger pageWillAppear];
+}
+
+- (void)testUserCanRefresh
+{
+	XCTAssertEqual(self.liger.userCanRefresh, NO, @"Should be NO.");
+	self.liger.userCanRefresh = YES;
+	XCTAssertEqual(self.liger.userCanRefresh, YES, @"Should be YES.");
+	self.liger.userCanRefresh = NO;
+	XCTAssertEqual(self.liger.userCanRefresh, NO, @"Should be NO.");
+}
+
+- (void)testPushNotificationTokenUpdatedError
+{
+	[self.liger pushNotificationTokenUpdated:@"" error:nil];
 }
 
 @end

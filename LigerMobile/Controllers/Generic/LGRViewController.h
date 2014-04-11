@@ -6,8 +6,6 @@
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
 //
 
-#import "LGRSlideViewController.h"
-
 /**
  LGRViewController forms the basis of what in Liger is called a Page. All UIViewControllers that are intended to be used
  from a Liger HTML view needs to inherit from this class to provide the API for handling Pages.
@@ -160,5 +158,17 @@
  */
 
 - (void)pageWillAppear;
+
+/**
+ Called when the app is starting up. Either a token if successful or an error if it was a failure.
+ The simulator will always cause failures as notifications only work on device.
+
+ Will only be sent to the rootPage by LigerMobile.
+ 
+ @param token A string representation of the NSData sent in as a token
+ @param error An error if it failed
+ */
+
+- (void)pushNotificationTokenUpdated:(NSString*)token error:(NSError*)error;
 
 @end
