@@ -6,6 +6,8 @@
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
 //
 
-@interface LGRSlideViewController : UIViewController
+#import "LGRViewController.h"
+
+@interface LGRSlideViewController : LGRViewController
 - (void)resetApp;
 @end

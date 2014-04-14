@@ -12,7 +12,7 @@
 
 @implementation LGRAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
 	[LGRAppearance setupApperance];
 	
@@ -26,28 +26,30 @@
 	return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
+	NSUInteger length = [deviceToken length];
+
+	int32_t a[length/4 + !!(length%4)];
+	[deviceToken getBytes:a length:length];
+
+	NSString *token = @"";
+	for (NSUInteger i=0; i < length/4 + !!(length%4); i++) {
+		token = [token stringByAppendingFormat:@"%x", a[i]];
+	}
+
+	[[self rootPage] pushNotificationTokenUpdated:token error:nil];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
+	[[self rootPage] pushNotificationTokenUpdated:nil error:error];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
+- (LGRViewController*)rootPage
 {
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-}
-
-- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
-{
+	NSAssert([self.window.rootViewController isKindOfClass:LGRViewController.class], @"self.window.rootViewController must be a LGRViewController.");
+	return (LGRViewController*)self.window.rootViewController;
 }
 
 @end

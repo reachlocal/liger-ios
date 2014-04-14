@@ -46,6 +46,11 @@
 	return self;
 }
 
++ (NSString*)nativePage
+{
+	return @"DrawerPage";
+}
+
 - (void)addPage:(UIViewController *)controller
 {
 	UIViewController *page = ((UINavigationController*)controller).viewControllers[0];
@@ -324,6 +329,11 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return [LGRAppearance statusBar];
+}
+
+- (void)pushNotificationTokenUpdated:(NSString *)token error:(NSError *)error
+{
+	[self.menu pushNotificationTokenUpdated:token error:error];
 }
 
 @end

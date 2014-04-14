@@ -8,6 +8,7 @@
 
 #import "LGRViewController.h"
 #import "LGRPageFactory.h"
+#import "LGRSlideViewController.h"
 
 @interface LGRViewController ()
 @property (nonatomic, strong) NSString *page;
@@ -169,6 +170,11 @@
 }
 
 - (void)pageWillAppear
+{
+	
+}
+
+- (void)pushNotificationTokenUpdated:(NSString*)token error:(NSError*)error
 {
 	
 }

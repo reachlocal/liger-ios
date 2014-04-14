@@ -89,4 +89,20 @@
 	XCTAssertNoThrow([mock verify], @"pageWillAppear should result in a call to stringByEvaluatingJavaScriptFromString");
 }
 
+- (void)testUserCanRefresh
+{
+	XCTAssertEqual(self.menu.userCanRefresh, NO, @"Should be NO.");
+	self.menu.userCanRefresh = YES;
+	XCTAssertEqual(self.menu.userCanRefresh, YES, @"Should be YES.");
+	self.menu.userCanRefresh = NO;
+	XCTAssertEqual(self.menu.userCanRefresh, NO, @"Should be NO.");
+}
+
+- (void)testPushNotificationTokenUpdatedError
+{
+	id menu = [OCMockObject partialMockForObject:self.menu];
+
+	[menu pushNotificationTokenUpdated:@"26ea0f5899ac6bd8a3e0d6b51f38a4ad3475c1e4eefbeee62eca722cef0c3bf9" error:nil];
+}
+
 @end

@@ -20,24 +20,25 @@
 		32110744182866F600AE0D71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32110742182866F600AE0D71 /* InfoPlist.strings */; };
 		321107781828674500AE0D71 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 321107771828674500AE0D71 /* config.xml */; };
 		3211077A1828674D00AE0D71 /* app in Resources */ = {isa = PBXBuildFile; fileRef = 321107791828674D00AE0D71 /* app */; };
-		324FE47A185100E700C94585 /* LGREmailImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 324FE479185100E700C94585 /* LGREmailImportedTest.m */; };
-		324FE47D185107CA00C94585 /* LGRViewController+MessageUITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 324FE47C185107CA00C94585 /* LGRViewController+MessageUITest.m */; };
-		324FE481185116F800C94585 /* LGRMessageImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 324FE480185116F800C94585 /* LGRMessageImportedTest.m */; };
-		3265E228184514C300E81DA8 /* LGRViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265E227184514C300E81DA8 /* LGRViewControllerTest.m */; };
-		326CFA6A1844F78300BEB092 /* LGRSlideViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 326CFA691844F78300BEB092 /* LGRSlideViewControllerTest.m */; };
-		326CFA6C1844F7C400BEB092 /* LGRMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 326CFA6B1844F7C400BEB092 /* LGRMenuViewControllerTest.m */; };
-		326CFA6E1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 326CFA6D1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m */; };
-		326CFA701844F7FF00BEB092 /* LGRHTMLMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 326CFA6F1844F7FF00BEB092 /* LGRHTMLMenuViewControllerTest.m */; };
-		32786FBD1869E40400A7F192 /* LGRLigerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32786FBC1869E40400A7F192 /* LGRLigerTest.m */; };
+		3243044618F74D7000565E2E /* LGRLigerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043018F74D7000565E2E /* LGRLigerTest.m */; };
+		3243044718F74D7000565E2E /* LGRHTMLViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043218F74D7000565E2E /* LGRHTMLViewControllerTest.m */; };
+		3243044818F74D7000565E2E /* LGRPageFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043318F74D7000565E2E /* LGRPageFactoryTest.m */; };
+		3243044918F74D7000565E2E /* LGRViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043418F74D7000565E2E /* LGRViewControllerTest.m */; };
+		3243044A18F74D7000565E2E /* LGREmailImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043618F74D7000565E2E /* LGREmailImportedTest.m */; };
+		3243044B18F74D7000565E2E /* LGRMessageImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043718F74D7000565E2E /* LGRMessageImportedTest.m */; };
+		3243044C18F74D7000565E2E /* LGRViewController+MessageUITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043818F74D7000565E2E /* LGRViewController+MessageUITest.m */; };
+		3243044D18F74D7000565E2E /* LGRAppMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043A18F74D7000565E2E /* LGRAppMenuViewControllerTest.m */; };
+		3243044E18F74D7000565E2E /* LGRHTMLMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043B18F74D7000565E2E /* LGRHTMLMenuViewControllerTest.m */; };
+		3243044F18F74D7000565E2E /* LGRMenuCell1Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043C18F74D7000565E2E /* LGRMenuCell1Test.m */; };
+		3243045018F74D7000565E2E /* LGRMenuCell2Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043D18F74D7000565E2E /* LGRMenuCell2Test.m */; };
+		3243045118F74D7000565E2E /* LGRMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043E18F74D7000565E2E /* LGRMenuViewControllerTest.m */; };
+		3243045218F74D7000565E2E /* LGRSlideViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043F18F74D7000565E2E /* LGRSlideViewControllerTest.m */; };
+		3243045318F74D7000565E2E /* LGRBrowserViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243044118F74D7000565E2E /* LGRBrowserViewControllerTest.m */; };
+		3243045418F74D7000565E2E /* LGRAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243044318F74D7000565E2E /* LGRAppDelegateTest.m */; };
+		3243045518F74D7000565E2E /* LGRApperanceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243044418F74D7000565E2E /* LGRApperanceTest.m */; };
+		3243045618F74D7000565E2E /* LGRAppTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243044518F74D7000565E2E /* LGRAppTest.m */; };
 		3281642F183A7A050059A464 /* LGRNativePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3281642D183A7A050059A464 /* LGRNativePagesViewController.m */; };
 		32816430183A7A050059A464 /* LGRNativePagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */; };
-		3281644D183C126B0059A464 /* LGRApperanceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32816448183C126B0059A464 /* LGRApperanceTest.m */; };
-		3281644E183C126B0059A464 /* LGRAppTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3281644A183C126B0059A464 /* LGRAppTest.m */; };
-		32A920151868CE280039433B /* LGRMenuCell1Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A920141868CE280039433B /* LGRMenuCell1Test.m */; };
-		32A920171868D3E70039433B /* LGRMenuCell2Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A920161868D3E70039433B /* LGRMenuCell2Test.m */; };
-		32E5379918453E77001E3373 /* LGRPageFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E5379818453E77001E3373 /* LGRPageFactoryTest.m */; };
-		32E5379B18454A62001E3373 /* LGRHTMLViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E5379A18454A62001E3373 /* LGRHTMLViewControllerTest.m */; };
-		32E537A418454BAE001E3373 /* LGRBrowserViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E537A318454BAE001E3373 /* LGRBrowserViewControllerTest.m */; };
 		AF1EEEDD6AFF4623933D18AD /* libPods-LigerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6007059D8C44A7F95AE18FC /* libPods-LigerTests.a */; };
 /* End PBXBuildFile section */
 
@@ -68,25 +69,26 @@
 		32110743182866F600AE0D71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		321107771828674500AE0D71 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		321107791828674D00AE0D71 /* app */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app; sourceTree = "<group>"; };
-		324FE479185100E700C94585 /* LGREmailImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGREmailImportedTest.m; path = iOS/LGREmailImportedTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		324FE47C185107CA00C94585 /* LGRViewController+MessageUITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "LGRViewController+MessageUITest.m"; path = "iOS/LGRViewController+MessageUITest.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		324FE480185116F800C94585 /* LGRMessageImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRMessageImportedTest.m; path = iOS/LGRMessageImportedTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		3265E227184514C300E81DA8 /* LGRViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRViewControllerTest.m; path = Generic/LGRViewControllerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		326CFA691844F78300BEB092 /* LGRSlideViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRSlideViewControllerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		326CFA6B1844F7C400BEB092 /* LGRMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRMenuViewControllerTest.m; path = LigerTests/Menu/LGRMenuViewControllerTest.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		326CFA6D1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRAppMenuViewControllerTest.m; path = LigerTests/Menu/LGRAppMenuViewControllerTest.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		326CFA6F1844F7FF00BEB092 /* LGRHTMLMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRHTMLMenuViewControllerTest.m; path = LigerTests/Menu/LGRHTMLMenuViewControllerTest.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		32786FBC1869E40400A7F192 /* LGRLigerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRLigerTest.m; path = Cordova/LGRLigerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3243043018F74D7000565E2E /* LGRLigerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRLigerTest.m; sourceTree = "<group>"; };
+		3243043218F74D7000565E2E /* LGRHTMLViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRHTMLViewControllerTest.m; sourceTree = "<group>"; };
+		3243043318F74D7000565E2E /* LGRPageFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRPageFactoryTest.m; sourceTree = "<group>"; };
+		3243043418F74D7000565E2E /* LGRViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRViewControllerTest.m; sourceTree = "<group>"; };
+		3243043618F74D7000565E2E /* LGREmailImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGREmailImportedTest.m; sourceTree = "<group>"; };
+		3243043718F74D7000565E2E /* LGRMessageImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRMessageImportedTest.m; sourceTree = "<group>"; };
+		3243043818F74D7000565E2E /* LGRViewController+MessageUITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LGRViewController+MessageUITest.m"; sourceTree = "<group>"; };
+		3243043A18F74D7000565E2E /* LGRAppMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRAppMenuViewControllerTest.m; sourceTree = "<group>"; };
+		3243043B18F74D7000565E2E /* LGRHTMLMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRHTMLMenuViewControllerTest.m; sourceTree = "<group>"; };
+		3243043C18F74D7000565E2E /* LGRMenuCell1Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRMenuCell1Test.m; sourceTree = "<group>"; };
+		3243043D18F74D7000565E2E /* LGRMenuCell2Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRMenuCell2Test.m; sourceTree = "<group>"; };
+		3243043E18F74D7000565E2E /* LGRMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRMenuViewControllerTest.m; sourceTree = "<group>"; };
+		3243043F18F74D7000565E2E /* LGRSlideViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRSlideViewControllerTest.m; sourceTree = "<group>"; };
+		3243044118F74D7000565E2E /* LGRBrowserViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRBrowserViewControllerTest.m; sourceTree = "<group>"; };
+		3243044318F74D7000565E2E /* LGRAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRAppDelegateTest.m; sourceTree = "<group>"; };
+		3243044418F74D7000565E2E /* LGRApperanceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRApperanceTest.m; sourceTree = "<group>"; };
+		3243044518F74D7000565E2E /* LGRAppTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRAppTest.m; sourceTree = "<group>"; };
 		3281642C183A7A050059A464 /* LGRNativePagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = LGRNativePagesViewController.h; path = LigerViewControllers/LGRNativePagesViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3281642D183A7A050059A464 /* LGRNativePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRNativePagesViewController.m; path = LigerViewControllers/LGRNativePagesViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LGRNativePagesViewController.xib; path = LigerViewControllers/LGRNativePagesViewController.xib; sourceTree = "<group>"; };
-		32816448183C126B0059A464 /* LGRApperanceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRApperanceTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		3281644A183C126B0059A464 /* LGRAppTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRAppTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		32A920141868CE280039433B /* LGRMenuCell1Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRMenuCell1Test.m; path = LigerTests/Menu/LGRMenuCell1Test.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		32A920161868D3E70039433B /* LGRMenuCell2Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRMenuCell2Test.m; path = LigerTests/Menu/LGRMenuCell2Test.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		32E5379818453E77001E3373 /* LGRPageFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRPageFactoryTest.m; path = Generic/LGRPageFactoryTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		32E5379A18454A62001E3373 /* LGRHTMLViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRHTMLViewControllerTest.m; path = Generic/LGRHTMLViewControllerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		32E537A318454BAE001E3373 /* LGRBrowserViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRBrowserViewControllerTest.m; path = Native/LGRBrowserViewControllerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3391277704124C03803DAF80 /* Pods-LigerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LigerTests.xcconfig"; path = "Pods/Pods-LigerTests.xcconfig"; sourceTree = "<group>"; };
 		77FEB30B8B4943AAAE6D47AA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		E42A739A007C4FF3B92061FB /* Pods-Liger.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Liger.xcconfig"; path = "Pods/Pods-Liger.xcconfig"; sourceTree = "<group>"; };
@@ -182,12 +184,12 @@
 		3211073F182866F600AE0D71 /* LigerTests */ = {
 			isa = PBXGroup;
 			children = (
-				32816446183C126B0059A464 /* App */,
-				32786FBB1869E3D100A7F192 /* Cordova */,
-				326CFA7118450F6600BEB092 /* Generic */,
-				324FE477185100BE00C94585 /* iOS */,
-				326CFA68184447C800BEB092 /* Menu */,
-				32E537A218454B97001E3373 /* Native */,
+				3243042F18F74D7000565E2E /* Cordova */,
+				3243043118F74D7000565E2E /* Generic */,
+				3243043518F74D7000565E2E /* iOS */,
+				3243043918F74D7000565E2E /* Menu */,
+				3243044018F74D7000565E2E /* Native */,
+				3243044218F74D7000565E2E /* Startup */,
 				32110740182866F600AE0D71 /* Supporting Files */,
 			);
 			path = LigerTests;
@@ -210,46 +212,63 @@
 			path = cordova;
 			sourceTree = "<group>";
 		};
-		324FE477185100BE00C94585 /* iOS */ = {
+		3243042F18F74D7000565E2E /* Cordova */ = {
 			isa = PBXGroup;
 			children = (
-				324FE480185116F800C94585 /* LGRMessageImportedTest.m */,
-				324FE479185100E700C94585 /* LGREmailImportedTest.m */,
-				324FE47C185107CA00C94585 /* LGRViewController+MessageUITest.m */,
+				3243043018F74D7000565E2E /* LGRLigerTest.m */,
 			);
-			name = iOS;
+			path = Cordova;
 			sourceTree = "<group>";
 		};
-		326CFA68184447C800BEB092 /* Menu */ = {
+		3243043118F74D7000565E2E /* Generic */ = {
 			isa = PBXGroup;
 			children = (
-				326CFA691844F78300BEB092 /* LGRSlideViewControllerTest.m */,
-				326CFA6B1844F7C400BEB092 /* LGRMenuViewControllerTest.m */,
-				326CFA6D1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m */,
-				326CFA6F1844F7FF00BEB092 /* LGRHTMLMenuViewControllerTest.m */,
-				32A920141868CE280039433B /* LGRMenuCell1Test.m */,
-				32A920161868D3E70039433B /* LGRMenuCell2Test.m */,
+				3243043218F74D7000565E2E /* LGRHTMLViewControllerTest.m */,
+				3243043318F74D7000565E2E /* LGRPageFactoryTest.m */,
+				3243043418F74D7000565E2E /* LGRViewControllerTest.m */,
 			);
-			name = Menu;
-			path = App;
+			path = Generic;
 			sourceTree = "<group>";
 		};
-		326CFA7118450F6600BEB092 /* Generic */ = {
+		3243043518F74D7000565E2E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3265E227184514C300E81DA8 /* LGRViewControllerTest.m */,
-				32E5379818453E77001E3373 /* LGRPageFactoryTest.m */,
-				32E5379A18454A62001E3373 /* LGRHTMLViewControllerTest.m */,
+				3243043618F74D7000565E2E /* LGREmailImportedTest.m */,
+				3243043718F74D7000565E2E /* LGRMessageImportedTest.m */,
+				3243043818F74D7000565E2E /* LGRViewController+MessageUITest.m */,
 			);
-			name = Generic;
+			path = iOS;
 			sourceTree = "<group>";
 		};
-		32786FBB1869E3D100A7F192 /* Cordova */ = {
+		3243043918F74D7000565E2E /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				32786FBC1869E40400A7F192 /* LGRLigerTest.m */,
+				3243043A18F74D7000565E2E /* LGRAppMenuViewControllerTest.m */,
+				3243043B18F74D7000565E2E /* LGRHTMLMenuViewControllerTest.m */,
+				3243043C18F74D7000565E2E /* LGRMenuCell1Test.m */,
+				3243043D18F74D7000565E2E /* LGRMenuCell2Test.m */,
+				3243043E18F74D7000565E2E /* LGRMenuViewControllerTest.m */,
+				3243043F18F74D7000565E2E /* LGRSlideViewControllerTest.m */,
 			);
-			name = Cordova;
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		3243044018F74D7000565E2E /* Native */ = {
+			isa = PBXGroup;
+			children = (
+				3243044118F74D7000565E2E /* LGRBrowserViewControllerTest.m */,
+			);
+			path = Native;
+			sourceTree = "<group>";
+		};
+		3243044218F74D7000565E2E /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				3243044318F74D7000565E2E /* LGRAppDelegateTest.m */,
+				3243044418F74D7000565E2E /* LGRApperanceTest.m */,
+				3243044518F74D7000565E2E /* LGRAppTest.m */,
+			);
+			path = Startup;
 			sourceTree = "<group>";
 		};
 		3281642B183A79C60059A464 /* LigerViewControllers */ = {
@@ -260,23 +279,6 @@
 				3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */,
 			);
 			name = LigerViewControllers;
-			sourceTree = "<group>";
-		};
-		32816446183C126B0059A464 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				32816448183C126B0059A464 /* LGRApperanceTest.m */,
-				3281644A183C126B0059A464 /* LGRAppTest.m */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		32E537A218454B97001E3373 /* Native */ = {
-			isa = PBXGroup;
-			children = (
-				32E537A318454BAE001E3373 /* LGRBrowserViewControllerTest.m */,
-			);
-			name = Native;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,7 +331,7 @@
 			attributes = {
 				CLASSPREFIX = LGR;
 				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = "John Gustafsson";
+				ORGANIZATIONNAME = "ReachLocal Inc";
 				TargetAttributes = {
 					32110737182866F600AE0D71 = {
 						TestTargetID = 3211071C182866F600AE0D71;
@@ -454,22 +456,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				326CFA6E1844F7E300BEB092 /* LGRAppMenuViewControllerTest.m in Sources */,
-				32786FBD1869E40400A7F192 /* LGRLigerTest.m in Sources */,
-				32E5379B18454A62001E3373 /* LGRHTMLViewControllerTest.m in Sources */,
-				324FE47D185107CA00C94585 /* LGRViewController+MessageUITest.m in Sources */,
-				32E5379918453E77001E3373 /* LGRPageFactoryTest.m in Sources */,
-				326CFA6A1844F78300BEB092 /* LGRSlideViewControllerTest.m in Sources */,
-				32A920171868D3E70039433B /* LGRMenuCell2Test.m in Sources */,
-				3265E228184514C300E81DA8 /* LGRViewControllerTest.m in Sources */,
-				32E537A418454BAE001E3373 /* LGRBrowserViewControllerTest.m in Sources */,
-				326CFA701844F7FF00BEB092 /* LGRHTMLMenuViewControllerTest.m in Sources */,
-				32A920151868CE280039433B /* LGRMenuCell1Test.m in Sources */,
-				3281644D183C126B0059A464 /* LGRApperanceTest.m in Sources */,
-				3281644E183C126B0059A464 /* LGRAppTest.m in Sources */,
-				326CFA6C1844F7C400BEB092 /* LGRMenuViewControllerTest.m in Sources */,
-				324FE481185116F800C94585 /* LGRMessageImportedTest.m in Sources */,
-				324FE47A185100E700C94585 /* LGREmailImportedTest.m in Sources */,
+				3243045618F74D7000565E2E /* LGRAppTest.m in Sources */,
+				3243044F18F74D7000565E2E /* LGRMenuCell1Test.m in Sources */,
+				3243045518F74D7000565E2E /* LGRApperanceTest.m in Sources */,
+				3243045318F74D7000565E2E /* LGRBrowserViewControllerTest.m in Sources */,
+				3243044618F74D7000565E2E /* LGRLigerTest.m in Sources */,
+				3243045018F74D7000565E2E /* LGRMenuCell2Test.m in Sources */,
+				3243044718F74D7000565E2E /* LGRHTMLViewControllerTest.m in Sources */,
+				3243044C18F74D7000565E2E /* LGRViewController+MessageUITest.m in Sources */,
+				3243044D18F74D7000565E2E /* LGRAppMenuViewControllerTest.m in Sources */,
+				3243045218F74D7000565E2E /* LGRSlideViewControllerTest.m in Sources */,
+				3243044918F74D7000565E2E /* LGRViewControllerTest.m in Sources */,
+				3243044B18F74D7000565E2E /* LGRMessageImportedTest.m in Sources */,
+				3243045418F74D7000565E2E /* LGRAppDelegateTest.m in Sources */,
+				3243044A18F74D7000565E2E /* LGREmailImportedTest.m in Sources */,
+				3243044818F74D7000565E2E /* LGRPageFactoryTest.m in Sources */,
+				3243044E18F74D7000565E2E /* LGRHTMLMenuViewControllerTest.m in Sources */,
+				3243045118F74D7000565E2E /* LGRMenuViewControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
