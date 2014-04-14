@@ -47,6 +47,16 @@
 	return self;
 }
 
++ (void)setupPushNotifications
+{
+	if (![[self app][@"notifications"] boolValue])
+		return;
+
+	UIRemoteNotificationType types = (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound);
+	[[UIApplication sharedApplication] cancelAllLocalNotifications];
+	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+}
+
 + (NSDictionary*)appearance
 {
 	return [self app][@"appearance"];
