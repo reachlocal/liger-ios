@@ -7,23 +7,25 @@
 //
 
 @import XCTest;
-#import "LGRSlideViewController.h"
+
+#import "LGRDrawerViewController.h"
 #import "LGRMenuViewController.h"
+#import "LGRPageFactory.h"
 #import "OCMock.h"
 
-@interface LGRSlideViewController ()
+@interface LGRDrawerViewController ()
 @property (nonatomic, strong) LGRMenuViewController *menu;
 @end
 
 @interface LGRSlideViewControllerTest : XCTestCase
-@property(nonatomic, strong) LGRSlideViewController *slider;
+@property(nonatomic, strong) LGRDrawerViewController *slider;
 @end
 
 @implementation LGRSlideViewControllerTest
 
 - (void)setUp
 {
-	self.slider = [[LGRSlideViewController alloc] initWithNibName:@"LGRSlideViewController" bundle:nil];
+	self.slider = (LGRDrawerViewController*)[LGRPageFactory controllerForPage:@"Drawer" title:@"" args:@{} parent:nil];
 	XCTAssert(self.slider.view, @"Slider has no view");
     [super setUp];
 }
@@ -44,7 +46,7 @@
 
 - (void)testNativePage
 {
-	XCTAssertTrue([[LGRSlideViewController nativePage] isEqualToString:@"DrawerPage"], @"Native page wasn't named DrawerPage");
+	XCTAssertTrue([[LGRDrawerViewController nativePage] isEqualToString:@"Drawer"], @"Native page wasn't named DrawerPage");
 }
 
 - (void)testPushNotificationTokenUpdatedError

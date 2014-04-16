@@ -8,7 +8,7 @@
 
 #import "LGRViewController.h"
 #import "LGRPageFactory.h"
-#import "LGRSlideViewController.h"
+#import "LGRDrawerViewController.h"
 
 @interface LGRViewController ()
 @property (nonatomic, strong) NSString *page;
@@ -143,7 +143,7 @@
 		if ([args[@"resetApp"] boolValue]) {
 			UIApplication* app = [UIApplication sharedApplication];
 			UIViewController *root = [app.windows[0] rootViewController];
-			LGRSlideViewController *menu = (LGRSlideViewController*)root;
+			LGRDrawerViewController *menu = (LGRDrawerViewController*)root;
 			[menu resetApp];
 		} else {
 			NSAssert(self.ligerParent, @"Internal close dialog error");
@@ -177,6 +177,11 @@
 - (void)pushNotificationTokenUpdated:(NSString*)token error:(NSError*)error
 {
 	
+}
+
+- (void)notificationArrived:(NSDictionary*)userInfo background:(BOOL)background
+{
+
 }
 
 @end

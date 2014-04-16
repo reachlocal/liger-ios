@@ -7,20 +7,26 @@
 //
 
 #import "LGRAppDelegate.h"
+#import "LGRApp.h"
 #import "LGRAppearance.h"
-#import "LGRSlideViewController.h"
+#import "LGRPageFactory.h"
+#import "LGRViewController.h"
 
 @implementation LGRAppDelegate
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
+	[LGRApp setupPushNotifications];
 	[LGRAppearance setupApperance];
 	
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WebKitStoreWebDataForBackup"];
 
+	NSDictionary *notification = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+	NSDictionary *args = notification ? @{@"notification": notification} : @{};
+
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.backgroundColor = UIColor.whiteColor;
-	self.window.rootViewController = [[LGRSlideViewController alloc] initWithNibName:@"LGRSlideViewController" bundle:nil];;
+	self.window.rootViewController = [LGRPageFactory controllerForPage:@"Drawer" title:@"" args:args parent:nil];
 	[self.window makeKeyAndVisible];
 	
 	return YES;
@@ -44,6 +50,13 @@
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
 	[[self rootPage] pushNotificationTokenUpdated:nil error:error];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+	UIApplicationState state = [application applicationState];
+
+	[[self rootPage] notificationArrived:userInfo background:state == UIApplicationStateInactive || state == UIApplicationStateBackground];
 }
 
 - (LGRViewController*)rootPage

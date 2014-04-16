@@ -1,12 +1,12 @@
 //
-//  LGRMenuViewController.m
+//  LGRDrawerViewController.m
 //  Liger
 //
 //  Created by John Gustafsson on 2/20/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
 //
 
-#import "LGRSlideViewController.h"
+#import "LGRDrawerViewController.h"
 #import "LGRPageFactory.h"
 #import "LGRViewController.h"
 
@@ -26,18 +26,18 @@
 // If we haven't travelled at least this far, don't close the menu
 #define MINPOINTSTOCLOSE 120
 
-@interface LGRSlideViewController ()
+@interface LGRDrawerViewController ()
 @property (nonatomic, strong) UIPanGestureRecognizer *openGesture;
 @property (nonatomic, strong) UIPanGestureRecognizer *closeGesture;
 @property (nonatomic, strong) NSMutableDictionary *pages;
 @property (nonatomic, strong) LGRMenuViewController *menu;
 @end
 
-@implementation LGRSlideViewController
+@implementation LGRDrawerViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithPage:(NSString *)page title:(NSString *)title args:(NSDictionary *)args
 {
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	self = [super initWithPage:page title:title args:args];
 	if (self) {
 		self.openGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuOpen:)];
 		self.closeGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuClose:)];
@@ -48,7 +48,7 @@
 
 + (NSString*)nativePage
 {
-	return @"DrawerPage";
+	return @"Drawer";
 }
 
 - (void)addPage:(UIViewController *)controller
@@ -68,7 +68,7 @@
 	self.menu = [LGRPageFactory controllerForMenuPage:LGRApp.menuPage title:nil args:@{@"menu": LGRApp.menuItems}];
 	self.menu.pages = self.pages;
 
-	__weak LGRSlideViewController *me = self;
+	__weak LGRDrawerViewController *me = self;
 
 	self.menu.displayController = ^(UIViewController *controller) {
 		if (![me pageController]) {

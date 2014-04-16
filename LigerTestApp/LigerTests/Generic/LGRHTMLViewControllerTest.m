@@ -122,4 +122,12 @@
 	[menu pushNotificationTokenUpdated:@"26ea0f5899ac6bd8a3e0d6b51f38a4ad3475c1e4eefbeee62eca722cef0c3bf9" error:nil];
 }
 
+- (void)testNotificationArrivedBackground
+{
+	id menu = [OCMockObject partialMockForObject:self.liger];
+
+	[menu notificationArrived:@{@"example": @(NO)} background:YES];
+	[menu notificationArrived:@{@"example": @(NO)} background:NO];
+}
+
 @end

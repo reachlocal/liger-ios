@@ -193,4 +193,9 @@
 	[self.liger pushNotificationTokenUpdated:@"" error:nil];
 }
 
+- (void)testNotificationArrivedBackground
+{
+	[self.liger notificationArrived:@{} background:NO];
+}
+
 @end

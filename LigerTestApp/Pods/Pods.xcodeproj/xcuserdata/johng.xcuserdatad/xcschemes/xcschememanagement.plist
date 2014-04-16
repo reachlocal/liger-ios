@@ -4,32 +4,32 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-Liger-Cordova.xcscheme_^#shared#^_</key>
+		<key>Pods-Liger-Cordova.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Liger-LigerMobile.xcscheme_^#shared#^_</key>
+		<key>Pods-Liger-LigerMobile.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Liger-UIColor-HTMLColors.xcscheme_^#shared#^_</key>
+		<key>Pods-Liger-UIColor-HTMLColors.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Liger.xcscheme_^#shared#^_</key>
+		<key>Pods-Liger.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-LigerTests-OCMock.xcscheme_^#shared#^_</key>
+		<key>Pods-LigerTests-OCMock.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-LigerTests.xcscheme_^#shared#^_</key>
+		<key>Pods-LigerTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,62 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>04517BCEDC1A4AD0AFD82FEB</key>
+		<key>35DB3090BB104A47A6843895</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1BFC15C94D9E4EE2BAC26713</key>
+		<key>44CBB2D03B904F2D8BB62D03</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1EB29FC84AD44D9BA19D73D5</key>
+		<key>5E44BAB3A48C4126A71B652E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2AD27EB880314CB6BF704165</key>
+		<key>A6C1C85910D94F21823F394A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>83ED7D69703E4CB39F995319</key>
+		<key>AF67547CF8A9498B971B4CEF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8984EAE1F5A24D239E83D714</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>93599A3D206D415E8D148956</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9C55487358C44D8E8531702E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A290D646AFFF490DA27F4B32</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DFA1B27DA96B4564BDD4F17F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E03EAB6BE5B6416A9FEC32CC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FE5783A9C55E4A489895FC6A</key>
+		<key>CB93685245BF44F2857A1E03</key>
 		<dict>
 			<key>primary</key>
 			<true/>

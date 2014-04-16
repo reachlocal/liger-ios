@@ -8,7 +8,7 @@
 
 #import "LGRLiger.h"
 #import "LGRViewController.h"
-#import "LGRSlideViewController.h"
+#import "LGRDrawerViewController.h"
 
 #import "LGRCordovaViewController.h"
 

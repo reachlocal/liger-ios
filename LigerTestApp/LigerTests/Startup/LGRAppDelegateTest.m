@@ -69,6 +69,20 @@ NSData* testToken()
 	XCTAssertNoThrow([rootPage verify], @"Verify failed");
 }
 
+- (void)testDidReceiveRemoteNotification
+{
+	id appDelegate = [OCMockObject partialMockForObject:[[UIApplication sharedApplication] delegate]];
+
+	id rootPage = [OCMockObject partialMockForObject:[[LGRViewController alloc] init]];
+	[[[appDelegate stub] andReturn:rootPage] rootPage];
+
+	[[rootPage expect] notificationArrived:OCMOCK_ANY background:NO];
+
+	[appDelegate application:[UIApplication sharedApplication] didReceiveRemoteNotification:@{}];
+
+	XCTAssertNoThrow([rootPage verify], @"Verify failed");
+}
+
 - (void)testRootPage
 {
 	LGRAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
