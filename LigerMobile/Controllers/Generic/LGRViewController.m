@@ -24,8 +24,8 @@
 
 - (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	if (self) {
 		self.page = page;
 		self.args = args;
 		self.title = title;
@@ -54,7 +54,7 @@
 		return;
 	}
 	
-    UIViewController *new = [LGRPageFactory controllerForPage:page title:title args:args parent:self];
+	UIViewController *new = [LGRPageFactory controllerForPage:page title:title args:args parent:self];
 	
 	// Couldn't create a new view controller
 	if (!new) {

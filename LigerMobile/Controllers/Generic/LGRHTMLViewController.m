@@ -89,7 +89,7 @@
 	NSError *error = nil;
 	NSData *json = [NSJSONSerialization dataWithJSONObject:userInfo options:0 error:&error];
 
-	NSString *js = @"if(PAGE.notificationArrived) notificationArrived('%@', '%@');";
+	NSString *js = @"if(PAGE.notificationArrived) PAGE.notificationArrived('%@', '%@');";
 	js = [NSString stringWithFormat:js, [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding], background ? @"true" : @"false"];
 
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
