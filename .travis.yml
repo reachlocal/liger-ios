@@ -1,4 +1,7 @@
-before_install: cd LigerTestApp
+before_install: 
+  - brew update
+  - brew upgrade xctool
+  - cd LigerTestApp
 language: objective-c
 install: ''
 xcode_workspace: Liger.xcworkspace
