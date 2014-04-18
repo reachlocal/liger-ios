@@ -45,6 +45,42 @@
 	XCTAssertNil([LGRHTMLMenuViewController nativePage], @"LGRHTMLMenuViewController page should not have a name");
 }
 
+- (void)testViewDidLoad
+{
+	id menu = [OCMockObject partialMockForObject:self.menu];
+
+	id view = [OCMockObject mockForClass:UIView.class];
+	[[view expect] addSubview:OCMOCK_ANY];
+	[[[view stub] andReturnValue:OCMOCK_VALUE(CGRectMake(0, 0, 0, 0))] bounds];
+	[[view stub] setFrame:CGRectMake(0, 0, 0, 0)];
+	[[[menu stub] andReturn:view] view];
+
+	id cordova = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	[[[cordova stub] andReturn:view] view];
+	[[[menu stub] andReturn:cordova] cordova];
+
+	[menu viewDidLoad];
+
+	XCTAssertNoThrow([view verify], @"View wasn't added");
+}
+
+- (void)testRefreshPage
+{
+	LGRViewController *liger = [OCMockObject partialMockForObject:self.menu];
+
+	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
+
+	[[[(id)liger stub] andReturn:mock] cordova];
+
+	[[mock expect] refreshPage:YES];
+	[[mock expect] refreshPage:NO];
+
+	[liger refreshPage:YES];
+	[liger refreshPage:NO];
+
+	XCTAssertNoThrow([mock verify], @"refreshPage should be sent to the cordova controller");
+}
+
 - (void)testDialogClosed
 {
 	LGRViewController *liger = [OCMockObject partialMockForObject:self.menu];
@@ -103,6 +139,14 @@
 	id menu = [OCMockObject partialMockForObject:self.menu];
 
 	[menu pushNotificationTokenUpdated:@"26ea0f5899ac6bd8a3e0d6b51f38a4ad3475c1e4eefbeee62eca722cef0c3bf9" error:nil];
+}
+
+- (void)testNotificationArrivedBackground
+{
+	id menu = [OCMockObject partialMockForObject:self.menu];
+
+	[menu notificationArrived:@{@"example": @(NO)} background:YES];
+	[menu notificationArrived:@{@"example": @(NO)} background:NO];
 }
 
 @end

@@ -22,6 +22,30 @@
 	self.menu = [[LGRMenuViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
 }
 
+- (void)testDisplayController
+{
+	DisplayController dc = ^(UIViewController* controller){};
+	self.menu.displayController = dc;
+
+	XCTAssertEqual(self.menu.displayController, dc, @"displayController failing");
+}
+
+- (void)testDisplayDialog
+{
+	DisplayDialog dd = ^(){};
+	self.menu.displayDialog = dd;
+
+	XCTAssertEqual(self.menu.displayDialog, dd, @"displayDialog failing");
+}
+
+- (void)testPages
+{
+	NSMutableDictionary *pages = @{@"firstPage": [[LGRViewController alloc] initWithPage:@"firstPage" title:@"title" args:@{}]}.mutableCopy;
+	self.menu.pages = pages;
+
+	XCTAssertEqual(self.menu.pages, pages, @"pages failing");
+}
+
 - (void)testOpenPage
 {
 	LGRMenuViewController *menu = [OCMockObject partialMockForObject:self.menu];
@@ -123,4 +147,17 @@
 {
 	[self.menu pageWillAppear];
 }
+
+- (void)testPushNotificationTokenUpdatedError
+{
+	XCTAssertThrows([self.menu pushNotificationTokenUpdated:@"26ea0f5899ac6bd8a3e0d6b51f38a4ad3475c1e4eefbeee62eca722cef0c3bf9" error:nil],
+					@"Should throw an exception as it's not implemented in the menu base class.");
+}
+
+- (void)testNotificationArrivedBackground
+{
+	XCTAssertThrows([self.menu notificationArrived:@{} background:NO],
+					@"Should throw an exception as it's not implemented in the menu base class.");
+}
+
 @end

@@ -24,25 +24,9 @@
 	return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-	NSAssert(NO, @"Use initWithPage");
-	return nil;
-}
-
-- (void)dealloc
-{
-	
-}
-
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning
-{
-	[super didReceiveMemoryWarning];
 }
 
 #pragma mark - API
@@ -102,6 +86,11 @@
 }
 
 - (void)pushNotificationTokenUpdated:(NSString*)token error:(NSError*)error
+{
+	NSAssert(NO, @"%s hasn't been implemented for this menu page", __PRETTY_FUNCTION__);
+}
+
+- (void)notificationArrived:(NSDictionary*)userInfo background:(BOOL)background
 {
 	NSAssert(NO, @"%s hasn't been implemented for this menu page", __PRETTY_FUNCTION__);
 }

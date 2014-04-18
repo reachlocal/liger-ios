@@ -156,7 +156,6 @@
 /**
  Callback for when the page will appear, same as viewWillAppear: but generic for both HTML and native.
  */
-
 - (void)pageWillAppear;
 
 /**
@@ -168,7 +167,14 @@
  @param token A string representation of the NSData sent in as a token
  @param error An error if it failed
  */
-
 - (void)pushNotificationTokenUpdated:(NSString*)token error:(NSError*)error;
+
+/**
+ A notification has arrived to the app.
+
+ @param userInfo The notification that was sent to the app.
+ @param background YES if the app was in the background when the notification arrived.
+ */
+- (void)notificationArrived:(NSDictionary*)userInfo background:(BOOL)background;
 
 @end

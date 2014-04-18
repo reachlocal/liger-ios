@@ -1,5 +1,5 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/Cordova" "${PODS_ROOT}/Headers/LigerMobile" "${PODS_ROOT}/Headers/OCMock" "${PODS_ROOT}/Headers/UIColor-HTMLColors"
-OTHER_CFLAGS = $(inherited) "-isystem${PODS_ROOT}/Headers" "-isystem${PODS_ROOT}/Headers/Cordova" "-isystem${PODS_ROOT}/Headers/LigerMobile" "-isystem${PODS_ROOT}/Headers/OCMock" "-isystem${PODS_ROOT}/Headers/UIColor-HTMLColors"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers" -isystem "${PODS_ROOT}/Headers/Cordova" -isystem "${PODS_ROOT}/Headers/LigerMobile" -isystem "${PODS_ROOT}/Headers/OCMock" -isystem "${PODS_ROOT}/Headers/UIColor-HTMLColors"
 OTHER_LDFLAGS = -ObjC
 PODS_ROOT = ${SRCROOT}/Pods

@@ -10,7 +10,7 @@
 #import "LGRMenuCell1.h"
 #import "LGRMenuCell2.h"
 
-#import "LGRSlideViewController.h"
+#import "LGRDrawerViewController.h"
 #import "LGRMenuViewController.h"
 #import "LGRApp.h"
 

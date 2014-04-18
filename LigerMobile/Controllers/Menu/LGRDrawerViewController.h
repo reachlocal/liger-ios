@@ -1,5 +1,5 @@
 //
-//  LGRMenuViewController.h
+//  LGRDrawerViewController.h
 //  Liger
 //
 //  Created by John Gustafsson on 2/20/13.
@@ -8,6 +8,6 @@
 
 #import "LGRViewController.h"
 
-@interface LGRSlideViewController : LGRViewController
+@interface LGRDrawerViewController : LGRViewController
 - (void)resetApp;
 @end
