@@ -2,3 +2,4 @@
 instrumentscli*.trace
 *.xccheckout
 *.xcuserdatad
+xcuserdata
