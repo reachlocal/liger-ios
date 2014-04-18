@@ -10,13 +10,7 @@
 #define COCOAPODS_POD_AVAILABLE_Cordova
 #define COCOAPODS_VERSION_MAJOR_Cordova 3
 #define COCOAPODS_VERSION_MINOR_Cordova 4
-#define COCOAPODS_VERSION_PATCH_Cordova 0
-
-// Cordova/Base
-#define COCOAPODS_POD_AVAILABLE_Cordova_Base
-#define COCOAPODS_VERSION_MAJOR_Cordova_Base 3
-#define COCOAPODS_VERSION_MINOR_Cordova_Base 4
-#define COCOAPODS_VERSION_PATCH_Cordova_Base 0
+#define COCOAPODS_VERSION_PATCH_Cordova 1
 
 // LigerMobile
 #define COCOAPODS_POD_AVAILABLE_LigerMobile
