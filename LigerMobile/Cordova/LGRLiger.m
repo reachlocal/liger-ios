@@ -222,7 +222,9 @@ NSDictionary* checkDictionary(id dictionary)
 		UIWebView *web = self.webView;
 		
 		LGRBlock *block = [[LGRBlock alloc] initWithBlock:^{
-			[web stringByEvaluatingJavaScriptFromString:item[@"callback"]];
+			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+				[web stringByEvaluatingJavaScriptFromString:item[@"callback"]];
+			});
 		}];
 		[self.toolbarCallbacks addObject:block];
 		
