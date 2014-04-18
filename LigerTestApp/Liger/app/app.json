@@ -9,7 +9,10 @@
           "name": "Page tests",
           "title": "First Page",
           "page": "firstPage",
-          "accessibilityLabel": "firstPage"
+          "accessibilityLabel": "firstPage",
+          "args" : {
+            "hello": "world"
+          }
         },
         {
           "name": "Native Pages",

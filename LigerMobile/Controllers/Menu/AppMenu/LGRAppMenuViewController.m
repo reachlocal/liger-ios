@@ -41,12 +41,18 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-	[super viewDidAppear:animated];
-
-	if (!self.menu.indexPathForSelectedRow) {
-		[self openPage:self.menuItems[0][0][@"page"] title:self.menuItems[0][0][@"name"] args:@{} success:^{} fail:^{}];
-		[self.menu selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-	}
+    [super viewDidAppear:animated];
+	
+    if (!self.menu.indexPathForSelectedRow) {
+        [self openPage:self.menuItems[0][0][@"page"]
+                 title:self.menuItems[0][0][@"name"]
+                  args:self.menuItems[0][0][@"args"]
+               success:^{}
+                  fail:^{}];
+        [self.menu selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                               animated:YES
+                         scrollPosition:UITableViewScrollPositionMiddle];
+    }
 }
 
 - (void)didReceiveMemoryWarning
