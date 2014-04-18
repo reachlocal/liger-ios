@@ -5,12 +5,12 @@ PODS:
     - UIColor-HTMLColors (= 1.0.0)
   - OCMock (2.2.4)
   - UIColor-HTMLColors (1.0.0)
-  - XCTestAsync (1.0)
+  - XCTAsyncTestCase (0.1.0)
 
 DEPENDENCIES:
   - LigerMobile (from `./..`)
   - OCMock (= 2.2.4)
-  - XCTestAsync (= 1.0.0)
+  - XCTAsyncTestCase (= 0.1.0)
 
 EXTERNAL SOURCES:
   LigerMobile:
@@ -21,6 +21,6 @@ SPEC CHECKSUMS:
   LigerMobile: 1335951f4c1c4644974c6728e1de6f861e1a4fc3
   OCMock: 5008fae4b4789b8fc3e48cd7660f2eb5ef8ce89e
   UIColor-HTMLColors: da4cd2f18102ace67736392ffd15d8a145e5a31f
-  XCTestAsync: e5d6a03766ac8bd56644ae0de9b7b28e4f851c77
+  XCTAsyncTestCase: 712a789c91b966bcce433fced0b930ffc8b5b10a
 
 COCOAPODS: 0.32.1

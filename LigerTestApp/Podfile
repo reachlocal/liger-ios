@@ -7,6 +7,6 @@ end
 
 target "LigerTests" do
        pod 'OCMock', '2.2.4'
-       pod 'XCTestAsync', '1.0.0'
+       pod 'XCTAsyncTestCase', '0.1.0'
 end
 
