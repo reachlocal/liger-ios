@@ -11,13 +11,14 @@
 #import "LGRHTMLMenuViewController.h"
 #import "LGRCordovaViewController.h"
 
+#import "XCTAsyncTestCase.h"
 #import "OCMock.h"
 
 @interface LGRHTMLMenuViewController (Test)
 @property (readonly) LGRCordovaViewController *cordova;
 @end
 
-@interface LGRHTMLMenuViewControllerTest : XCTestCase
+@interface LGRHTMLMenuViewControllerTest : XCTAsyncTestCase
 @property (nonatomic, strong) LGRHTMLMenuViewController *menu;
 @end
 
@@ -111,18 +112,22 @@
 
 - (void)testPageWillAppear
 {
-	LGRViewController *menu = [OCMockObject partialMockForObject:self.menu];
+	id menu = [OCMockObject partialMockForObject:self.menu];
 	
 	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
 	id webMock = [OCMockObject mockForClass:UIWebView.class];
 	[[[mock stub] andReturn:webMock] webView];
-	[[[(id)menu stub] andReturn:mock] cordova];
+	[[[menu stub] andReturn:mock] cordova];
 	
 	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
-	
+
+	[self prepare];
+
 	[menu pageWillAppear];
-	
-	XCTAssertNoThrow([mock verify], @"pageWillAppear should result in a call to stringByEvaluatingJavaScriptFromString");
+
+	[self waitForTimeout:2.0];
+
+	XCTAssertNoThrow([webMock verify], @"pageWillAppear should result in a call to stringByEvaluatingJavaScriptFromString");
 }
 
 - (void)testUserCanRefresh
@@ -138,15 +143,38 @@
 {
 	id menu = [OCMockObject partialMockForObject:self.menu];
 
+	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	id webMock = [OCMockObject mockForClass:UIWebView.class];
+	[[[mock stub] andReturn:webMock] webView];
+	[[[menu stub] andReturn:mock] cordova];
+
+	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+
+	[self prepare];
 	[menu pushNotificationTokenUpdated:@"26ea0f5899ac6bd8a3e0d6b51f38a4ad3475c1e4eefbeee62eca722cef0c3bf9" error:nil];
+	[self waitForTimeout:2.0];
+
+	XCTAssertNoThrow([webMock verify], @"pushNotificationTokenUpdated:error should result in a call to stringByEvaluatingJavaScriptFromString");
 }
 
 - (void)testNotificationArrivedBackground
 {
 	id menu = [OCMockObject partialMockForObject:self.menu];
 
+	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	id webMock = [OCMockObject mockForClass:UIWebView.class];
+	[[[mock stub] andReturn:webMock] webView];
+	[[[menu stub] andReturn:mock] cordova];
+
+	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+
+	[self prepare];
 	[menu notificationArrived:@{@"example": @(NO)} background:YES];
 	[menu notificationArrived:@{@"example": @(NO)} background:NO];
+	[self waitForTimeout:2.0];
+
+	XCTAssertNoThrow([webMock verify], @"notificationArrived:background should result in a call to stringByEvaluatingJavaScriptFromString");
 }
 
 @end

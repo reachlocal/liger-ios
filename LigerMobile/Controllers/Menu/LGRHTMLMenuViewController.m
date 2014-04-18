@@ -69,7 +69,7 @@
 
 	NSString *js = @"if(PAGE.onPageAppear) PAGE.onPageAppear();";
 
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.cordova.webView stringByEvaluatingJavaScriptFromString:js];
 	});
 }
@@ -79,7 +79,7 @@
 	NSString *js = @"if(PAGE.pushNotificationTokenUpdated) PAGE.pushNotificationTokenUpdated('%@', 'iOSDeviceToken', '%@');";
 	js = [NSString stringWithFormat:js, token, error ? [error localizedDescription] : @""];
 
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.cordova.webView stringByEvaluatingJavaScriptFromString:js];
 	});
 }
@@ -92,7 +92,7 @@
 	NSString *js = @"if(PAGE.notificationArrived) PAGE.notificationArrived('%@', '%@');";
 	js = [NSString stringWithFormat:js, [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding], background ? @"true" : @"false"];
 
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.cordova.webView stringByEvaluatingJavaScriptFromString:js];
 	});
 }

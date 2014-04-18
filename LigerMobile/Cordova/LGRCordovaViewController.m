@@ -73,11 +73,6 @@
 	[self refreshPage:NO];
 }
 
-- (void)didReceiveMemoryWarning
-{
-	[super didReceiveMemoryWarning];
-}
-
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 	return [super webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
@@ -101,7 +96,7 @@
 		json = !error ? [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] : @"{}";
     }
 
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:javascript, json]];
 	});
 }
@@ -154,7 +149,7 @@
 	if (wasInitiatedByUser) {
 		NSString *javascript = [NSString stringWithFormat:@"PAGE.refresh(%@);", wasInitiatedByUser ? @"true" : @"false"];
 
-		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		dispatch_async(dispatch_get_main_queue(), ^{
 			[self.webView stringByEvaluatingJavaScriptFromString:javascript];
 		});
 	}

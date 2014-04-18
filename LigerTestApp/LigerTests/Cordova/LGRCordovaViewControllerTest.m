@@ -9,8 +9,10 @@
 @import XCTest;
 #import "LGRCordovaViewController.h"
 
+#import "OCMock.h"
+#import "XCTAsyncTestCase.h"
 
-@interface LGRCordovaViewControllerTest : XCTestCase
+@interface LGRCordovaViewControllerTest : XCTAsyncTestCase
 @property (nonatomic, strong) LGRCordovaViewController* cordova;
 @end
 
@@ -29,9 +31,53 @@
     [super tearDown];
 }
 
+- (void)testDialogClosed
+{
+	id cordova = [OCMockObject partialMockForObject:self.cordova];
+
+	id webMock = [OCMockObject mockForClass:UIWebView.class];
+	[[[cordova stub] andReturn:webMock] webView];
+
+	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+
+	[self prepare];
+	[cordova dialogClosed:@{@"hello": @"test"}];
+	[self waitForTimeout:2.0];
+
+	XCTAssertNoThrow([webMock verify], @"childUpdates: should call the webview controller");
+}
+
+- (void)testChildUpdates
+{
+	id cordova = [OCMockObject partialMockForObject:self.cordova];
+
+	id webMock = [OCMockObject mockForClass:UIWebView.class];
+	[[[cordova stub] andReturn:webMock] webView];
+
+	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+
+	[self prepare];
+	[cordova childUpdates:@{@"hello": @"test"}];
+	[self waitForTimeout:2.0];
+
+	XCTAssertNoThrow([webMock verify], @"childUpdates: should call the webview controller");
+}
+
 - (void)testRefreshPage
 {
-	
+	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	[cordova refreshPage:NO];
+
+	id webMock = [OCMockObject mockForClass:UIWebView.class];
+	[[[cordova stub] andReturn:webMock] webView];
+
+	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+
+	[self prepare];
+	[cordova refreshPage:YES];
+	[self waitForTimeout:2.0];
+
+	XCTAssertNoThrow([webMock verify], @"refreshPage should call the webview controller");
 }
 
 @end
