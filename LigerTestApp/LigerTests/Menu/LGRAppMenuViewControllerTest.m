@@ -29,13 +29,15 @@
 									   @"accessibilityLabel" : @"firstPage",
 									   @"iconText" : @"P",
 									   @"name" : @"First Page",
-									   @"page" : @"firstPage"
+									   @"page" : @"firstPage",
+									   @"args" : @"{'hello':'world'}"
 									   },
 								   @{
 									   @"accessibilityLabel" : @"nativePages",
 									   @"iconText" : @"N",
 									   @"name" : @"Native Pages",
 									   @"page" : @"nativePages",
+									   @"args" : @"{'hello':'world'}",
 									   @"dialog" : @YES
 									   }]]};
 	LGRAppMenuViewController *menu = [[LGRAppMenuViewController alloc] initWithPage:@"appMenu" title:nil args:args];
@@ -57,13 +59,15 @@
 											  @"accessibilityLabel" : @"firstPage",
 											  @"title" : @"First Page",
 											  @"name" : @"First Page",
-											  @"page" : @"firstPage"
+											  @"page" : @"firstPage",
+											  @"args" : @"{'hello':'world'}"
 											  },
 										  @{
 											  @"accessibilityLabel" : @"nativePages",
 											  @"title": @"Native Page",
 											  @"name" : @"Native Pages",
 											  @"page" : @"nativePages",
+											  @"args" : @"{'hello':'world'}",
 											  @"dialog" : @YES
 											  }]]};
 	LGRAppMenuViewController *menu = [[LGRAppMenuViewController alloc] initWithPage:@"appMenu" title:nil args:args];
