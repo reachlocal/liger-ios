@@ -6,6 +6,6 @@ target "Liger" do
 end
 
 target "LigerTests" do
-       pod 'OCMock', '2.2.3'
+       pod 'OCMock', '2.2.4'
 end
 
