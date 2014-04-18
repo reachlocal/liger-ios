@@ -32,13 +32,14 @@
 		3243044F18F74D7000565E2E /* LGRMenuCell1Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043C18F74D7000565E2E /* LGRMenuCell1Test.m */; };
 		3243045018F74D7000565E2E /* LGRMenuCell2Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043D18F74D7000565E2E /* LGRMenuCell2Test.m */; };
 		3243045118F74D7000565E2E /* LGRMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043E18F74D7000565E2E /* LGRMenuViewControllerTest.m */; };
-		3243045218F74D7000565E2E /* LGRSlideViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043F18F74D7000565E2E /* LGRSlideViewControllerTest.m */; };
+		3243045218F74D7000565E2E /* LGRDrawerViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043F18F74D7000565E2E /* LGRDrawerViewControllerTest.m */; };
 		3243045318F74D7000565E2E /* LGRBrowserViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243044118F74D7000565E2E /* LGRBrowserViewControllerTest.m */; };
 		3243045418F74D7000565E2E /* LGRAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243044318F74D7000565E2E /* LGRAppDelegateTest.m */; };
 		3243045518F74D7000565E2E /* LGRApperanceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243044418F74D7000565E2E /* LGRApperanceTest.m */; };
 		3243045618F74D7000565E2E /* LGRAppTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243044518F74D7000565E2E /* LGRAppTest.m */; };
 		3281642F183A7A050059A464 /* LGRNativePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3281642D183A7A050059A464 /* LGRNativePagesViewController.m */; };
 		32816430183A7A050059A464 /* LGRNativePagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */; };
+		32AA814219019A56001EFAD5 /* LGRCordovaViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AA814119019A56001EFAD5 /* LGRCordovaViewControllerTest.m */; };
 		AF1EEEDD6AFF4623933D18AD /* libPods-LigerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6007059D8C44A7F95AE18FC /* libPods-LigerTests.a */; };
 /* End PBXBuildFile section */
 
@@ -81,7 +82,7 @@
 		3243043C18F74D7000565E2E /* LGRMenuCell1Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRMenuCell1Test.m; sourceTree = "<group>"; };
 		3243043D18F74D7000565E2E /* LGRMenuCell2Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRMenuCell2Test.m; sourceTree = "<group>"; };
 		3243043E18F74D7000565E2E /* LGRMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRMenuViewControllerTest.m; sourceTree = "<group>"; };
-		3243043F18F74D7000565E2E /* LGRSlideViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRSlideViewControllerTest.m; sourceTree = "<group>"; };
+		3243043F18F74D7000565E2E /* LGRDrawerViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRDrawerViewControllerTest.m; sourceTree = "<group>"; };
 		3243044118F74D7000565E2E /* LGRBrowserViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRBrowserViewControllerTest.m; sourceTree = "<group>"; };
 		3243044318F74D7000565E2E /* LGRAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRAppDelegateTest.m; sourceTree = "<group>"; };
 		3243044418F74D7000565E2E /* LGRApperanceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRApperanceTest.m; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		3281642C183A7A050059A464 /* LGRNativePagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = LGRNativePagesViewController.h; path = LigerViewControllers/LGRNativePagesViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3281642D183A7A050059A464 /* LGRNativePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRNativePagesViewController.m; path = LigerViewControllers/LGRNativePagesViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LGRNativePagesViewController.xib; path = LigerViewControllers/LGRNativePagesViewController.xib; sourceTree = "<group>"; };
+		32AA814119019A56001EFAD5 /* LGRCordovaViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRCordovaViewControllerTest.m; sourceTree = "<group>"; };
 		3391277704124C03803DAF80 /* Pods-LigerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LigerTests.xcconfig"; path = "Pods/Pods-LigerTests.xcconfig"; sourceTree = "<group>"; };
 		77FEB30B8B4943AAAE6D47AA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		E42A739A007C4FF3B92061FB /* Pods-Liger.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Liger.xcconfig"; path = "Pods/Pods-Liger.xcconfig"; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				3243043018F74D7000565E2E /* LGRLigerTest.m */,
+				32AA814119019A56001EFAD5 /* LGRCordovaViewControllerTest.m */,
 			);
 			path = Cordova;
 			sourceTree = "<group>";
@@ -248,7 +251,7 @@
 				3243043C18F74D7000565E2E /* LGRMenuCell1Test.m */,
 				3243043D18F74D7000565E2E /* LGRMenuCell2Test.m */,
 				3243043E18F74D7000565E2E /* LGRMenuViewControllerTest.m */,
-				3243043F18F74D7000565E2E /* LGRSlideViewControllerTest.m */,
+				3243043F18F74D7000565E2E /* LGRDrawerViewControllerTest.m */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -461,11 +464,12 @@
 				3243045518F74D7000565E2E /* LGRApperanceTest.m in Sources */,
 				3243045318F74D7000565E2E /* LGRBrowserViewControllerTest.m in Sources */,
 				3243044618F74D7000565E2E /* LGRLigerTest.m in Sources */,
+				32AA814219019A56001EFAD5 /* LGRCordovaViewControllerTest.m in Sources */,
 				3243045018F74D7000565E2E /* LGRMenuCell2Test.m in Sources */,
 				3243044718F74D7000565E2E /* LGRHTMLViewControllerTest.m in Sources */,
 				3243044C18F74D7000565E2E /* LGRViewController+MessageUITest.m in Sources */,
 				3243044D18F74D7000565E2E /* LGRAppMenuViewControllerTest.m in Sources */,
-				3243045218F74D7000565E2E /* LGRSlideViewControllerTest.m in Sources */,
+				3243045218F74D7000565E2E /* LGRDrawerViewControllerTest.m in Sources */,
 				3243044918F74D7000565E2E /* LGRViewControllerTest.m in Sources */,
 				3243044B18F74D7000565E2E /* LGRMessageImportedTest.m in Sources */,
 				3243045418F74D7000565E2E /* LGRAppDelegateTest.m in Sources */,
@@ -586,8 +590,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Liger/Liger-Prefix.pch";
 				INFOPLIST_FILE = "Liger/Liger-Info.plist";
@@ -603,8 +605,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Liger/Liger-Prefix.pch";
 				INFOPLIST_FILE = "Liger/Liger-Info.plist";
@@ -624,8 +624,6 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Liger/Liger-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -649,8 +647,6 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Liger/Liger-Prefix.pch";
 				INFOPLIST_FILE = "LigerTests/LigerTests-Info.plist";

@@ -10,13 +10,15 @@
 
 #import "LGRHTMLViewController.h"
 #import "LGRCordovaViewController.h"
+
 #import "OCMock.h"
+#import "XCTAsyncTestCase.h"
 
 @interface LGRHTMLViewController (Test)
 @property (readonly) LGRCordovaViewController *cordova;
 @end
 
-@interface LGRHTMLViewControllerTest : XCTestCase
+@interface LGRHTMLViewControllerTest : XCTAsyncTestCase
 @property (nonatomic, strong) LGRHTMLViewController *liger;
 @end
 
@@ -92,18 +94,20 @@
 
 - (void)testPageWillAppear
 {
-	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
+	id liger = [OCMockObject partialMockForObject:self.liger];
 
 	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
 	id webMock = [OCMockObject mockForClass:UIWebView.class];
 	[[[mock stub] andReturn:webMock] webView];
-	[[[(id)liger stub] andReturn:mock] cordova];
+	[[[liger stub] andReturn:mock] cordova];
 	
 	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
-	
+
+	[self prepare];
 	[liger pageWillAppear];
-	
-	XCTAssertNoThrow([mock verify], @"pageWillAppear should result in a call to stringByEvaluatingJavaScriptFromString");
+	[self waitForTimeout:2.0];
+
+	XCTAssertNoThrow([webMock verify], @"pageWillAppear should result in a call to stringByEvaluatingJavaScriptFromString");
 }
 
 - (void)testUserCanRefresh
@@ -117,17 +121,40 @@
 
 - (void)testPushNotificationTokenUpdatedError
 {
-	id menu = [OCMockObject partialMockForObject:self.liger];
+	id liger = [OCMockObject partialMockForObject:self.liger];
 
-	[menu pushNotificationTokenUpdated:@"26ea0f5899ac6bd8a3e0d6b51f38a4ad3475c1e4eefbeee62eca722cef0c3bf9" error:nil];
+	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	id webMock = [OCMockObject mockForClass:UIWebView.class];
+	[[[mock stub] andReturn:webMock] webView];
+	[[[liger stub] andReturn:mock] cordova];
+
+	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+
+	[self prepare];
+	[liger pushNotificationTokenUpdated:@"26ea0f5899ac6bd8a3e0d6b51f38a4ad3475c1e4eefbeee62eca722cef0c3bf9" error:nil];
+	[self waitForTimeout:2.0];
+
+	XCTAssertNoThrow([webMock verify], @"pushNotificationTokenUpdated:error: should result in a call to stringByEvaluatingJavaScriptFromString");
 }
 
 - (void)testNotificationArrivedBackground
 {
-	id menu = [OCMockObject partialMockForObject:self.liger];
+	id liger = [OCMockObject partialMockForObject:self.liger];
 
-	[menu notificationArrived:@{@"example": @(NO)} background:YES];
-	[menu notificationArrived:@{@"example": @(NO)} background:NO];
+	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	id webMock = [OCMockObject mockForClass:UIWebView.class];
+	[[[mock stub] andReturn:webMock] webView];
+	[[[liger stub] andReturn:mock] cordova];
+
+	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+
+	[self prepare];
+	[liger notificationArrived:@{@"example": @(NO)} background:YES];
+	[liger notificationArrived:@{@"example": @(NO)} background:NO];
+	[self waitForTimeout:2.0];
+
+	XCTAssertNoThrow([webMock verify], @"notificationArrived:background should result in a call to stringByEvaluatingJavaScriptFromString");
 }
 
 @end

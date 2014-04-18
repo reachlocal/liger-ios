@@ -1,5 +1,5 @@
 //
-//  LGRSliderViewControllerTest.m
+//  LGRDrawerViewControllerTest.m
 //  Liger
 //
 //  Created by John Gustafsson on 11/25/13.
@@ -17,11 +17,11 @@
 @property (nonatomic, strong) LGRMenuViewController *menu;
 @end
 
-@interface LGRSlideViewControllerTest : XCTestCase
+@interface LGRDrawerViewControllerTest : XCTestCase
 @property(nonatomic, strong) LGRDrawerViewController *slider;
 @end
 
-@implementation LGRSlideViewControllerTest
+@implementation LGRDrawerViewControllerTest
 
 - (void)setUp
 {
@@ -32,8 +32,7 @@
 
 - (void)tearDown
 {
-
-    [super tearDown];
+	[super tearDown];
 }
 
 - (void)testResetApp

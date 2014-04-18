@@ -73,11 +73,6 @@
 	[self refreshPage:NO];
 }
 
-- (void)didReceiveMemoryWarning
-{
-	[super didReceiveMemoryWarning];
-}
-
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 	return [super webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
@@ -93,14 +88,17 @@
 
 - (void)sendArgs:(NSDictionary *)args toJavascript:(NSString*)javascript
 {
+	NSString *json = @"{}";
+
 	if ([args isKindOfClass:NSDictionary.class]) {
 		NSError *error = nil;
 		NSData *data = [NSJSONSerialization dataWithJSONObject:args options:0 error:&error];
-		NSString *json = !error ? [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] : @"{}";
-		[self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:javascript, json]];
-	} else {
-        [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:javascript, @"{}"]];
+		json = !error ? [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] : @"{}";
     }
+
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:javascript, json]];
+	});
 }
 
 - (void)dialogClosed:(NSDictionary *)args
@@ -150,7 +148,10 @@
 {
 	if (wasInitiatedByUser) {
 		NSString *javascript = [NSString stringWithFormat:@"PAGE.refresh(%@);", wasInitiatedByUser ? @"true" : @"false"];
-		[self.webView stringByEvaluatingJavaScriptFromString:javascript];
+
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[self.webView stringByEvaluatingJavaScriptFromString:javascript];
+		});
 	}
 }
 
