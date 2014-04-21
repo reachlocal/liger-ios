@@ -156,6 +156,13 @@ BOOL native(NSMutableDictionary* pages, Class class)
 		new.ligerParent = parent;
 		return new;
 	}
+	
+	if([page isEqualToString:@"map"]){
+		NSString* address = args[@"address"];
+		NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://maps.apple.com/?q=%@", address]];
+		[[UIApplication sharedApplication] openURL:url];
+		return nil;
+	}
 
 	// Create an html page if we have one in the bundle of it it's an http address
 	if ([self hasHTMLPage:page]) {
