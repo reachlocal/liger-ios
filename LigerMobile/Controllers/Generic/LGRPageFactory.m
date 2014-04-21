@@ -157,7 +157,7 @@ BOOL native(NSMutableDictionary* pages, Class class)
 		return new;
 	}
 	
-	if([page isEqualToString:@"map"]){
+	if([page isEqualToString:@"nativeMap"]){
 		NSString* address = args[@"address"];
 		NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://maps.apple.com/?q=%@", address]];
 		[[UIApplication sharedApplication] openURL:url];
