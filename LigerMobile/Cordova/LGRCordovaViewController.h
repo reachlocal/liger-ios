@@ -19,4 +19,8 @@
 - (void)dialogClosed:(NSDictionary*)args;
 - (void)childUpdates:(NSDictionary*)args;
 - (void)refreshPage:(BOOL)wasInitiatedByUser;
+
+- (void)pageWillAppear;
+- (void)pushNotificationTokenUpdated:(NSString *)token error:(NSError *)error;
+- (void)notificationArrived:(NSDictionary *)userInfo background:(BOOL)background;
 @end

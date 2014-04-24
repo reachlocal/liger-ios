@@ -62,39 +62,22 @@
 {
 	return self.cordova.userCanRefresh;
 }
-	
+
 - (void)pageWillAppear
 {
 	[super pageWillAppear];
 
-	NSString *js = @"if(PAGE.onPageAppear) PAGE.onPageAppear();";
-
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[self.cordova.webView stringByEvaluatingJavaScriptFromString:js];
-	});
+	[self.cordova pageWillAppear];
 }
 
 - (void)pushNotificationTokenUpdated:(NSString *)token error:(NSError *)error
 {
-	NSString *js = @"if(PAGE.pushNotificationTokenUpdated) PAGE.pushNotificationTokenUpdated('%@', 'iOSDeviceToken', '%@');";
-	js = [NSString stringWithFormat:js, token, error ? [error localizedDescription] : @""];
-
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[self.cordova.webView stringByEvaluatingJavaScriptFromString:js];
-	});
+	[self.cordova pushNotificationTokenUpdated:token error:error];
 }
 
 - (void)notificationArrived:(NSDictionary *)userInfo background:(BOOL)background
 {
-	NSError *error = nil;
-	NSData *json = [NSJSONSerialization dataWithJSONObject:userInfo options:0 error:&error];
-
-	NSString *js = @"if(PAGE.notificationArrived) PAGE.notificationArrived('%@', '%@');";
-	js = [NSString stringWithFormat:js, [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding], background ? @"true" : @"false"];
-
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[self.cordova.webView stringByEvaluatingJavaScriptFromString:js];
-	});
+	[self.cordova notificationArrived:userInfo background:background];
 }
 
 @end

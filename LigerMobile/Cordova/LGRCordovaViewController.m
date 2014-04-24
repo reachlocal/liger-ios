@@ -15,6 +15,8 @@
 	LGRViewController *_ligerParent;
 }
 @property (nonatomic, assign) BOOL toolbarHidden;
+@property (nonatomic, strong) NSMutableArray *evalQueue;
+@property (nonatomic, assign) BOOL acceptingJS;
 @end
 
 @implementation LGRCordovaViewController
@@ -32,7 +34,9 @@
 
 		NSArray *pagesWithToolbars = [LGRApp toolbars];
 		self.toolbarHidden = ![pagesWithToolbars containsObject:page];
-		
+
+		self.evalQueue = [NSMutableArray arrayWithCapacity:2];
+
 		[[NSNotificationCenter defaultCenter]addObserver:self
 												selector:@selector(becameActiveRefresh:)
 													name:UIApplicationWillEnterForegroundNotification
@@ -73,15 +77,17 @@
 	[self refreshPage:NO];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+- (void)webViewDidStartLoad:(UIWebView *)webView
 {
-	return [super webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+	self.acceptingJS = NO;
+	[super webViewDidStartLoad:webView];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-	[super webView:webView didFailLoadWithError:error];
-	NSLog(@"%@", error);
+	[super webViewDidFinishLoad:webView];
+	self.acceptingJS = YES;
+	[self executeQueue];
 }
 
 #pragma mark - LGRViewController
@@ -96,9 +102,8 @@
 		json = !error ? [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] : @"{}";
     }
 
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:javascript, json]];
-	});
+	[self addToQueue:[NSString stringWithFormat:javascript, json]];
+	[self executeQueue];
 }
 
 - (void)dialogClosed:(NSDictionary *)args
@@ -147,17 +152,64 @@
 - (void)refreshPage:(BOOL)wasInitiatedByUser
 {
 	if (wasInitiatedByUser) {
-		NSString *javascript = [NSString stringWithFormat:@"PAGE.refresh(%@);", wasInitiatedByUser ? @"true" : @"false"];
+		NSString *js = [NSString stringWithFormat:@"PAGE.refresh(%@);", wasInitiatedByUser ? @"true" : @"false"];
 
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[self.webView stringByEvaluatingJavaScriptFromString:javascript];
-		});
+		[self addToQueue:js];
+		[self executeQueue];
 	}
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle
+- (UIStatusBarStyle)preferredStatusBarStyle
 {
     return [LGRAppearance statusBarDialog];
+}
+
+- (void)pageWillAppear
+{
+	NSString *js = @"if(PAGE.onPageAppear) PAGE.onPageAppear();";
+
+	[self addToQueue:js];
+	[self executeQueue];
+}
+
+- (void)pushNotificationTokenUpdated:(NSString *)token error:(NSError *)error
+{
+	NSString *js = @"if(PAGE.pushNotificationTokenUpdated) PAGE.pushNotificationTokenUpdated('%@', 'iOSDeviceToken', '%@');";
+	js = [NSString stringWithFormat:js, token ? token : @"", error ? [error localizedDescription] : @""];
+
+	[self addToQueue:js];
+	[self executeQueue];
+}
+
+- (void)notificationArrived:(NSDictionary *)userInfo background:(BOOL)background
+{
+	NSError *error = nil;
+	NSData *json = [NSJSONSerialization dataWithJSONObject:userInfo options:0 error:&error];
+
+	NSString *js = @"if(PAGE.notificationArrived) PAGE.notificationArrived('%@', '%@');";
+	js = [NSString stringWithFormat:js, [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding],
+		  background ? @"true" : @"false"];
+
+	[self addToQueue:js];
+	[self executeQueue];
+}
+
+- (void)addToQueue:(NSString*)js
+{
+	[self.evalQueue addObject:js];
+}
+
+- (void)executeQueue
+{
+	if (self.acceptingJS && self.evalQueue.count) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			while (self.evalQueue.count) {
+				NSString* js = [self.evalQueue firstObject];
+				[self.webView stringByEvaluatingJavaScriptFromString:js];
+				[self.evalQueue removeObjectAtIndex:0];
+			}
+		});
+	}
 }
 
 @end
