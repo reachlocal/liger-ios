@@ -64,7 +64,7 @@
 - (void)testNotificationArrivedBackground
 {
 	id menu = [OCMockObject partialMockForObject:self.slider.menu];
-	[[menu expect] notificationArrived:OCMOCK_ANY background:OCMOCK_ANY];
+	[[menu expect] notificationArrived:OCMOCK_ANY background:YES];
 
 	id slider = [OCMockObject partialMockForObject:self.slider];
 	[[[slider stub] andReturn:menu] menu];
