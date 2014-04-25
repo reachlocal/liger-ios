@@ -336,4 +336,8 @@
 	[self.menu pushNotificationTokenUpdated:token error:error];
 }
 
+- (void)notificationArrived:(NSDictionary *)userInfo background:(BOOL)background
+{
+	[self.menu notificationArrived:userInfo background:background];
+}
 @end
