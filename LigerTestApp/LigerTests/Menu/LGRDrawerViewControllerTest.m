@@ -61,4 +61,17 @@
 	XCTAssertNoThrow([menu verify], @"Verify failed");
 }
 
+- (void)testNotificationArrivedBackground
+{
+	id menu = [OCMockObject partialMockForObject:self.slider.menu];
+	[[menu expect] notificationArrived:OCMOCK_ANY background:OCMOCK_ANY];
+
+	id slider = [OCMockObject partialMockForObject:self.slider];
+	[[[slider stub] andReturn:menu] menu];
+
+	[slider notificationArrived:@{} background:YES];
+
+	XCTAssertNoThrow([menu verify], @"Verify failed");
+}
+
 @end
