@@ -96,18 +96,14 @@
 {
 	id liger = [OCMockObject partialMockForObject:self.liger];
 
-	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
-	id webMock = [OCMockObject mockForClass:UIWebView.class];
-	[[[mock stub] andReturn:webMock] webView];
-	[[[liger stub] andReturn:mock] cordova];
-	
-	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+	id cordova = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	[[[liger stub] andReturn:cordova] cordova];
 
-	[self prepare];
+	[[cordova expect] pageWillAppear];
+
 	[liger pageWillAppear];
-	[self waitForTimeout:2.0];
 
-	XCTAssertNoThrow([webMock verify], @"pageWillAppear should result in a call to stringByEvaluatingJavaScriptFromString");
+	XCTAssertNoThrow([cordova verify], @"pageWillAppear should call cordova");
 }
 
 - (void)testUserCanRefresh
@@ -124,37 +120,29 @@
 	id liger = [OCMockObject partialMockForObject:self.liger];
 
 	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
-	id webMock = [OCMockObject mockForClass:UIWebView.class];
-	[[[mock stub] andReturn:webMock] webView];
 	[[[liger stub] andReturn:mock] cordova];
 
-	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+	[[mock expect] pushNotificationTokenUpdated:@"26ea0f5899ac6bd8a3e0d6b51f38a4ad3475c1e4eefbeee62eca722cef0c3bf9" error:nil];
 
-	[self prepare];
 	[liger pushNotificationTokenUpdated:@"26ea0f5899ac6bd8a3e0d6b51f38a4ad3475c1e4eefbeee62eca722cef0c3bf9" error:nil];
-	[self waitForTimeout:2.0];
 
-	XCTAssertNoThrow([webMock verify], @"pushNotificationTokenUpdated:error: should result in a call to stringByEvaluatingJavaScriptFromString");
+	XCTAssertNoThrow([mock verify], @"pushNotificationTokenUpdated:error should call cordova");
 }
 
 - (void)testNotificationArrivedBackground
 {
 	id liger = [OCMockObject partialMockForObject:self.liger];
 
-	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
-	id webMock = [OCMockObject mockForClass:UIWebView.class];
-	[[[mock stub] andReturn:webMock] webView];
-	[[[liger stub] andReturn:mock] cordova];
+	id cordova = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	[[[liger stub] andReturn:cordova] cordova];
 
-	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
-	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+	[[cordova expect] notificationArrived:OCMOCK_ANY background:YES];
+	[[cordova expect] notificationArrived:OCMOCK_ANY background:NO];
 
-	[self prepare];
 	[liger notificationArrived:@{@"example": @(NO)} background:YES];
 	[liger notificationArrived:@{@"example": @(NO)} background:NO];
-	[self waitForTimeout:2.0];
 
-	XCTAssertNoThrow([webMock verify], @"notificationArrived:background should result in a call to stringByEvaluatingJavaScriptFromString");
+	XCTAssertNoThrow([cordova verify], @"notificationArrived:background should call cordova");
 }
 
 @end

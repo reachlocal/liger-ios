@@ -114,20 +114,14 @@
 {
 	id menu = [OCMockObject partialMockForObject:self.menu];
 	
-	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
-	id webMock = [OCMockObject mockForClass:UIWebView.class];
-	[[[mock stub] andReturn:webMock] webView];
-	[[[menu stub] andReturn:mock] cordova];
+	id cordova = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	[[[menu stub] andReturn:cordova] cordova];
 	
-	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
-
-	[self prepare];
+	[[cordova expect] pageWillAppear];
 
 	[menu pageWillAppear];
 
-	[self waitForTimeout:2.0];
-
-	XCTAssertNoThrow([webMock verify], @"pageWillAppear should result in a call to stringByEvaluatingJavaScriptFromString");
+	XCTAssertNoThrow([cordova verify], @"pageWillAppear should call cordova");
 }
 
 - (void)testUserCanRefresh
@@ -137,6 +131,8 @@
 	XCTAssertEqual(self.menu.userCanRefresh, YES, @"Should be YES.");
 	self.menu.userCanRefresh = NO;
 	XCTAssertEqual(self.menu.userCanRefresh, NO, @"Should be NO.");
+	self.menu.userCanRefresh = NO;
+	XCTAssertEqual(self.menu.userCanRefresh, NO, @"Should be NO.");
 }
 
 - (void)testPushNotificationTokenUpdatedError
@@ -144,37 +140,29 @@
 	id menu = [OCMockObject partialMockForObject:self.menu];
 
 	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
-	id webMock = [OCMockObject mockForClass:UIWebView.class];
-	[[[mock stub] andReturn:webMock] webView];
 	[[[menu stub] andReturn:mock] cordova];
 
-	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+	[[mock expect] pushNotificationTokenUpdated:@"26ea0f5899ac6bd8a3e0d6b51f38a4ad3475c1e4eefbeee62eca722cef0c3bf9" error:nil];
 
-	[self prepare];
 	[menu pushNotificationTokenUpdated:@"26ea0f5899ac6bd8a3e0d6b51f38a4ad3475c1e4eefbeee62eca722cef0c3bf9" error:nil];
-	[self waitForTimeout:2.0];
 
-	XCTAssertNoThrow([webMock verify], @"pushNotificationTokenUpdated:error should result in a call to stringByEvaluatingJavaScriptFromString");
+	XCTAssertNoThrow([mock verify], @"pushNotificationTokenUpdated:error should call cordova");
 }
 
 - (void)testNotificationArrivedBackground
 {
 	id menu = [OCMockObject partialMockForObject:self.menu];
 
-	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
-	id webMock = [OCMockObject mockForClass:UIWebView.class];
-	[[[mock stub] andReturn:webMock] webView];
-	[[[menu stub] andReturn:mock] cordova];
+	id cordova = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	[[[menu stub] andReturn:cordova] cordova];
 
-	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
-	[[webMock expect] stringByEvaluatingJavaScriptFromString:OCMOCK_ANY];
+	[[cordova expect] notificationArrived:OCMOCK_ANY background:YES];
+	[[cordova expect] notificationArrived:OCMOCK_ANY background:NO];
 
-	[self prepare];
 	[menu notificationArrived:@{@"example": @(NO)} background:YES];
 	[menu notificationArrived:@{@"example": @(NO)} background:NO];
-	[self waitForTimeout:2.0];
 
-	XCTAssertNoThrow([webMock verify], @"notificationArrived:background should result in a call to stringByEvaluatingJavaScriptFromString");
+	XCTAssertNoThrow([cordova verify], @"notificationArrived:background should call cordova");
 }
 
 @end
