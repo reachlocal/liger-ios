@@ -165,4 +165,18 @@
 	XCTAssertNoThrow([cordova verify], @"notificationArrived:background should call cordova");
 }
 
+- (void)testHandleAppOpenURL
+{
+	id menu = [OCMockObject partialMockForObject:self.menu];
+
+	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	[[[menu stub] andReturn:mock] cordova];
+
+	[[mock expect] handleAppOpenURL:[NSURL URLWithString:@"test://test"]];
+
+	[menu handleAppOpenURL:[NSURL URLWithString:@"test://test"]];
+
+	XCTAssertNoThrow([mock verify], @"pushNotificationTokenUpdated:error should call cordova");
+}
+
 @end

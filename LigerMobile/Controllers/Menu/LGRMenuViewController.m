@@ -96,4 +96,9 @@
 	NSAssert(NO, @"%s hasn't been implemented for this menu page", __PRETTY_FUNCTION__);
 }
 
+- (void)handleAppOpenURL:(NSURL*)url
+{
+	NSAssert(NO, @"%s hasn't been implemented for this menu page", __PRETTY_FUNCTION__);
+}
+
 @end

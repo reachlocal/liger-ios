@@ -80,4 +80,9 @@
 	[self.cordova notificationArrived:userInfo background:background];
 }
 
+- (void)handleAppOpenURL:(NSURL*)url
+{
+	[self.cordova handleAppOpenURL:url];
+}
+
 @end

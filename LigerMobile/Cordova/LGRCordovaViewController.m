@@ -194,6 +194,16 @@
 	[self executeQueue];
 }
 
+- (void)handleAppOpenURL:(NSURL*)url
+{
+	NSString *js = @"if(PAGE.handleAppOpenURL) PAGE.handleAppOpenURL('%@');";
+	js = [NSString stringWithFormat:js, url];
+
+	[self addToQueue:js];
+	[self executeQueue];
+}
+
+
 - (void)addToQueue:(NSString*)js
 {
 	[self.evalQueue addObject:js];

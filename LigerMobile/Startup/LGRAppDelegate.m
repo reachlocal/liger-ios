@@ -52,11 +52,17 @@
 	[[self rootPage] pushNotificationTokenUpdated:nil error:error];
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
 {
 	UIApplicationState state = [application applicationState];
 
 	[[self rootPage] notificationArrived:userInfo background:state == UIApplicationStateInactive || state == UIApplicationStateBackground];
+}
+
+- (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation
+{
+	[[self rootPage] handleAppOpenURL:url];
+	return YES;
 }
 
 - (LGRViewController*)rootPage

@@ -83,6 +83,23 @@ NSData* testToken()
 	XCTAssertNoThrow([rootPage verify], @"Verify failed");
 }
 
+- (void)testOpenURLSourceApplicationAnnotation
+{
+	LGRAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+
+	id pageMock = [OCMockObject partialMockForObject:[[LGRViewController alloc] init]];
+	[[pageMock expect] handleAppOpenURL:OCMOCK_ANY];
+	id appMock = [OCMockObject partialMockForObject:appDelegate];
+
+	[[[appMock stub] andReturn:pageMock] rootPage];
+	[appMock application:[UIApplication sharedApplication]
+				 openURL:[NSURL URLWithString:@"test://test?test=test&test=test"]
+	   sourceApplication:@"org.ligermobile.test"
+			  annotation:nil];
+
+	XCTAssertNoThrow([pageMock verify], @"Verify failed");
+}
+
 - (void)testRootPage
 {
 	LGRAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];

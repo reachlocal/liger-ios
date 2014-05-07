@@ -340,4 +340,10 @@
 {
 	[self.menu notificationArrived:userInfo background:background];
 }
+
+- (void)handleAppOpenURL:(NSURL*)url
+{
+	[self.menu handleAppOpenURL:url];
+}
+
 @end

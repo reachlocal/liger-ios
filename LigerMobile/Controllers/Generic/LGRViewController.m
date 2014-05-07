@@ -186,5 +186,10 @@
 
 }
 
+- (void)handleAppOpenURL:(NSURL*)url
+{
+
+}
+
 @end
 

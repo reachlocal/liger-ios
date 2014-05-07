@@ -184,4 +184,10 @@
  */
 - (void)notificationArrived:(NSDictionary*)userInfo background:(BOOL)background;
 
+/**
+ Handle the situation were the app is started by an URL.
+ 
+ @param url The URL the app was started with
+ */
+- (void)handleAppOpenURL:(NSURL*)url;
 @end
