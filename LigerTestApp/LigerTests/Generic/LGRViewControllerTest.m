@@ -21,7 +21,7 @@
 - (void)setUp
 {
 	[super setUp];
-	self.liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
+	self.liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{} options:@{}];
 }
 
 - (void)testNativePage
@@ -32,11 +32,13 @@
 - (void)testInitWithPage
 {
 	NSDictionary *args = @{@"test": @YES, @"version": @76};
-	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args];
+	NSDictionary *options = @{@"test": @"test"};
+	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args options:options];
 	
 	XCTAssertEqual(liger.page, @"testPage", @"Page name is wrong");
 	XCTAssertEqual(liger.title, @"testTitle", @"Title is wrong");
 	XCTAssertEqualObjects(liger.args, args, @"Args are wrong");
+	XCTAssertEqualObjects(liger.options, options, @"Options are wrong");
 	XCTAssertNil(liger.ligerParent, @"Parent shouldn't be set");
 	XCTAssertFalse(liger.userCanRefresh, @"User refresh should be false as default");
 }
@@ -44,11 +46,13 @@
 - (void)testInitWithPageWithNib
 {
 	NSDictionary *args = @{@"test": @YES, @"version": @76};
-	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args nibName:nil bundle:nil];
+	NSDictionary *options = @{@"test": @"test"};
+	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args options:options nibName:nil bundle:nil];
 	
 	XCTAssertEqual(liger.page, @"testPage", @"Page name is wrong");
 	XCTAssertEqual(liger.title, @"testTitle", @"Title is wrong");
 	XCTAssertEqualObjects(liger.args, args, @"Args are wrong");
+	XCTAssertEqualObjects(liger.options, options, @"Options are wrong");
 	XCTAssertNil(liger.ligerParent, @"Parent shouldn't be set");
 	XCTAssertFalse(liger.userCanRefresh, @"User refresh should be false as default");
 }
@@ -62,7 +66,7 @@
 	[[mock expect] pushViewController:OCMOCK_ANY animated:YES];
 	[[[((id)liger) stub] andReturn:mock] navigationController];
 
-	[liger openPage:@"firstPage" title:@"First Page" args:@{} success:^{} fail:^{}];
+	[liger openPage:@"firstPage" title:@"First Page" args:@{} options:@{} success:^{} fail:^{}];
 	
 	XCTAssertNoThrow([mock verify], @"Verify failed");
 }
@@ -84,8 +88,8 @@
 {
 	id liger = [OCMockObject partialMockForObject:self.liger];
 
-	id test2 = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test2" title:@"" args:@{}]];
-	id test = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test" title:@"" args:@{}]];
+	id test2 = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test2" title:@"" args:@{} options:@{}]];
+	id test = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test" title:@"" args:@{} options:@{}]];
 
 	[[[liger stub] andReturn:test2] ligerParent];
 	[[[test2 stub] andReturn:test] ligerParent];
@@ -113,8 +117,8 @@
 {
 	id liger = [OCMockObject partialMockForObject:self.liger];
 
-	id test2 = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test2" title:@"" args:@{}]];
-	id test = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test" title:@"" args:@{}]];
+	id test2 = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test2" title:@"" args:@{} options:@{}]];
+	id test = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test" title:@"" args:@{} options:@{}]];
 
 	[[[liger stub] andReturn:test2] ligerParent];
 	[[[test2 stub] andReturn:test] ligerParent];
@@ -136,7 +140,7 @@
 	[[((id)liger) expect] presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY];
 	[[((id)liger) stub] presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY];
 	
-	[liger openDialog:@"firstPage" title:@"First Page" args:@{} success:^{} fail:^{}];
+	[liger openDialog:@"firstPage" title:@"First Page" args:@{} options:@{} success:^{} fail:^{}];
 	
 	XCTAssertNoThrow([(id)liger verify], @"Verify failed");
 }
@@ -161,7 +165,7 @@
 
 - (void)testChildUpdates
 {
-	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{@"Updated": @NO}];
+	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{@"Updated": @NO} options:@{}];
 
 	XCTAssertEqualObjects(liger.args, @{@"Updated": @NO}, @"Args don't match before call");
 	[liger childUpdates:@{@"Updated": @YES}];

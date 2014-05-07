@@ -15,9 +15,9 @@
 
 @implementation LGRNativePagesViewController
 
-- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args
+- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options
 {
-	self = [super initWithPage:page title:title args:args nibName:@"LGRNativePagesViewController" bundle:nil];
+	self = [super initWithPage:page title:title args:args options:options nibName:@"LGRNativePagesViewController" bundle:nil];
 	if (self) {
 	}
 	return self;
@@ -168,7 +168,7 @@
 		case 1:
 			switch (indexPath.row) {
 				case 0:
-					[self openPage:@"nativePages" title:@"Native Page" args:@{@"Native": @"Page"} success:^{} fail:^{}];
+					[self openPage:@"nativePages" title:@"Native Page" args:@{@"Native": @"Page"} options:@{} success:^{} fail:^{}];
 					break;
 					
 				case 1:
@@ -194,11 +194,11 @@
 		case 3:
 			switch (indexPath.row) {
 				case 1:
-					[self openDialog:@"nativePages" title:nil args:@{@"open": @"dialog"} success:^{} fail:^{}];
+					[self openDialog:@"nativePages" title:nil args:@{@"open": @"dialog"} options:@{} success:^{} fail:^{}];
 					break;
 					
 				case 2:
-					[self openDialog:@"nativePages" title:@"Dialog" args:@{@"open": @"dialog"} success:^{} fail:^{}];
+					[self openDialog:@"nativePages" title:@"Dialog" args:@{@"open": @"dialog"} options:@{} success:^{} fail:^{}];
 					break;
 					
 				case 3:

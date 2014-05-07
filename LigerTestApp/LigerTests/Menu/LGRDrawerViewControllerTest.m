@@ -25,7 +25,7 @@
 
 - (void)setUp
 {
-	self.slider = (LGRDrawerViewController*)[LGRPageFactory controllerForPage:@"Drawer" title:@"" args:@{} parent:nil];
+	self.slider = (LGRDrawerViewController*)[LGRPageFactory controllerForPage:@"Drawer" title:@"" args:@{} options:@{} parent:nil];
 	XCTAssert(self.slider.view, @"Slider has no view");
     [super setUp];
 }

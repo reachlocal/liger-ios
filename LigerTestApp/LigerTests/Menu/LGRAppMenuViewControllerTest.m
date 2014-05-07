@@ -40,7 +40,7 @@
 									   @"args" : @"{'hello':'world'}",
 									   @"dialog" : @YES
 									   }]]};
-	LGRAppMenuViewController *menu = [[LGRAppMenuViewController alloc] initWithPage:@"appMenu" title:nil args:args];
+	LGRAppMenuViewController *menu = [[LGRAppMenuViewController alloc] initWithPage:@"appMenu" title:nil args:args options:@{}];
 	
 	menu.displayController = ^(UIViewController* controller){
 		XCTAssertNotNil(controller, @"Controller wasn't created.");
@@ -70,7 +70,7 @@
 											  @"args" : @"{'hello':'world'}",
 											  @"dialog" : @YES
 											  }]]};
-	LGRAppMenuViewController *menu = [[LGRAppMenuViewController alloc] initWithPage:@"appMenu" title:nil args:args];
+	LGRAppMenuViewController *menu = [[LGRAppMenuViewController alloc] initWithPage:@"appMenu" title:nil args:args options:@{}];
 	
 	menu.displayController = ^(UIViewController* controller){
 		XCTFail(@"Should not be called.");

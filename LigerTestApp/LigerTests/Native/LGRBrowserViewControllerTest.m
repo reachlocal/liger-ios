@@ -19,7 +19,7 @@
 - (void)testInitWithPage
 {
 	NSDictionary *args = @{@"link" : @"http://liger.com"};
-	LGRViewController *liger = [[LGRBrowserViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args];
+	LGRViewController *liger = [[LGRBrowserViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args options:@{}];
 	
 	XCTAssertEqual(liger.page, @"testPage", @"Page name is wrong");
 	XCTAssertEqual(liger.title, @"testTitle", @"Title is wrong");
