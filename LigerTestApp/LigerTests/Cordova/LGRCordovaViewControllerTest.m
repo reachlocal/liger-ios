@@ -161,6 +161,18 @@
 	XCTAssertNoThrow([cordova verify], @"notificationArrived:background: should push to queue");
 }
 
+- (void)testHandleAppOpenURL
+{
+	id cordova = [OCMockObject partialMockForObject:self.cordova];
+
+	[[cordova expect] addToQueue:OCMOCK_ANY];
+	[[cordova expect] executeQueue];
+
+	[cordova handleAppOpenURL:[NSURL URLWithString:@"test://test"]];
+
+	XCTAssertNoThrow([cordova verify], @"handleAppOpenURL: should push to queue");
+}
+
 - (void)testAddToQueue
 {
 	id cordova = [OCMockObject partialMockForObject:self.cordova];

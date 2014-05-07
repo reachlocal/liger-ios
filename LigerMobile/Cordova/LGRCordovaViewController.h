@@ -23,4 +23,5 @@
 - (void)pageWillAppear;
 - (void)pushNotificationTokenUpdated:(NSString *)token error:(NSError *)error;
 - (void)notificationArrived:(NSDictionary *)userInfo background:(BOOL)background;
+- (void)handleAppOpenURL:(NSURL*)url;
 @end
