@@ -160,4 +160,10 @@
 					@"Should throw an exception as it's not implemented in the menu base class.");
 }
 
+- (void)testHandleAppOpenUrl
+{
+	XCTAssertThrows([self.menu handleAppOpenURL:[NSURL URLWithString:@"test://test"]],
+					@"Should throw an exception as it's not implemented in the menu base class.");
+}
+
 @end

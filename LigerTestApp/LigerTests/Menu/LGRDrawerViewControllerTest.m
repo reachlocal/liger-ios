@@ -18,15 +18,15 @@
 @end
 
 @interface LGRDrawerViewControllerTest : XCTestCase
-@property(nonatomic, strong) LGRDrawerViewController *slider;
+@property(nonatomic, strong) LGRDrawerViewController *drawer;
 @end
 
 @implementation LGRDrawerViewControllerTest
 
 - (void)setUp
 {
-	self.slider = (LGRDrawerViewController*)[LGRPageFactory controllerForPage:@"Drawer" title:@"" args:@{} parent:nil];
-	XCTAssert(self.slider.view, @"Slider has no view");
+	self.drawer = (LGRDrawerViewController*)[LGRPageFactory controllerForPage:@"Drawer" title:@"" args:@{} parent:nil];
+	XCTAssert(self.drawer.view, @"drawer has no view");
     [super setUp];
 }
 
@@ -37,10 +37,10 @@
 
 - (void)testResetApp
 {
-	[self.slider resetApp];
-	[self.slider.childViewControllers[0] viewDidAppear:NO]; // We have to fake calling this as slider's view isn't hooked up to anything
+	[self.drawer resetApp];
+	[self.drawer.childViewControllers[0] viewDidAppear:NO]; // We have to fake calling this as drawer's view isn't hooked up to anything
 
-	XCTAssert(self.slider.childViewControllers.count == 2, @"Wrong number of child controllers.");
+	XCTAssert(self.drawer.childViewControllers.count == 2, @"Wrong number of child controllers.");
 }
 
 - (void)testNativePage
@@ -50,26 +50,39 @@
 
 - (void)testPushNotificationTokenUpdatedError
 {
-	id menu = [OCMockObject partialMockForObject:self.slider.menu];
+	id menu = [OCMockObject partialMockForObject:self.drawer.menu];
 	[[menu expect] pushNotificationTokenUpdated:OCMOCK_ANY error:OCMOCK_ANY];
 
-	id slider = [OCMockObject partialMockForObject:self.slider];
-	[[[slider stub] andReturn:menu] menu];
+	id drawer = [OCMockObject partialMockForObject:self.drawer];
+	[[[drawer stub] andReturn:menu] menu];
 
-	[slider pushNotificationTokenUpdated:nil error:nil];
+	[drawer pushNotificationTokenUpdated:nil error:nil];
 
 	XCTAssertNoThrow([menu verify], @"Verify failed");
 }
 
 - (void)testNotificationArrivedBackground
 {
-	id menu = [OCMockObject partialMockForObject:self.slider.menu];
+	id menu = [OCMockObject partialMockForObject:self.drawer.menu];
 	[[menu expect] notificationArrived:OCMOCK_ANY background:YES];
 
-	id slider = [OCMockObject partialMockForObject:self.slider];
-	[[[slider stub] andReturn:menu] menu];
+	id drawer = [OCMockObject partialMockForObject:self.drawer];
+	[[[drawer stub] andReturn:menu] menu];
 
-	[slider notificationArrived:@{} background:YES];
+	[drawer notificationArrived:@{} background:YES];
+
+	XCTAssertNoThrow([menu verify], @"Verify failed");
+}
+
+- (void)testHandleAppOpenURL
+{
+	id menu = [OCMockObject partialMockForObject:self.drawer.menu];
+	[[menu expect] handleAppOpenURL:[NSURL URLWithString:@"test://test"]];
+
+	id drawer = [OCMockObject partialMockForObject:self.drawer];
+	[[[drawer stub] andReturn:menu] menu];
+
+	[drawer handleAppOpenURL:[NSURL URLWithString:@"test://test"]];
 
 	XCTAssertNoThrow([menu verify], @"Verify failed");
 }
