@@ -48,7 +48,7 @@ var LIGER = {
 		cordova.exec(null, null, "Liger", "openDialog", [ page, args, options ]);
 	},
 
-	openDialogWithTitle: function(title, page, args) {
+	openDialogWithTitle: function(title, page, args, options) {
 		if (options === undefined){
 			options = {};
 		}

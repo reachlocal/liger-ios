@@ -62,7 +62,7 @@ var PAGE = {
      * @param page The 'name' of the page to be open. Should not include html.
      * @param args json that will be sent to page
      */
-    openPage: function(title, page, args) { LIGER.openPage(title, page, args); },
+    openPage: function(title, page, args, options) { LIGER.openPage(title, page, args, options); },
 
     /**
      * Closes the currently open page.
@@ -107,7 +107,7 @@ var PAGE = {
      * @param page The 'name' of the page to be open. Should not include html.
      * @param args json that will be sent to openPageArguments
      */
-    openDialog: function(page, args){ LIGER.openDialog(page, args); },
+    openDialog: function(page, args, options){ LIGER.openDialog(page, args, options); },
 
     /**
      * Opens a new page as a dialog
@@ -117,7 +117,7 @@ var PAGE = {
      * @param page The 'name' of the page to be open. Should not include html.
      * @param args json that will be sent to openPageArguments
      */
-    openDialogWithTitle: function(title, page, args) { LIGER.openDialogWithTitle(title, page, args); },
+    openDialogWithTitle: function(title, page, args, options) { LIGER.openDialogWithTitle(title, page, args, options); },
 
     /**
      * Closes a page in an open dialog
