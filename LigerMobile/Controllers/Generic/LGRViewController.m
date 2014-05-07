@@ -13,22 +13,24 @@
 @interface LGRViewController ()
 @property (nonatomic, strong) NSString *page;
 @property (nonatomic, strong) NSDictionary *args;
+@property (nonatomic, strong) NSDictionary *options;
 @end
 
 @implementation LGRViewController
 
-- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args
+- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options
 {
-	return [self initWithPage:page title:title args:args nibName:nil bundle:nil];
+	return [self initWithPage:page title:title args:args options:options nibName:nil bundle:nil];
 }
 
-- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self) {
 		self.page = page;
 		self.args = args;
 		self.title = title;
+		self.options = options;
 	}
 	return self;
 }
@@ -46,7 +48,7 @@
 
 #pragma mark - API
 
-- (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args success:(void (^)())success fail:(void (^)())fail
+- (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options success:(void (^)())success fail:(void (^)())fail
 {
 	// Internal error, we couldn't find the navigation controller or we aren't at the top of the navigation stack
 	if (!self.navigationController || self.navigationController.topViewController != self) {
@@ -54,7 +56,7 @@
 		return;
 	}
 	
-	UIViewController *new = [LGRPageFactory controllerForPage:page title:title args:args parent:self];
+	UIViewController *new = [LGRPageFactory controllerForPage:page title:title args:args options:options parent:self];
 	
 	// Couldn't create a new view controller
 	if (!new) {
@@ -115,9 +117,9 @@
 	fail();
 }
 
-- (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args success:(void (^)())success fail:(void (^)())fail
+- (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options success:(void (^)())success fail:(void (^)())fail
 {
-	UIViewController *new = [LGRPageFactory controllerForDialogPage:page title:title args:args parent:self];
+	UIViewController *new = [LGRPageFactory controllerForDialogPage:page title:title args:args options:options parent:self];
 	
 	// Couldn't create a new view controller, possibly a broken plugin
 	if (!new) {

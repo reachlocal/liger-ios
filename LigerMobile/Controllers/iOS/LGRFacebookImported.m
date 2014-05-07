@@ -16,7 +16,7 @@
 	return @"facebook";
 }
 
-+ (UIViewController*)controllerForImportedPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args parent:(LGRViewController*)parent
++ (UIViewController*)controllerForImportedPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent
 {
 	return [self controllerForImportedPage:page title:title args:args parent:parent serviceType:SLServiceTypeFacebook];
 }

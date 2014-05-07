@@ -35,9 +35,9 @@
 
 @implementation LGRDrawerViewController
 
-- (id)initWithPage:(NSString *)page title:(NSString *)title args:(NSDictionary *)args
+- (id)initWithPage:(NSString *)page title:(NSString *)title args:(NSDictionary *)args options:(NSDictionary*)options
 {
-	self = [super initWithPage:page title:title args:args];
+	self = [super initWithPage:page title:title args:args options:options];
 	if (self) {
 		self.openGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuOpen:)];
 		self.closeGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuClose:)];
@@ -65,7 +65,7 @@
 
 - (void)addMenuController
 {
-	self.menu = [LGRPageFactory controllerForMenuPage:LGRApp.menuPage title:nil args:@{@"menu": LGRApp.menuItems}];
+	self.menu = [LGRPageFactory controllerForMenuPage:LGRApp.menuPage title:nil args:@{@"menu": LGRApp.menuItems} options:@{}];
 	self.menu.pages = self.pages;
 
 	__weak LGRDrawerViewController *me = self;

@@ -11,14 +11,14 @@
 
 @implementation LGRMenuViewController
 
-- (id)initWithPage:(NSString *)page title:(NSString *)title args:(NSDictionary *)args
+- (id)initWithPage:(NSString *)page title:(NSString *)title args:(NSDictionary *)args options:(NSDictionary *)options
 {
-	return [self initWithPage:page title:title args:args nibName:nil bundle:nil];
+	return [self initWithPage:page title:title args:args options:options nibName:nil bundle:nil];
 }
 
-- (id)initWithPage:(NSString *)page title:(NSString *)title args:(NSDictionary *)args nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithPage:(NSString *)page title:(NSString *)title args:(NSDictionary *)args options:(NSDictionary *)options nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-	self = [super initWithPage:page title:title args:args nibName:nibNameOrNil bundle:nibBundleOrNil];
+	self = [super initWithPage:page title:title args:args options:options nibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self) {
 	}
 	return self;
@@ -31,13 +31,14 @@
 
 #pragma mark - API
 
-- (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args success:(void (^)())success fail:(void (^)())fail
+- (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options success:(void (^)())success fail:(void (^)())fail
 {
 	UIViewController *controller = [self.pages objectForKey:page];
 	if (!controller) {
 		controller = [[UINavigationController alloc] initWithRootViewController:[LGRPageFactory controllerForPage:page
 																											title:title
 																											 args:args
+																										  options:options
 																										   parent:self]];
 		[self.pages setObject:controller forKey:page];
 	}
@@ -65,9 +66,9 @@
 	NSAssert(NO, @"%s isn't supported in menu pages", __PRETTY_FUNCTION__);
 }
 
-- (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args success:(void (^)())success fail:(void (^)())fail
+- (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options success:(void (^)())success fail:(void (^)())fail
 {
-	[super openDialog:page title:title args:args success:^{
+	[super openDialog:page title:title args:args options:options success:^{
 		success();
 		self.displayDialog();
 	} fail:^{

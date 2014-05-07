@@ -36,6 +36,13 @@
 @property (readonly) NSDictionary *args;
 
 /**
+ The arguments as set when instantiated. Can be updated by subclasses if desired.
+
+ In the future assume that these args will be sent to a page if the application as been restarted.
+ */
+@property (readonly) NSDictionary *options;
+
+/**
  The parent of this page, if in a navigation controller or other controller with a stack.
  
  nil if a root page or not within a stack
@@ -50,7 +57,7 @@
 /**
  Convenience initializer, calls initWithPage:title:args:NibName:bundle with nil for nib and bundle.
  */
-- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args;
+- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options;
 
 /**
  The designated initializer. Inits the page.
@@ -63,7 +70,7 @@
  
  @see initWithNibName:nibBundleOrNil
  */
-- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
+- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 
 /**
  Creates and pushes a new page onto the stack (UINavigationController).
@@ -74,7 +81,7 @@
  @param success This block will be called if the operation was successful.
  @param fail This block will be called if something went wrong.
  */
-- (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args success:(void (^)())success fail:(void (^)())fail;
+- (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options success:(void (^)())success fail:(void (^)())fail;
 
 /**
  Closes the current page, and potentially several more pages if a rewindTo page name is supplied.
@@ -117,7 +124,7 @@
  @param success This block will be called if the operation was successful.
  @param fail This block will be called if something went wrong.
  */
-- (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args success:(void (^)())success fail:(void (^)())fail;
+- (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options success:(void (^)())success fail:(void (^)())fail;
 
 /**
  If this page was opened as a dialog sending closeDialog will close it (dismiss modal view controller).

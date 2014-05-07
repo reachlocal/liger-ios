@@ -14,10 +14,10 @@
 
 @implementation LGRBrowserViewController
 
-- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args
+- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options
 {
     
-	self = [super initWithPage:page title:title args:args nibName:@"LGRBrowserViewController" bundle:nil];
+	self = [super initWithPage:page title:title args:args options:options nibName:@"LGRBrowserViewController" bundle:nil];
 	if (self) {
 		self.toolbarItems = @[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn-back"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)],
 							  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn-forward"] style:UIBarButtonItemStylePlain target:self action:@selector(goForward:)],
