@@ -60,7 +60,7 @@
 
 	self.webView.allowsInlineMediaPlayback = YES;
 	self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
-    self.webView.dataDetectorTypes = UIDataDetectorTypeNone;
+	self.webView.dataDetectorTypes = UIDataDetectorTypeNone;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -186,7 +186,7 @@
 	NSError *error = nil;
 	NSData *json = [NSJSONSerialization dataWithJSONObject:userInfo options:0 error:&error];
 
-	NSString *js = @"if(PAGE.notificationArrived) PAGE.notificationArrived('%@', '%@');";
+	NSString *js = @"if(PAGE.notificationArrived) PAGE.notificationArrived(%@, '%@');";
 	js = [NSString stringWithFormat:js, [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding],
 		  background ? @"true" : @"false"];
 
