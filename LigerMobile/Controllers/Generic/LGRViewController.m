@@ -9,6 +9,7 @@
 #import "LGRViewController.h"
 #import "LGRPageFactory.h"
 #import "LGRDrawerViewController.h"
+#import "LGRAppDelegate.h"
 
 @interface LGRViewController ()
 @property (nonatomic, strong) NSString *page;
@@ -16,6 +17,12 @@
 @end
 
 @implementation LGRViewController
+
+
++ (NSString*)nativePage
+{
+	return nil;
+}
 
 - (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args
 {
@@ -33,15 +40,14 @@
 	return self;
 }
 
-+ (NSString*)nativePage
-{
-	return nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	[self pageWillAppear];
+
+	LGRAppDelegate *appDelegate = (LGRAppDelegate*)[[UIApplication sharedApplication] delegate];
+	NSAssert([appDelegate isKindOfClass:LGRAppDelegate.class], @"Your app delegate needs to inherit from LGRAppDelegate");
+	appDelegate.topPage = self;
 }
 
 #pragma mark - API

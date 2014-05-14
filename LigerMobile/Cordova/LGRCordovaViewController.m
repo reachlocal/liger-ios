@@ -36,18 +36,8 @@
 		self.toolbarHidden = ![pagesWithToolbars containsObject:page];
 
 		self.evalQueue = [NSMutableArray arrayWithCapacity:2];
-
-		[[NSNotificationCenter defaultCenter]addObserver:self
-												selector:@selector(becameActiveRefresh:)
-													name:UIApplicationWillEnterForegroundNotification
-												  object:nil];
 	}
 	return self;
-}
-
-- (void)dealloc
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad
@@ -140,13 +130,6 @@
 - (void)refresh:(id)sender
 {
 	[self refreshPage:YES];
-}
-
-- (void)becameActiveRefresh:(NSNotification*)notification
-{
-	if (self.navigationController.visibleViewController == self) {
-		[self refreshPage:NO];
-	}
 }
 
 - (void)refreshPage:(BOOL)wasInitiatedByUser
