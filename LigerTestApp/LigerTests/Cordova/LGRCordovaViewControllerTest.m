@@ -19,7 +19,6 @@
 - (void)setAcceptingJS:(BOOL)acceptingJS;
 
 - (void)refresh:(id)sender;
-- (void)becameActiveRefresh:(NSNotification*)notification;
 
 - (void)addToQueue:(NSString*)js;
 - (void)executeQueue;
@@ -102,20 +101,6 @@
 	[cordova refresh:nil];
 
 	XCTAssertNoThrow([cordova verify], @"refresh should call refresh page");
-}
-
-- (void)testBecameActiveRefresh
-{
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
-	[[cordova expect] refreshPage:NO];
-
-	id navigationController = [OCMockObject partialMockForObject:[[UINavigationController alloc] init]];
-	[[[navigationController stub] andReturn:[cordova realObject]] visibleViewController];
-	[[[cordova stub] andReturn:navigationController] navigationController];
-
-	[cordova becameActiveRefresh:nil];
-
-	XCTAssertNoThrow([cordova verify], @"becameActiveRefresh should call refresh page");
 }
 
 - (void)testRefreshPage
