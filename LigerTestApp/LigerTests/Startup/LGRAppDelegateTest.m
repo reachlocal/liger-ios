@@ -100,6 +100,19 @@ NSData* testToken()
 	XCTAssertNoThrow([pageMock verify], @"Verify failed");
 }
 
+- (void)testApplicationWillEnterForground
+{
+	id appDelegate = [OCMockObject partialMockForObject:[[UIApplication sharedApplication] delegate]];
+	id topPage = [OCMockObject partialMockForObject:[[LGRViewController alloc] init]];
+
+	[[topPage expect] pageWillAppear];
+	[[[appDelegate stub] andReturn:topPage] topPage];
+
+	[appDelegate applicationWillEnterForeground:[UIApplication sharedApplication]];
+
+	XCTAssertNoThrow([topPage verify], @"pageWillAppear not called.");
+}
+
 - (void)testRootPage
 {
 	LGRAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];

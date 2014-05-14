@@ -65,6 +65,11 @@
 	return YES;
 }
 
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+	[self.topPage pageWillAppear];
+}
+
 - (LGRViewController*)rootPage
 {
 	NSAssert([self.window.rootViewController isKindOfClass:LGRViewController.class], @"self.window.rootViewController must be a LGRViewController.");
