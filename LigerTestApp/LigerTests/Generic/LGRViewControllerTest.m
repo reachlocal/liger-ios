@@ -202,4 +202,9 @@
 	[self.liger notificationArrived:@{} background:NO];
 }
 
+- (void)testHandleAppOpenURL
+{
+	[self.liger handleAppOpenURL:[NSURL URLWithString:@"http://www.liger.com"]];
+}
+
 @end

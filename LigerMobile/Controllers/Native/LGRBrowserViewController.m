@@ -14,6 +14,11 @@
 
 @implementation LGRBrowserViewController
 
++ (NSString*)nativePage
+{
+	return @"browser";
+}
+
 - (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options
 {
     
@@ -50,6 +55,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+	[super viewWillAppear:animated];
+
 	[self.navigationController setToolbarHidden:NO animated:animated];
 }
 
@@ -57,11 +64,6 @@
 {
 	// TODO Shared ref counter needed?
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-}
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-	return YES;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -103,13 +105,4 @@
 	[self.webView reload];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
-+ (NSString*)nativePage
-{
-	return @"browser";
-}
 @end

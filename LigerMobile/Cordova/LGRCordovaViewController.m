@@ -36,18 +36,8 @@
 		self.toolbarHidden = ![pagesWithToolbars containsObject:page];
 
 		self.evalQueue = [NSMutableArray arrayWithCapacity:2];
-
-		[[NSNotificationCenter defaultCenter]addObserver:self
-												selector:@selector(becameActiveRefresh:)
-													name:UIApplicationWillEnterForegroundNotification
-												  object:nil];
 	}
 	return self;
-}
-
-- (void)dealloc
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad
@@ -60,7 +50,7 @@
 
 	self.webView.allowsInlineMediaPlayback = YES;
 	self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
-    self.webView.dataDetectorTypes = UIDataDetectorTypeNone;
+	self.webView.dataDetectorTypes = UIDataDetectorTypeNone;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -142,13 +132,6 @@
 	[self refreshPage:YES];
 }
 
-- (void)becameActiveRefresh:(NSNotification*)notification
-{
-	if (self.navigationController.visibleViewController == self) {
-		[self refreshPage:NO];
-	}
-}
-
 - (void)refreshPage:(BOOL)wasInitiatedByUser
 {
 	if (wasInitiatedByUser) {
@@ -186,7 +169,7 @@
 	NSError *error = nil;
 	NSData *json = [NSJSONSerialization dataWithJSONObject:userInfo options:0 error:&error];
 
-	NSString *js = @"if(PAGE.notificationArrived) PAGE.notificationArrived('%@', '%@');";
+	NSString *js = @"if(PAGE.notificationArrived) PAGE.notificationArrived(%@, '%@');";
 	js = [NSString stringWithFormat:js, [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding],
 		  background ? @"true" : @"false"];
 
