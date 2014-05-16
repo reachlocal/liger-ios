@@ -190,4 +190,10 @@
  @param url The URL the app was started with
  */
 - (void)handleAppOpenURL:(NSURL*)url;
+
+/**
+ 
+ 
+ */
+- (void)addedButtonAction:(id)sender;
 @end

@@ -38,55 +38,44 @@
 		self.title = title;
 		self.options = options;
 		
-		[self addOptionalButtons];
+		[self addButtons];
 	}
 	return self;
 }
 
-- (void) addOptionalButtons{
-	if([self.options objectForKey:@"left"]){
-
-		UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]
-										initWithBarButtonSystemItem:[self determineOptionalButton:[self.options objectForKey:@"left"]]
-										target:self
-										action:@selector(addedButtonAction:)];
-		
+- (void)addButtons
+{
+	if([self.options objectForKey:@"left"]) {
+		UIBarButtonItem *leftButton = [self buttonFromDictionary:[self.options objectForKey:@"left"]];
 		self.navigationItem.leftBarButtonItem = leftButton;
 	}
 	
-	if([self.options objectForKey:@"right"]){
-		UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
-										initWithBarButtonSystemItem:[self determineOptionalButton:[self.options objectForKey:@"right"]]
-										target:self
-										action:@selector(addedButtonAction:)];
-		
+	if([self.options objectForKey:@"right"]) {
+		UIBarButtonItem *rightButton =  [self buttonFromDictionary:[self.options objectForKey:@"right"]];
 		self.navigationItem.rightBarButtonItem = rightButton;
 	}
 }
 
-- (UIBarButtonSystemItem) determineOptionalButton:(NSDictionary *)buttonInfo{
+- (UIBarButtonItem*)buttonFromDictionary:(NSDictionary*)buttonInfo
+{
 	NSString* buttonType = [buttonInfo objectForKey:@"button"];
+	UIBarButtonSystemItem buttonSystemItem = UIBarButtonSystemItemDone;
 	
-	if([buttonType isEqualToString:@"done"]){
-		return UIBarButtonSystemItemDone;
+	if([buttonType isEqualToString:@"done"]) {
+		buttonSystemItem = UIBarButtonSystemItemDone;
+	} else if ([buttonType isEqualToString:@"cancel"]) {
+		buttonSystemItem = UIBarButtonSystemItemCancel;
+	} else if ([buttonType isEqualToString:@"save"]) {
+		buttonSystemItem = UIBarButtonSystemItemSave;
+	} else if ([buttonType isEqualToString:@"search"]) {
+		buttonSystemItem = UIBarButtonSystemItemSearch;
 	}
 	
-	if([buttonType isEqualToString:@"cancel"]){
-		return UIBarButtonSystemItemCancel;
-	}
-	
-	if([buttonType isEqualToString:@"save"]){
-		return UIBarButtonSystemItemSave;
-	}
-	
-	if([buttonType isEqualToString:@"search"]){
-		return UIBarButtonSystemItemSearch;
-	}
-	
-	return UIBarButtonSystemItemDone;
+	return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:buttonSystemItem target:self action:@selector(addedButtonAction:)];
 }
 
-- (void)addedButtonAction:(id)sender{
+- (void)addedButtonAction:(id)sender
+{
 	NSLog(@"this worked");
 }
 
