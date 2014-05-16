@@ -119,64 +119,65 @@ BOOL native(NSMutableDictionary* pages, Class class)
 	return self;
 }
 
-+ (LGRMenuViewController*)controllerForMenuPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args
++ (LGRMenuViewController*)controllerForMenuPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options
 {
-	return [self standardControllerForMenuPage:page title:title args:args];
+	return [self standardControllerForMenuPage:page title:title args:args options:options];
 }
 
-+ (UIViewController*)controllerForPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args parent:(LGRViewController*)parent
++ (UIViewController*)controllerForPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent
 {
-	return [self standardControllerForPage:page title:title args:args parent:parent];
+	return [self standardControllerForPage:page title:title args:args options:options parent:parent];
 }
 
-+ (UIViewController*)controllerForDialogPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args parent:(LGRViewController*)parent
++ (UIViewController*)controllerForDialogPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent
 {
 	// Imported (into Liger) pages
 	Class importedClass = [self shared].importedPages[page];
 	if (importedClass) {
-		return [importedClass controllerForImportedPage:page title:title args:args parent:parent];
+		return [importedClass controllerForImportedPage:page title:title args:args options:options parent:parent];
 	}
 
 	if (title) {
 		return [[UINavigationController alloc] initWithRootViewController:[self standardControllerForPage:page
 																									title:title
 																									 args:args
+																								  options:options
 																								   parent:parent]];
 	} else {
-		return [self standardControllerForPage:page title:@"" args:args parent:parent];
+		return [self standardControllerForPage:page title:@"" args:args options:options parent:parent];
 	}
 }
 
-+ (UIViewController*)standardControllerForPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args parent:(LGRViewController*)parent
++ (UIViewController*)standardControllerForPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent
 {
 	// Do we have a native class that inherits from LGRViewController that implements this page?
 	Class class = [self shared].nativePages[page];
 	if (class) {
-		LGRViewController *new = [[class alloc] initWithPage:page title:title args:args];
+		LGRViewController *new = [[class alloc] initWithPage:page title:title args:args options:options];
 		new.ligerParent = parent;
 		return new;
 	}
 
 	// Create an html page if we have one in the bundle of it it's an http address
 	if ([self hasHTMLPage:page]) {
-		LGRViewController *new = [[LGRHTMLViewController alloc] initWithPage:page title:title args:args];
+		LGRViewController *new = [[LGRHTMLViewController alloc] initWithPage:page title:title args:args options:options];
 		new.ligerParent = parent;
 		return new;
 	}
 	return nil;
 }
 
-+ (LGRMenuViewController*)standardControllerForMenuPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args
++ (LGRMenuViewController*)standardControllerForMenuPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options
 {
 	Class class = [self shared].menuPages[page];
 	
 	// Do we have a native class that inherits from LGRMenuViewController that implements this page?
 	if (class)
-		return [[class alloc] initWithPage:page title:title args:args];
+		return [[class alloc] initWithPage:page title:title args:args options:options];
 	
 	// Create an html page if we have one in the bundle of it it's an http address
 	if ([self hasHTMLPage:page])
-		return [[LGRHTMLMenuViewController alloc] initWithPage:page title:title args:args];
+		return [[LGRHTMLMenuViewController alloc] initWithPage:page title:title args:args options:options];
 	
 	return nil;
 }

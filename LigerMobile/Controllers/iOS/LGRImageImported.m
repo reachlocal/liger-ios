@@ -16,7 +16,7 @@
 	return @"image";
 }
 
-+ (UIViewController*)controllerForImportedPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args parent:(LGRViewController*)parent
++ (UIViewController*)controllerForImportedPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent
 {
 	UIImagePickerController *picker = [[UIImagePickerController alloc] init];
 	picker.delegate = parent;

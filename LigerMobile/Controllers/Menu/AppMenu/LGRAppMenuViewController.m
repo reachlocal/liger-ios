@@ -18,9 +18,9 @@
 
 @implementation LGRAppMenuViewController
 
-- (id)initWithPage:(NSString *)page title:(NSString *)title args:(NSDictionary *)args
+- (id)initWithPage:(NSString *)page title:(NSString *)title args:(NSDictionary *)args options:(NSDictionary *)options
 {
-	self = [super initWithPage:page title:title args:args nibName:@"LGRAppMenuViewController" bundle:nil];
+	self = [super initWithPage:page title:title args:args options:options nibName:@"LGRAppMenuViewController" bundle:nil];
 	if (self) {
 		self.menuItems = args[@"menu"];
 	}
@@ -47,6 +47,7 @@
 		[self openPage:self.menuItems[0][0][@"page"]
 				 title:self.menuItems[0][0][@"name"]
 				  args:self.menuItems[0][0][@"args"]
+			   options:self.menuItems[0][0][@"options"]
 			   success:^{}
 				  fail:^{}];
 		[self.menu selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
@@ -144,9 +145,9 @@
 		args = @{};
 
 	if (dialog) {
-		[self openDialog:menuItem[@"page"] title:menuItem[@"title"] args:args success:^{} fail:^{}];
+		[self openDialog:menuItem[@"page"] title:menuItem[@"title"] args:args options:menuItem[@"options"] success:^{} fail:^{}];
 	} else {
-		[self openPage:menuItem[@"page"] title:menuItem[@"title"] args:args success:^{} fail:^{}];
+		[self openPage:menuItem[@"page"] title:menuItem[@"title"] args:args options:menuItem[@"options"] success:^{} fail:^{}];
 	}
 	return;
 }

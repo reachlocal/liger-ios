@@ -19,7 +19,7 @@
 - (void)setUp
 {
 	[super setUp];
-	self.menu = [[LGRMenuViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
+	self.menu = [[LGRMenuViewController alloc] initWithPage:@"testPage" title:nil args:@{} options:@{}];
 }
 
 - (void)testDisplayController
@@ -40,7 +40,7 @@
 
 - (void)testPages
 {
-	NSMutableDictionary *pages = @{@"firstPage": [[LGRViewController alloc] initWithPage:@"firstPage" title:@"title" args:@{}]}.mutableCopy;
+	NSMutableDictionary *pages = @{@"firstPage": [[LGRViewController alloc] initWithPage:@"firstPage" title:@"title" args:@{} options:@{}]}.mutableCopy;
 	self.menu.pages = pages;
 
 	XCTAssertEqual(self.menu.pages, pages, @"pages failing");
@@ -57,7 +57,7 @@
 		XCTFail(@"Should not be called by an openPage.");
 	};
 	
-	[menu openPage:@"firstPage" title:@"First Page" args:@{} success:^{} fail:^{}];
+	[menu openPage:@"firstPage" title:@"First Page" args:@{} options:@{} success:^{} fail:^{}];
 }
 
 - (void)testClosePage
@@ -90,7 +90,7 @@
 
 - (void)testOpenDialog
 {
-	LGRMenuViewController *menu = [[LGRMenuViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
+	LGRMenuViewController *menu = [[LGRMenuViewController alloc] initWithPage:@"testPage" title:nil args:@{} options:@{}];
 	menu = [OCMockObject partialMockForObject:menu];
 
 	menu.displayController = ^(UIViewController* controller){
@@ -104,7 +104,7 @@
 	[[((id)menu) expect] presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY];
 	[[((id)menu) stub] presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY];
 	
-	[menu openDialog:@"firstPage" title:@"First Page" args:@{} success:^{} fail:^{}];
+	[menu openDialog:@"firstPage" title:@"First Page" args:@{} options:@{} success:^{} fail:^{}];
 	
 	XCTAssertNoThrow([(id)menu verify], @"Verify failed");
 }
@@ -130,7 +130,7 @@
 
 - (void)testChildUpdates
 {
-	LGRViewController *liger = [[LGRMenuViewController alloc] initWithPage:@"testPage" title:nil args:@{@"Updated": @NO}];
+	LGRViewController *liger = [[LGRMenuViewController alloc] initWithPage:@"testPage" title:nil args:@{@"Updated": @NO} options:@{}];
 	
 	XCTAssertEqualObjects(liger.args, @{@"Updated": @NO}, @"Args don't match before call");
 	[liger childUpdates:@{@"Updated": @YES}];

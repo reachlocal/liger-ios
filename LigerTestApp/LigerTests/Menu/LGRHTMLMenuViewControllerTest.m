@@ -26,13 +26,13 @@
 
 - (void)setUp
 {
-	self.menu = [[LGRHTMLMenuViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:@{}];
+	self.menu = [[LGRHTMLMenuViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:@{} options:@{}];
 }
 
 - (void)testInitWithPage
 {
 	NSDictionary *args = @{@"test": @YES, @"version": @76};
-	LGRViewController *liger = [[LGRHTMLMenuViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args];
+	LGRViewController *liger = [[LGRHTMLMenuViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args options:@{}];
 	
 	XCTAssertEqual(liger.page, @"testPage", @"Page name is wrong");
 	XCTAssertEqual(liger.title, @"testTitle", @"Title is wrong");

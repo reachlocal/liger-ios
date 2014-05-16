@@ -21,7 +21,7 @@
 
 - (void)testCreation
 {
-	UIViewController *message = [LGRMessageImported controllerForImportedPage:nil title:nil args:@{} parent:nil];
+	UIViewController *message = [LGRMessageImported controllerForImportedPage:nil title:nil args:@{} options:@{} parent:nil];
 #if !(TARGET_IPHONE_SIMULATOR)
 	XCTAssertNotNil(message, @"LGRMessageImported failed to create a page.");
 #else // Not available on the simulator
@@ -33,7 +33,7 @@
 {
 	NSDictionary *args = @{@"toRecipients": @"foo@bar.com, bar@foo.com", @"subject" : @"tests"};
 	
-	MFMailComposeViewController *message = (MFMailComposeViewController*)[LGRMessageImported controllerForImportedPage:nil title:nil args:args parent:nil];
+	MFMailComposeViewController *message = (MFMailComposeViewController*)[LGRMessageImported controllerForImportedPage:nil title:nil args:args options:@{} parent:nil];
 #if !(TARGET_IPHONE_SIMULATOR)
 	XCTAssertNotNil(message, @"LGRMessageImported failed to create a page.");
 #else // Not available on the simulator

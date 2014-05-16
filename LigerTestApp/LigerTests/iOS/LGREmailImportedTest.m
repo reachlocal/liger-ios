@@ -19,7 +19,7 @@
 
 - (void)testCreation
 {
-	UIViewController *email = [LGREmailImported controllerForImportedPage:nil title:nil args:@{} parent:nil];
+	UIViewController *email = [LGREmailImported controllerForImportedPage:nil title:nil args:@{} options:@{} parent:nil];
 	XCTAssertNotNil(email, @"LGREmailImported failed to create a page.");
 }
 
@@ -27,7 +27,7 @@
 {
 	NSDictionary *args = @{@"toRecipients": @"foo@bar.com, bar@foo.com", @"subject" : @"tests"};
 	
-	MFMailComposeViewController *email = (MFMailComposeViewController*)[LGREmailImported controllerForImportedPage:nil title:nil args:args parent:nil];
+	MFMailComposeViewController *email = (MFMailComposeViewController*)[LGREmailImported controllerForImportedPage:nil title:nil args:args options:@{} parent:nil];
 	XCTAssertNotNil(email, @"LGREmailImported failed to create a page.");
 }
 

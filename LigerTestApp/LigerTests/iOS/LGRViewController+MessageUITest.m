@@ -20,7 +20,7 @@
 
 - (void)testEmailClosing
 {
-	LGRViewController *control = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
+	LGRViewController *control = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{} options:@{}];
 	control = [OCMockObject partialMockForObject:control];
 
 	[[((id)control) expect] dismissViewControllerAnimated:YES completion:OCMOCK_ANY];
@@ -32,7 +32,7 @@
 
 - (void)testMessageClosing
 {
-	LGRViewController *control = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{}];
+	LGRViewController *control = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{} options:@{}];
 	control = [OCMockObject partialMockForObject:control];
 	
 	[[((id)control) expect] dismissViewControllerAnimated:YES completion:OCMOCK_ANY];

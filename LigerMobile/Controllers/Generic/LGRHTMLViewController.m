@@ -16,9 +16,9 @@
 @implementation LGRHTMLViewController
 @synthesize cordova = _cordova;
 
-- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args
+- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary *)options
 {
-	self = [super initWithPage:page title:title args:args];
+	self = [super initWithPage:page title:title args:args options:options];
 	if (self) {
 		_cordova = [[LGRCordovaViewController alloc] initWithPage:page title:title args:args];
 		[self addChildViewController:_cordova];

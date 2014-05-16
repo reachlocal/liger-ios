@@ -39,12 +39,14 @@
 {
 	LGRMenuViewController* controller = [LGRPageFactory controllerForMenuPage:@"appMenu"
 																		title:@"menu"
-																		 args:nil];
+																		 args:@{}
+																	  options:@{}];
 	
 	XCTAssertNotNil(controller, @"controller failed to be created");
 	XCTAssertEqualObjects(controller.title, @"menu", @"Title wasn't properly set");
 	XCTAssertEqualObjects(controller.page, @"appMenu", @"Page wasn't properly set");
-	XCTAssertNil(controller.args,@"Page shouldn't have args");
+	XCTAssertEqualObjects(controller.args, @{}, @"Page shouldn have empty args");
+	XCTAssertEqualObjects(controller.options, @{}, @"Page shouldn have empty args");
 }
 
 - (void)testPageFactory
@@ -52,6 +54,7 @@
 	UIViewController* controller = [LGRPageFactory controllerForPage:@"browser"
 															   title:@"Internet"
 																args:@{@"link": @"http://www.example.com"}
+															 options:@{}
 															  parent:nil];
 	
 	XCTAssertNotNil(controller, @"controller failed to be created");
@@ -63,6 +66,7 @@
 	UIViewController* controller = [LGRPageFactory controllerForDialogPage:@"browser"
 																	 title:@"Internet"
 																	  args:@{@"link": @"http://www.example.com"}
+																   options:@{}
 																	parent:nil];
 	
 	XCTAssertNotNil(controller, @"controller failed to be created");

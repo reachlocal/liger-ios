@@ -25,9 +25,10 @@
 
 - (void)setUp
 {
-	self.drawer = (LGRDrawerViewController*)[LGRPageFactory controllerForPage:@"Drawer" title:@"" args:@{} parent:nil];
+	self.drawer = (LGRDrawerViewController*)[LGRPageFactory controllerForPage:@"Drawer" title:@"" args:@{} options:@{} parent:nil];
 	XCTAssert(self.drawer.view, @"drawer has no view");
-    [super setUp];
+
+	[super setUp];
 }
 
 - (void)tearDown

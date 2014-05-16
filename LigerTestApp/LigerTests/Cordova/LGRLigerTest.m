@@ -36,9 +36,8 @@
 - (void)testopenPage
 {
 	id viewController = [OCMockObject mockForClass:LGRViewController.class];
-	[[viewController expect] openPage:OCMOCK_ANY title:@"Home" args:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
-	[[viewController stub] openPage:OCMOCK_ANY title:OCMOCK_ANY args:OCMOCK_ANY success:OCMOCK_ANY fail:OCMOCK_ANY];
-	
+	[[viewController expect] openPage:OCMOCK_ANY title:@"Home" args:@{} options:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
+
 	[[[(id)self.ligerPlugin stub] andReturn:viewController] ligerViewController];
 	
 	CDVInvokedUrlCommand *cmd = [[CDVInvokedUrlCommand alloc] initWithArguments:@[ @"Home", @"home" ]
@@ -47,15 +46,14 @@
 																	 methodName:@"openPage"];
 
 	[self.ligerPlugin openPage:cmd];
-	[viewController verify];
+	XCTAssertNoThrow([viewController verify], @"Verify failed");
 }
 
 
 - (void)testOpenDialog
 {
 	id viewController = [OCMockObject mockForClass:LGRViewController.class];
-	[[viewController expect] openDialog:OCMOCK_ANY title:nil args:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
-	[[viewController stub] openDialog:OCMOCK_ANY title:OCMOCK_ANY args:OCMOCK_ANY success:OCMOCK_ANY fail:OCMOCK_ANY];
+	[[viewController expect] openDialog:OCMOCK_ANY title:nil args:@{} options:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
 
 	[[[(id)self.ligerPlugin stub] andReturn:viewController] ligerViewController];
 	
@@ -64,15 +62,14 @@
 																	  className:@"Liger"
 																	 methodName:@"openDialog"];
 	[self.ligerPlugin openDialog:cmd];
-	[viewController verify];
+	XCTAssertNoThrow([viewController verify], @"Verify failed");
 }
 
 - (void)testOpenDialogWithTitle
 {
 	id viewController = [OCMockObject mockForClass:LGRViewController.class];
-	[[viewController expect] openDialog:OCMOCK_ANY title:@"Home" args:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
-	[[viewController stub] openDialog:OCMOCK_ANY title:OCMOCK_ANY args:OCMOCK_ANY success:OCMOCK_ANY fail:OCMOCK_ANY];
-	
+	[[viewController expect] openDialog:OCMOCK_ANY title:@"Home" args:@{} options:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
+
 	[[[(id)self.ligerPlugin stub] andReturn:viewController] ligerViewController];
 	
 	CDVInvokedUrlCommand *cmd = [[CDVInvokedUrlCommand alloc] initWithArguments:@[ @"Home", @"home", @{} ]
@@ -80,14 +77,13 @@
 																	  className:@"Liger"
 																	 methodName:@"openDialogWithTitle"];
 	[self.ligerPlugin openDialogWithTitle:cmd];
-	[viewController verify];
+	XCTAssertNoThrow([viewController verify], @"Verify failed");
 }
 
 - (void)testCloseDialog
 {
 	id viewController = [OCMockObject mockForClass:LGRViewController.class];
 	[[viewController expect] closeDialog:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
-	[[viewController stub] closeDialog:OCMOCK_ANY success:OCMOCK_ANY fail:OCMOCK_ANY];
 	
 	[[[(id)self.ligerPlugin stub] andReturn:viewController] ligerViewController];
 	
@@ -96,7 +92,7 @@
 																	  className:@"Liger"
 																	 methodName:@"closeDialog"];
 	[self.ligerPlugin closeDialog:cmd];
-	[viewController verify];
+	XCTAssertNoThrow([viewController verify], @"Verify failed");
 }
 
 - (void)testToolbar
@@ -120,7 +116,7 @@
 																	 methodName:@"toolbar"];
 
 	[self.ligerPlugin toolbar:cmd];
-	[viewController verify];
+	XCTAssertNoThrow([viewController verify], @"Verify failed");
 }
 
 - (void)testGetPageArgs
@@ -139,8 +135,8 @@
 																	 methodName:@"getPageArgs"];
 	
 	[self.ligerPlugin getPageArgs:cmd];
-	[viewController verify];
-	[(id)self.ligerPlugin verify];
+	XCTAssertNoThrow([viewController verify], @"Verify failed");
+	XCTAssertNoThrow([(id)self.ligerPlugin verify], @"Verify failed");
 }
 
 @end

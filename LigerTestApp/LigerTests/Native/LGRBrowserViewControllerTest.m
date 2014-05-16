@@ -31,7 +31,7 @@
 	[super setUp];
 
 	NSDictionary *args = @{@"link" : @"http://liger.com"};
-	self.browser = [[LGRBrowserViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args];
+	self.browser = [[LGRBrowserViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args options:@{}];
 }
 
 - (void)testInitWithPage

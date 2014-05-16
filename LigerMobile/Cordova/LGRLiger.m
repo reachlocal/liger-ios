@@ -69,8 +69,9 @@ NSDictionary* checkDictionary(id dictionary)
 	NSString *title = checkString(command.arguments[0]);
 	NSString *page = checkString(command.arguments[1]);
 	NSDictionary *args = checkDictionary(command.arguments.count > 2 ? command.arguments[2] : @{});
-	
-	[self.ligerViewController openPage:page title:title args:args success:^{
+	NSDictionary *options = checkDictionary(command.arguments.count > 3 ? command.arguments[3] : @{});
+
+	[self.ligerViewController openPage:page title:title args:args options:options success:^{
 		[self sendOK:command.callbackId];
 	} fail:^{
 		[self sendERROR:command.callbackId];
@@ -135,8 +136,9 @@ NSDictionary* checkDictionary(id dictionary)
 	
 	NSString *page = checkString(command.arguments[0]);
 	NSDictionary *args = checkDictionary(command.arguments.count > 1 ? command.arguments[1] : @{});
-	
-	[self.ligerViewController openDialog:page title:nil args:args success:^{
+	NSDictionary *options = checkDictionary(command.arguments.count > 2 ? command.arguments[2] : @{});
+
+	[self.ligerViewController openDialog:page title:nil args:args options:options success:^{
 		[self sendOK:command.callbackId];
 	} fail:^{
 		[self sendERROR:command.callbackId];
@@ -154,8 +156,9 @@ NSDictionary* checkDictionary(id dictionary)
 	NSString *title = checkString(command.arguments[0]);
 	NSString *page = checkString(command.arguments[1]);
 	NSDictionary *args = checkDictionary(command.arguments.count > 2 ? command.arguments[2] : @{});
+	NSDictionary *options = checkDictionary(command.arguments.count > 3 ? command.arguments[3] : @{});
 
-	[self.ligerViewController openDialog:page title:title args:args success:^{
+	[self.ligerViewController openDialog:page title:title args:args options:options success:^{
 		[self sendOK:command.callbackId];
 	} fail:^{
 		[self sendERROR:command.callbackId];

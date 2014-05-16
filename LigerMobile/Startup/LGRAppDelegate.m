@@ -26,7 +26,7 @@
 
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.backgroundColor = UIColor.whiteColor;
-	self.window.rootViewController = [LGRPageFactory controllerForPage:@"Drawer" title:@"" args:args parent:nil];
+	self.window.rootViewController = [LGRPageFactory controllerForPage:@"Drawer" title:@"" args:args options:@{} parent:nil];
 	[self.window makeKeyAndVisible];
 	
 	return YES;

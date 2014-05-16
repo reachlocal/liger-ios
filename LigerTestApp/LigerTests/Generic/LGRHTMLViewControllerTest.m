@@ -27,13 +27,13 @@
 - (void)setUp
 {
 	[super setUp];
-	self.liger = [[LGRHTMLViewController alloc] initWithPage:@"testPage" title:@"Test Title" args:@{}];
+	self.liger = [[LGRHTMLViewController alloc] initWithPage:@"testPage" title:@"Test Title" args:@{} options:@{}];
 }
 
 - (void)testInitWithPage
 {
 	NSDictionary *args = @{@"test": @YES, @"version": @76};
-	LGRViewController *liger = [[LGRHTMLViewController alloc] initWithPage:@"testPage" title:@"Test Title" args:args];
+	LGRViewController *liger = [[LGRHTMLViewController alloc] initWithPage:@"testPage" title:@"Test Title" args:args options:@{}];
 	
 	XCTAssertEqual(liger.page, @"testPage", @"Page name is wrong");
 	XCTAssertEqual(liger.title, @"Test Title", @"Title is wrong");
