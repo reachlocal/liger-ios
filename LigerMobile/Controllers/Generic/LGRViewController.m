@@ -37,8 +37,57 @@
 		self.args = args;
 		self.title = title;
 		self.options = options;
+		
+		[self addOptionalButtons];
 	}
 	return self;
+}
+
+- (void) addOptionalButtons{
+	if([self.options objectForKey:@"left"]){
+
+		UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]
+										initWithBarButtonSystemItem:[self determineOptionalButton:[self.options objectForKey:@"left"]]
+										target:self
+										action:@selector(addedButtonAction:)];
+		
+		self.navigationItem.leftBarButtonItem = leftButton;
+	}
+	
+	if([self.options objectForKey:@"right"]){
+		UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
+										initWithBarButtonSystemItem:[self determineOptionalButton:[self.options objectForKey:@"right"]]
+										target:self
+										action:@selector(addedButtonAction:)];
+		
+		self.navigationItem.rightBarButtonItem = rightButton;
+	}
+}
+
+- (UIBarButtonSystemItem) determineOptionalButton:(NSDictionary *)buttonInfo{
+	NSString* buttonType = [buttonInfo objectForKey:@"button"];
+	
+	if([buttonType isEqualToString:@"done"]){
+		return UIBarButtonSystemItemDone;
+	}
+	
+	if([buttonType isEqualToString:@"cancel"]){
+		return UIBarButtonSystemItemCancel;
+	}
+	
+	if([buttonType isEqualToString:@"save"]){
+		return UIBarButtonSystemItemSave;
+	}
+	
+	if([buttonType isEqualToString:@"search"]){
+		return UIBarButtonSystemItemSearch;
+	}
+	
+	return UIBarButtonSystemItemDone;
+}
+
+- (void)addedButtonAction:(id)sender{
+	NSLog(@"this worked");
 }
 
 - (void)viewWillAppear:(BOOL)animated
