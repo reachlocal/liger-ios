@@ -31,8 +31,8 @@ var SYSTEM = {
         $("#browser").click(function(){
 							PAGE.openDialogWithTitle('Browser', 'browser', {link: "http://daringfireball.net", allowZoom:true},
 													 {
-													 "left":{"button":"done","callback":"hello"},
-													 "right":{"button":"save","callback":"hello"}
+													 "left":{"button":"done"},
+													 "right":{"button":"save"}
 													 });
 			return false;
         });

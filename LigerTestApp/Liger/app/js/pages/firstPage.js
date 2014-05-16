@@ -30,7 +30,7 @@ var FIRSTPAGE = {
 		$("#openPage, #refreshPage, #toolbarPage, #openDialog, #openDialogWithTitle").unbind();
         
         $("#openPage").click(function(){
-			PAGE.openPage('Second Page', 'secondPage', {'test1': 'test2'});
+							 PAGE.openPage('Second Page', 'secondPage', {'test1': 'test2'}, {"right":{"button":"save"}});
 			return false;
         });
 

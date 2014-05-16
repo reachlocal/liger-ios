@@ -85,4 +85,9 @@
 	[self.cordova handleAppOpenURL:url];
 }
 
+- (void)buttonTapped:(NSDictionary*)button
+{
+	[self.cordova buttonTapped:button];
+}
+
 @end

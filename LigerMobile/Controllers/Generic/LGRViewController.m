@@ -15,6 +15,8 @@
 @property (nonatomic, strong) NSString *page;
 @property (nonatomic, strong) NSDictionary *args;
 @property (nonatomic, strong) NSDictionary *options;
+
+@property (nonatomic, strong) NSMutableDictionary *buttons;
 @end
 
 @implementation LGRViewController
@@ -38,6 +40,7 @@
 		self.title = title;
 		self.options = options;
 		
+		self.buttons = [NSMutableDictionary dictionaryWithCapacity:2];
 		[self addButtons];
 	}
 	return self;
@@ -45,23 +48,28 @@
 
 - (void)addButtons
 {
-	if([self.options objectForKey:@"left"]) {
-		UIBarButtonItem *leftButton = [self buttonFromDictionary:[self.options objectForKey:@"left"]];
+	if ([self.options objectForKey:@"left"]) {
+		NSDictionary *left = [self.options objectForKey:@"left"];
+		UIBarButtonItem *leftButton = [self buttonFromDictionary:left];
 		self.navigationItem.leftBarButtonItem = leftButton;
+		self.buttons[[NSValue valueWithNonretainedObject:leftButton]] = left;
 	}
 	
-	if([self.options objectForKey:@"right"]) {
-		UIBarButtonItem *rightButton =  [self buttonFromDictionary:[self.options objectForKey:@"right"]];
+	if ([self.options objectForKey:@"right"]) {
+		NSDictionary *right = [self.options objectForKey:@"right"];
+		UIBarButtonItem *rightButton =  [self buttonFromDictionary:right];
 		self.navigationItem.rightBarButtonItem = rightButton;
+		self.buttons[[NSValue valueWithNonretainedObject:rightButton]] = right;
 	}
 }
 
 - (UIBarButtonItem*)buttonFromDictionary:(NSDictionary*)buttonInfo
 {
+	NSAssert([buttonInfo isKindOfClass:[NSDictionary class]], @"options should look as follows {'right':{'button':'done'}}");
 	NSString* buttonType = [buttonInfo objectForKey:@"button"];
 	UIBarButtonSystemItem buttonSystemItem = UIBarButtonSystemItemDone;
 	
-	if([buttonType isEqualToString:@"done"]) {
+	if ([buttonType isEqualToString:@"done"]) {
 		buttonSystemItem = UIBarButtonSystemItemDone;
 	} else if ([buttonType isEqualToString:@"cancel"]) {
 		buttonSystemItem = UIBarButtonSystemItemCancel;
@@ -71,19 +79,25 @@
 		buttonSystemItem = UIBarButtonSystemItemSearch;
 	}
 	
-	return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:buttonSystemItem target:self action:@selector(addedButtonAction:)];
+	return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:buttonSystemItem target:self action:@selector(buttonAction:)];
 }
 
-- (void)addedButtonAction:(id)sender
+- (void)buttonAction:(id)sender
 {
-	NSLog(@"this worked");
+	NSDictionary *button = self.buttons[[NSValue valueWithNonretainedObject:sender]];
+	[self buttonTapped:button];
+}
+
+- (void)buttonTapped:(NSDictionary*)button
+{
+	NSLog(@"%@", button[@"button"]);
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	[self pageWillAppear];
-
+	
 	LGRAppDelegate *appDelegate = (LGRAppDelegate*)[[UIApplication sharedApplication] delegate];
 	NSAssert([appDelegate isKindOfClass:LGRAppDelegate.class], @"Your app delegate needs to inherit from LGRAppDelegate");
 	appDelegate.topPage = self;
@@ -226,13 +240,12 @@
 
 - (void)notificationArrived:(NSDictionary*)userInfo background:(BOOL)background
 {
-
+	
 }
 
 - (void)handleAppOpenURL:(NSURL*)url
 {
-
+	
 }
 
 @end
-

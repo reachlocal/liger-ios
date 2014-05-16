@@ -15,6 +15,10 @@ PAGE.onPageAppear = function(){
 	$('#pageAppear').append('*');
 }
 
+PAGE.headerButtonTapped = function(button){
+	console.log(button);
+}
+
 var SECONDPAGE = {
 	
 	initialize: function(){

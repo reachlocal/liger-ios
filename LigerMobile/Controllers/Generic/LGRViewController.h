@@ -37,7 +37,7 @@
 
 /**
  The arguments as set when instantiated. Can be updated by subclasses if desired.
-
+ 
  In the future assume that these args will be sent to a page if the application as been restarted.
  */
 @property (readonly) NSDictionary *options;
@@ -74,7 +74,7 @@
 
 /**
  Creates and pushes a new page onto the stack (UINavigationController).
-
+ 
  @param page The name of the page. Either nativePage if native, or the name of the HTML file (sans .html).
  @param title The title for the page, same as UIViewController's title. Is used for the UINavigationBar title by UIKit.
  @param args The arguments that were sent to the page. OBS is not automatically updated if the HTML page updates it's args. Be aware that this might change in the future.
@@ -105,7 +105,7 @@
 /**
  Sends args to a parent page. Can be used for internal messaging. Will not replace the args of the destination
  page but rather have childUpdates: called with the args.
-
+ 
  @param destination A page name (jumping back in the stack in the same manner as closePage) or nil for the direct parent.
  @param args The arguments to be sent to childUpdates:.
  @param success This block will be called if the operation was successful.
@@ -168,7 +168,7 @@
 /**
  Called when the app is starting up. Either a token if successful or an error if it was a failure.
  The simulator will always cause failures as notifications only work on device.
-
+ 
  Will only be sent to the rootPage by LigerMobile.
  
  @param token A string representation of the NSData sent in as a token
@@ -178,7 +178,7 @@
 
 /**
  A notification has arrived to the app.
-
+ 
  @param userInfo The notification that was sent to the app.
  @param background YES if the app was in the background when the notification arrived.
  */
@@ -195,5 +195,6 @@
  
  
  */
-- (void)addedButtonAction:(id)sender;
+- (void)buttonTapped:(NSDictionary*)button;
+
 @end
