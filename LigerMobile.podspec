@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.author       = { "John Gustafsson" => "john.gustafsson.liger@gmail.com" }
 
   s.platform     = :ios, '6.1'
-  s.source       = { :git => "https://github.com/reachlocal/liger-ios.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/reachlocal/liger-ios.git", :tag => "v#{s.version}" }
 
   s.source_files = 'LigerMobile/**/*.{h,m}'
   s.resources    = ['LigerMobile/**/*.{xib}', 'LigerMobile/**/*.png']

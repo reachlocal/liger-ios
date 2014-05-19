@@ -1,13 +1,11 @@
-before_install: 
+before_install:
   - brew update
   - brew upgrade xctool
-  - cd LigerTestApp
+  - cd $TRAVIS_BUILD_DIR/LigerTestApp
 language: objective-c
 install: ''
 xcode_workspace: Liger.xcworkspace
 xcode_scheme: Liger
 after_success:
-  - cd $TRAVIS_BUILD_ID
-  - echo "SUCCESS!!!111!!!"
-  - ls -la
-  
+  - cd $TRAVIS_BUILD_DIR
+  - ./ci/release.sh
