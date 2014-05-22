@@ -1,0 +1,52 @@
+#/bin/bash
+set -e
+
+# Flags appear to be ignored here?
+gem install cocoapods --no-rdoc --quiet
+
+# Silly character-replacement hack to compensate for poor Travis character support
+echo $podnetrc | tr '^' ' ' | tr '~' '\n' > ~/.netrc
+chmod 0600 ~/.netrc
+
+# Confirm pod session (removing listed IP addresses)
+# This should expose any pod failures earlier in dev cycle than a release...
+pod trunk me | sed 's/ IP.*//'
+
+# Abort checks
+if [ "$TRAVIS" != "true" ]; then
+	echo "Fatal: not running in Travis. Aborting."
+	exit 1
+fi
+
+if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+	echo "Travis thinks this is a pull request; no release."
+	exit 0
+fi
+
+if [ "$TRAVIS_BRANCH" != "stable" ]; then
+	echo "Commit is not to a release branch; no release."
+	exit 0
+fi
+
+echo "Releasing a new version of liger-ios."
+
+# Parse podspec to get version, verify semver
+tag=`./ci/getVersion.rb`
+re='^[v0-9]+\.[0-9]+\.[0-9]+$'
+if ! [[ $tag =~ $re ]] ; then
+   echo "error: Not a number" >&2; exit 1
+fi
+
+# Debug output
+git remote -v
+git status
+git log --decorate --graph -n 3
+
+# Push to github
+echo git tag $tag
+echo git push origin --tags
+
+# Release podspec to cocoapods
+echo pod push master LigerMobile.podspec --verbose
+
+echo "Release successful!"
