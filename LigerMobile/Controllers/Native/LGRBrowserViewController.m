@@ -105,4 +105,11 @@
 	[self.webView reload];
 }
 
+- (void)buttonTapped:(NSDictionary*)button
+{
+	if ([button[@"button"] isEqualToString:@"done"]) {
+		[self closeDialog:@{} success:^{} fail:^{}];
+	}
+}
+
 @end
