@@ -192,7 +192,9 @@
 - (void)handleAppOpenURL:(NSURL*)url;
 
 /**
+ Called when a navigation bar button (added via the options parameter) is tapped.
  
+ @param button The object that was passed via the options parameter and then tapped by the user
  
  */
 - (void)buttonTapped:(NSDictionary*)button;

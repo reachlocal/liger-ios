@@ -16,7 +16,7 @@ PAGE.onPageAppear = function(){
 }
 
 PAGE.headerButtonTapped = function(button){
-	console.log(button);
+	// Callback for added menu bar button
 }
 
 var SECONDPAGE = {

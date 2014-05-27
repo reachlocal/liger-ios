@@ -90,7 +90,7 @@
 
 - (void)buttonTapped:(NSDictionary*)button
 {
-	NSLog(@"%@", button[@"button"]);
+	// Base method that is overwritten in LGRHTMLViewController
 }
 
 - (void)viewWillAppear:(BOOL)animated

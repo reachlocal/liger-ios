@@ -148,7 +148,7 @@ var PAGE = {
      *
      */
     canRefresh: function() { LIGER.userCanRefresh(PAGE.userCanRefresh); },
-	
-	headerButtonTapped: function(button) {}
+
+    headerButtonTapped: function(button) {}
 	
 };
