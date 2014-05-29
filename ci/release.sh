@@ -1,6 +1,18 @@
 #/bin/bash
 set -e
 
+# Flags appear to be ignored here?
+gem install cocoapods --no-rdoc --quiet
+
+# Silly character-replacement hack to compensate for poor Travis character support
+echo $podnetrc | tr '^' ' ' | tr '~' '\n' > ~/.netrc
+chmod 0600 ~/.netrc
+
+# Confirm pod session (removing listed IP addresses)
+# This should expose any pod failures earlier in dev cycle than a release...
+pod trunk me | sed 's/ IP.*//'
+
+# Abort checks
 if [ "$TRAVIS" != "true" ]; then
 	echo "Fatal: not running in Travis. Aborting."
 	exit 1

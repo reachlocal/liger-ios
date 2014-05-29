@@ -15,6 +15,10 @@ PAGE.onPageAppear = function(){
 	$('#pageAppear').append('*');
 }
 
+PAGE.headerButtonTapped = function(button){
+	// Callback for added menu bar button
+}
+
 var SECONDPAGE = {
 	
 	initialize: function(){

@@ -1,3 +1,5 @@
+before_script:
+  - export LANG=en_US.UTF-8
 before_install:
   - brew update
   - brew upgrade xctool
@@ -9,3 +11,6 @@ xcode_scheme: Liger
 after_success:
   - cd $TRAVIS_BUILD_DIR
   - ./ci/release.sh
+env:
+  global:
+    secure: CXZLR1qHacxaujdiOIscOIgxH2R8oK9wNdUZ53UL+5DTK1tmTV39dF0qUhr5buUI4xVefK/CWhXZyuPo2ISk9diLGXXDMzJEhKkNY0K3SrtL6XtHMLlv4rFlXEDs+EKoeEaGkmp9ND/oP4/YgmsKXDwqN8fTZ9pEibspAhZ5ys4=
