@@ -43,10 +43,10 @@ git status
 git log --decorate --graph -n 3
 
 # Push to github
-echo git tag $tag
-echo git push origin --tags
+git tag $tag
+git push origin --tags
 
 # Release podspec to cocoapods
-echo pod push master LigerMobile.podspec --verbose
+pod push master LigerMobile.podspec --verbose
 
-echo "Release successful!"
+"Release successful!"
