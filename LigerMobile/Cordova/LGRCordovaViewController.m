@@ -188,14 +188,11 @@
 
 - (void)buttonTapped:(NSDictionary*)button
 {
-	NSError *error = nil;
-	NSData *json = [NSJSONSerialization dataWithJSONObject:button options:0 error:&error];
-	
-	NSString *js = @"if(PAGE.headerButtonTapped) PAGE.headerButtonTapped(%@);";
-	js = [NSString stringWithFormat:js, [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding]];
-	
-	[self addToQueue:js];
-	[self executeQueue];
+    NSString *js = @"if(PAGE.headerButtonTapped) PAGE.headerButtonTapped('%@');";
+    js = [NSString stringWithFormat:js, button[@"button"]];
+    
+    [self addToQueue:js];
+    [self executeQueue];
 }
 
 - (void)addToQueue:(NSString*)js
