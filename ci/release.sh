@@ -42,6 +42,10 @@ git remote -v
 git status
 git log --decorate --graph -n 3
 
+# Add github deploy key
+chmod 600 .travis/deploy_key.pem
+ssh-add .travis/deploy_key.pem
+
 # Push to github
 git tag $tag
 git push origin --tags
