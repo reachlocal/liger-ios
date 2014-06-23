@@ -8,7 +8,9 @@ language: objective-c
 install: ''
 xcode_workspace: Liger.xcworkspace
 xcode_scheme: Liger
-after_success:
+# Build
+script:
+  - xctool -workspace Liger.xcworkspace -scheme Liger build test
   - cd $TRAVIS_BUILD_DIR
   - ./ci/release.sh
 env:
