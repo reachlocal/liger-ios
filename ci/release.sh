@@ -1,8 +1,8 @@
 #/bin/bash
 set -e
 
-# Flags appear to be ignored here?
-gem install cocoapods --no-rdoc --quiet
+# Install our gems
+bundle
 
 # Silly character-replacement hack to compensate for poor Travis character support
 echo $podnetrc | tr '^' ' ' | tr '~' '\n' > ~/.netrc
@@ -51,6 +51,6 @@ git tag $tag
 git push origin --tags
 
 # Release podspec to cocoapods
-pod push master LigerMobile.podspec --verbose
+pod trunk push LigerMobile.podspec --verbose
 
 "Release successful!"
