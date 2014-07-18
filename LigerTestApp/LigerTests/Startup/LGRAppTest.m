@@ -46,7 +46,8 @@
 
 - (void)testMenu
 {
-	NSArray *menu = [LGRApp menuItems];
+	NSDictionary *rootPage = [LGRApp rootPage];
+	NSArray *menu = rootPage[@"args"];
 	XCTAssertNotNil(menu, @"No menuItems in app.json");
 	
 	for (NSDictionary *item in menu[0]) {
@@ -60,6 +61,13 @@
 		XCTAssertNotNil(item[@"detail"], @"Menu item did not have a detail");
 		XCTAssertNotNil(item[@"accessibilityLabel"], @"Menu item did not have an accessibility level");
 	}
+}
+
+- (void)testRootPage
+{
+	NSDictionary *rootPage = [LGRApp rootPage];
+
+	XCTAssertNotNil(rootPage, @"No root page");
 }
 
 - (void)testAppearance

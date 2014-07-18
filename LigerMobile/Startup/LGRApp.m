@@ -57,20 +57,14 @@
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
 }
 
++ (NSDictionary*)rootPage
+{
+	return [self app][@"rootPage"];
+}
+
 + (NSDictionary*)appearance
 {
 	return [self app][@"appearance"];
-}
-
-+ (NSArray*)menuItems
-{
-	return [self app][@"rootPage"][@"args"];
-}
-
-+ (NSString*)menuPage
-{
-	NSString *page = [self app][@"rootPage"][@"page"];
-	return page ? page : @"appMenu";
 }
 
 + (NSArray*)toolbars
