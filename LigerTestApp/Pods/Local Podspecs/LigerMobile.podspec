@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LigerMobile"
-  s.version      = "0.0.9"
+  s.version      = "0.1.1"
   s.summary      = "A framework to help building HTML5 apps using native navigation."
 
   s.description  = <<-DESC
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.author       = { "John Gustafsson" => "john.gustafsson.liger@gmail.com" }
 
   s.platform     = :ios, '6.1'
-  s.source       = { :git => "https://github.com/reachlocal/liger-ios.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/reachlocal/liger-ios.git", :tag => "v#{s.version}" }
 
   s.source_files = 'LigerMobile/**/*.{h,m}'
   s.resources    = ['LigerMobile/**/*.{xib}', 'LigerMobile/**/*.png']

@@ -11,7 +11,6 @@
 #import "LGRAppearance.h"
 
 #import "OCMock.h"
-#import "OCPartialMockObject.h"
 
 @interface LGRCordovaViewController()
 @property (nonatomic, strong) NSMutableArray *evalQueue;
