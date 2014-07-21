@@ -10,13 +10,14 @@
 #import <XCTest/XCTest.h>
 #import "OCMock.h"
 #import "LGRViewController.h"
+#import "LGRPageFactory.h"
 
 @interface LGRAppDelegate ()
 - (LGRViewController*)rootPage;
 @end
 
 @interface LGRAppDelegateTest : XCTestCase
-
+@property(assign) LGRAppDelegate *delegate;
 @end
 
 NSData* testToken()
@@ -29,14 +30,34 @@ NSData* testToken()
 
 - (void)setUp
 {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+	[super setUp];
+
+	self.delegate = [[UIApplication sharedApplication] delegate];
 }
 
-- (void)tearDown
+- (void)testInit
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+	XCTAssertNotNil([[LGRAppDelegate alloc] init], @"Failed to init");
+}
+
+- (void)testDidFinishLaunchingWithOptions
+{
+	id appDelegate = OCMPartialMock(self.delegate);
+	id factory = OCMClassMock(LGRPageFactory.class);
+
+	__block NSDictionary* dict = nil;
+
+	OCMExpect([factory controllerForPage:OCMOCK_ANY title:OCMOCK_ANY args:OCMOCK_ANY options:OCMOCK_ANY parent:OCMOCK_ANY]).andDo(^(NSInvocation * invocation){
+		void* arg = nil;
+		[invocation getArgument:&arg atIndex:4];
+		NSDictionary *d = (NSDictionary*)(__bridge id)(arg);
+		dict = d.copy;
+	}).andReturn(self.delegate.rootPage);
+
+	[appDelegate application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:@{UIApplicationLaunchOptionsRemoteNotificationKey: @{@"test": @"yes"}}];
+
+	OCMVerifyAll(factory);
+	XCTAssertEqualObjects(dict[@"notification"][@"test"], @"yes", @"Couldn't find notification");
 }
 
 - (void)testDidRegisterForRemoteNotificationsWithDeviceToken
@@ -102,7 +123,8 @@ NSData* testToken()
 
 - (void)testApplicationWillEnterForground
 {
-	id appDelegate = [OCMockObject partialMockForObject:[[UIApplication sharedApplication] delegate]];
+	id appDelegate = OCMPartialMock([[UIApplication sharedApplication] delegate]);
+//	id appDelegate = [OCMockObject partialMockForObject:[[UIApplication sharedApplication] delegate]];
 	id topPage = [OCMockObject partialMockForObject:[[LGRViewController alloc] init]];
 
 	[[topPage expect] pageWillAppear];

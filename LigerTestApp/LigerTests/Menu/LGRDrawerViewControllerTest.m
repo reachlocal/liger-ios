@@ -11,7 +11,10 @@
 #import "LGRDrawerViewController.h"
 #import "LGRMenuViewController.h"
 #import "LGRPageFactory.h"
+#import "LGRApp.h"
+
 #import "OCMock.h"
+
 
 @interface LGRDrawerViewController ()
 @property (nonatomic, strong) LGRMenuViewController *menu;
@@ -25,7 +28,10 @@
 
 - (void)setUp
 {
-	self.drawer = (LGRDrawerViewController*)[LGRPageFactory controllerForPage:@"Drawer" title:@"" args:@{} options:@{} parent:nil];
+	UIViewController* drawer = [LGRPageFactory controllerForPage:LGRApp.root[@"page"] title:LGRApp.root[@"title"] args:LGRApp.root[@"args"] options:LGRApp.root[@"options"] parent:nil];
+	XCTAssertTrue([drawer isKindOfClass:LGRDrawerViewController.class], @"Drawer page creation failed.");
+
+	self.drawer = (LGRDrawerViewController*)drawer;
 	XCTAssert(self.drawer.view, @"drawer has no view");
 
 	[super setUp];
