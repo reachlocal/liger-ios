@@ -22,11 +22,13 @@
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WebKitStoreWebDataForBackup"];
 
 	NSDictionary *notification = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-	NSDictionary *args = notification ? @{@"notification": notification} : @{};
+	NSMutableDictionary *args = [LGRApp.root[@"args"] mutableCopy] ?: [NSMutableDictionary dictionary];
+	if (notification)
+		args[@"notification"] = notification;
 
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.backgroundColor = UIColor.whiteColor;
-	self.window.rootViewController = [LGRPageFactory controllerForPage:@"Drawer" title:@"" args:args options:@{} parent:nil];
+	self.window.rootViewController = [LGRPageFactory controllerForPage:LGRApp.root[@"page"] title:LGRApp.root[@"title"] args:args options:LGRApp.root[@"options"] parent:nil];
 	[self.window makeKeyAndVisible];
 	
 	return YES;

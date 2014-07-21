@@ -65,7 +65,8 @@
 
 - (void)addMenuController
 {
-	self.menu = [LGRPageFactory controllerForMenuPage:LGRApp.rootPage[@"page"] title:nil args:@{@"menu": LGRApp.rootPage[@"args"]} options:@{}];
+
+	self.menu = [LGRPageFactory controllerForMenuPage:self.args[@"page"] title:self.args[@"title"] args:self.args[@"args"] options:self.args[@"options"]];
 	self.menu.pages = self.pages;
 
 	__weak LGRDrawerViewController *me = self;

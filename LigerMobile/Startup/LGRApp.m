@@ -8,7 +8,7 @@
 
 #import "LGRApp.h"
 
-#define VERSION @5
+#define VERSION @6
 
 @interface LGRApp ()
 @property (nonatomic, strong) NSDictionary *app;
@@ -57,7 +57,7 @@
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
 }
 
-+ (NSDictionary*)rootPage
++ (NSDictionary*)root
 {
 	return [self app][@"rootPage"];
 }
