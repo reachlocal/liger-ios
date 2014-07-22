@@ -20,6 +20,7 @@
 		32110744182866F600AE0D71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32110742182866F600AE0D71 /* InfoPlist.strings */; };
 		321107781828674500AE0D71 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 321107771828674500AE0D71 /* config.xml */; };
 		3211077A1828674D00AE0D71 /* app in Resources */ = {isa = PBXBuildFile; fileRef = 321107791828674D00AE0D71 /* app */; };
+		3237F794197EDE4A003AF021 /* LGRNavigatorViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3237F793197EDE4A003AF021 /* LGRNavigatorViewControllerTest.m */; };
 		3243044618F74D7000565E2E /* LGRLigerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043018F74D7000565E2E /* LGRLigerTest.m */; };
 		3243044718F74D7000565E2E /* LGRHTMLViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043218F74D7000565E2E /* LGRHTMLViewControllerTest.m */; };
 		3243044818F74D7000565E2E /* LGRPageFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043318F74D7000565E2E /* LGRPageFactoryTest.m */; };
@@ -70,6 +71,7 @@
 		32110743182866F600AE0D71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		321107771828674500AE0D71 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		321107791828674D00AE0D71 /* app */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app; sourceTree = "<group>"; };
+		3237F793197EDE4A003AF021 /* LGRNavigatorViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRNavigatorViewControllerTest.m; sourceTree = "<group>"; };
 		3243043018F74D7000565E2E /* LGRLigerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRLigerTest.m; sourceTree = "<group>"; };
 		3243043218F74D7000565E2E /* LGRHTMLViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRHTMLViewControllerTest.m; sourceTree = "<group>"; };
 		3243043318F74D7000565E2E /* LGRPageFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRPageFactoryTest.m; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				3243044118F74D7000565E2E /* LGRBrowserViewControllerTest.m */,
+				3237F793197EDE4A003AF021 /* LGRNavigatorViewControllerTest.m */,
 			);
 			path = Native;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				3243045218F74D7000565E2E /* LGRDrawerViewControllerTest.m in Sources */,
 				3243044918F74D7000565E2E /* LGRViewControllerTest.m in Sources */,
 				3243044B18F74D7000565E2E /* LGRMessageImportedTest.m in Sources */,
+				3237F794197EDE4A003AF021 /* LGRNavigatorViewControllerTest.m in Sources */,
 				3243045418F74D7000565E2E /* LGRAppDelegateTest.m in Sources */,
 				3243044A18F74D7000565E2E /* LGREmailImportedTest.m in Sources */,
 				3243044818F74D7000565E2E /* LGRPageFactoryTest.m in Sources */,

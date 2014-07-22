@@ -62,7 +62,7 @@ NSData* testToken()
 
 - (void)testDidRegisterForRemoteNotificationsWithDeviceToken
 {
-	id appDelegate = [OCMockObject partialMockForObject:[[UIApplication sharedApplication] delegate]];
+	id appDelegate = OCMPartialMock(self.delegate);
 
 	id rootPage = [OCMockObject partialMockForObject:[[LGRViewController alloc] init]];
 	[[[appDelegate stub] andReturn:rootPage] rootPage];
@@ -76,7 +76,7 @@ NSData* testToken()
 
 - (void)testDidFailToRegisterForRemoteNotificationsWithError
 {
-	id appDelegate = [OCMockObject partialMockForObject:[[UIApplication sharedApplication] delegate]];
+	id appDelegate = OCMPartialMock(self.delegate);
 
 	id rootPage = [OCMockObject partialMockForObject:[[LGRViewController alloc] init]];
 	[[[appDelegate stub] andReturn:rootPage] rootPage];
@@ -92,7 +92,7 @@ NSData* testToken()
 
 - (void)testDidReceiveRemoteNotification
 {
-	id appDelegate = [OCMockObject partialMockForObject:[[UIApplication sharedApplication] delegate]];
+	id appDelegate = OCMPartialMock(self.delegate);
 
 	id rootPage = [OCMockObject partialMockForObject:[[LGRViewController alloc] init]];
 	[[[appDelegate stub] andReturn:rootPage] rootPage];
@@ -106,14 +106,13 @@ NSData* testToken()
 
 - (void)testOpenURLSourceApplicationAnnotation
 {
-	LGRAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	id appDelegate = OCMPartialMock(self.delegate);
 
 	id pageMock = [OCMockObject partialMockForObject:[[LGRViewController alloc] init]];
 	[[pageMock expect] handleAppOpenURL:OCMOCK_ANY];
-	id appMock = [OCMockObject partialMockForObject:appDelegate];
 
-	[[[appMock stub] andReturn:pageMock] rootPage];
-	[appMock application:[UIApplication sharedApplication]
+	[[[appDelegate stub] andReturn:pageMock] rootPage];
+	[appDelegate application:[UIApplication sharedApplication]
 				 openURL:[NSURL URLWithString:@"test://test?test=test&test=test"]
 	   sourceApplication:@"org.ligermobile.test"
 			  annotation:nil];
@@ -123,8 +122,7 @@ NSData* testToken()
 
 - (void)testApplicationWillEnterForground
 {
-	id appDelegate = OCMPartialMock([[UIApplication sharedApplication] delegate]);
-//	id appDelegate = [OCMockObject partialMockForObject:[[UIApplication sharedApplication] delegate]];
+	id appDelegate = OCMPartialMock(self.delegate);
 	id topPage = [OCMockObject partialMockForObject:[[LGRViewController alloc] init]];
 
 	[[topPage expect] pageWillAppear];
