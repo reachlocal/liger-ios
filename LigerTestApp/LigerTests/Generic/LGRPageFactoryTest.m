@@ -30,9 +30,6 @@
 	XCTAssertFalse(factory.nativePages[@"appMenu"], @"The natives pages shouldn't include appMenu");
 	
 	XCTAssertTrue(factory.nativePages[@"browser"], @"The native pages are missing browser");
-	
-	
-	NSLog(@"%@", [factory nativePages]);
 }
 
 - (void)testMenuFactory

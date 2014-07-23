@@ -8,7 +8,7 @@
 
 @import XCTest;
 #import "OCMock.h"
-#import "OCPartialMockObject.h"
+#import <OCMock/OCMockObject.h>
 
 #import "LGRViewController.h"
 
@@ -59,10 +59,10 @@
 
 - (void)testOpenPage
 {
-	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
-	
+	id liger = [OCMockObject partialMockForObject:self.liger];
 	id mock = [OCMockObject mockForClass:UINavigationController.class];
-	[[[mock stub] andReturn:[((OCPartialMockObject*)liger) realObject]] topViewController];
+
+	[[[mock stub] andReturn:self.liger] topViewController];
 	[[mock expect] pushViewController:OCMOCK_ANY animated:YES];
 	[[[((id)liger) stub] andReturn:mock] navigationController];
 

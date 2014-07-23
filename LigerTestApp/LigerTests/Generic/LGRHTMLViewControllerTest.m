@@ -159,4 +159,18 @@
 	XCTAssertNoThrow([mock verify], @"pushNotificationTokenUpdated:error should call cordova");
 }
 
+- (void)testButtonTapped
+{
+	id menu = [OCMockObject partialMockForObject:self.liger];
+
+	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	[[[menu stub] andReturn:mock] cordova];
+
+	[[mock expect] buttonTapped:OCMOCK_ANY];
+
+	[menu buttonTapped:@{@"button": @"done"}];
+
+	XCTAssertNoThrow([mock verify], @"pushNotificationTokenUpdated:error should call cordova");
+}
+
 @end

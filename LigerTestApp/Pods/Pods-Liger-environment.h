@@ -15,8 +15,8 @@
 // LigerMobile
 #define COCOAPODS_POD_AVAILABLE_LigerMobile
 #define COCOAPODS_VERSION_MAJOR_LigerMobile 0
-#define COCOAPODS_VERSION_MINOR_LigerMobile 0
-#define COCOAPODS_VERSION_PATCH_LigerMobile 9
+#define COCOAPODS_VERSION_MINOR_LigerMobile 1
+#define COCOAPODS_VERSION_PATCH_LigerMobile 1
 
 // UIColor-HTMLColors
 #define COCOAPODS_POD_AVAILABLE_UIColor_HTMLColors

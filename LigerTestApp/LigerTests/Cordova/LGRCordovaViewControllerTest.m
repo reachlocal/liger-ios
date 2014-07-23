@@ -11,7 +11,6 @@
 #import "LGRAppearance.h"
 
 #import "OCMock.h"
-#import "OCPartialMockObject.h"
 
 @interface LGRCordovaViewController()
 @property (nonatomic, strong) NSMutableArray *evalQueue;
@@ -45,27 +44,23 @@
 
 - (void)testWebViewDidStartLoad
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
-
-//  Couldn't get acceptingJS to be triggered for an expect for some reason
-//	[[cordova expect] setAcceptingJS:OCMOCK_ANY];
+	id cordova = OCMPartialMock(self.cordova);
+	OCMExpect([cordova setAcceptingJS:NO]);
 
 	[cordova webViewDidStartLoad:nil];
 
-//	XCTAssertNoThrow([cordova verify], @"xyz");
+	OCMVerifyAll(cordova);
 }
 
 - (void)testWebViewDidFinishLoad
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
-
-	//  Couldn't get acceptingJS to be triggered for an expect for some reason
-	//	[[cordova expect] setAcceptingJS:OCMOCK_ANY];
-	[[cordova expect] executeQueue];
+	id cordova = OCMPartialMock(self.cordova);
+	OCMExpect([cordova setAcceptingJS:YES]);
+	OCMExpect([cordova executeQueue]);
 
 	[cordova webViewDidFinishLoad:nil];
 
-	XCTAssertNoThrow([cordova verify], @"Should execute the queue");
+	OCMVerifyAll(cordova);
 }
 
 - (void)testDialogClosed
@@ -156,6 +151,18 @@
 	[cordova handleAppOpenURL:[NSURL URLWithString:@"test://test"]];
 
 	XCTAssertNoThrow([cordova verify], @"handleAppOpenURL: should push to queue");
+}
+
+- (void)testButtonTapped
+{
+	id cordova = [OCMockObject partialMockForObject:self.cordova];
+
+	[[cordova expect] addToQueue:OCMOCK_ANY];
+	[[cordova expect] executeQueue];
+
+	[cordova buttonTapped:@{@"button": @"left"}];
+
+	XCTAssertNoThrow([cordova verify], @"testButtonTapped: should push to queue");
 }
 
 - (void)testAddToQueue

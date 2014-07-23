@@ -31,6 +31,11 @@
     [super tearDown];
 }
 
+- (void)testInit
+{
+	XCTAssertNotNil([[LGRApp alloc] init], @"Failed to init");
+}
+
 - (void)testReadAppJson
 {
     [super setUp];
@@ -46,7 +51,8 @@
 
 - (void)testMenu
 {
-	NSArray *menu = [LGRApp menuItems];
+	NSDictionary *rootPage = [LGRApp root];
+	NSArray *menu = rootPage[@"args"][@"args"][@"menu"];
 	XCTAssertNotNil(menu, @"No menuItems in app.json");
 	
 	for (NSDictionary *item in menu[0]) {
@@ -60,6 +66,13 @@
 		XCTAssertNotNil(item[@"detail"], @"Menu item did not have a detail");
 		XCTAssertNotNil(item[@"accessibilityLabel"], @"Menu item did not have an accessibility level");
 	}
+}
+
+- (void)testRootPage
+{
+	NSDictionary *rootPage = [LGRApp root];
+
+	XCTAssertNotNil(rootPage, @"No root page");
 }
 
 - (void)testAppearance

@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (3.2.18)
+    activesupport (3.2.19)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     claide (0.6.1)
@@ -27,7 +27,7 @@ GEM
     cocoapods-downloader (0.6.1)
     cocoapods-plugins (0.2.0)
       nap
-    cocoapods-trunk (0.1.3)
+    cocoapods-trunk (0.1.4)
       json_pure (~> 1.8)
       nap (>= 0.6)
       netrc
@@ -35,7 +35,7 @@ GEM
     colored (1.2)
     escape (0.0.4)
     fuzzy_match (2.0.4)
-    i18n (0.6.9)
+    i18n (0.6.11)
     json_pure (1.8.1)
     multi_json (1.10.1)
     nap (0.8.0)
