@@ -1,6 +1,10 @@
 before_script:
   - export LANG=en_US.UTF-8
 before_install:
+# Uncomment the two following lines if the version of xctool on the build machiens
+# lag behind and that is causing the build to fail. Be aware that upgrading when
+# there's no new version available causes the build to exit witha non-zero and
+# thus fail.
 #  - brew update
 #  - brew upgrade xctool
   - cd $TRAVIS_BUILD_DIR/LigerTestApp
