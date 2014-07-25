@@ -35,6 +35,7 @@
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self) {
+		NSAssert([self.class nativePage] == nil || [[self.class nativePage] isEqualToString:page], @"Native page name isn't the same as page argument.");
 		self.page = page;
 		self.args = args;
 		self.title = title;

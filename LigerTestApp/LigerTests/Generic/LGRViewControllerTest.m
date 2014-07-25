@@ -12,6 +12,12 @@
 
 #import "LGRViewController.h"
 
+@interface LGRViewController()
+- (void)addButtons;
+- (UIBarButtonItem*)buttonFromDictionary:(NSDictionary*)buttonInfo;
+- (void)buttonAction:(id)sender;
+@end
+
 @interface LGRViewControllerTest : XCTestCase
 @property (nonatomic, strong) LGRViewController *liger;
 @end
@@ -57,6 +63,41 @@
 	XCTAssertFalse(liger.userCanRefresh, @"User refresh should be false as default");
 }
 
+- (void)testAddButtons
+{
+	LGRViewController* liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{} options:@{@"left": @{@"button": @"done"}, @"right": @{@"button": @"done"}}];
+
+	[liger addButtons];
+	XCTAssertNotNil(liger.navigationItem.leftBarButtonItem, @"No left button");
+	XCTAssertNotNil(liger.navigationItem.rightBarButtonItem, @"No right button");
+}
+
+- (void)testButtonFromDictionary
+{
+	NSArray *buttons = @[@{@"button":@"done"}, @{@"button":@"cancel"}, @{@"button":@"save"}, @{@"button":@"search"}];
+
+	for (NSDictionary* button in buttons) {
+		// UIBarButtonItem doesn't give access to the system button type so we can't test that
+		XCTAssertNotNil([self.liger buttonFromDictionary:button], @"Button failed to instantiate.");
+	}
+}
+
+- (void)testButtonAction
+{
+	id liger = OCMPartialMock(self.liger);
+	OCMExpect([liger buttonTapped:nil]);
+	[liger buttonAction:nil];
+
+	OCMVerifyAll(liger);
+}
+
+- (void)testButtonTapped
+{
+	id liger = OCMPartialMock(self.liger);
+
+	[liger buttonTapped:nil];
+}
+
 - (void)testOpenPage
 {
 	id liger = [OCMockObject partialMockForObject:self.liger];
@@ -69,6 +110,36 @@
 	[liger openPage:@"firstPage" title:@"First Page" args:@{} options:@{} success:^{} fail:^{}];
 	
 	XCTAssertNoThrow([mock verify], @"Verify failed");
+}
+
+- (void)testOpenPageInternalFail1
+{
+	id liger = OCMPartialMock(self.liger);
+	OCMStub([liger navigationController]).andReturn(nil);
+
+	__block BOOL failed = NO;
+
+	[liger openPage:@"firstPage" title:@"First Page" args:@{} options:@{} success:^{} fail:^{
+		failed = YES;
+	}];
+
+	XCTAssertTrue(failed, @"fail() wasn't called.");
+}
+
+- (void)testOpenPageInternalFail2
+{
+	id liger = OCMPartialMock(self.liger);
+	id mock = OCMClassMock(UINavigationController.class);
+	OCMStub([mock topViewController]).andReturn(self.liger);
+	OCMStub([liger navigationController]).andReturn(mock);
+
+	__block BOOL failed = NO;
+
+	[liger openPage:@"that_does't_exist" title:@"First Page" args:@{} options:@{} success:^{} fail:^{
+		failed = YES;
+	}];
+
+	XCTAssertTrue(failed, @"fail() wasn't called.");
 }
 
 - (void)testUpdateParent
@@ -113,6 +184,20 @@
 	XCTAssertNoThrow([mock verify], @"Verify failed");
 }
 
+- (void)testClosePageInternalFail
+{
+	id liger = OCMPartialMock(self.liger);
+	OCMStub([liger navigationController]).andReturn(nil);
+
+	__block BOOL failed = NO;
+
+	[liger closePage:nil success:^{} fail:^{
+		failed = YES;
+	}];
+
+	XCTAssertTrue(failed, @"fail() wasn't called.");
+}
+
 - (void)testClosePageRewind
 {
 	id liger = [OCMockObject partialMockForObject:self.liger];
@@ -145,6 +230,22 @@
 	XCTAssertNoThrow([(id)liger verify], @"Verify failed");
 }
 
+- (void)testOpenDialogInternalFail
+{
+	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
+
+	// The order of expect + stub is important and should be expect then stub
+	[[((id)liger) expect] presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY];
+
+	__block BOOL failed = NO;
+
+	[liger openDialog:@"not_a_page" title:nil args:@{} options:@{} success:^{} fail:^{
+		failed = YES;
+	}];
+
+	XCTAssertTrue(failed, @"fail() wasn't called.");
+}
+
 - (void)testCloseDialog
 {
 	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
@@ -156,6 +257,20 @@
 	[liger closeDialog:nil success:^{} fail:^{}];
 
 	XCTAssertNoThrow([(id)liger verify], @"Verify failed");
+}
+
+- (void)testCloseDialogInternalFail
+{
+	id liger = OCMPartialMock(self.liger);
+
+	OCMStub([liger presentingViewController]).andReturn(nil);
+
+	__block BOOL failed = NO;
+	[liger closeDialog:nil success:^{} fail:^{
+		failed = YES;
+	}];
+
+	XCTAssertTrue(failed, @"fail() wasn't called.");
 }
 
 - (void)testDialogClosed

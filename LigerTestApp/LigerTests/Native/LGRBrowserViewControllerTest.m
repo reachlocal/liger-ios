@@ -31,12 +31,12 @@
 	[super setUp];
 
 	NSDictionary *args = @{@"link" : @"http://liger.com"};
-	self.browser = [[LGRBrowserViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args options:@{}];
+	self.browser = [[LGRBrowserViewController alloc] initWithPage:@"browser" title:@"testTitle" args:args options:@{}];
 }
 
 - (void)testInitWithPage
 {
-	XCTAssertEqual(self.browser.page, @"testPage", @"Page name is wrong");
+	XCTAssertEqual(self.browser.page, @"browser", @"Page name is wrong");
 	XCTAssertEqual(self.browser.title, @"testTitle", @"Title is wrong");
 	XCTAssertEqualObjects(self.browser.args, @{@"link" : @"http://liger.com"}, @"Args are wrong");
 	XCTAssertNil(self.browser.ligerParent, @"Parent shouldn't be set");
