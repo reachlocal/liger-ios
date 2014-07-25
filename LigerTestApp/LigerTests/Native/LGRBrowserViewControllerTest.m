@@ -1,6 +1,6 @@
 //
 //  LGRBrowserViewControllerTest.m
-//  Liger
+// LigerMobile
 //
 //  Created by John Gustafsson on 11/26/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -39,7 +39,7 @@
 	XCTAssertEqual(self.browser.page, @"browser", @"Page name is wrong");
 	XCTAssertEqual(self.browser.title, @"testTitle", @"Title is wrong");
 	XCTAssertEqualObjects(self.browser.args, @{@"link" : @"http://liger.com"}, @"Args are wrong");
-	XCTAssertNil(self.browser.ligerParent, @"Parent shouldn't be set");
+	XCTAssertNil(self.browser.parentPage, @"Parent shouldn't be set");
 	XCTAssertFalse(self.browser.userCanRefresh, @"User refresh should be false as default");
 }
 

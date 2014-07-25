@@ -1,6 +1,6 @@
 //
 //  LGRViewControllerTest.m
-//  Liger
+// LigerMobile
 //
 //  Created by John Gustafsson on 11/26/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -45,7 +45,7 @@
 	XCTAssertEqual(liger.title, @"testTitle", @"Title is wrong");
 	XCTAssertEqualObjects(liger.args, args, @"Args are wrong");
 	XCTAssertEqualObjects(liger.options, options, @"Options are wrong");
-	XCTAssertNil(liger.ligerParent, @"Parent shouldn't be set");
+	XCTAssertNil(liger.parentPage, @"Parent shouldn't be set");
 	XCTAssertFalse(liger.userCanRefresh, @"User refresh should be false as default");
 }
 
@@ -59,7 +59,7 @@
 	XCTAssertEqual(liger.title, @"testTitle", @"Title is wrong");
 	XCTAssertEqualObjects(liger.args, args, @"Args are wrong");
 	XCTAssertEqualObjects(liger.options, options, @"Options are wrong");
-	XCTAssertNil(liger.ligerParent, @"Parent shouldn't be set");
+	XCTAssertNil(liger.parentPage, @"Parent shouldn't be set");
 	XCTAssertFalse(liger.userCanRefresh, @"User refresh should be false as default");
 }
 
@@ -148,7 +148,7 @@
 
 	id mock = [OCMockObject mockForClass:LGRViewController.class];
 	[[mock expect] childUpdates:OCMOCK_ANY];
-	[[[((id)liger) stub] andReturn:mock] ligerParent];
+	[[[((id)liger) stub] andReturn:mock] parentPage];
 	
 	[liger updateParent:nil args:@{} success:^{} fail:^{}];
 	
@@ -162,8 +162,8 @@
 	id test2 = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test2" title:@"" args:@{} options:@{}]];
 	id test = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test" title:@"" args:@{} options:@{}]];
 
-	[[[liger stub] andReturn:test2] ligerParent];
-	[[[test2 stub] andReturn:test] ligerParent];
+	[[[liger stub] andReturn:test2] parentPage];
+	[[[test2 stub] andReturn:test] parentPage];
 	[[test expect] childUpdates:OCMOCK_ANY];
 
 	[liger updateParent:@"test" args:@{} success:^{} fail:^{}];
@@ -205,8 +205,8 @@
 	id test2 = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test2" title:@"" args:@{} options:@{}]];
 	id test = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test" title:@"" args:@{} options:@{}]];
 
-	[[[liger stub] andReturn:test2] ligerParent];
-	[[[test2 stub] andReturn:test] ligerParent];
+	[[[liger stub] andReturn:test2] parentPage];
+	[[[test2 stub] andReturn:test] parentPage];
 
 	id mock = [OCMockObject mockForClass:UINavigationController.class];
 	[[[mock expect] ignoringNonObjectArgs] popToViewController:OCMOCK_ANY animated:YES];

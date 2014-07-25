@@ -1,6 +1,6 @@
 //
 //  LGRPageFactory.m
-//  Liger
+// LigerMobile
 //
 //  Created by John Gustafsson on 11/13/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -154,14 +154,14 @@ BOOL native(NSMutableDictionary* pages, Class class)
 	Class class = [self shared].nativePages[page];
 	if (class) {
 		LGRViewController *new = [[class alloc] initWithPage:page title:title args:args options:options];
-		new.ligerParent = parent;
+		new.parentPage = parent;
 		return new;
 	}
 
 	// Create an html page if we have one in the bundle of it it's an http address
 	if ([self hasHTMLPage:page]) {
 		LGRViewController *new = [[LGRHTMLViewController alloc] initWithPage:page title:title args:args options:options];
-		new.ligerParent = parent;
+		new.parentPage = parent;
 		return new;
 	}
 	return nil;

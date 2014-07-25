@@ -1,6 +1,6 @@
 //
 //  LGRViewController.m
-//  Liger
+// LigerMobile
 //
 //  Created by John Gustafsson on 2/20/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -129,7 +129,7 @@
 - (void)updateParent:(NSString*)destination args:(NSDictionary*)args success:(void (^)())success fail:(void (^)())fail
 {
 	if ([destination isKindOfClass:NSString.class]) {
-		LGRViewController *page = self.ligerParent;
+		LGRViewController *page = self.parentPage;
 		
 		while (page) {
 			if ([page.page isEqualToString:destination]) {
@@ -137,10 +137,10 @@
 				success();
 				return;
 			}
-			page = page.ligerParent;
+			page = page.parentPage;
 		}
 	} else {
-		[self.ligerParent childUpdates:args];
+		[self.parentPage childUpdates:args];
 		success();
 		return;
 	}
@@ -156,7 +156,7 @@
 	}
 	
 	if (rewindTo) {
-		LGRViewController *page = self.ligerParent;
+		LGRViewController *page = self.parentPage;
 		
 		while (page) {
 			if ([page.page isEqualToString:rewindTo]) {
@@ -164,7 +164,7 @@
 				success();
 				return;
 			}
-			page = page.ligerParent;
+			page = page.parentPage;
 		}
 	} else {
 		[self.navigationController popViewControllerAnimated:YES];
@@ -206,8 +206,8 @@
 			LGRDrawerViewController *menu = (LGRDrawerViewController*)root;
 			[menu resetApp];
 		} else {
-			NSAssert(self.ligerParent, @"Internal close dialog error");
-			[self.ligerParent dialogClosed:args];
+			NSAssert(self.parentPage, @"Internal close dialog error");
+			[self.parentPage dialogClosed:args];
 		}
 		success();
 	}];

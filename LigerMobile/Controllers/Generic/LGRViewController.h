@@ -1,6 +1,6 @@
 //
 //  LGRViewController.h
-//  Liger
+// LigerMobile
 //
 //  Created by John Gustafsson on 2/20/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -47,7 +47,7 @@
  
  nil if a root page or not within a stack
  */
-@property (nonatomic, strong) LGRViewController *ligerParent;
+@property (nonatomic, strong) LGRViewController *parentPage;
 
 /**
  Used by the javascript API to add a refresh button that calls back to javascript when tapped.

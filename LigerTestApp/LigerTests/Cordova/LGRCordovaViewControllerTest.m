@@ -1,6 +1,6 @@
 //
 //  LGRCordovaViewControllerTest.m
-//  Liger
+// LigerMobile
 //
 //  Created by John Gustafsson on 4/18/14.
 //  Copyright (c) 2014 ReachLocal Inc. All rights reserved.
