@@ -29,10 +29,8 @@
 		3243044B18F74D7000565E2E /* LGRMessageImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043718F74D7000565E2E /* LGRMessageImportedTest.m */; };
 		3243044C18F74D7000565E2E /* LGRViewController+MessageUITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043818F74D7000565E2E /* LGRViewController+MessageUITest.m */; };
 		3243044D18F74D7000565E2E /* LGRAppMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043A18F74D7000565E2E /* LGRAppMenuViewControllerTest.m */; };
-		3243044E18F74D7000565E2E /* LGRHTMLMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043B18F74D7000565E2E /* LGRHTMLMenuViewControllerTest.m */; };
 		3243044F18F74D7000565E2E /* LGRMenuCell1Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043C18F74D7000565E2E /* LGRMenuCell1Test.m */; };
 		3243045018F74D7000565E2E /* LGRMenuCell2Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043D18F74D7000565E2E /* LGRMenuCell2Test.m */; };
-		3243045118F74D7000565E2E /* LGRMenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043E18F74D7000565E2E /* LGRMenuViewControllerTest.m */; };
 		3243045218F74D7000565E2E /* LGRDrawerViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043F18F74D7000565E2E /* LGRDrawerViewControllerTest.m */; };
 		3243045318F74D7000565E2E /* LGRBrowserViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243044118F74D7000565E2E /* LGRBrowserViewControllerTest.m */; };
 		3243045418F74D7000565E2E /* LGRAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243044318F74D7000565E2E /* LGRAppDelegateTest.m */; };
@@ -80,10 +78,8 @@
 		3243043718F74D7000565E2E /* LGRMessageImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRMessageImportedTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3243043818F74D7000565E2E /* LGRViewController+MessageUITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "LGRViewController+MessageUITest.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3243043A18F74D7000565E2E /* LGRAppMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRAppMenuViewControllerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		3243043B18F74D7000565E2E /* LGRHTMLMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRHTMLMenuViewControllerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3243043C18F74D7000565E2E /* LGRMenuCell1Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRMenuCell1Test.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3243043D18F74D7000565E2E /* LGRMenuCell2Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRMenuCell2Test.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		3243043E18F74D7000565E2E /* LGRMenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRMenuViewControllerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3243043F18F74D7000565E2E /* LGRDrawerViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRDrawerViewControllerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3243044118F74D7000565E2E /* LGRBrowserViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRBrowserViewControllerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3243044318F74D7000565E2E /* LGRAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRAppDelegateTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -249,10 +245,8 @@
 			isa = PBXGroup;
 			children = (
 				3243043A18F74D7000565E2E /* LGRAppMenuViewControllerTest.m */,
-				3243043B18F74D7000565E2E /* LGRHTMLMenuViewControllerTest.m */,
 				3243043C18F74D7000565E2E /* LGRMenuCell1Test.m */,
 				3243043D18F74D7000565E2E /* LGRMenuCell2Test.m */,
-				3243043E18F74D7000565E2E /* LGRMenuViewControllerTest.m */,
 				3243043F18F74D7000565E2E /* LGRDrawerViewControllerTest.m */,
 			);
 			path = Menu;
@@ -479,8 +473,6 @@
 				3243045418F74D7000565E2E /* LGRAppDelegateTest.m in Sources */,
 				3243044A18F74D7000565E2E /* LGREmailImportedTest.m in Sources */,
 				3243044818F74D7000565E2E /* LGRPageFactoryTest.m in Sources */,
-				3243044E18F74D7000565E2E /* LGRHTMLMenuViewControllerTest.m in Sources */,
-				3243045118F74D7000565E2E /* LGRMenuViewControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

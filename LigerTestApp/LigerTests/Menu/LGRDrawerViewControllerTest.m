@@ -9,7 +9,6 @@
 @import XCTest;
 
 #import "LGRDrawerViewController.h"
-#import "LGRMenuViewController.h"
 #import "LGRPageFactory.h"
 #import "LGRApp.h"
 
@@ -17,7 +16,7 @@
 
 
 @interface LGRDrawerViewController ()
-@property (nonatomic, strong) LGRMenuViewController *menu;
+@property (nonatomic, strong) LGRViewController *menu;
 @end
 
 @interface LGRDrawerViewControllerTest : XCTestCase

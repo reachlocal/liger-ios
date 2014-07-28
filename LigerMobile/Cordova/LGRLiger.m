@@ -50,7 +50,6 @@ NSDictionary* checkDictionary(id dictionary)
 }
 
 @interface LGRLiger ()
-@property (readonly) UINavigationController *navigationController;
 @property (readonly) LGRViewController* ligerViewController;
 @property (nonatomic, strong) NSMutableArray *toolbarCallbacks;
 @end
@@ -71,7 +70,7 @@ NSDictionary* checkDictionary(id dictionary)
 	NSDictionary *args = checkDictionary(command.arguments.count > 2 ? command.arguments[2] : @{});
 	NSDictionary *options = checkDictionary(command.arguments.count > 3 ? command.arguments[3] : @{});
 
-	[self.ligerViewController openPage:page title:title args:args options:options success:^{
+	[self.ligerViewController openPage:page title:title args:args options:options parent:self.ligerViewController success:^{
 		[self sendOK:command.callbackId];
 	} fail:^{
 		[self sendERROR:command.callbackId];
@@ -138,7 +137,7 @@ NSDictionary* checkDictionary(id dictionary)
 	NSDictionary *args = checkDictionary(command.arguments.count > 1 ? command.arguments[1] : @{});
 	NSDictionary *options = checkDictionary(command.arguments.count > 2 ? command.arguments[2] : @{});
 
-	[self.ligerViewController openDialog:page title:nil args:args options:options success:^{
+	[self.ligerViewController openDialog:page title:nil args:args options:options parent:self.ligerViewController success:^{
 		[self sendOK:command.callbackId];
 	} fail:^{
 		[self sendERROR:command.callbackId];
@@ -158,7 +157,7 @@ NSDictionary* checkDictionary(id dictionary)
 	NSDictionary *args = checkDictionary(command.arguments.count > 2 ? command.arguments[2] : @{});
 	NSDictionary *options = checkDictionary(command.arguments.count > 3 ? command.arguments[3] : @{});
 
-	[self.ligerViewController openDialog:page title:title args:args options:options success:^{
+	[self.ligerViewController openDialog:page title:title args:args options:options parent:self.ligerViewController success:^{
 		[self sendOK:command.callbackId];
 	} fail:^{
 		[self sendERROR:command.callbackId];

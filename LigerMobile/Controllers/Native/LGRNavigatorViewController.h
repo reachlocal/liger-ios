@@ -10,5 +10,7 @@
 #import "LGRViewController.h"
 
 @interface LGRNavigatorViewController : LGRViewController
-
+@property(readonly) LGRViewController *rootPage;
+@property(readonly) LGRViewController *topPage;
+@property(nonatomic,readonly) UINavigationBar *navigationBar;
 @end

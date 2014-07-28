@@ -43,11 +43,18 @@
 @property (readonly) NSDictionary *options;
 
 /**
- The parent of this page, if in a navigation controller or other controller with a stack.
+ The parent of this page, if in a collection.
  
- nil if a root page or not within a stack
+ nil if a root page or not within a collection.
  */
 @property (nonatomic, strong) LGRViewController *parentPage;
+
+/**
+ The collection this page is in.
+
+ nil if a root page or not within a stack.
+ */
+@property (nonatomic, strong) LGRViewController *collectionPage;
 
 /**
  Used by the javascript API to add a refresh button that calls back to javascript when tapped.
@@ -55,7 +62,7 @@
 @property (nonatomic, assign) BOOL userCanRefresh;
 
 /**
- Convenience initializer, calls initWithPage:title:args:NibName:bundle with nil for nib and bundle.
+ Convenience initializer, calls initWithPage:title:args:options:NibName:bundle with nil for nib and bundle.
  */
 - (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options;
 
@@ -65,6 +72,7 @@
  @param page The name of the page. Either nativePage if native, or the name of the HTML file (sans .html).
  @param title The title for the page, same as UIViewController's title. Is used for the UINavigationBar title by UIKit.
  @param args The arguments that were sent to the page. OBS is not automatically updated if the HTML page updates it's args. Be aware that this might change in the future.
+ @param options Optional hints for a page.
  @param nibName see UIViewController
  @param nibName see UIViewController
  
@@ -78,10 +86,12 @@
  @param page The name of the page. Either nativePage if native, or the name of the HTML file (sans .html).
  @param title The title for the page, same as UIViewController's title. Is used for the UINavigationBar title by UIKit.
  @param args The arguments that were sent to the page. OBS is not automatically updated if the HTML page updates it's args. Be aware that this might change in the future.
+ @param options Optional hints for a page.
+ @param parent The parent for this page. Different from the collection page of this page.
  @param success This block will be called if the operation was successful.
  @param fail This block will be called if something went wrong.
  */
-- (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options success:(void (^)())success fail:(void (^)())fail;
+- (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail;
 
 /**
  Closes the current page, and potentially several more pages if a rewindTo page name is supplied.
@@ -121,10 +131,12 @@
  @param page The name of the page. Either nativePage if native, or the name of the HTML file (sans .html).
  @param title The title for the page, same as UIViewController's title. Is used for the UINavigationBar title by UIKit.
  @param args The arguments that were sent to the page. OBS is not automatically updated if the HTML page updates it's args. Be aware that this might change in the future.
+ @param options Optional hints for a page.
+ @param parent The parent for this page. Different from the collection page of this page.
  @param success This block will be called if the operation was successful.
  @param fail This block will be called if something went wrong.
  */
-- (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options success:(void (^)())success fail:(void (^)())fail;
+- (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail;
 
 /**
  If this page was opened as a dialog sending closeDialog will close it (dismiss modal view controller).

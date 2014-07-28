@@ -48,17 +48,13 @@
 				 title:self.menuItems[0][0][@"name"]
 				  args:self.menuItems[0][0][@"args"]
 			   options:self.menuItems[0][0][@"options"]
+				parent:nil
 			   success:^{}
 				  fail:^{}];
 		[self.menu selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
 							   animated:YES
 						 scrollPosition:UITableViewScrollPositionMiddle];
 	}
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - UITableView
@@ -140,14 +136,22 @@
 {
 	NSDictionary *menuItem = self.menuItems[indexPath.section][indexPath.row];
 	BOOL dialog = [menuItem[@"dialog"] boolValue];
-	NSDictionary *args = menuItem[@"args"];
-	if (!args)
-		args = @{};
 
 	if (dialog) {
-		[self openDialog:menuItem[@"page"] title:menuItem[@"title"] args:args options:menuItem[@"options"] success:^{} fail:^{}];
+		[self openDialog:menuItem[@"page"]
+				   title:menuItem[@"title"]
+					args:menuItem[@"args"]
+				 options:menuItem[@"options"]
+				  parent:self
+				 success:^{}
+					fail:^{}];
 	} else {
-		[self openPage:menuItem[@"page"] title:menuItem[@"title"] args:args options:menuItem[@"options"] success:^{} fail:^{}];
+		[self openPage:menuItem[@"page"]
+				 title:menuItem[@"title"]
+				  args:menuItem[@"args"]
+			   options:menuItem[@"options"]
+				parent:nil success:^{}
+				  fail:^{}];
 	}
 	return;
 }

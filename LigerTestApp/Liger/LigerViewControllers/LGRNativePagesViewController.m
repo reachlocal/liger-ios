@@ -168,7 +168,7 @@
 		case 1:
 			switch (indexPath.row) {
 				case 0:
-					[self openPage:@"nativePages" title:@"Native Page" args:@{@"Native": @"Page"} options:@{} success:^{} fail:^{}];
+					[self openPage:@"nativePages" title:@"Native Page" args:@{@"Native": @"Page"} options:@{} parent:self success:^{} fail:^{}];
 					break;
 					
 				case 1:
@@ -194,11 +194,11 @@
 		case 3:
 			switch (indexPath.row) {
 				case 1:
-					[self openDialog:@"nativePages" title:nil args:@{@"open": @"dialog"} options:@{} success:^{} fail:^{}];
+					[self openDialog:@"nativePages" title:nil args:@{@"open": @"dialog"} options:@{} parent:self success:^{} fail:^{}];
 					break;
 					
 				case 2:
-					[self openDialog:@"nativePages" title:@"Dialog" args:@{@"open": @"dialog"} options:@{} success:^{} fail:^{}];
+					[self openDialog:@"nativePages" title:@"Dialog" args:@{@"open": @"dialog"} options:@{} parent:self success:^{} fail:^{}];
 					break;
 					
 				case 3:

@@ -106,24 +106,9 @@
 
 #pragma mark - API
 
-- (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options success:(void (^)())success fail:(void (^)())fail
+- (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail
 {
-	// Internal error, we couldn't find the navigation controller or we aren't at the top of the navigation stack
-	if (!self.navigationController || self.navigationController.topViewController != self) {
-		fail();
-		return;
-	}
-	
-	UIViewController *new = [LGRPageFactory controllerForPage:page title:title args:args options:options parent:self];
-	
-	// Couldn't create a new view controller
-	if (!new) {
-		fail();
-		return;
-	}
-	
-	[self.navigationController pushViewController:new animated:YES];
-	success();
+	[self.collectionPage openPage:page title:title args:args options:options parent:parent success:success fail:fail];
 }
 
 - (void)updateParent:(NSString*)destination args:(NSDictionary*)args success:(void (^)())success fail:(void (^)())fail
@@ -175,19 +160,15 @@
 	fail();
 }
 
-- (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options success:(void (^)())success fail:(void (^)())fail
+- (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail
 {
-	UIViewController *new = [LGRPageFactory controllerForDialogPage:page title:title args:args options:options parent:self];
-	
-	// Couldn't create a new view controller, possibly a broken plugin
-	if (!new) {
-		fail();
-		return;
-	}
-	
-	[self presentViewController:new animated:YES completion:^{
-		success();
-	}];
+	[self.collectionPage openDialog:page
+							  title:title
+							   args:args
+							options:options
+							 parent:parent
+							success:success
+							   fail:fail];
 }
 
 - (void)closeDialog:(NSDictionary*)args success:(void (^)())success fail:(void (^)())fail
@@ -201,12 +182,14 @@
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:^{
 		// TODO is there a cleaner and more generic way to do this?
 		if ([args[@"resetApp"] boolValue]) {
-			UIApplication* app = [UIApplication sharedApplication];
-			UIViewController *root = [app.windows[0] rootViewController];
-			LGRDrawerViewController *menu = (LGRDrawerViewController*)root;
-			[menu resetApp];
+			LGRViewController *rootPage = [((LGRAppDelegate*)[[UIApplication sharedApplication] delegate]) rootPage];
+			if ([rootPage isKindOfClass:LGRDrawerViewController.class]) {
+				LGRDrawerViewController *menu = (LGRDrawerViewController*)rootPage;
+				[menu resetApp];
+			}
 		} else {
-			NSAssert(self.parentPage, @"Internal close dialog error");
+			NSAssert((self.parentPage && !self.collectionPage) || (!self.parentPage && self.collectionPage), @"Internal close dialog error");
+			[self.collectionPage dialogClosed:args];
 			[self.parentPage dialogClosed:args];
 		}
 		success();

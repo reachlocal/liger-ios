@@ -31,7 +31,7 @@
 
 - (void)testCreationParameters
 {
-	NSDictionary *args = @{@"toRecipients": @"foo@bar.com, bar@foo.com", @"subject" : @"tests"};
+	NSDictionary *args = @{@"recipients": @"foo@bar.com, bar@foo.com", @"subject" : @"tests"};
 	
 	MFMailComposeViewController *message = (MFMailComposeViewController*)[LGRMessageImported controllerForImportedPage:nil title:nil args:args options:@{} parent:nil];
 #if !(TARGET_IPHONE_SIMULATOR)

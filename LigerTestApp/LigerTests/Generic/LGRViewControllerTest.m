@@ -10,6 +10,8 @@
 #import "OCMock.h"
 #import <OCMock/OCMockObject.h>
 
+#import "LGRAppDelegate.h"
+#import "LGRDrawerViewController.h"
 #import "LGRViewController.h"
 
 @interface LGRViewController()
@@ -100,46 +102,15 @@
 
 - (void)testOpenPage
 {
-	id liger = [OCMockObject partialMockForObject:self.liger];
-	id mock = [OCMockObject mockForClass:UINavigationController.class];
+	id page = OCMPartialMock(self.liger);
+	id collection = OCMPartialMock([[LGRViewController alloc] initWithPage:@"" title:@"" args:@{} options:@{}]);
+	OCMExpect([collection openPage:@"firstPage" title:@"First Page" args:@{} options:@{} parent:nil success:OCMOCK_ANY fail:OCMOCK_ANY]);
 
-	[[[mock stub] andReturn:self.liger] topViewController];
-	[[mock expect] pushViewController:OCMOCK_ANY animated:YES];
-	[[[((id)liger) stub] andReturn:mock] navigationController];
+	OCMStub([page collectionPage]).andReturn(collection);
 
-	[liger openPage:@"firstPage" title:@"First Page" args:@{} options:@{} success:^{} fail:^{}];
-	
-	XCTAssertNoThrow([mock verify], @"Verify failed");
-}
+	[page openPage:@"firstPage" title:@"First Page" args:@{} options:@{} parent:nil success:^{} fail:^{}];
 
-- (void)testOpenPageInternalFail1
-{
-	id liger = OCMPartialMock(self.liger);
-	OCMStub([liger navigationController]).andReturn(nil);
-
-	__block BOOL failed = NO;
-
-	[liger openPage:@"firstPage" title:@"First Page" args:@{} options:@{} success:^{} fail:^{
-		failed = YES;
-	}];
-
-	XCTAssertTrue(failed, @"fail() wasn't called.");
-}
-
-- (void)testOpenPageInternalFail2
-{
-	id liger = OCMPartialMock(self.liger);
-	id mock = OCMClassMock(UINavigationController.class);
-	OCMStub([mock topViewController]).andReturn(self.liger);
-	OCMStub([liger navigationController]).andReturn(mock);
-
-	__block BOOL failed = NO;
-
-	[liger openPage:@"that_does't_exist" title:@"First Page" args:@{} options:@{} success:^{} fail:^{
-		failed = YES;
-	}];
-
-	XCTAssertTrue(failed, @"fail() wasn't called.");
+	OCMVerifyAll(collection);
 }
 
 - (void)testUpdateParent
@@ -219,44 +190,78 @@
 
 - (void)testOpenDialog
 {
-	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
-	
-	// The order of expect + stub is important and should be expect then stub
-	[[((id)liger) expect] presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY];
-	[[((id)liger) stub] presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY];
-	
-	[liger openDialog:@"firstPage" title:@"First Page" args:@{} options:@{} success:^{} fail:^{}];
-	
-	XCTAssertNoThrow([(id)liger verify], @"Verify failed");
-}
+	id page = OCMPartialMock(self.liger);
+	id collection = OCMPartialMock([[LGRViewController alloc] init]);
 
-- (void)testOpenDialogInternalFail
-{
-	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
+	OCMExpect([collection openDialog:@"firstPage"
+							   title:@"First Page"
+								args:@{}
+							 options:@{}
+							  parent:nil
+							 success:OCMOCK_ANY
+								fail:OCMOCK_ANY]);
+	OCMStub([page collectionPage]).andReturn(collection);
 
-	// The order of expect + stub is important and should be expect then stub
-	[[((id)liger) expect] presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY];
+	[page openDialog:@"firstPage" title:@"First Page" args:@{} options:@{} parent:nil success:^{} fail:^{}];
 
-	__block BOOL failed = NO;
-
-	[liger openDialog:@"not_a_page" title:nil args:@{} options:@{} success:^{} fail:^{
-		failed = YES;
-	}];
-
-	XCTAssertTrue(failed, @"fail() wasn't called.");
+	OCMVerifyAll(collection);
 }
 
 - (void)testCloseDialog
 {
-	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
-	
-	id mock = [OCMockObject mockForClass:UINavigationController.class];
-	[[mock expect] dismissViewControllerAnimated:YES completion:OCMOCK_ANY];
-	[[[((id)liger) stub] andReturn:mock] presentingViewController];
+	id page = OCMPartialMock(self.liger);
 
-	[liger closeDialog:nil success:^{} fail:^{}];
+	id presenting = OCMPartialMock([[LGRViewController alloc] init]);
+	OCMExpect([presenting dismissViewControllerAnimated:YES completion:OCMOCK_ANY]).andDo(^(NSInvocation *invocation){
+		void (^completion)(void) = nil;
+		[invocation getArgument:&completion atIndex:3];
 
-	XCTAssertNoThrow([(id)liger verify], @"Verify failed");
+		completion();
+
+	});
+	OCMStub([page presentingViewController]).andReturn(presenting);
+
+	id parent = OCMPartialMock([[LGRViewController alloc] init]);
+	OCMExpect([parent dialogClosed:nil]);
+	OCMStub([page parentPage]).andReturn(parent);
+
+
+	[page closeDialog:nil success:^{} fail:^{}];
+
+	OCMVerifyAll(presenting);
+	OCMVerifyAll(parent);
+}
+
+- (void)testCloseDialogAndReset
+{
+	id page = OCMPartialMock(self.liger);
+
+	id realApp = OCMPartialMock([UIApplication sharedApplication]);
+	id app = OCMClassMock(UIApplication.class);
+	OCMStub([app sharedApplication]).andReturn(realApp);
+
+	id delegate = OCMPartialMock([realApp delegate]);
+	OCMStub([realApp delegate]).andReturn(delegate);
+
+	id rootPage = OCMPartialMock([[realApp delegate] rootPage]);
+	OCMStub([delegate rootPage]).andReturn(rootPage);
+
+	OCMExpect([rootPage resetApp]);
+
+	id presenting = OCMPartialMock([[LGRViewController alloc] init]);
+	OCMExpect([presenting dismissViewControllerAnimated:YES completion:OCMOCK_ANY]).andDo(^(NSInvocation *invocation){
+		void (^completion)(void) = nil;
+		[invocation getArgument:&completion atIndex:3];
+
+		completion();
+
+	});
+	OCMStub([page presentingViewController]).andReturn(presenting);
+
+	[page closeDialog:@{@"resetApp": @YES} success:^{} fail:^{}];
+
+	OCMVerifyAll(rootPage);
+	OCMVerifyAll(presenting);
 }
 
 - (void)testCloseDialogInternalFail

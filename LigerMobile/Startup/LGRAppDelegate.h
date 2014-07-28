@@ -12,5 +12,5 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property(nonatomic, weak) LGRViewController* topPage;
-
+@property(nonatomic, readonly) LGRViewController *rootPage;
 @end

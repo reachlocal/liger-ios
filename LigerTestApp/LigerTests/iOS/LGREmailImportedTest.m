@@ -25,7 +25,7 @@
 
 - (void)testCreationParameters
 {
-	NSDictionary *args = @{@"toRecipients": @"foo@bar.com, bar@foo.com", @"subject" : @"tests"};
+	NSDictionary *args = @{@"toRecipients": @"foo@bar.com, bar@foo.com", @"subject": @"tests", @"body": @"This is some test"};
 	
 	MFMailComposeViewController *email = (MFMailComposeViewController*)[LGREmailImported controllerForImportedPage:nil title:nil args:args options:@{} parent:nil];
 	XCTAssertNotNil(email, @"LGREmailImported failed to create a page.");

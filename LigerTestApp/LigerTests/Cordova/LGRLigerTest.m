@@ -33,10 +33,10 @@
     [super tearDown];
 }
 
-- (void)testopenPage
+- (void)testOpenPage
 {
 	id viewController = [OCMockObject mockForClass:LGRViewController.class];
-	[[viewController expect] openPage:OCMOCK_ANY title:@"Home" args:@{} options:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
+	[[viewController expect] openPage:OCMOCK_ANY title:@"Home" args:@{} options:@{} parent:viewController success:OCMOCK_ANY fail:OCMOCK_ANY];
 
 	[[[(id)self.ligerPlugin stub] andReturn:viewController] ligerViewController];
 	
@@ -53,7 +53,7 @@
 - (void)testOpenDialog
 {
 	id viewController = [OCMockObject mockForClass:LGRViewController.class];
-	[[viewController expect] openDialog:OCMOCK_ANY title:nil args:@{} options:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
+	[[viewController expect] openDialog:OCMOCK_ANY title:nil args:@{} options:@{} parent:viewController success:OCMOCK_ANY fail:OCMOCK_ANY];
 
 	[[[(id)self.ligerPlugin stub] andReturn:viewController] ligerViewController];
 	
@@ -68,7 +68,7 @@
 - (void)testOpenDialogWithTitle
 {
 	id viewController = [OCMockObject mockForClass:LGRViewController.class];
-	[[viewController expect] openDialog:OCMOCK_ANY title:@"Home" args:@{} options:@{} success:OCMOCK_ANY fail:OCMOCK_ANY];
+	[[viewController expect] openDialog:OCMOCK_ANY title:@"Home" args:@{} options:@{} parent:viewController success:OCMOCK_ANY fail:OCMOCK_ANY];
 
 	[[[(id)self.ligerPlugin stub] andReturn:viewController] ligerViewController];
 	

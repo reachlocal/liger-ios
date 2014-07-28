@@ -30,7 +30,7 @@ var FIRSTPAGE = {
 		$("#openPage, #refreshPage, #toolbarPage, #openDialog, #openDialogWithTitle").unbind();
         
         $("#openPage").click(function(){
-			PAGE.openPage('Second Page', 'secondPage', {'test1': 'test2'}, {"right":{"button":"save"}});
+			PAGE.openPage('Second Page', 'secondPage', {'test1': 'test2'}, {});
 			return false;
         });
 
@@ -50,7 +50,7 @@ var FIRSTPAGE = {
 		});
 
 		$("#openDialogWithTitle").click(function(){
-			PAGE.openDialogWithTitle('Dialog Page', 'dialog', {'dialogtest3': 'dialogtest4'});
+			PAGE.openDialogWithTitle('Dialog Page', 'dialog', {'dialogtest3': 'dialogtest4'}, {"left":{"button":"cancel"}, "right":{"button":"done"}});
 			return false;
 		});
 		

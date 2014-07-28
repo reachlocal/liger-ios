@@ -58,6 +58,7 @@ NSData* testToken()
 
 	OCMVerifyAll(factory);
 	XCTAssertEqualObjects(dict[@"notification"][@"test"], @"yes", @"Couldn't find notification");
+	[factory stopMocking];
 }
 
 - (void)testDidRegisterForRemoteNotificationsWithDeviceToken
