@@ -144,48 +144,22 @@
 
 - (void)testClosePage
 {
-	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
-	
-	id mock = [OCMockObject mockForClass:UINavigationController.class];
-	[[[mock expect] ignoringNonObjectArgs] popViewControllerAnimated:YES];
-	[[[((id)liger) stub] andReturn:mock] navigationController];
-	
-	[liger closePage:nil success:^{} fail:^{}];
-	
-	XCTAssertNoThrow([mock verify], @"Verify failed");
+	id page = OCMPartialMock(self.liger);
+	id collection = OCMPartialMock([[LGRViewController alloc] init]);
+
+	OCMExpect([collection closePage:nil sourcePage:self.liger success:OCMOCK_ANY fail:OCMOCK_ANY]);
+	OCMStub([page collectionPage]).andReturn(collection);
+
+	[page closePage:nil success:^{} fail:^{}];
+
+	OCMVerifyAll(collection);
 }
 
-- (void)testClosePageInternalFail
+- (void)testClosePageWithSource
 {
-	id liger = OCMPartialMock(self.liger);
-	OCMStub([liger navigationController]).andReturn(nil);
+	id page = OCMPartialMock(self.liger);
 
-	__block BOOL failed = NO;
-
-	[liger closePage:nil success:^{} fail:^{
-		failed = YES;
-	}];
-
-	XCTAssertTrue(failed, @"fail() wasn't called.");
-}
-
-- (void)testClosePageRewind
-{
-	id liger = [OCMockObject partialMockForObject:self.liger];
-
-	id test2 = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test2" title:@"" args:@{} options:@{}]];
-	id test = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test" title:@"" args:@{} options:@{}]];
-
-	[[[liger stub] andReturn:test2] parentPage];
-	[[[test2 stub] andReturn:test] parentPage];
-
-	id mock = [OCMockObject mockForClass:UINavigationController.class];
-	[[[mock expect] ignoringNonObjectArgs] popToViewController:OCMOCK_ANY animated:YES];
-	[[[((id)liger) stub] andReturn:mock] navigationController];
-
-	[liger closePage:@"test" success:^{} fail:^{}];
-
-	XCTAssertNoThrow([mock verify], @"Verify failed");
+	[page closePage:nil sourcePage:nil success:^{} fail:^{}];
 }
 
 - (void)testOpenDialog
@@ -324,7 +298,7 @@
 
 - (void)testHandleAppOpenURL
 {
-	[self.liger handleAppOpenURL:[NSURL URLWithString:@"http://www.liger.com"]];
+	[self.liger handleAppOpenURL:[NSURL URLWithString:@"http://reachlocal.github.io/liger/"]];
 }
 
 @end

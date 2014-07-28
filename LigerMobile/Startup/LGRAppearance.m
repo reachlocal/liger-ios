@@ -47,12 +47,20 @@
 {
 	NSDictionary *appearance = [LGRApp appearance];
 
-	NSArray *systemVersion = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
-	if (systemVersion.count > 0 && [systemVersion[0] integerValue] >= 7) {
+	if ([self osMainVersion] >= 7) {
 		[self iOS7:appearance[@"iOS7"]];
 	} else {
 		[self iOS:appearance[@"iOS"]];
 	}
+}
+
++ (NSInteger)osMainVersion
+{
+	NSArray *systemVersion = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
+	if (systemVersion.count > 0)
+		return [systemVersion[0] integerValue];
+
+	return 0;
 }
 
 + (UIStatusBarStyle)statusBar

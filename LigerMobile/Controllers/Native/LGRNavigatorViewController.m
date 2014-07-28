@@ -75,6 +75,37 @@
 	success();
 }
 
+- (void)closePage:(NSString*)rewindTo sourcePage:(LGRViewController*)sourcePage success:(void (^)())success fail:(void (^)())fail
+{
+	if (!self.navigator) {
+		fail();
+		return;
+	}
+
+	if (rewindTo) {
+		LGRViewController *page = sourcePage.parentPage;
+
+		while (page) {
+			if ([page.page isEqualToString:rewindTo]) {
+				if ([[self.navigator popToViewController:page animated:YES] count]) {
+					success();
+				} else {
+					fail();
+				}
+				return;
+			}
+			page = page.parentPage;
+		}
+	} else if (self.navigator.topViewController == sourcePage) {
+		if ([self.navigator popViewControllerAnimated:YES]) {
+			success();
+			return;
+		}
+	}
+
+	fail();
+}
+
 - (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail
 {
 	UIViewController *new = [LGRPageFactory controllerForDialogPage:page title:title args:args options:options parent:parent];

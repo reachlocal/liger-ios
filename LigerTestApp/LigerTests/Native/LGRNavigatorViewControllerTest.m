@@ -113,6 +113,104 @@
 	XCTAssertTrue(failed, @"fail() wasn't called.");
 }
 
+- (void)testClosePage
+{
+	id navigator = OCMPartialMock(self.navigator);
+
+	id top = [[LGRViewController alloc] init];
+	id nav = OCMClassMock(UINavigationController.class);
+	OCMExpect([nav popViewControllerAnimated:YES]).andReturn(top);
+	OCMStub([navigator navigator]).andReturn(nav);
+	OCMStub([nav topViewController]).andReturn(top);
+
+	__block BOOL success = NO;
+	[navigator closePage:nil sourcePage:top success:^{
+		success = YES;
+	} fail:^{}];
+
+	OCMVerifyAll(nav);
+	XCTAssertTrue(success, @"Should have succeeded.");
+}
+
+- (void)testClosePageInternalFail1
+{
+	id navigator = OCMPartialMock(self.navigator);
+
+	id top = [[LGRViewController alloc] init];
+	id nav = OCMClassMock(UINavigationController.class);
+	OCMStub([navigator navigator]).andReturn(nav);
+	OCMStub([nav topViewController]).andReturn(nil);
+
+	__block BOOL fail = NO;
+	[navigator closePage:nil sourcePage:top success:^{} fail:^{
+		fail = YES;
+	}];
+
+	XCTAssertTrue(fail, @"Should have failed, not matching the top view.");
+}
+
+- (void)testClosePageInternalFail2
+{
+	id navigator = OCMPartialMock(self.navigator);
+
+	OCMStub([navigator navigator]).andReturn(nil);
+	id top = [[LGRViewController alloc] init];
+
+	__block BOOL fail = NO;
+	[navigator closePage:nil sourcePage:top success:^{} fail:^{
+		fail = YES;
+	}];
+
+	XCTAssertTrue(fail, @"Should have failed, no navigator.");
+}
+
+
+- (void)testClosePageRewind
+{
+	id navigator = OCMPartialMock(self.navigator);
+
+	id page1 = OCMPartialMock([[LGRViewController alloc] initWithPage:@"test1" title:@"" args:@{} options:@{}]);
+	id page2 = OCMPartialMock([[LGRViewController alloc] initWithPage:@"test2" title:@"" args:@{} options:@{}]);
+	id page3 = OCMPartialMock([[LGRViewController alloc] initWithPage:@"test3" title:@"" args:@{} options:@{}]);
+	[page2 setParentPage:page1];
+	[page3 setParentPage:page2];
+
+	id nav = OCMClassMock(UINavigationController.class);
+	NSArray *pages = @[page2, page3];
+	OCMExpect([nav popToViewController:page1 animated:YES]).andReturn(pages);
+	OCMStub([navigator navigator]).andReturn(nav);
+
+	__block BOOL success = NO;
+	[navigator closePage:@"test1" sourcePage:page3 success:^{
+		success = YES;
+	} fail:^{}];
+
+	OCMVerifyAll(nav);
+	XCTAssertTrue(success, @"Should have succeeded.");
+}
+
+- (void)testClosePageRewindInternalFail
+{
+	id navigator = OCMPartialMock(self.navigator);
+
+	id page1 = OCMPartialMock([[LGRViewController alloc] initWithPage:@"test1" title:@"" args:@{} options:@{}]);
+	id page2 = OCMPartialMock([[LGRViewController alloc] initWithPage:@"test2" title:@"" args:@{} options:@{}]);
+	id page3 = OCMPartialMock([[LGRViewController alloc] initWithPage:@"test3" title:@"" args:@{} options:@{}]);
+	[page2 setParentPage:page1];
+	[page3 setParentPage:page2];
+
+	id nav = OCMClassMock(UINavigationController.class);
+	OCMExpect([nav popToViewController:page1 animated:YES]).andReturn(nil);
+	OCMStub([navigator navigator]).andReturn(nav);
+
+	__block BOOL fail = NO;
+	[navigator closePage:@"test1" sourcePage:page3 success:^{} fail:^{
+		fail = YES;
+	}];
+
+	OCMVerifyAll(nav);
+	XCTAssertTrue(fail, @"Should have failed, popToViewController doesn't return an array.");
+}
 - (void)testOpenDialog
 {
 	id navigator = OCMPartialMock(self.navigator);

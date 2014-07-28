@@ -18,7 +18,7 @@
 
 + (UIViewController*)controllerForImportedPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent
 {
-	return [self controllerForImportedPage:page title:title args:args parent:parent serviceType:SLServiceTypeTencentWeibo];
+	return [self controllerForImportedPage:page title:title args:args options:options parent:parent serviceType:SLServiceTypeTencentWeibo];
 }
 
 @end

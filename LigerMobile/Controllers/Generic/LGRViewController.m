@@ -135,29 +135,12 @@
 
 - (void)closePage:(NSString*)rewindTo success:(void (^)())success fail:(void (^)())fail
 {
-	if (!self.navigationController) {
-		fail();
-		return;
-	}
-	
-	if (rewindTo) {
-		LGRViewController *page = self.parentPage;
-		
-		while (page) {
-			if ([page.page isEqualToString:rewindTo]) {
-				[self.navigationController popToViewController:page animated:YES];
-				success();
-				return;
-			}
-			page = page.parentPage;
-		}
-	} else {
-		[self.navigationController popViewControllerAnimated:YES];
-		success();
-		return;
-	}
-	
-	fail();
+	[self.collectionPage closePage:rewindTo sourcePage:self success:success fail:fail];
+}
+
+- (void)closePage:(NSString*)rewindTo sourcePage:(LGRViewController*)sourcePage success:(void (^)())success fail:(void (^)())fail
+{
+
 }
 
 - (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail

@@ -113,6 +113,26 @@
 - (void)closePage:(NSString*)rewindTo success:(void (^)())success fail:(void (^)())fail;
 
 /**
+ Closes the current page, and potentially several more pages if a rewindTo page name is supplied.
+
+ For example, if this stack contains:
+ home
+ detail
+ veryDetailed
+
+ And rewindTo is set to @"home" when calling closePage on veryDetailed, both veryDetailed and detailed will
+ be closed and home will be showing.
+
+ You can not close the root of the stack, so in the above example you can not close home.
+
+ @param rewindTo The name of the page to stop at, ignoring the current page. If nil close only this page.
+ @param sourcePage The originator of the close, for use with collection pages.
+ @param success This block will be called if the operation was successful.
+ @param fail This block will be called if something went wrong.
+ */
+- (void)closePage:(NSString*)rewindTo sourcePage:(LGRViewController*)sourcePage success:(void (^)())success fail:(void (^)())fail;
+
+/**
  Sends args to a parent page. Can be used for internal messaging. Will not replace the args of the destination
  page but rather have childUpdates: called with the args.
  

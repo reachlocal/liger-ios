@@ -9,6 +9,6 @@
 @class LGRViewController;
 
 @interface LGRSocialImported : NSObject
-+ (UIViewController*)controllerForImportedPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args parent:(LGRViewController*)parent serviceType:(NSString *)serviceType;
++ (UIViewController*)controllerForImportedPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent serviceType:(NSString *)serviceType;
 
 @end
