@@ -29,6 +29,7 @@
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.backgroundColor = UIColor.whiteColor;
 	self.window.rootViewController = [LGRPageFactory controllerForPage:LGRApp.root[@"page"] title:LGRApp.root[@"title"] args:args options:LGRApp.root[@"options"] parent:nil];
+
 	NSAssert(self.window.rootViewController, @"Root page '%@' not found.", LGRApp.root[@"page"]);
 	[self.window makeKeyAndVisible];
 	

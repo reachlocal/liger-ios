@@ -27,12 +27,32 @@
               "page": "navigator",
               "accessibilityLabel": "Menu2",
               "args": {
-                "title": "First Page",
-                "page": "firstPage",
-                "accessibilityLabel": "firstPage",
-                "args": {
-                  "hello": "world"
-                }
+              	"pages": [
+              	  {
+ 	                "title": "First Page",
+    	            "page": "firstPage",
+        	        "accessibilityLabel": "firstPage",
+                    "args": {
+                      "hello": "world"
+                    }
+                  },
+              	  {
+ 	                "title": "Second Page",
+    	            "page": "secondPage",
+        	        "accessibilityLabel": "secondPage",
+                    "args": {
+                      "hello": "world"
+                    }
+                  },
+              	  {
+ 	                "title": "Third Page",
+    	            "page": "thirdPage",
+        	        "accessibilityLabel": "thirdPage",
+                    "args": {
+                      "hello": "world"
+                    }
+                  }
+                  ]
               },
               "options": {
               	"cached": false
@@ -65,11 +85,11 @@
               "detail": "static detail",
               "page": "navigator",
               "accessibilityLabel": "Menu5",
+              "dialog": "true",
               "args": {
                 "page": "dialog",
                 "title": "Dialog Page",
-                "accessibilityLabel": "dialog",
-                "dialog": "true"
+                "accessibilityLabel": "dialog"
               }
             },
             {
@@ -77,11 +97,11 @@
               "detail": "static detail",
               "page": "navigator",
               "accessibilityLabel": "Menu6",
+              "dialog": "true",
               "args": {
                 "page": "nativePages",
                 "title": "Native Page",
-                "accessibilityLabel": "nativeDialog",
-                "dialog": "true"
+                "accessibilityLabel": "nativeDialog"
               }
             },
             {

@@ -101,9 +101,11 @@
 
 - (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail
 {
+	id cached = options[@"cached"];
+	BOOL useCache = [cached isKindOfClass:NSNumber.class] ? [cached boolValue] : YES;
 	NSString *reuseIdentifier = options[@"reuseIdentifier"];
 
-	LGRViewController *controller = self.pages[reuseIdentifier];
+	LGRViewController *controller = useCache ? self.pages[reuseIdentifier] : nil;
 	if (!controller) {
 		controller = [LGRPageFactory controllerForPage:page title:title args:args options:options parent:parent];
 		if (controller)

@@ -36,12 +36,6 @@
 	return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-	NSAssert(NO, @"Use initWithPage");
-	return nil;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

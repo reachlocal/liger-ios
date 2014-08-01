@@ -9,10 +9,6 @@
 #import "LGRViewController+UIImagePickerControllerDelegate.h"
 
 @implementation LGRViewController (UIImagePickerControllerDelegate)
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-{
-	
-}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -23,19 +19,12 @@
 	if (!url)
 		url = @"";
 
-	NSDictionary *metaData = info[UIImagePickerControllerMediaMetadata];
-	if (!metaData) {
-		metaData = @{};
-	}
-	
-	[self dismissViewControllerAnimated:YES completion:^{
-		[self dialogClosed:@{@"MediaType": info[UIImagePickerControllerMediaType], @"URL": url, @"MetaData": metaData}];
-	}];
-}
+	NSDictionary *metaData = info[UIImagePickerControllerMediaMetadata]? : @{};
+	NSString *type = info[UIImagePickerControllerMediaType] ?: @"";
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-	
+	[self dismissViewControllerAnimated:YES completion:^{
+		[self dialogClosed:@{@"MediaType": type, @"URL": url, @"MetaData": metaData}];
+	}];
 }
 
 @end

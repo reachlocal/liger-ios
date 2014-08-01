@@ -13,6 +13,7 @@
 #import "LGRAppDelegate.h"
 #import "LGRDrawerViewController.h"
 #import "LGRViewController.h"
+#import "LGRPageFactory.h"
 
 @interface LGRViewController()
 - (void)addButtons;
@@ -184,7 +185,13 @@
 - (void)testOpenDialogWithoutCollection
 {
 	id page = OCMPartialMock(self.liger);
-	OCMExpect([page presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY]);
+	OCMExpect([page presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY]).andDo(^(NSInvocation *invocation){
+		void (^completion)(void) = nil;
+		[invocation getArgument:&completion atIndex:4];
+
+		completion();
+	});
+
 	OCMStub([page collectionPage]).andReturn(nil);
 
 	[page openDialog:@"firstPage" title:@"First Page" args:@{} options:@{} parent:nil success:^{} fail:^{}];
@@ -192,6 +199,30 @@
 	OCMVerifyAll(page);
 }
 
+- (void)testOpenDialogWithoutCollectionAndFail
+{
+	id page = OCMPartialMock(self.liger);
+	id factory = OCMClassMock(LGRPageFactory.class);
+
+	OCMExpect([factory controllerForPage:OCMOCK_ANY title:OCMOCK_ANY args:OCMOCK_ANY options:OCMOCK_ANY parent:OCMOCK_ANY]).andReturn(nil);
+//	.andDo(^(NSInvocation * invocation){
+//		void* arg = nil;
+//		[invocation getArgument:&arg atIndex:4];
+//		NSDictionary *d = (NSDictionary*)(__bridge id)(arg);
+//		dict = d.copy;
+//	}).andReturn(self.delegate.rootPage);
+
+	OCMStub([page collectionPage]).andReturn(nil);
+
+	__block BOOL fail = NO;
+	[page openDialog:@"firstPage" title:@"First Page" args:@{} options:@{} parent:nil success:^{} fail:^{
+		fail = YES;
+	}];
+
+	[factory stopMocking];
+	OCMVerifyAll(factory);
+	XCTAssertTrue(fail, @"openDialog should fail.");
+}
 - (void)testCloseDialog
 {
 	id page = OCMPartialMock(self.liger);

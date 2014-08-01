@@ -25,7 +25,7 @@
     [super setUp];
 	self.navigator = [[LGRNavigatorViewController alloc] initWithPage:@"navigator"
 																title:@"Title"
-																 args:@{}
+																 args:@{@"page": @"firstPage"}
 															  options:@{}];
 }
 
@@ -49,7 +49,7 @@
 {
 	id navigator = [[LGRNavigatorViewController alloc] initWithPage:@"navigator"
 															  title:@"Title"
-															   args:@{}
+															   args:@{@"page": @"firstPage"}
 															options:@{}];
 
 	XCTAssertNotNil(navigator, @"Navigator failed to instatiate");
@@ -164,6 +164,23 @@
 	XCTAssertTrue(fail, @"Should have failed, no navigator.");
 }
 
+- (void)testClosePageInternalFail3
+{
+	id navigator = OCMPartialMock(self.navigator);
+
+	id top = [[LGRViewController alloc] init];
+	id nav = OCMClassMock(UINavigationController.class);
+	OCMStub([nav popViewControllerAnimated:YES]).andReturn(nil);
+	OCMStub([nav topViewController]).andReturn(top);
+	OCMStub([navigator navigator]).andReturn(nav);
+
+	__block BOOL fail = NO;
+	[navigator closePage:nil sourcePage:top success:^{} fail:^{
+		fail = YES;
+	}];
+
+	XCTAssertTrue(fail, @"Should have failed, no navigator.");
+}
 
 - (void)testClosePageRewind
 {

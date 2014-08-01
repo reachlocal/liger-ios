@@ -50,13 +50,6 @@
 	XCTAssertEqualObjects([LGRBrowserViewController nativePage], @"browser", @"LGRBrowserViewController page should be named browser");
 }
 
-- (void)testInitWithNibNameBundle
-{
-	XCTAssertThrows([[LGRBrowserViewController alloc] initWithNibName:@"" bundle:nil],
-					@"Should throw an exception as initWithPage is the correct way to init a browser.");
-
-}
-
 - (void)testViewDidLoad
 {
 	id browser = OCMPartialMock(self.browser);

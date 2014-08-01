@@ -148,6 +148,9 @@ BOOL native(NSMutableDictionary* pages, Class class)
 
 + (BOOL)hasHTMLPage:(NSString*)page
 {
+	if (!page)
+		return NO;
+
 	// TODO Replace with regex to make sure we open any protocol?
 	if ([page hasPrefix:@"http"])
 		return YES;

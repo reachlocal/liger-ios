@@ -33,7 +33,7 @@
 {
     [super setUp];
 
-	self.cordova = [[LGRCordovaViewController alloc] initWithPage:@"firstPage" title:@"title" args:@{}];
+	self.cordova = [[LGRCordovaViewController alloc] initWithPage:@"firstPage" title:@"title" args:@{} options:@{}];
 }
 
 - (void)tearDown

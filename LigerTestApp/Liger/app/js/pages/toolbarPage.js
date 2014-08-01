@@ -11,9 +11,9 @@ PAGE.childUpdates = function(args){
 	$('#args').append(JSON.stringify(args));
 }
 
-PAGE.toolbarItems = [{'iconText': 'First', 'callback':"alert('First');"},
-					 {'iconText': 'Second', 'callback':"alert('Second');"},
-					 {'iconText': 'Third', 'callback':"alert('Third');"}];
+PAGE.toolbarItems = [{'iconText': 'First', 'callback':"PAGE.args['tab'] = 'first'; TOOLBARPAGE.initialize();"},
+					 {'iconText': 'Second', 'callback':"PAGE.args['tab'] = 'second'; TOOLBARPAGE.initialize();"},
+					 {'iconText': 'Third', 'callback':"PAGE.args['tab'] = 'third'; TOOLBARPAGE.initialize();"}];
 
 var TOOLBARPAGE = {
 	initialize: function(){

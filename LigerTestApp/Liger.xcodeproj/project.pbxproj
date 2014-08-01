@@ -40,6 +40,8 @@
 		325991C11986C3240010DB7A /* LGRTwitterImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 325991C01986C3240010DB7A /* LGRTwitterImportedTest.m */; };
 		325991C31986C42A0010DB7A /* LGRTencentWeiboImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 325991C21986C42A0010DB7A /* LGRTencentWeiboImportedTest.m */; };
 		325991C51986C47A0010DB7A /* LGRSinaWeiboImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 325991C41986C47A0010DB7A /* LGRSinaWeiboImportedTest.m */; };
+		325991C7198B41E30010DB7A /* LGRImageImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 325991C6198B41E30010DB7A /* LGRImageImportedTest.m */; };
+		325991C9198B433F0010DB7A /* LGRViewController+UIImagePickerControllerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 325991C8198B433F0010DB7A /* LGRViewController+UIImagePickerControllerDelegateTest.m */; };
 		3281642F183A7A050059A464 /* LGRNativePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3281642D183A7A050059A464 /* LGRNativePagesViewController.m */; };
 		32816430183A7A050059A464 /* LGRNativePagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */; };
 		32AA814219019A56001EFAD5 /* LGRCordovaViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AA814119019A56001EFAD5 /* LGRCordovaViewControllerTest.m */; };
@@ -93,6 +95,8 @@
 		325991C01986C3240010DB7A /* LGRTwitterImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRTwitterImportedTest.m; sourceTree = "<group>"; };
 		325991C21986C42A0010DB7A /* LGRTencentWeiboImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRTencentWeiboImportedTest.m; sourceTree = "<group>"; };
 		325991C41986C47A0010DB7A /* LGRSinaWeiboImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRSinaWeiboImportedTest.m; sourceTree = "<group>"; };
+		325991C6198B41E30010DB7A /* LGRImageImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRImageImportedTest.m; sourceTree = "<group>"; };
+		325991C8198B433F0010DB7A /* LGRViewController+UIImagePickerControllerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LGRViewController+UIImagePickerControllerDelegateTest.m"; sourceTree = "<group>"; };
 		3281642C183A7A050059A464 /* LGRNativePagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = LGRNativePagesViewController.h; path = LigerViewControllers/LGRNativePagesViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3281642D183A7A050059A464 /* LGRNativePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRNativePagesViewController.m; path = LigerViewControllers/LGRNativePagesViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LGRNativePagesViewController.xib; path = LigerViewControllers/LGRNativePagesViewController.xib; sourceTree = "<group>"; };
@@ -244,11 +248,13 @@
 			children = (
 				3243043618F74D7000565E2E /* LGREmailImportedTest.m */,
 				32434A5E1986BF04001D8E2B /* LGRFacebookImportedTest.m */,
+				325991C6198B41E30010DB7A /* LGRImageImportedTest.m */,
 				3243043718F74D7000565E2E /* LGRMessageImportedTest.m */,
-				325991C01986C3240010DB7A /* LGRTwitterImportedTest.m */,
 				325991C41986C47A0010DB7A /* LGRSinaWeiboImportedTest.m */,
 				325991C21986C42A0010DB7A /* LGRTencentWeiboImportedTest.m */,
+				325991C01986C3240010DB7A /* LGRTwitterImportedTest.m */,
 				3243043818F74D7000565E2E /* LGRViewController+MessageUITest.m */,
+				325991C8198B433F0010DB7A /* LGRViewController+UIImagePickerControllerDelegateTest.m */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -470,6 +476,7 @@
 			files = (
 				325991C31986C42A0010DB7A /* LGRTencentWeiboImportedTest.m in Sources */,
 				3243045618F74D7000565E2E /* LGRAppTest.m in Sources */,
+				325991C9198B433F0010DB7A /* LGRViewController+UIImagePickerControllerDelegateTest.m in Sources */,
 				3243044F18F74D7000565E2E /* LGRMenuCell1Test.m in Sources */,
 				3243045518F74D7000565E2E /* LGRApperanceTest.m in Sources */,
 				3243045318F74D7000565E2E /* LGRBrowserViewControllerTest.m in Sources */,
@@ -477,6 +484,7 @@
 				3243044618F74D7000565E2E /* LGRLigerTest.m in Sources */,
 				32AA814219019A56001EFAD5 /* LGRCordovaViewControllerTest.m in Sources */,
 				3243045018F74D7000565E2E /* LGRMenuCell2Test.m in Sources */,
+				325991C7198B41E30010DB7A /* LGRImageImportedTest.m in Sources */,
 				32434A5F1986BF04001D8E2B /* LGRFacebookImportedTest.m in Sources */,
 				3243044718F74D7000565E2E /* LGRHTMLViewControllerTest.m in Sources */,
 				325991C51986C47A0010DB7A /* LGRSinaWeiboImportedTest.m in Sources */,

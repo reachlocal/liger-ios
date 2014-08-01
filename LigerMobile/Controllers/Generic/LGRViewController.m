@@ -67,19 +67,15 @@
 - (UIBarButtonItem*)buttonFromDictionary:(NSDictionary*)buttonInfo
 {
 	NSAssert([buttonInfo isKindOfClass:[NSDictionary class]], @"options should look as follows {'right':{'button':'done'}}");
-	NSString* buttonType = [buttonInfo objectForKey:@"button"];
-	UIBarButtonSystemItem buttonSystemItem = UIBarButtonSystemItemDone;
-	
-	if ([buttonType isEqualToString:@"done"]) {
-		buttonSystemItem = UIBarButtonSystemItemDone;
-	} else if ([buttonType isEqualToString:@"cancel"]) {
-		buttonSystemItem = UIBarButtonSystemItemCancel;
-	} else if ([buttonType isEqualToString:@"save"]) {
-		buttonSystemItem = UIBarButtonSystemItemSave;
-	} else if ([buttonType isEqualToString:@"search"]) {
-		buttonSystemItem = UIBarButtonSystemItemSearch;
-	}
-	
+
+	NSDictionary *lookup = @{@"done": @(UIBarButtonSystemItemDone),
+							 @"cancel": @(UIBarButtonSystemItemCancel),
+							 @"save": @(UIBarButtonSystemItemSave),
+							 @"search": @(UIBarButtonSystemItemSearch)};
+
+	NSNumber *n = lookup[[buttonInfo[@"button"] lowercaseString]];
+	UIBarButtonSystemItem buttonSystemItem = n ? n.integerValue : UIBarButtonSystemItemDone;
+
 	return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:buttonSystemItem target:self action:@selector(buttonAction:)];
 }
 
@@ -91,7 +87,7 @@
 
 - (void)buttonTapped:(NSDictionary*)button
 {
-	// Base method that is overwritten in LGRHTMLViewController
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -185,9 +181,9 @@
 				[menu resetApp];
 			}
 		} else {
-			NSAssert((self.parentPage && !self.collectionPage) || (!self.parentPage && self.collectionPage), @"Internal close dialog error");
-			[self.collectionPage dialogClosed:args];
-			[self.parentPage dialogClosed:args];
+			LGRViewController *page = self.collectionPage ?: self.parentPage;
+			NSAssert(page, @"Internal close dialog error");
+			[page dialogClosed:args];
 		}
 		success();
 	}];

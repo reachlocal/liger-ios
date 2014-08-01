@@ -114,6 +114,7 @@
 	XCTAssertTrue([LGRPageFactory hasHTMLPage:@"http://reachlocal.github.io/liger/"], @"http should be true");
 	XCTAssertTrue([LGRPageFactory hasHTMLPage:@"firstPage"], @"firstPage should be true");
 	XCTAssertFalse([LGRPageFactory hasHTMLPage:@"we_don't_have_a_page_called_this"], @"No page like that should be found");
+	XCTAssertFalse([LGRPageFactory hasHTMLPage:nil], @"No page like that should be found");
 }
 
 @end

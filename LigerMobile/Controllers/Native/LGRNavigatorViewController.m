@@ -11,7 +11,7 @@
 
 @interface LGRNavigatorViewController ()
 @property(nonatomic, strong) UINavigationController *navigator;
-@property(nonatomic, strong) LGRViewController *rootPage;
+//@property(nonatomic, strong) LGRViewController *rootPage;
 @end
 
 @implementation LGRNavigatorViewController
@@ -30,18 +30,33 @@
 					  nibName:@"LGRNavigatorViewController"
 					   bundle:nil];
 
-	self.rootPage = [LGRPageFactory controllerForPage:self.args[@"page"]
-												title:self.args[@"title"]
-												 args:self.args[@"args"]
-											  options:self.args[@"options"]
-											   parent:nil];
-	// If we can't create a root page, consider the navigator uncreatable as well.
-	if (!self.rootPage)
-		return nil;
+	if (self) {
+		NSMutableArray *pages = [NSMutableArray array];
 
-	self.rootPage.collectionPage = self;
-	self.navigator = [[UINavigationController alloc] initWithRootViewController:self.rootPage];
+		NSArray *pageArray = self.args[@"pages"] ?: @[self.args];
 
+		LGRViewController *controller = nil;
+		for (NSDictionary *page in pageArray) {
+			controller = [LGRPageFactory controllerForPage:page[@"page"]
+													 title:page[@"title"]
+													  args:page[@"args"]
+												   options:page[@"options"]
+													parent:controller];
+
+			controller.collectionPage = self;
+			if (controller)
+				[pages addObject:controller];
+		}
+
+		// If we can't create any pages, consider the navigator uncreatable as well.
+		if (pages.count == 0)
+			return nil;
+
+		self.navigator = [[UINavigationController alloc] init];
+		[self.navigator setViewControllers:pages animated:NO];
+
+		[self addChildViewController:self.navigator];
+	}
 	return self;
 }
 
@@ -49,7 +64,6 @@
 {
 	[super viewDidLoad];
 
-	[self addChildViewController:self.navigator];
 	[self.view addSubview:self.navigator.view];
 }
 
@@ -124,6 +138,13 @@
 - (void)dialogClosed:(NSDictionary*)args
 {
 	[self.parentPage dialogClosed:args];
+}
+
+- (LGRViewController*)rootPage
+{
+	UIViewController *controller = self.navigator.viewControllers.firstObject;
+	NSAssert([controller isKindOfClass:LGRViewController.class], @"Internal error");
+	return (LGRViewController*)controller;
 }
 
 - (LGRViewController*)topPage

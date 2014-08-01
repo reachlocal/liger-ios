@@ -12,7 +12,7 @@
 @property (nonatomic, assign) BOOL userCanRefresh;
 @property (nonatomic, strong) NSDictionary *args;
 
-- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args;
+- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options;
 
 - (void)dialogClosed:(NSDictionary*)args;
 - (void)childUpdates:(NSDictionary*)args;

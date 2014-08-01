@@ -20,7 +20,7 @@
 {
 	self = [super initWithPage:page title:title args:args options:options];
 	if (self) {
-		_cordova = [[LGRCordovaViewController alloc] initWithPage:page title:title args:args];
+		_cordova = [[LGRCordovaViewController alloc] initWithPage:page title:title args:args options:options];
 		[self addChildViewController:_cordova];
 	}
 	return self;

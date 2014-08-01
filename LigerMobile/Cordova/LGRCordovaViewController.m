@@ -20,7 +20,7 @@
 @implementation LGRCordovaViewController
 @synthesize userCanRefresh = _userCanRefresh;
 
-- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args
+- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options
 {
 	self = [super init];
 	if (self) {
