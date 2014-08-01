@@ -16,6 +16,14 @@
 @property (nonatomic, strong) NSArray *menuItems;
 @end
 
+NSDictionary* reuseOptions(NSDictionary* options, NSIndexPath* path) {
+	NSString *reuseIdentifier = [NSString stringWithFormat:@"Page %@ - %@", @(path.section), @(path.row)];
+	NSMutableDictionary *temp = options.mutableCopy ?: [NSMutableDictionary dictionaryWithCapacity:1];
+	temp[@"reuseIdentifier"] = reuseIdentifier;
+
+	return temp;
+}
+
 @implementation LGRAppMenuViewController
 
 - (id)initWithPage:(NSString *)page title:(NSString *)title args:(NSDictionary *)args options:(NSDictionary *)options
@@ -47,7 +55,7 @@
 		[self openPage:self.menuItems[0][0][@"page"]
 				 title:self.menuItems[0][0][@"name"]
 				  args:self.menuItems[0][0][@"args"]
-			   options:self.menuItems[0][0][@"options"]
+			   options:reuseOptions(self.menuItems[0][0][@"options"], [NSIndexPath indexPathForRow:0 inSection:0])
 				parent:nil
 			   success:^{}
 				  fail:^{}];
@@ -149,8 +157,9 @@
 		[self openPage:menuItem[@"page"]
 				 title:menuItem[@"title"]
 				  args:menuItem[@"args"]
-			   options:menuItem[@"options"]
-				parent:nil success:^{}
+			   options:reuseOptions(menuItem[@"options"], indexPath)
+				parent:nil
+			   success:^{}
 				  fail:^{}];
 	}
 	return;

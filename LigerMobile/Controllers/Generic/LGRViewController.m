@@ -145,13 +145,27 @@
 
 - (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail
 {
-	[self.collectionPage openDialog:page
-							  title:title
-							   args:args
-							options:options
-							 parent:parent
-							success:success
-							   fail:fail];
+	if (self.collectionPage) {
+		[self.collectionPage openDialog:page
+								  title:title
+								   args:args
+								options:options
+								 parent:parent
+								success:success
+								   fail:fail];
+	} else {
+		UIViewController *new = [LGRPageFactory controllerForDialogPage:page title:title args:args options:options parent:parent];
+
+		// Couldn't create a new view controller, possibly a broken plugin
+		if (!new) {
+			fail();
+			return;
+		}
+
+		[self presentViewController:new animated:YES completion:^{
+			success();
+		}];
+	}
 }
 
 - (void)closeDialog:(NSDictionary*)args success:(void (^)())success fail:(void (^)())fail

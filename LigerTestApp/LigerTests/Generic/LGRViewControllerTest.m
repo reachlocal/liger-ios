@@ -181,6 +181,17 @@
 	OCMVerifyAll(collection);
 }
 
+- (void)testOpenDialogWithoutCollection
+{
+	id page = OCMPartialMock(self.liger);
+	OCMExpect([page presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY]);
+	OCMStub([page collectionPage]).andReturn(nil);
+
+	[page openDialog:@"firstPage" title:@"First Page" args:@{} options:@{} parent:nil success:^{} fail:^{}];
+
+	OCMVerifyAll(page);
+}
+
 - (void)testCloseDialog
 {
 	id page = OCMPartialMock(self.liger);
@@ -198,7 +209,6 @@
 	id parent = OCMPartialMock([[LGRViewController alloc] init]);
 	OCMExpect([parent dialogClosed:nil]);
 	OCMStub([page parentPage]).andReturn(parent);
-
 
 	[page closeDialog:nil success:^{} fail:^{}];
 

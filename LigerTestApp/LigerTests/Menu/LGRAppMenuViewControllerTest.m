@@ -52,7 +52,7 @@
 - (void)testSelectionWithPage
 {
 	id menu = OCMPartialMock(self.menu);
-	OCMExpect([menu openPage:@"firstPage" title:@"First Page" args:@{@"hello": @"world"} options:nil parent:OCMOCK_ANY success:OCMOCK_ANY fail:OCMOCK_ANY]);
+	OCMExpect([menu openPage:@"firstPage" title:@"First Page" args:@{@"hello": @"world"} options:OCMOCK_ANY parent:OCMOCK_ANY success:OCMOCK_ANY fail:OCMOCK_ANY]);
 
 	[menu tableView:nil didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 	OCMVerifyAll(menu);

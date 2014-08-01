@@ -12,8 +12,6 @@
 @property (nonatomic, assign) BOOL userCanRefresh;
 @property (nonatomic, strong) NSDictionary *args;
 
-// LGRViewController
-
 - (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args;
 
 - (void)dialogClosed:(NSDictionary*)args;

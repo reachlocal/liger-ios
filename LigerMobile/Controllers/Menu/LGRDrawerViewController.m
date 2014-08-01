@@ -47,7 +47,7 @@
 
 + (NSString*)nativePage
 {
-	return @"Drawer";
+	return @"drawer";
 }
 
 - (void)addPage:(LGRViewController*)controller
@@ -101,16 +101,13 @@
 
 - (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail
 {
-	LGRViewController *controller = [self.pages objectForKey:page];
+	NSString *reuseIdentifier = options[@"reuseIdentifier"];
+
+	LGRViewController *controller = self.pages[reuseIdentifier];
 	if (!controller) {
-		NSDictionary *navigatorArgs = @{@"page" : page,
-										@"title" : title ?: @"",
-										@"args": args ?: @{},
-										@"options": options ?: @{}};
-
-		controller = [LGRPageFactory controllerForPage:@"navigator" title:nil args:navigatorArgs options:@{} parent:parent];
-
-		[self.pages setObject:controller forKey:page];
+		controller = [LGRPageFactory controllerForPage:page title:title args:args options:options parent:parent];
+		if (controller)
+			self.pages[reuseIdentifier] = controller;
 	}
 
 	// Couldn't create a new view controller

@@ -51,7 +51,7 @@
 
 - (void)testNativePage
 {
-	XCTAssertTrue([[LGRDrawerViewController nativePage] isEqualToString:@"Drawer"], @"Native page wasn't named DrawerPage");
+	XCTAssertTrue([[LGRDrawerViewController nativePage] isEqualToString:@"drawer"], @"Native page wasn't named DrawerPage");
 }
 
 - (void)testPushNotificationTokenUpdatedError
