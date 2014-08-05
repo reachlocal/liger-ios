@@ -1,6 +1,6 @@
 //
 //  LGRAppearance.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 1/11/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -11,7 +11,7 @@
 #import "LGRMenuCell2.h"
 
 #import "LGRDrawerViewController.h"
-#import "LGRMenuViewController.h"
+#import "LGRAppMenuViewController.h"
 #import "LGRApp.h"
 
 #import "UIColor+HTMLColors.h"
@@ -47,12 +47,20 @@
 {
 	NSDictionary *appearance = [LGRApp appearance];
 
-	NSArray *systemVersion = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
-	if (systemVersion.count > 0 && [systemVersion[0] integerValue] >= 7) {
+	if ([self osMainVersion] >= 7) {
 		[self iOS7:appearance[@"iOS7"]];
 	} else {
 		[self iOS:appearance[@"iOS"]];
 	}
+}
+
++ (NSInteger)osMainVersion
+{
+	NSArray *systemVersion = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
+	if (systemVersion.count > 0)
+		return [systemVersion[0] integerValue];
+
+	return 0;
 }
 
 + (UIStatusBarStyle)statusBar
@@ -107,25 +115,25 @@
 	[[UIWebView appearance] setBackgroundColor:[UIColor colorWithCSS:app[@"webBackground"]]];
 	
 	// Menu
-	[[UITableView appearanceWhenContainedIn:LGRMenuViewController.class, nil] setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-	[[UITableView appearanceWhenContainedIn:LGRMenuViewController.class, nil] setBackgroundColor:[UIColor colorWithCSS:app[@"menuBackground"]]];
+	[[UITableView appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+	[[UITableView appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setBackgroundColor:[UIColor colorWithCSS:app[@"menuBackground"]]];
 
 	// Menu1 cell colors
-	[[LGRMenuCell1 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setSelectionStyle:UITableViewCellSelectionStyleNone];
-	[[LGRMenuCell1 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenu1TextColor:[UIColor colorWithCSS:app[@"menu1Text"]]];
-	[[LGRMenuCell1 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenu1TextColorSelected:[UIColor colorWithCSS:app[@"menuSelected"]]];
+	[[LGRMenuCell1 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setSelectionStyle:UITableViewCellSelectionStyleNone];
+	[[LGRMenuCell1 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenu1TextColor:[UIColor colorWithCSS:app[@"menu1Text"]]];
+	[[LGRMenuCell1 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenu1TextColorSelected:[UIColor colorWithCSS:app[@"menuSelected"]]];
 
 	// Menu1 cell fonts
-	[[LGRMenuCell1 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenuNameFont:[UIFont boldSystemFontOfSize:22.0]];
+	[[LGRMenuCell1 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenuNameFont:[UIFont boldSystemFontOfSize:22.0]];
 	
 	// Menu2 cell colors
-	[[LGRMenuCell2 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setSelectionStyle:UITableViewCellSelectionStyleNone];
-	[[LGRMenuCell2 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenu2TextColorSelected:[UIColor colorWithCSS:app[@"menuSelected"]]];
-	[[LGRMenuCell2 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenu2TextColor:[UIColor colorWithCSS:app[@"menu2Text"]]];
+	[[LGRMenuCell2 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setSelectionStyle:UITableViewCellSelectionStyleNone];
+	[[LGRMenuCell2 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenu2TextColorSelected:[UIColor colorWithCSS:app[@"menuSelected"]]];
+	[[LGRMenuCell2 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenu2TextColor:[UIColor colorWithCSS:app[@"menu2Text"]]];
 	
 	// Menu2 cell fonts
-	[[LGRMenuCell2 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenuNameFont:[UIFont systemFontOfSize:22.0]];
-	[[LGRMenuCell2 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenuDetailFont:[UIFont systemFontOfSize:13.0]];
+	[[LGRMenuCell2 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenuNameFont:[UIFont systemFontOfSize:22.0]];
+	[[LGRMenuCell2 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenuDetailFont:[UIFont systemFontOfSize:13.0]];
 }
 
 + (void)iOS:(NSDictionary*)app
@@ -148,25 +156,25 @@
 	[[UIWebView appearance] setBackgroundColor:[UIColor colorWithCSS:app[@"webBackground"]]];
 	
 	// Menu
-	[[UITableView appearanceWhenContainedIn:LGRMenuViewController.class, nil] setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-	[[UITableView appearanceWhenContainedIn:LGRMenuViewController.class, nil] setBackgroundColor:[UIColor colorWithCSS:app[@"menuBackground"]]];
+	[[UITableView appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+	[[UITableView appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setBackgroundColor:[UIColor colorWithCSS:app[@"menuBackground"]]];
 
 	// Menu1 cell colors
-	[[LGRMenuCell1 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setSelectionStyle:UITableViewCellSelectionStyleNone];
-	[[LGRMenuCell1 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenu1TextColor:[UIColor colorWithCSS:app[@"menu1Text"]]];
-	[[LGRMenuCell1 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenu1TextColorSelected:[UIColor colorWithCSS:app[@"menuSelected"]]];
+	[[LGRMenuCell1 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setSelectionStyle:UITableViewCellSelectionStyleNone];
+	[[LGRMenuCell1 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenu1TextColor:[UIColor colorWithCSS:app[@"menu1Text"]]];
+	[[LGRMenuCell1 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenu1TextColorSelected:[UIColor colorWithCSS:app[@"menuSelected"]]];
 	
 	// Menu1 cell fonts
-	[[LGRMenuCell1 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenuNameFont:[UIFont boldSystemFontOfSize:22.0]];
+	[[LGRMenuCell1 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenuNameFont:[UIFont boldSystemFontOfSize:22.0]];
 	
 	// Menu2 cell colors
-	[[LGRMenuCell2 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setSelectionStyle:UITableViewCellSelectionStyleNone];
-	[[LGRMenuCell2 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenu2TextColorSelected:[UIColor colorWithCSS:app[@"menuSelected"]]];
-	[[LGRMenuCell2 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenu2TextColor:[UIColor colorWithCSS:app[@"menu2Text"]]];
+	[[LGRMenuCell2 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setSelectionStyle:UITableViewCellSelectionStyleNone];
+	[[LGRMenuCell2 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenu2TextColorSelected:[UIColor colorWithCSS:app[@"menuSelected"]]];
+	[[LGRMenuCell2 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenu2TextColor:[UIColor colorWithCSS:app[@"menu2Text"]]];
 	
 	// Menu2 cell fonts
-	[[LGRMenuCell2 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenuNameFont:[UIFont systemFontOfSize:22.0]];
-	[[LGRMenuCell2 appearanceWhenContainedIn:LGRMenuViewController.class, nil] setMenuDetailFont:[UIFont systemFontOfSize:13.0]];
+	[[LGRMenuCell2 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenuNameFont:[UIFont systemFontOfSize:22.0]];
+	[[LGRMenuCell2 appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setMenuDetailFont:[UIFont systemFontOfSize:13.0]];
 
 	// Toolbar
 	[[UIToolbar appearance] setBackgroundImage:[self gradientImageFrom:0xFFF4F4F4 to:0xFF9D9D9D]

@@ -1,6 +1,6 @@
 //
 //  LGRAppDelegate.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 1/11/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -29,6 +29,8 @@
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.backgroundColor = UIColor.whiteColor;
 	self.window.rootViewController = [LGRPageFactory controllerForPage:LGRApp.root[@"page"] title:LGRApp.root[@"title"] args:args options:LGRApp.root[@"options"] parent:nil];
+
+	NSAssert(self.window.rootViewController, @"Root page '%@' not found.", LGRApp.root[@"page"]);
 	[self.window makeKeyAndVisible];
 	
 	return YES;

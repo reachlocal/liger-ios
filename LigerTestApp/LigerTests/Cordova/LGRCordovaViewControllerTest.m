@@ -1,6 +1,6 @@
 //
 //  LGRCordovaViewControllerTest.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 4/18/14.
 //  Copyright (c) 2014 ReachLocal Inc. All rights reserved.
@@ -33,7 +33,7 @@
 {
     [super setUp];
 
-	self.cordova = [[LGRCordovaViewController alloc] initWithPage:@"firstPage" title:@"title" args:@{}];
+	self.cordova = [[LGRCordovaViewController alloc] initWithPage:@"firstPage" title:@"title" args:@{} options:@{}];
 }
 
 - (void)tearDown
@@ -65,7 +65,7 @@
 
 - (void)testDialogClosed
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 
 	[[cordova expect] addToQueue:OCMOCK_ANY];
 	[[cordova expect] executeQueue];
@@ -77,7 +77,7 @@
 
 - (void)testChildUpdates
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 
 	[[cordova expect] addToQueue:OCMOCK_ANY];
 	[[cordova expect] executeQueue];
@@ -87,9 +87,17 @@
 	XCTAssertNoThrow([cordova verify], @"childUpdates should push to queue");
 }
 
+- (void)testUserCanRefresh
+{
+	id cordova = OCMPartialMock(self.cordova);
+	[[cordova reject] parentViewController];
+
+	[cordova setUserCanRefresh:[cordova userCanRefresh]];
+}
+
 - (void)testRefresh
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 
 	[[cordova expect] refreshPage:YES];
 
@@ -100,7 +108,7 @@
 
 - (void)testRefreshPage
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 
 	[[cordova expect] addToQueue:OCMOCK_ANY];
 	[[cordova expect] executeQueue];
@@ -119,7 +127,7 @@
 
 - (void)testPushNotificationTokenUpdatedError
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 
 	[[cordova expect] addToQueue:OCMOCK_ANY];
 	[[cordova expect] executeQueue];
@@ -131,7 +139,7 @@
 
 - (void)testNotificationArrivedBackground
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 
 	[[cordova expect] addToQueue:OCMOCK_ANY];
 	[[cordova expect] executeQueue];
@@ -143,7 +151,7 @@
 
 - (void)testHandleAppOpenURL
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 
 	[[cordova expect] addToQueue:OCMOCK_ANY];
 	[[cordova expect] executeQueue];
@@ -155,7 +163,7 @@
 
 - (void)testButtonTapped
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 
 	[[cordova expect] addToQueue:OCMOCK_ANY];
 	[[cordova expect] executeQueue];
@@ -167,7 +175,7 @@
 
 - (void)testAddToQueue
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 	id mockArray = [OCMockObject partialMockForObject:[NSMutableArray array]];
 	[[mockArray expect] addObject:OCMOCK_ANY];
 
@@ -181,7 +189,7 @@
 
 - (void)testExecuteQueue
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 	[cordova addToQueue:@"Console.log('test');"];
 	[cordova setAcceptingJS:YES];
 

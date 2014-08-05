@@ -1,6 +1,6 @@
 //
 //  LGRCordovaViewController.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 2/21/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -11,9 +11,7 @@
 #import "LGRApp.h"
 #import "LGRPageFactory.h"
 
-@interface LGRCordovaViewController () {
-	LGRViewController *_ligerParent;
-}
+@interface LGRCordovaViewController ()
 @property (nonatomic, assign) BOOL toolbarHidden;
 @property (nonatomic, strong) NSMutableArray *evalQueue;
 @property (nonatomic, assign) BOOL acceptingJS;
@@ -22,7 +20,7 @@
 @implementation LGRCordovaViewController
 @synthesize userCanRefresh = _userCanRefresh;
 
-- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args
+- (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options
 {
 	self = [super init];
 	if (self) {

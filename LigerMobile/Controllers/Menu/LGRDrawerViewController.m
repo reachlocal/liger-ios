@@ -1,6 +1,6 @@
 //
 //  LGRDrawerViewController.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 2/20/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -10,8 +10,7 @@
 #import "LGRPageFactory.h"
 #import "LGRViewController.h"
 
-#import "LGRMenuCell1.h"
-#import "LGRMenuCell2.h"
+#import "LGRNavigatorViewController.h"
 
 #import "LGRAppearance.h"
 #import "LGRApp.h"
@@ -30,7 +29,7 @@
 @property (nonatomic, strong) UIPanGestureRecognizer *openGesture;
 @property (nonatomic, strong) UIPanGestureRecognizer *closeGesture;
 @property (nonatomic, strong) NSMutableDictionary *pages;
-@property (nonatomic, strong) LGRMenuViewController *menu;
+@property (nonatomic, strong) LGRViewController *menu;
 @end
 
 @implementation LGRDrawerViewController
@@ -48,54 +47,30 @@
 
 + (NSString*)nativePage
 {
-	return @"Drawer";
+	return @"drawer";
 }
 
-- (void)addPage:(UIViewController *)controller
+- (void)addPage:(LGRViewController*)controller
 {
-	UIViewController *page = ((UINavigationController*)controller).viewControllers[0];
-	page.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
-																			 style:UIBarButtonItemStylePlain
-																			target:self
-																			action:@selector(displayMenu:)];
+	if ([controller isKindOfClass:LGRNavigatorViewController.class]) {
+		LGRNavigatorViewController *navigator = (LGRNavigatorViewController*)controller;
+		LGRViewController *page = navigator.rootPage;
+		page.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+																				 style:UIBarButtonItemStylePlain
+																				target:self
+																				action:@selector(displayMenu:)];
+
+		[navigator.navigationBar addGestureRecognizer:self.openGesture];
+	}
 	[self addChildViewController:controller];
 	[self.view addSubview:controller.view];
-	[((UINavigationController*)controller).navigationBar addGestureRecognizer:self.openGesture];
 }
 
 - (void)addMenuController
 {
+	self.menu = [LGRPageFactory controllerForPage:self.args[@"page"] title:self.args[@"title"] args:self.args[@"args"] options:self.args[@"options"] parent:nil];
+	self.menu.collectionPage = self;
 
-	self.menu = [LGRPageFactory controllerForMenuPage:self.args[@"page"] title:self.args[@"title"] args:self.args[@"args"] options:self.args[@"options"]];
-	self.menu.pages = self.pages;
-
-	__weak LGRDrawerViewController *me = self;
-
-	self.menu.displayController = ^(UIViewController *controller) {
-		if (![me pageController]) {
-			[me addPage:controller];
-			controller.view.frame = me.view.bounds;
-			return;
-		}
-		
-		if (controller == [me pageController]) {
-			[me toggleMenu];
-			return;
-		}
-		
-		[me addPage:controller];
-		controller.view.frame = CGRectOffset(me.view.bounds, me.view.bounds.size.width, 0);
-		
-		id top = ((UINavigationController*)controller).topViewController;
-		[top refreshPage:NO];
-		
-		[me fromRight:controller old:[me pageController]];
-	};
-	
-	self.menu.displayDialog = ^{
-		[me toggleMenu];
-	};
-	
 	[self addChildViewController:self.menu];
 	[self.view addSubview:self.menu.view];
 	[self.view sendSubviewToBack:self.menu.view];
@@ -110,11 +85,6 @@
 	[self addMenuController];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 - (void)resetApp
 {
 	[self.pages removeAllObjects];
@@ -125,6 +95,71 @@
 	}
 	
 	[self addMenuController];
+}
+
+#pragma mark - LGRViewController
+
+- (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail
+{
+	id cached = options[@"cached"];
+	BOOL useCache = [cached isKindOfClass:NSNumber.class] ? [cached boolValue] : YES;
+	NSString *reuseIdentifier = options[@"reuseIdentifier"];
+
+	LGRViewController *controller = useCache ? self.pages[reuseIdentifier] : nil;
+	if (!controller) {
+		controller = [LGRPageFactory controllerForPage:page title:title args:args options:options parent:parent];
+		if (controller)
+			self.pages[reuseIdentifier] = controller;
+	}
+
+	// Couldn't create a new view controller
+	if (!controller) {
+		fail();
+		return;
+	}
+
+	[self displayController:controller];
+	success();
+}
+
+- (void)displayController:(LGRViewController*)controller {
+	if (![self pageController]) {
+		[self addPage:controller];
+		controller.view.frame = self.view.bounds;
+		return;
+	}
+
+	if (controller == [self pageController]) {
+		[self toggleMenu];
+		return;
+	}
+
+	[self addPage:controller];
+	controller.view.frame = CGRectOffset(self.view.bounds, self.view.bounds.size.width, 0);
+
+	if ([controller isKindOfClass:LGRNavigatorViewController.class]) {
+		LGRViewController *top = ((LGRNavigatorViewController*)controller).topPage;
+		[top refreshPage:NO];
+	}
+
+	[self fromRight:controller old:[self pageController]];
+};
+
+- (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail
+{
+	UIViewController *new = [LGRPageFactory controllerForDialogPage:page title:title args:args options:options parent:parent];
+
+	// Couldn't create a new view controller, possibly a broken plugin
+	if (!new) {
+		fail();
+		return;
+	}
+
+	__weak LGRDrawerViewController *me = self;
+	[self presentViewController:new animated:YES completion:^{
+		success();
+		[me toggleMenu];
+	}];
 }
 
 #pragma mark - menu
@@ -302,24 +337,24 @@
 
 - (void)userInteractionEnabled:(BOOL)enabled controller:(UIViewController*)controller
 {
-	if (![controller isKindOfClass:UINavigationController.class])
+	if (![controller isKindOfClass:LGRNavigatorViewController.class])
 		return;
 	
-	UINavigationController *nav = (UINavigationController*)controller;
+	LGRNavigatorViewController *navigator = (LGRNavigatorViewController*)controller;
 	
-	UIViewController *viewController = nav.topViewController;
+	LGRViewController *viewController = navigator.topPage;
 	viewController.view.userInteractionEnabled = enabled;
 	
 	if (enabled) {
-		[nav.navigationBar addGestureRecognizer:self.openGesture];
-		[nav.view removeGestureRecognizer:self.closeGesture];
+		[navigator.navigationBar addGestureRecognizer:self.openGesture];
+		[navigator.view removeGestureRecognizer:self.closeGesture];
 	} else {
-		[nav.navigationBar removeGestureRecognizer:self.openGesture];
-		[nav.view addGestureRecognizer:self.closeGesture];
+		[navigator.navigationBar removeGestureRecognizer:self.openGesture];
+		[navigator.view addGestureRecognizer:self.closeGesture];
 	}
 }
 
-- (UINavigationController*)pageController
+- (LGRViewController*)pageController
 {
 	if(self.childViewControllers.count < 2)
 		return nil;

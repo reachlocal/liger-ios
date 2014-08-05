@@ -1,6 +1,6 @@
 //
 //  LGRDrawerViewControllerTest.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 11/25/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -9,7 +9,6 @@
 @import XCTest;
 
 #import "LGRDrawerViewController.h"
-#import "LGRMenuViewController.h"
 #import "LGRPageFactory.h"
 #import "LGRApp.h"
 
@@ -17,7 +16,7 @@
 
 
 @interface LGRDrawerViewController ()
-@property (nonatomic, strong) LGRMenuViewController *menu;
+@property (nonatomic, strong) LGRViewController *menu;
 @end
 
 @interface LGRDrawerViewControllerTest : XCTestCase
@@ -52,7 +51,7 @@
 
 - (void)testNativePage
 {
-	XCTAssertTrue([[LGRDrawerViewController nativePage] isEqualToString:@"Drawer"], @"Native page wasn't named DrawerPage");
+	XCTAssertTrue([[LGRDrawerViewController nativePage] isEqualToString:@"drawer"], @"Native page wasn't named DrawerPage");
 }
 
 - (void)testPushNotificationTokenUpdatedError

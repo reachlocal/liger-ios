@@ -1,6 +1,6 @@
 //
 //  LGRHTMLViewController.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 11/18/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -20,7 +20,7 @@
 {
 	self = [super initWithPage:page title:title args:args options:options];
 	if (self) {
-		_cordova = [[LGRCordovaViewController alloc] initWithPage:page title:title args:args];
+		_cordova = [[LGRCordovaViewController alloc] initWithPage:page title:title args:args options:options];
 		[self addChildViewController:_cordova];
 	}
 	return self;

@@ -1,6 +1,6 @@
 //
 //  LGREmailImportedTest.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 12/5/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -25,7 +25,7 @@
 
 - (void)testCreationParameters
 {
-	NSDictionary *args = @{@"toRecipients": @"foo@bar.com, bar@foo.com", @"subject" : @"tests"};
+	NSDictionary *args = @{@"toRecipients": @"foo@bar.com, bar@foo.com", @"subject": @"tests", @"body": @"This is some test"};
 	
 	MFMailComposeViewController *email = (MFMailComposeViewController*)[LGREmailImported controllerForImportedPage:nil title:nil args:args options:@{} parent:nil];
 	XCTAssertNotNil(email, @"LGREmailImported failed to create a page.");

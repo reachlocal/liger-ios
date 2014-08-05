@@ -1,6 +1,6 @@
 //
 //  LGRHTMLViewControllerTest.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 11/26/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -38,7 +38,7 @@
 	XCTAssertEqual(liger.page, @"testPage", @"Page name is wrong");
 	XCTAssertEqual(liger.title, @"Test Title", @"Title is wrong");
 	XCTAssertEqualObjects(liger.args, args, @"Args are wrong");
-	XCTAssertNil(liger.ligerParent, @"Parent shouldn't be set");
+	XCTAssertNil(liger.parentPage, @"Parent shouldn't be set");
 	XCTAssertFalse(liger.userCanRefresh, @"User refresh should be false as default");
 }
 
