@@ -157,4 +157,19 @@
 {
 	return self.navigator.navigationBar;
 }
+
+- (void)pushNotificationTokenUpdated:(NSString *)token error:(NSError *)error
+{
+	[self.rootPage pushNotificationTokenUpdated:token error:error];
+}
+
+- (void)notificationArrived:(NSDictionary *)userInfo background:(BOOL)background
+{
+	[self.rootPage notificationArrived:userInfo background:background];
+}
+
+- (void)handleAppOpenURL:(NSURL*)url
+{
+	[self.rootPage handleAppOpenURL:url];
+}
 @end

@@ -271,4 +271,43 @@
 	OCMVerifyAll(page);
 }
 
+- (void)testPushNotificationTokenUpdatedError
+{
+	id rootPage = OCMPartialMock(self.navigator.rootPage);
+	OCMExpect([rootPage pushNotificationTokenUpdated:OCMOCK_ANY error:OCMOCK_ANY]);
+
+	id navigator = OCMPartialMock(self.navigator);
+	OCMStub([navigator rootPage]).andReturn(rootPage);
+
+	[navigator pushNotificationTokenUpdated:nil error:nil];
+
+	OCMVerifyAll(rootPage);
+}
+
+- (void)testNotificationArrivedBackground
+{
+	id rootPage = OCMPartialMock(self.navigator.rootPage);
+	OCMExpect([rootPage notificationArrived:OCMOCK_ANY background:NO]);
+
+	id navigator = OCMPartialMock(self.navigator);
+	OCMStub([navigator rootPage]).andReturn(rootPage);
+
+	[navigator notificationArrived:@{} background:NO];
+
+	OCMVerifyAll(rootPage);
+}
+
+- (void)testHandleAppOpenURL
+{
+	id rootPage = OCMPartialMock(self.navigator.rootPage);
+	OCMExpect([rootPage handleAppOpenURL:[NSURL URLWithString:@"http://reachlocal.github.io/liger"]]);
+
+	id navigator = OCMPartialMock(self.navigator);
+	OCMStub([navigator rootPage]).andReturn(rootPage);
+
+	[navigator handleAppOpenURL:[NSURL URLWithString:@"http://reachlocal.github.io/liger"]];
+
+	OCMVerifyAll(rootPage);
+}
+
 @end
