@@ -177,8 +177,8 @@
 		if ([args[@"resetApp"] boolValue]) {
 			LGRViewController *rootPage = [((LGRAppDelegate*)[[UIApplication sharedApplication] delegate]) rootPage];
 			if ([rootPage isKindOfClass:LGRDrawerViewController.class]) {
-				LGRDrawerViewController *menu = (LGRDrawerViewController*)rootPage;
-				[menu resetApp];
+				LGRDrawerViewController *drawer = (LGRDrawerViewController*)rootPage;
+				[drawer resetApp];
 			}
 		} else {
 			LGRViewController *page = self.collectionPage ?: self.parentPage;

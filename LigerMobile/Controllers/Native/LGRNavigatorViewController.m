@@ -11,7 +11,6 @@
 
 @interface LGRNavigatorViewController ()
 @property(nonatomic, strong) UINavigationController *navigator;
-//@property(nonatomic, strong) LGRViewController *rootPage;
 @end
 
 @implementation LGRNavigatorViewController
