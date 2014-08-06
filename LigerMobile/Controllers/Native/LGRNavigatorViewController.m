@@ -22,12 +22,10 @@
 
 - (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options
 {
-	self = [self initWithPage:page
+	self = [super initWithPage:page
 						title:title
 						 args:args
-					  options:options
-					  nibName:@"LGRNavigatorViewController"
-					   bundle:nil];
+					  options:options];
 
 	if (self) {
 		NSMutableArray *pages = [NSMutableArray array];
@@ -63,7 +61,11 @@
 {
 	[super viewDidLoad];
 
-	[self.view addSubview:self.navigator.view];
+	self.view.backgroundColor = UIColor.greenColor;
+
+	UIView *navigatorview = self.navigator.view;
+	navigatorview.frame = self.view.bounds;
+	[self.view addSubview:navigatorview];
 }
 
 - (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail
