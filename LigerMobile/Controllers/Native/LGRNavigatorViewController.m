@@ -61,8 +61,6 @@
 {
 	[super viewDidLoad];
 
-	self.view.backgroundColor = UIColor.greenColor;
-
 	UIView *navigatorview = self.navigator.view;
 	navigatorview.frame = self.view.bounds;
 	[self.view addSubview:navigatorview];
