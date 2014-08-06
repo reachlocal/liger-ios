@@ -61,9 +61,9 @@
 {
 	[super viewDidLoad];
 
-	UIView *navigatorview = self.navigator.view;
-	navigatorview.frame = self.view.bounds;
-	[self.view addSubview:navigatorview];
+	UIView *navigatorView = self.navigator.view;
+	navigatorView.frame = self.view.bounds;
+	[self.view addSubview:navigatorView];
 }
 
 - (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail
