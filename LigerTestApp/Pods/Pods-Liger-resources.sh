@@ -44,7 +44,6 @@ install_resource()
 install_resource "../../LigerMobile/Controllers/Menu/AppMenu/LGRAppMenuViewController.xib"
 install_resource "../../LigerMobile/Controllers/Menu/LGRSlideViewController.xib"
 install_resource "../../LigerMobile/Controllers/Native/LGRBrowserViewController.xib"
-install_resource "../../LigerMobile/Controllers/Native/LGRNavigatorViewController.xib"
 install_resource "../../LigerMobile/Images/icn-back-active.png"
 install_resource "../../LigerMobile/Images/icn-back-active@2x.png"
 install_resource "../../LigerMobile/Images/icn-back.png"
