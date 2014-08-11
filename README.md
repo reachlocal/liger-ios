@@ -1,4 +1,4 @@
-# Liger iOS [![Build Status](https://api.travis-ci.org/reachlocal/liger-ios.png)](https://travis-ci.org/reachlocal/liger-ios)
+# Liger iOS [![Build Status](https://travis-ci.org/reachlocal/liger-ios.svg?branch=master)](https://travis-ci.org/reachlocal/liger-ios)
 
 For more information about developing apps with Liger Mobile go to the main [Liger Mobile repo](https://github.com/reachlocal/liger).
 
