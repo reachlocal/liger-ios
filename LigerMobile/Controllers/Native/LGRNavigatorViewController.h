@@ -8,8 +8,9 @@
 //
 
 #import "LGRViewController.h"
+#import "LGRDrawerViewController.h"
 
-@interface LGRNavigatorViewController : LGRViewController
+@interface LGRNavigatorViewController : LGRViewController <LGRDrawerViewControllerDelegate>
 @property(readonly) LGRViewController *rootPage;
 @property(readonly) LGRViewController *topPage;
 @property(nonatomic,readonly) UINavigationBar *navigationBar;
