@@ -12,24 +12,38 @@
 - (void)resetApp;
 @end
 
-// This protocol can be used for any view controller that can be contained
-// in a drawer view controller. Implementing these methods will allow the
-// user to slide the menu in and out, as if it were a drawer.
+/** @name Protocol: LGRDrawerViewControllerDelegate */
+
+/**
+ * This protocol can be used for any view controller that can be contained
+ * in a drawer view controller. Implementing these methods will allow the
+ * user to slide the menu in and out, as if it were a drawer.
+ */
 @protocol LGRDrawerViewControllerDelegate
-// Setter for menu button and open/close gestures.
-// This function should only be called once!
-// closeGesture is allowed to be nil.
+/** 
+ * Setter for menu button and open/close gestures.
+ *
+ * @param button The button that opens the drawer.
+ * @param menuBarGesture The gesture to open the drawer using the menu bar.
+ * @param openGesture The gesture to open the drawer using the view.
+ * @param closeGesture The gesture to close the drawer. Can be passed in as nil.
+ */
 - (void)setMenuButton:(UIBarButtonItem *)button
        menuBarGesture:(UIPanGestureRecognizer *)menuBarGesture
           OpenGesture:(UIPanGestureRecognizer *)openGesture
          closeGesture:(UIPanGestureRecognizer *)closeGesture;
 
-// Add gestures to the view.
-// This should be called whenever a new page comes into view.
+/** 
+ * Adds gestures to the view controller.
+ */
 - (void)useGestures;
 
-// Enable or disable user interaction with the view controller while the
-// drawer is closed or open. Also, add or remove gestures depending on
-// whether the drawer is closed or open.
+/**
+ * Enables or disables user interaction with the view while the drawer is
+ * being opened or closed. Also adds and removes gestures depending upon the 
+ * state of the drawer.
+ *
+ * @param enabled The boolean stating if user interaction is enabled.
+ */
 - (void)userInteractionEnabled:(BOOL)enabled;
 @end

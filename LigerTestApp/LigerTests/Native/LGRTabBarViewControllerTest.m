@@ -22,23 +22,23 @@
 
 - (void)setUp
 {
-    [super setUp];
-    NSDictionary *pageOne = @{@"page": @"firstPage", @"title": @"First Page"};
-    NSDictionary *pageTwo = @{@"page": @"secondPage", @"title": @"Second Page"};
-    
-    NSDictionary *navigatorOne = @{@"page": @"navigator", @"title": @"Navigator One", @"args": pageOne};
-    NSDictionary *navigatorTwo = @{@"page": @"navigator", @"title": @"Navigator Two", @"args": @{@"pages": @[pageOne, pageTwo]}};
-    
-    self.tab = [[LGRTabBarViewController alloc] initWithPage: @"tab"
-                                                       title: @"Test"
-                                                        args: @{@"pages": @[navigatorOne, navigatorTwo]}
-                                                     options: @{}];
+	[super setUp];
+	NSDictionary *pageOne = @{@"page": @"firstPage", @"title": @"First Page"};
+	NSDictionary *pageTwo = @{@"page": @"secondPage", @"title": @"Second Page"};
+
+	NSDictionary *navigatorOne = @{@"page": @"navigator", @"title": @"Navigator One", @"args": pageOne};
+	NSDictionary *navigatorTwo = @{@"page": @"navigator", @"title": @"Navigator Two", @"args": @{@"pages": @[pageOne, pageTwo]}};
+
+	self.tab = [[LGRTabBarViewController alloc] initWithPage: @"tab"
+													   title: @"Test"
+														args: @{@"pages": @[navigatorOne, navigatorTwo]}
+													 options: @{}];
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+	// Put teardown code here. This method is called after the invocation of each test method in the class.
+	[super tearDown];
 }
 
 - (void)testInit
@@ -48,44 +48,44 @@
 
 - (void)testNativePage
 {
-    XCTAssertEqualObjects([LGRTabBarViewController nativePage], @"tab", @"Name of page changed");
+	XCTAssertEqualObjects([LGRTabBarViewController nativePage], @"tab", @"Name of page changed");
 }
 
 - (void)testInitWithPage
 {
-    NSDictionary *pageOne = @{@"page": @"firstPage", @"title": @"First Page"};
-    NSDictionary *pageTwo = @{@"page": @"secondPage", @"title": @"Second Page"};
-    
-    NSDictionary *navigatorOne = @{@"page": @"navigator", @"title": @"Navigator One", @"args": pageOne};
-    NSDictionary *navigatorTwo = @{@"page": @"navigator", @"title": @"Navigator Two", @"args": @{@"pages": @[pageOne, pageTwo]}};
-    
-    id tab = [[LGRTabBarViewController alloc] initWithPage: @"tab"
-                                                     title: @"Test"
-                                                      args: @{@"pages": @[navigatorOne, navigatorTwo]}
-                                                   options: @{}];
-    
-    XCTAssertNotNil(tab, @"Tab failed to instatiate");
+	NSDictionary *pageOne = @{@"page": @"firstPage", @"title": @"First Page"};
+	NSDictionary *pageTwo = @{@"page": @"secondPage", @"title": @"Second Page"};
+
+	NSDictionary *navigatorOne = @{@"page": @"navigator", @"title": @"Navigator One", @"args": pageOne};
+	NSDictionary *navigatorTwo = @{@"page": @"navigator", @"title": @"Navigator Two", @"args": @{@"pages": @[pageOne, pageTwo]}};
+
+	id tab = [[LGRTabBarViewController alloc] initWithPage: @"tab"
+													 title: @"Test"
+													  args: @{@"pages": @[navigatorOne, navigatorTwo]}
+												   options: @{}];
+
+	XCTAssertNotNil(tab, @"Tab failed to instatiate");
 }
 
 - (void)testViewDidLoad
 {
-    id tab = OCMPartialMock(self.tab);
-    
-    [tab viewDidLoad];
-    
-    XCTAssertNotNil([tab tab], @"No tab created");
+	id tab = OCMPartialMock(self.tab);
+
+	[tab viewDidLoad];
+
+	XCTAssertNotNil([tab tab], @"No tab created");
 }
 
 - (void)testPushNotificationTokenUpdatedError
 {
 	id rootPage = OCMPartialMock(self.tab.rootPage);
 	OCMExpect([rootPage pushNotificationTokenUpdated:OCMOCK_ANY error:OCMOCK_ANY]);
-    
+
 	id tab = OCMPartialMock(self.tab);
 	OCMStub([tab rootPage]).andReturn(rootPage);
-    
+
 	[tab pushNotificationTokenUpdated:nil error:nil];
-    
+
 	OCMVerifyAll(rootPage);
 }
 
@@ -93,12 +93,12 @@
 {
 	id rootPage = OCMPartialMock(self.tab.rootPage);
 	OCMExpect([rootPage notificationArrived:OCMOCK_ANY background:NO]);
-    
+
 	id tab = OCMPartialMock(self.tab);
 	OCMStub([tab rootPage]).andReturn(rootPage);
-    
+
 	[tab notificationArrived:@{} background:NO];
-    
+
 	OCMVerifyAll(rootPage);
 }
 
@@ -106,12 +106,12 @@
 {
 	id rootPage = OCMPartialMock(self.tab.rootPage);
 	OCMExpect([rootPage handleAppOpenURL:[NSURL URLWithString:@"http://reachlocal.github.io/liger"]]);
-    
+
 	id tab = OCMPartialMock(self.tab);
 	OCMStub([tab rootPage]).andReturn(rootPage);
-    
+	
 	[tab handleAppOpenURL:[NSURL URLWithString:@"http://reachlocal.github.io/liger"]];
-    
+	
 	OCMVerifyAll(rootPage);
 }
 
