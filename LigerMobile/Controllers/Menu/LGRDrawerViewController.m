@@ -52,17 +52,15 @@
 
 - (void)addPage:(LGRViewController*)controller
 {
-	LGRViewController<LGRDrawerViewControllerDelegate> *page = (LGRViewController<LGRDrawerViewControllerDelegate> *)controller;
-	UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
-															   style:UIBarButtonItemStylePlain
-															  target:self
-															  action:@selector(displayMenu:)];
-
-
-	if ([page conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+	if ([controller conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(displayMenu:)];
+        id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) controller;
 		[page setMenuButton:button
 			 menuBarGesture:self.menuBarGesture
-				OpenGesture:self.openGesture
+				openGesture:self.openGesture
 			   closeGesture:self.closeGesture];
 		[page useGestures];
 	}
@@ -337,9 +335,8 @@
 
 - (void)userInteractionEnabled:(BOOL)enabled controller:(UIViewController*)controller
 {
-	LGRViewController<LGRDrawerViewControllerDelegate> *page = (LGRViewController<LGRDrawerViewControllerDelegate> *)controller;
-	
-	if ([page conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+	if ([controller conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+        id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) controller;
 		[page userInteractionEnabled:enabled];
 	} else {
 		return;

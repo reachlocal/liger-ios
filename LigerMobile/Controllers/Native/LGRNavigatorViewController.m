@@ -1,6 +1,6 @@
 //
 //  LGRNavigatorViewController.m
-//  Pods
+//  LigerMobile
 //
 //  Created by John Gustafsson on 7/22/14.
 //  Copyright (c) 2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -8,8 +8,9 @@
 
 #import "LGRNavigatorViewController.h"
 #import "LGRPageFactory.h"
+#import "LGRDrawerViewController.h"
 
-@interface LGRNavigatorViewController ()
+@interface LGRNavigatorViewController () <LGRDrawerViewControllerDelegate>
 @property(nonatomic, strong) UINavigationController *navigator;
 @property(nonatomic, strong) UIPanGestureRecognizer *menuBarGesture;
 @property(nonatomic, strong) UIPanGestureRecognizer *openGesture;
@@ -176,10 +177,10 @@
 	[self.rootPage handleAppOpenURL:url];
 }
 
-// The following functions are required to comply with the LGRDrawerViewControllerDelegate protocol.
+#pragma mark - The following functions are required to comply with the LGRDrawerViewControllerDelegate protocol.
 - (void)setMenuButton:(UIBarButtonItem *)button
 	   menuBarGesture:(UIPanGestureRecognizer *)menuBarGesture
-		  OpenGesture:(UIPanGestureRecognizer *)openGesture
+		  openGesture:(UIPanGestureRecognizer *)openGesture
 		 closeGesture:(UIPanGestureRecognizer *)closeGesture
 {
 	self.rootPage.navigationItem.leftBarButtonItem = button;

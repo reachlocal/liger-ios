@@ -2,8 +2,8 @@
 //  LGRTabBarViewControllerTest.m
 //  LigerMobile
 //
-//  Created by Gary Moon on 8/6/14.
-//  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
+//  Created by Gary Moon on 8/13/14.
+//  Copyright (c) 2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
 //
 
 #import <XCTest/XCTest.h>

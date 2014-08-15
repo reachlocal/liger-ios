@@ -1,6 +1,6 @@
 //
 //  LGRNavigatorViewController.h
-//  Pods
+//  LigerMobile
 //
 //  Created by John Gustafsson on 7/22/14.
 //
@@ -8,9 +8,8 @@
 //
 
 #import "LGRViewController.h"
-#import "LGRDrawerViewController.h"
 
-@interface LGRNavigatorViewController : LGRViewController <LGRDrawerViewControllerDelegate>
+@interface LGRNavigatorViewController : LGRViewController
 @property(readonly) LGRViewController *rootPage;
 @property(readonly) LGRViewController *topPage;
 @property(nonatomic,readonly) UINavigationBar *navigationBar;

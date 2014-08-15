@@ -30,7 +30,7 @@
  */
 - (void)setMenuButton:(UIBarButtonItem *)button
        menuBarGesture:(UIPanGestureRecognizer *)menuBarGesture
-          OpenGesture:(UIPanGestureRecognizer *)openGesture
+          openGesture:(UIPanGestureRecognizer *)openGesture
          closeGesture:(UIPanGestureRecognizer *)closeGesture;
 
 /** 

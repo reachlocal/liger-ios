@@ -1,15 +1,16 @@
 //
 //  LGRTabBarViewController.m
-//  Pods
+//  LigerMobile
 //
-//  Created by Gary Moon on 8/6/14.
+//  Created by Gary Moon on 8/13/14.
 //  Copyright (c) 2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
 //
 
 #import "LGRTabBarViewController.h"
 #import "LGRPageFactory.h"
+#import "LGRDrawerViewController.h"
 
-@interface LGRTabBarViewController ()
+@interface LGRTabBarViewController () <LGRDrawerViewControllerDelegate, UITabBarControllerDelegate>
 @property(nonatomic, strong) UITabBarController *tab;
 @property(nonatomic, strong) UIPanGestureRecognizer *menuBarGesture;
 @property(nonatomic, strong) UIPanGestureRecognizer *openGesture;
@@ -97,17 +98,16 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-	LGRViewController<LGRDrawerViewControllerDelegate> *page = (LGRViewController<LGRDrawerViewControllerDelegate> *)viewController;
-
-	if ([page conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+	if ([viewController conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+        id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) viewController;
 		[page useGestures];
 	}
 }
 
-// The following functions are required to comply with the LGRDrawerViewControllerDelegate protocol.
+#pragma mark - The following functions are required to comply with the LGRDrawerViewControllerDelegate protocol.
 - (void)setMenuButton:(UIBarButtonItem *)button
 	   menuBarGesture:(UIPanGestureRecognizer *)menuBarGesture
-		  OpenGesture:(UIPanGestureRecognizer *)openGesture
+		  openGesture:(UIPanGestureRecognizer *)openGesture
 		 closeGesture:(UIPanGestureRecognizer *)closeGesture
 {
 	self.menuBarGesture = menuBarGesture;
@@ -117,12 +117,11 @@
 	NSArray *controllerArray = self.tab.viewControllers;
 
 	for (LGRViewController *controller in controllerArray) {
-		LGRViewController<LGRDrawerViewControllerDelegate> *page = (LGRViewController<LGRDrawerViewControllerDelegate> *)controller;
-
-		if ([page conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+		if ([controller conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+            id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) controller;
 			[page setMenuButton:button
 				 menuBarGesture:menuBarGesture
-					OpenGesture:openGesture
+					openGesture:openGesture
 				   closeGesture:nil];
 		}
 	}
@@ -130,9 +129,8 @@
 
 - (void)useGestures
 {
-	LGRViewController<LGRDrawerViewControllerDelegate> *page = (LGRViewController<LGRDrawerViewControllerDelegate> *)self.tab.selectedViewController;
-
-	if ([page conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+	if ([self.tab.selectedViewController conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+        id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) self.tab.selectedViewController;
 		[page useGestures];
 	}
 }
@@ -140,10 +138,9 @@
 - (void)userInteractionEnabled:(BOOL)enabled
 {
 	self.tab.tabBar.userInteractionEnabled = enabled;
-
-	LGRViewController<LGRDrawerViewControllerDelegate> *page = (LGRViewController<LGRDrawerViewControllerDelegate> *)self.tab.selectedViewController;
-
-	if ([page conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+    
+	if ([self.tab.selectedViewController conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+        id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) self.tab.selectedViewController;
 		[page userInteractionEnabled:enabled];
 	}
 	
