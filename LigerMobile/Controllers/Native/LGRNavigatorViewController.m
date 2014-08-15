@@ -13,7 +13,7 @@
 @interface LGRNavigatorViewController () <LGRDrawerViewControllerDelegate>
 @property(nonatomic, strong) UINavigationController *navigator;
 @property(nonatomic, strong) UIPanGestureRecognizer *navigationBarGesture;
-@property(nonatomic, strong) UIPanGestureRecognizer *openGesture;
+@property(nonatomic, strong) UIScreenEdgePanGestureRecognizer *openGesture;
 @property(nonatomic, strong) UIPanGestureRecognizer *closeGesture;
 @end
 
@@ -180,7 +180,7 @@
 #pragma mark - The following functions are required to comply with the LGRDrawerViewControllerDelegate protocol.
 - (void)setMenuButton:(UIBarButtonItem *)button
  navigationBarGesture:(UIPanGestureRecognizer *)navigationBarGesture
-		  openGesture:(UIPanGestureRecognizer *)openGesture
+		  openGesture:(UIScreenEdgePanGestureRecognizer *)openGesture
 		 closeGesture:(UIPanGestureRecognizer *)closeGesture
 {
 	self.rootPage.navigationItem.leftBarButtonItem = button;

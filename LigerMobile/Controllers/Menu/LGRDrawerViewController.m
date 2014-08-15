@@ -25,7 +25,7 @@
 
 @interface LGRDrawerViewController ()
 @property (nonatomic, strong) UIPanGestureRecognizer *navigationBarGesture;
-@property (nonatomic, strong) UIPanGestureRecognizer *openGesture;
+@property (nonatomic, strong) UIScreenEdgePanGestureRecognizer *openGesture;
 @property (nonatomic, strong) UIPanGestureRecognizer *closeGesture;
 @property (nonatomic, strong) NSMutableDictionary *pages;
 @property (nonatomic, strong) LGRViewController *menu;
@@ -39,9 +39,11 @@
 	if (self) {
         //if (NSClassFromString(@"UIScreenEdgePanGestureRecognizer"))
 		self.navigationBarGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuOpen:)];
-		self.openGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuOpen:)];
+		self.openGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(menuOpen:)];
 		self.closeGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuClose:)];
 		self.pages = [NSMutableDictionary dictionary];
+        
+        self.openGesture.edges = UIRectEdgeLeft;
 	}
 	return self;
 }
