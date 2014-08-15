@@ -24,7 +24,7 @@
 #define MINPOINTSTOCLOSE 120
 
 @interface LGRDrawerViewController ()
-@property (nonatomic, strong) UIPanGestureRecognizer *menuBarGesture;
+@property (nonatomic, strong) UIPanGestureRecognizer *navigationBarGesture;
 @property (nonatomic, strong) UIPanGestureRecognizer *openGesture;
 @property (nonatomic, strong) UIPanGestureRecognizer *closeGesture;
 @property (nonatomic, strong) NSMutableDictionary *pages;
@@ -37,7 +37,8 @@
 {
 	self = [super initWithPage:page title:title args:args options:options];
 	if (self) {
-		self.menuBarGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuOpen:)];
+        //if (NSClassFromString(@"UIScreenEdgePanGestureRecognizer"))
+		self.navigationBarGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuOpen:)];
 		self.openGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuOpen:)];
 		self.closeGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuClose:)];
 		self.pages = [NSMutableDictionary dictionary];
@@ -59,7 +60,7 @@
                                                                   action:@selector(displayMenu:)];
         id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) controller;
 		[page setMenuButton:button
-			 menuBarGesture:self.menuBarGesture
+       navigationBarGesture:self.navigationBarGesture
 				openGesture:self.openGesture
 			   closeGesture:self.closeGesture];
 		[page useGestures];

@@ -24,16 +24,16 @@
  * Setter for menu button and open/close gestures.
  *
  * @param button The button that opens the drawer.
- * @param menuBarGesture The gesture to open the drawer using the menu bar.
+ * @param navigationBarGesture The gesture to open the drawer using the navigation bar.
  * @param openGesture The gesture to open the drawer using the view.
  * @param closeGesture The gesture to close the drawer. Can be passed in as nil.
  */
 - (void)setMenuButton:(UIBarButtonItem *)button
-       menuBarGesture:(UIPanGestureRecognizer *)menuBarGesture
+ navigationBarGesture:(UIPanGestureRecognizer *)navigationBarGesture
           openGesture:(UIPanGestureRecognizer *)openGesture
          closeGesture:(UIPanGestureRecognizer *)closeGesture;
 
-/** 
+/**
  * Adds gestures to the view controller.
  */
 - (void)useGestures;

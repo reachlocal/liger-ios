@@ -12,7 +12,7 @@
 
 @interface LGRTabBarViewController () <LGRDrawerViewControllerDelegate, UITabBarControllerDelegate>
 @property(nonatomic, strong) UITabBarController *tab;
-@property(nonatomic, strong) UIPanGestureRecognizer *menuBarGesture;
+@property(nonatomic, strong) UIPanGestureRecognizer *navigationBarGesture;
 @property(nonatomic, strong) UIPanGestureRecognizer *openGesture;
 @property(nonatomic, strong) UIPanGestureRecognizer *closeGesture;
 @end
@@ -106,11 +106,11 @@
 
 #pragma mark - The following functions are required to comply with the LGRDrawerViewControllerDelegate protocol.
 - (void)setMenuButton:(UIBarButtonItem *)button
-	   menuBarGesture:(UIPanGestureRecognizer *)menuBarGesture
+ navigationBarGesture:(UIPanGestureRecognizer *)navigationBarGesture
 		  openGesture:(UIPanGestureRecognizer *)openGesture
 		 closeGesture:(UIPanGestureRecognizer *)closeGesture
 {
-	self.menuBarGesture = menuBarGesture;
+	self.navigationBarGesture = navigationBarGesture;
 	self.openGesture = openGesture;
 	self.closeGesture = closeGesture;
 
@@ -120,7 +120,7 @@
 		if ([controller conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
             id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) controller;
 			[page setMenuButton:button
-				 menuBarGesture:menuBarGesture
+           navigationBarGesture:navigationBarGesture
 					openGesture:openGesture
 				   closeGesture:nil];
 		}

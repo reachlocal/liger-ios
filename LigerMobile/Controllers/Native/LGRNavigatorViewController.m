@@ -12,7 +12,7 @@
 
 @interface LGRNavigatorViewController () <LGRDrawerViewControllerDelegate>
 @property(nonatomic, strong) UINavigationController *navigator;
-@property(nonatomic, strong) UIPanGestureRecognizer *menuBarGesture;
+@property(nonatomic, strong) UIPanGestureRecognizer *navigationBarGesture;
 @property(nonatomic, strong) UIPanGestureRecognizer *openGesture;
 @property(nonatomic, strong) UIPanGestureRecognizer *closeGesture;
 @end
@@ -179,20 +179,20 @@
 
 #pragma mark - The following functions are required to comply with the LGRDrawerViewControllerDelegate protocol.
 - (void)setMenuButton:(UIBarButtonItem *)button
-	   menuBarGesture:(UIPanGestureRecognizer *)menuBarGesture
+ navigationBarGesture:(UIPanGestureRecognizer *)navigationBarGesture
 		  openGesture:(UIPanGestureRecognizer *)openGesture
 		 closeGesture:(UIPanGestureRecognizer *)closeGesture
 {
 	self.rootPage.navigationItem.leftBarButtonItem = button;
-	self.menuBarGesture = menuBarGesture;
+	self.navigationBarGesture = navigationBarGesture;
 	self.openGesture = openGesture;
 	self.closeGesture = closeGesture;
 }
 
 - (void)useGestures
 {
-	if (self.menuBarGesture && ![[self.navigationBar gestureRecognizers] containsObject:self.menuBarGesture]) {
-		[self.navigationBar addGestureRecognizer:self.menuBarGesture];
+	if (self.navigationBarGesture && ![[self.navigationBar gestureRecognizers] containsObject:self.navigationBarGesture]) {
+		[self.navigationBar addGestureRecognizer:self.navigationBarGesture];
 	}
 
 	if (self.openGesture && ![[self.rootPage.view gestureRecognizers] containsObject:self.openGesture]) {
@@ -203,7 +203,12 @@
 - (void)userInteractionEnabled:(BOOL)enabled
 {
 	self.topPage.view.userInteractionEnabled = enabled;
-	self.navigationBar.userInteractionEnabled = enabled;
+    
+    if (self.rootPage == self.topPage) {
+        self.navigationBar.userInteractionEnabled = true;
+    } else {
+        self.navigationBar.userInteractionEnabled = enabled;
+    }
 
 	if (enabled) {
 		if (self.openGesture)
@@ -211,12 +216,18 @@
 		
 		if (self.closeGesture)
 			[self.view removeGestureRecognizer:self.closeGesture];
+        
+        if (self.navigationBarGesture)
+            [self.navigationBar addGestureRecognizer:self.navigationBarGesture];
 	} else {
 		if (self.openGesture)
 			[self.rootPage.view removeGestureRecognizer:self.openGesture];
 		
 		if (self.closeGesture)
 			[self.view addGestureRecognizer:self.closeGesture];
+        
+        if (self.navigationBarGesture)
+            [self.navigationBar removeGestureRecognizer:self.navigationBarGesture];
 	}
 }
 @end
