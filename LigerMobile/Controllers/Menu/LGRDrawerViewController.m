@@ -37,7 +37,6 @@
 {
 	self = [super initWithPage:page title:title args:args options:options];
 	if (self) {
-        //if (NSClassFromString(@"UIScreenEdgePanGestureRecognizer"))
 		self.navigationBarGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuOpen:)];
 		self.openGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(menuOpen:)];
 		self.closeGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuClose:)];
