@@ -202,12 +202,12 @@
 
 - (void)userInteractionEnabled:(BOOL)enabled
 {
-	self.topPage.view.userInteractionEnabled = enabled;
+	[self.topPage.view setUserInteractionEnabled:enabled];
     
     if (self.rootPage == self.topPage) {
-        self.navigationBar.userInteractionEnabled = true;
+        [self.navigationBar setUserInteractionEnabled:YES];
     } else {
-        self.navigationBar.userInteractionEnabled = enabled;
+        [self.navigationBar setUserInteractionEnabled:enabled];
     }
 
 	if (enabled) {

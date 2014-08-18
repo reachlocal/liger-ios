@@ -8,10 +8,14 @@
 
 #import <XCTest/XCTest.h>
 #import "LGRTabBarViewController.h"
+#import "LGRDrawerViewController.h"
 #import <OCMock.h>
 
 @interface LGRTabBarViewController ()
 @property(nonatomic, strong) UITabBarController *tab;
+@property(nonatomic, strong) UIPanGestureRecognizer *navigationBarGesture;
+@property(nonatomic, strong) UIScreenEdgePanGestureRecognizer *openGesture;
+@property(nonatomic, strong) UIPanGestureRecognizer *closeGesture;
 @end
 
 @interface LGRTabBarViewControllerTest : XCTestCase
@@ -115,4 +119,92 @@
 	OCMVerifyAll(rootPage);
 }
 
+- (void)testSetMenuButtonAndGestures
+{
+    id button = OCMClassMock([UIBarButtonItem class]);
+    id openGesture = OCMClassMock([UIPanGestureRecognizer class]);
+    id closeGesture = OCMClassMock([UIPanGestureRecognizer class]);
+    id navigationBarGesture = OCMClassMock([UIScreenEdgePanGestureRecognizer class]);
+    
+    id pageOne = OCMProtocolMock(@protocol(LGRDrawerViewControllerDelegate));
+    id pageTwo = OCMProtocolMock(@protocol(LGRDrawerViewControllerDelegate));
+    NSArray *pages = @[pageOne, pageTwo];
+    id UITab = OCMPartialMock(self.tab.tab);
+    id tab = OCMPartialMock(self.tab);
+    
+    OCMStub([pageOne setMenuButton:OCMOCK_ANY navigationBarGesture:OCMOCK_ANY openGesture:OCMOCK_ANY closeGesture:OCMOCK_ANY]);
+    OCMStub([pageTwo setMenuButton:OCMOCK_ANY navigationBarGesture:OCMOCK_ANY openGesture:OCMOCK_ANY closeGesture:OCMOCK_ANY]);
+    OCMStub([UITab viewControllers]).andReturn(pages);
+    OCMStub([tab tab]).andReturn(UITab);
+    
+    [tab setMenuButton:button navigationBarGesture:navigationBarGesture openGesture:openGesture closeGesture:closeGesture];
+    
+    XCTAssertEqual([tab openGesture], openGesture);
+    XCTAssertEqual([tab closeGesture], closeGesture);
+    XCTAssertEqual([tab navigationBarGesture], navigationBarGesture);
+    OCMVerify([pageOne setMenuButton:OCMOCK_ANY navigationBarGesture:OCMOCK_ANY openGesture:OCMOCK_ANY closeGesture:nil]);
+    OCMVerify([pageTwo setMenuButton:OCMOCK_ANY navigationBarGesture:OCMOCK_ANY openGesture:OCMOCK_ANY closeGesture:nil]);
+}
+
+- (void)testUseGestures
+{
+    id page = OCMProtocolMock(@protocol(LGRDrawerViewControllerDelegate));
+    id UITab = OCMPartialMock(self.tab.tab);
+    id tab = OCMPartialMock(self.tab);
+    
+    OCMStub([UITab selectedViewController]).andReturn(page);
+    OCMStub([tab tab]).andReturn(UITab);
+    
+    [tab useGestures];
+    
+    OCMVerify([page useGestures]);
+}
+
+- (void)testUserInteractionEnabled
+{
+    id page = OCMProtocolMock(@protocol(LGRDrawerViewControllerDelegate));
+    id tabBar = OCMPartialMock(self.tab.tab.tabBar);
+    id UITab = OCMPartialMock(self.tab.tab);
+    id closeGesture = OCMClassMock([UIPanGestureRecognizer class]);
+    id tabView = OCMClassMock([UIView class]);
+    id tab = OCMPartialMock(self.tab);
+    
+    OCMStub([UITab selectedViewController]).andReturn(page);
+    OCMStub([UITab tabBar]).andReturn(tabBar);
+    OCMStub([tab closeGesture]).andReturn(closeGesture);
+    OCMStub([tabView removeGestureRecognizer:OCMOCK_ANY]);
+    OCMStub([tab view]).andReturn(tabView);
+    OCMStub([tab tab]).andReturn(UITab);
+    
+    BOOL enabled = YES;
+    [tab userInteractionEnabled:enabled];
+    
+    OCMVerify([tabBar setUserInteractionEnabled:enabled]);
+    OCMVerify([page userInteractionEnabled:enabled]);
+    OCMVerify([tabView removeGestureRecognizer:OCMOCK_ANY]);
+}
+
+- (void)testUserInteractionDisabled
+{
+    id page = OCMProtocolMock(@protocol(LGRDrawerViewControllerDelegate));
+    id tabBar = OCMPartialMock(self.tab.tab.tabBar);
+    id UITab = OCMPartialMock(self.tab.tab);
+    id closeGesture = OCMClassMock([UIPanGestureRecognizer class]);
+    id tabView = OCMClassMock([UIView class]);
+    id tab = OCMPartialMock(self.tab);
+    
+    OCMStub([UITab selectedViewController]).andReturn(page);
+    OCMStub([UITab tabBar]).andReturn(tabBar);
+    OCMStub([tab closeGesture]).andReturn(closeGesture);
+    OCMStub([tabView addGestureRecognizer:OCMOCK_ANY]);
+    OCMStub([tab view]).andReturn(tabView);
+    OCMStub([tab tab]).andReturn(UITab);
+    
+    BOOL enabled = NO;
+    [tab userInteractionEnabled:enabled];
+    
+    OCMVerify([tabBar setUserInteractionEnabled:enabled]);
+    OCMVerify([page userInteractionEnabled:enabled]);
+    OCMVerify([tabView addGestureRecognizer:OCMOCK_ANY]);
+}
 @end

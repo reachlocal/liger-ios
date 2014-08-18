@@ -97,7 +97,7 @@
                       ]
                     },
                     "options": {
-                      "cached": false
+                      "icon": "/assets/icons/Liger-1.png"
                     }
                   },
                   {
@@ -111,6 +111,9 @@
                       "args": {
                         "hello": "world"
                       }
+                    },
+                    "options": {
+                      "icon": "/assets/icons/Liger-2.png"
                     }
                   }
                 ]

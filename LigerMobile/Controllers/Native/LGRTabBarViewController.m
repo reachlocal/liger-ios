@@ -137,7 +137,7 @@
 
 - (void)userInteractionEnabled:(BOOL)enabled
 {
-	self.tab.tabBar.userInteractionEnabled = enabled;
+	[self.tab.tabBar setUserInteractionEnabled:enabled];
     
 	if ([self.tab.selectedViewController conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
         id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) self.tab.selectedViewController;
