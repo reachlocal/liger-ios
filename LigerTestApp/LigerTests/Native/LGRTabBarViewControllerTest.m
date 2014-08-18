@@ -11,7 +11,7 @@
 #import "LGRDrawerViewController.h"
 #import <OCMock.h>
 
-@interface LGRTabBarViewController ()
+@interface LGRTabBarViewController () <UITabBarControllerDelegate>
 @property(nonatomic, strong) UITabBarController *tab;
 @property(nonatomic, strong) UIPanGestureRecognizer *navigationBarGesture;
 @property(nonatomic, strong) UIScreenEdgePanGestureRecognizer *openGesture;
@@ -71,6 +71,16 @@
 	XCTAssertNotNil(tab, @"Tab failed to instatiate");
 }
 
+- (void)testInitWithoutPage
+{
+	id tab = [[LGRTabBarViewController alloc] initWithPage: @"tab"
+													 title: @"Test"
+													  args: @{}
+												   options: @{}];
+
+	XCTAssertNil(tab, @"Tab shouldn't be created of no pages have been specified.");
+}
+
 - (void)testViewDidLoad
 {
 	id tab = OCMPartialMock(self.tab);
@@ -117,6 +127,14 @@
 	[tab handleAppOpenURL:[NSURL URLWithString:@"http://reachlocal.github.io/liger"]];
 	
 	OCMVerifyAll(rootPage);
+}
+
+- (void)testDidSelectViewController
+{
+	id delegate = OCMProtocolMock(@protocol(LGRDrawerViewControllerDelegate));
+	[self.tab tabBarController:nil didSelectViewController:delegate];
+
+	OCMVerify([delegate useGestures]);
 }
 
 - (void)testSetMenuButtonAndGestures

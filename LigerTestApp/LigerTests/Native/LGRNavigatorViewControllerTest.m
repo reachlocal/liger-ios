@@ -380,4 +380,33 @@
     OCMVerify([navigationBar removeGestureRecognizer:OCMOCK_ANY]);
 }
 
+- (void)testUserInteractionWithoutTopview
+{
+    id rootPageView = OCMPartialMock(self.navigator.rootPage.view);
+    id rootPage = OCMPartialMock(self.navigator.rootPage);
+    id navigationBar = OCMPartialMock(self.navigator.navigationBar);
+    id openGesture = OCMClassMock([UIPanGestureRecognizer class]);
+    id closeGesture = OCMClassMock([UIPanGestureRecognizer class]);
+    id navigationBarGesture = OCMClassMock([UIScreenEdgePanGestureRecognizer class]);
+    id navigatorView = OCMClassMock([UIView class]);
+    id navigator = OCMPartialMock(self.navigator);
+
+    OCMStub([rootPageView addGestureRecognizer:OCMOCK_ANY]);
+    OCMStub([rootPage view]).andReturn(rootPageView);
+    OCMStub([navigator topPage]).andReturn(nil);
+    OCMStub([navigator rootPage]).andReturn(rootPage);
+    OCMStub([navigationBar addGestureRecognizer:OCMOCK_ANY]);
+    OCMStub([navigator navigationBar]).andReturn(navigationBar);
+    OCMStub([navigator openGesture]).andReturn(openGesture);
+    OCMStub([navigator closeGesture]).andReturn(closeGesture);
+    OCMStub([navigator navigationBarGesture]).andReturn(navigationBarGesture);
+    OCMStub([navigatorView removeGestureRecognizer:OCMOCK_ANY]);
+    OCMStub([navigator view]).andReturn(navigatorView);
+
+    BOOL enabled = NO;
+    [navigator userInteractionEnabled:enabled];
+
+    OCMVerify([navigationBar setUserInteractionEnabled:enabled]);
+}
+
 @end
