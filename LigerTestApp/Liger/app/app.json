@@ -27,41 +27,102 @@
               "page": "navigator",
               "accessibilityLabel": "Menu2",
               "args": {
-              	"pages": [
-              	  {
- 	                "title": "First Page",
-    	            "page": "firstPage",
-        	        "accessibilityLabel": "firstPage",
+                "pages": [
+                  {
+                    "title": "First Page",
+                    "page": "firstPage",
+                    "accessibilityLabel": "firstPage",
                     "args": {
                       "hello": "world"
                     }
                   },
-              	  {
- 	                "title": "Second Page",
-    	            "page": "secondPage",
-        	        "accessibilityLabel": "secondPage",
+                  {
+                    "title": "Second Page",
+                    "page": "secondPage",
+                    "accessibilityLabel": "secondPage",
                     "args": {
                       "hello": "world"
                     }
                   },
-              	  {
- 	                "title": "Third Page",
-    	            "page": "thirdPage",
-        	        "accessibilityLabel": "thirdPage",
+                  {
+                    "title": "Third Page",
+                    "page": "thirdPage",
+                    "accessibilityLabel": "thirdPage",
                     "args": {
                       "hello": "world"
                     }
                   }
-                  ]
+                ]
               },
               "options": {
-              	"cached": false
+                "cached": false
+              }
+            },
+            {
+              "name": "Tab Test",
+              "page": "tab",
+              "accessibilityLabel": "Menu3",
+              "args": {
+                "pages": [
+                  {
+                    "title": "Navigator One",
+                    "page": "navigator",
+                    "accessibilityLabel": "navigatorOne",
+                    "args": {
+                      "pages": [
+                        {
+                          "title": "First Page",
+                          "page": "firstPage",
+                          "accessibilityLabel": "firstPage",
+                          "args": {
+                            "hello": "world"
+                          }
+                        },
+                        {
+                          "title": "Second Page",
+                          "page": "secondPage",
+                          "accessibilityLabel": "secondPage",
+                          "args": {
+                            "hello": "world"
+                          }
+                        },
+                        {
+                          "title": "Third Page",
+                          "page": "thirdPage",
+                          "accessibilityLabel": "thirdPage",
+                          "args": {
+                            "hello": "world"
+                          }
+                        }
+                      ]
+                    },
+                    "options": {
+                      "icon": "/assets/icons/Liger-1.png"
+                    }
+                  },
+                  {
+                    "title": "Navigator Two",
+                    "page": "navigator",
+                    "accessibilityLabel": "navigatorTwo",
+                    "args": {
+                      "title": "First Page",
+                      "page": "firstPage",
+                      "accessibilityLabel": "firstPage",
+                      "args": {
+                        "hello": "world"
+                      }
+                    },
+                    "options": {
+                      "icon": "/assets/icons/Liger-2.png"
+                    }
+                  }
+                ]
               }
             },
             {
               "name": "Native Pages",
               "page": "navigator",
-              "accessibilityLabel": "Menu3",
+              "accessibilityLabel": "Menu4",
               "args": {
                 "title": "Native Page",
                 "page": "nativePages",
@@ -71,7 +132,7 @@
             {
               "name": "System",
               "page": "navigator",
-              "accessibilityLabel": "Menu4",
+              "accessibilityLabel": "Menu5",
               "args": {
                 "title": "System Pages",
                 "page": "system",
@@ -84,7 +145,7 @@
               "name": "Dialog tests",
               "detail": "static detail",
               "page": "navigator",
-              "accessibilityLabel": "Menu5",
+              "accessibilityLabel": "Menu6",
               "dialog": "true",
               "args": {
                 "page": "dialog",
@@ -96,7 +157,7 @@
               "name": "Native Pages",
               "detail": "static detail",
               "page": "navigator",
-              "accessibilityLabel": "Menu6",
+              "accessibilityLabel": "Menu7",
               "dialog": "true",
               "args": {
                 "page": "nativePages",
@@ -107,16 +168,16 @@
             {
               "name": "Mail us",
               "detail": "We like mail",
-	          "page": "email",
-	          "accessibilityLabel": "emailDialog",
-	          "dialog": "true",
-	          "args": {
-	            "subject": "Liger",
-	            "body": "Hi,\n\nI would like to tell you how much I like Liger.\n\n//Me",
-	            "toRecipients": "liger@example.com",
-	            "html": false
-	          }
-	        }
+              "page": "email",
+              "accessibilityLabel": "emailDialog",
+              "dialog": "true",
+              "args": {
+                "subject": "Liger",
+                "body": "Hi,\n\nI would like to tell you how much I like Liger.\n\n\/\/Me",
+                "toRecipients": "liger@example.com",
+                "html": false
+              }
+            }
           ]
         ]
       }

@@ -1,6 +1,6 @@
 //
 //  LGRNavigatorViewController.h
-//  Pods
+//  LigerMobile
 //
 //  Created by John Gustafsson on 7/22/14.
 //

@@ -1,6 +1,6 @@
 //
 //  LGRNavigatorViewController.m
-//  Pods
+//  LigerMobile
 //
 //  Created by John Gustafsson on 7/22/14.
 //  Copyright (c) 2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -8,9 +8,13 @@
 
 #import "LGRNavigatorViewController.h"
 #import "LGRPageFactory.h"
+#import "LGRDrawerViewController.h"
 
-@interface LGRNavigatorViewController ()
+@interface LGRNavigatorViewController () <LGRDrawerViewControllerDelegate>
 @property(nonatomic, strong) UINavigationController *navigator;
+@property(nonatomic, strong) UIPanGestureRecognizer *navigationBarGesture;
+@property(nonatomic, strong) UIScreenEdgePanGestureRecognizer *openGesture;
+@property(nonatomic, strong) UIPanGestureRecognizer *closeGesture;
 @end
 
 @implementation LGRNavigatorViewController
@@ -23,9 +27,9 @@
 - (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options
 {
 	self = [super initWithPage:page
-						title:title
-						 args:args
-					  options:options];
+						 title:title
+						  args:args
+					   options:options];
 
 	if (self) {
 		NSMutableArray *pages = [NSMutableArray array];
@@ -171,5 +175,59 @@
 - (void)handleAppOpenURL:(NSURL*)url
 {
 	[self.rootPage handleAppOpenURL:url];
+}
+
+#pragma mark - The following functions are required to comply with the LGRDrawerViewControllerDelegate protocol.
+- (void)setMenuButton:(UIBarButtonItem *)button
+ navigationBarGesture:(UIPanGestureRecognizer *)navigationBarGesture
+		  openGesture:(UIScreenEdgePanGestureRecognizer *)openGesture
+		 closeGesture:(UIPanGestureRecognizer *)closeGesture
+{
+	self.rootPage.navigationItem.leftBarButtonItem = button;
+	self.navigationBarGesture = navigationBarGesture;
+	self.openGesture = openGesture;
+	self.closeGesture = closeGesture;
+}
+
+- (void)useGestures
+{
+	if (self.navigationBarGesture && ![[self.navigationBar gestureRecognizers] containsObject:self.navigationBarGesture]) {
+		[self.navigationBar addGestureRecognizer:self.navigationBarGesture];
+	}
+
+	if (self.openGesture && ![[self.rootPage.view gestureRecognizers] containsObject:self.openGesture]) {
+		[self.rootPage.view addGestureRecognizer:self.openGesture];
+	}
+}
+
+- (void)userInteractionEnabled:(BOOL)enabled
+{
+	[self.topPage.view setUserInteractionEnabled:enabled];
+
+	if (self.rootPage == self.topPage) {
+		[self.navigationBar setUserInteractionEnabled:YES];
+	} else {
+		[self.navigationBar setUserInteractionEnabled:enabled];
+	}
+
+	if (enabled) {
+		if (self.openGesture)
+			[self.rootPage.view addGestureRecognizer:self.openGesture];
+
+		if (self.closeGesture)
+			[self.view removeGestureRecognizer:self.closeGesture];
+
+		if (self.navigationBarGesture)
+			[self.navigationBar addGestureRecognizer:self.navigationBarGesture];
+	} else {
+		if (self.openGesture)
+			[self.rootPage.view removeGestureRecognizer:self.openGesture];
+		
+		if (self.closeGesture)
+			[self.view addGestureRecognizer:self.closeGesture];
+		
+		if (self.navigationBarGesture)
+			[self.navigationBar removeGestureRecognizer:self.navigationBarGesture];
+	}
 }
 @end
