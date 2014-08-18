@@ -203,31 +203,31 @@
 - (void)userInteractionEnabled:(BOOL)enabled
 {
 	[self.topPage.view setUserInteractionEnabled:enabled];
-    
-    if (self.rootPage == self.topPage) {
-        [self.navigationBar setUserInteractionEnabled:YES];
-    } else {
-        [self.navigationBar setUserInteractionEnabled:enabled];
-    }
+
+	if (self.rootPage == self.topPage) {
+		[self.navigationBar setUserInteractionEnabled:YES];
+	} else {
+		[self.navigationBar setUserInteractionEnabled:enabled];
+	}
 
 	if (enabled) {
 		if (self.openGesture)
 			[self.rootPage.view addGestureRecognizer:self.openGesture];
-		
+
 		if (self.closeGesture)
 			[self.view removeGestureRecognizer:self.closeGesture];
-        
-        if (self.navigationBarGesture)
-            [self.navigationBar addGestureRecognizer:self.navigationBarGesture];
+
+		if (self.navigationBarGesture)
+			[self.navigationBar addGestureRecognizer:self.navigationBarGesture];
 	} else {
 		if (self.openGesture)
 			[self.rootPage.view removeGestureRecognizer:self.openGesture];
 		
 		if (self.closeGesture)
 			[self.view addGestureRecognizer:self.closeGesture];
-        
-        if (self.navigationBarGesture)
-            [self.navigationBar removeGestureRecognizer:self.navigationBarGesture];
+		
+		if (self.navigationBarGesture)
+			[self.navigationBar removeGestureRecognizer:self.navigationBarGesture];
 	}
 }
 @end
