@@ -8,7 +8,6 @@
 
 @import XCTest;
 #import "LGRCordovaViewController.h"
-#import "LGRAppearance.h"
 
 #import "OCMock.h"
 
@@ -116,13 +115,6 @@
 	[cordova refreshPage:YES];
 
 	XCTAssertNoThrow([cordova verify], @"refreshPage should push to queue");
-}
-
-- (void)testPreferredStatusBarStyle
-{
-	UIStatusBarStyle style = [self.cordova preferredStatusBarStyle];
-
-	XCTAssertEqual(style, [LGRAppearance statusBarDialog], @"Appearance and preferred should match.");
 }
 
 - (void)testPushNotificationTokenUpdatedError

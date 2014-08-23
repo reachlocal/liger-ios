@@ -409,4 +409,19 @@
     OCMVerify([navigationBar setUserInteractionEnabled:enabled]);
 }
 
+- (void)testPreferredStatusBarStyle
+{
+	id navigator = OCMPartialMock(self.navigator);
+	id nav = OCMPartialMock([[UINavigationController alloc] init]);
+	OCMStub([navigator navigator]).andReturn(nav);
+
+	id top = OCMPartialMock([[LGRViewController alloc] init]);
+	OCMStub([nav topViewController]).andReturn(top);
+
+	OCMStub([top preferredStatusBarStyle]).andReturn(UIStatusBarStyleLightContent);
+	UIStatusBarStyle style = [navigator preferredStatusBarStyle];
+	XCTAssertEqual(style, UIStatusBarStyleLightContent, @"Should be UIStatusBarStyleLightContent");
+
+	OCMVerify([[[navigator navigator] topViewController] preferredStatusBarStyle]);
+}
 @end

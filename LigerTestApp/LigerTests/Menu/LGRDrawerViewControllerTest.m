@@ -17,6 +17,7 @@
 
 @interface LGRDrawerViewController ()
 @property (nonatomic, strong) LGRViewController *menu;
+- (LGRViewController*)pageController;
 @end
 
 @interface LGRDrawerViewControllerTest : XCTestCase
@@ -93,4 +94,17 @@
 	XCTAssertNoThrow([menu verify], @"Verify failed");
 }
 
+- (void)testPreferredStatusBarStyle
+{
+	id drawer = OCMPartialMock(self.drawer);
+
+	id page = OCMPartialMock([[LGRViewController alloc] init]);
+	OCMStub([drawer pageController]).andReturn(page);
+
+	OCMStub([page preferredStatusBarStyle]).andReturn(UIStatusBarStyleLightContent);
+	UIStatusBarStyle style = [drawer preferredStatusBarStyle];
+	XCTAssertEqual(style, UIStatusBarStyleLightContent, @"Should be UIStatusBarStyleLightContent");
+
+	OCMVerify([[drawer pageController] preferredStatusBarStyle]);
+}
 @end

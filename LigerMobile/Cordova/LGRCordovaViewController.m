@@ -140,11 +140,6 @@
 	}
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return [LGRAppearance statusBarDialog];
-}
-
 - (void)pageWillAppear
 {
 	NSString *js = @"if(PAGE.onPageAppear) PAGE.onPageAppear();";

@@ -225,4 +225,21 @@
     OCMVerify([page userInteractionEnabled:enabled]);
     OCMVerify([tabView addGestureRecognizer:OCMOCK_ANY]);
 }
+
+- (void)testPreferredStatusBarStyle
+{
+	id tab = OCMPartialMock(self.tab);
+	id t = OCMPartialMock([[UITabBarController alloc] init]);
+	OCMStub([tab tab]).andReturn(t);
+
+	id selectedViewController = OCMPartialMock([[LGRViewController alloc] init]);
+	OCMStub([t selectedViewController]).andReturn(selectedViewController);
+
+	OCMStub([selectedViewController preferredStatusBarStyle]).andReturn(UIStatusBarStyleLightContent);
+	UIStatusBarStyle style = [tab preferredStatusBarStyle];
+	XCTAssertEqual(style, UIStatusBarStyleLightContent, @"Should be UIStatusBarStyleLightContent");
+
+	OCMVerify([[[tab tab] selectedViewController] preferredStatusBarStyle]);
+}
+
 @end

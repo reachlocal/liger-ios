@@ -10,7 +10,6 @@
 #import "LGRPageFactory.h"
 #import "LGRViewController.h"
 
-#import "LGRAppearance.h"
 #import "LGRApp.h"
 
 #import "LGRAppMenuViewController.h"
@@ -353,11 +352,6 @@
 	return self.childViewControllers[1];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-	return [LGRAppearance statusBar];
-}
-
 - (void)pushNotificationTokenUpdated:(NSString *)token error:(NSError *)error
 {
 	[self.menu pushNotificationTokenUpdated:token error:error];
@@ -373,4 +367,8 @@
 	[self.menu handleAppOpenURL:url];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+	return [[self pageController] preferredStatusBarStyle];
+}
 @end

@@ -10,6 +10,7 @@
 #import "LGRPageFactory.h"
 #import "LGRDrawerViewController.h"
 #import "LGRAppDelegate.h"
+#import "LGRAppearance.h"
 
 @interface LGRViewController ()
 @property (nonatomic, strong) NSString *page;
@@ -223,6 +224,29 @@
 - (void)handleAppOpenURL:(NSURL*)url
 {
 	
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+	if (self.presentingViewController) {
+		NSString *style = [self.options[@"statusBarDialog"] lowercaseString];
+		if ([style isEqualToString:@"dark"])
+			return UIStatusBarStyleDefault;
+
+		if ([style isEqualToString:@"light"])
+			return UIStatusBarStyleLightContent;
+
+		return [LGRAppearance statusBarDialog];
+	} else {
+		NSString *style = [self.options[@"statusBar"] lowercaseString];
+		if ([style isEqualToString:@"dark"])
+			return UIStatusBarStyleDefault;
+
+		if ([style isEqualToString:@"light"])
+			return UIStatusBarStyleLightContent;
+
+		return [LGRAppearance statusBar];
+	}
 }
 
 @end

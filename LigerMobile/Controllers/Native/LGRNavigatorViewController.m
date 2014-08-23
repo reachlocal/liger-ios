@@ -230,4 +230,9 @@
 			[self.navigationBar removeGestureRecognizer:self.navigationBarGesture];
 	}
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+	return [self.navigator.topViewController preferredStatusBarStyle];
+}
 @end
