@@ -91,9 +91,9 @@
 				 @"redo": @(UIBarButtonSystemItemRedo)
 				 };
 	
-	NSNumber *n = lookup[[buttonInfo[@"button"] lowercaseString]];
-	if (n != nil) {
-		UIBarButtonSystemItem buttonSystemItem = n.integerValue;
+	NSNumber *buttonValue = lookup[[buttonInfo[@"button"] lowercaseString]];
+	if (buttonValue) {
+		UIBarButtonSystemItem buttonSystemItem = buttonValue.integerValue;
 		
 		return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:buttonSystemItem
 								     target:self
