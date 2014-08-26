@@ -67,16 +67,43 @@
 - (UIBarButtonItem*)buttonFromDictionary:(NSDictionary*)buttonInfo
 {
 	NSAssert([buttonInfo isKindOfClass:[NSDictionary class]], @"options should look as follows {'right':{'button':'done'}}");
-
+	
 	NSDictionary *lookup = @{@"done": @(UIBarButtonSystemItemDone),
-							 @"cancel": @(UIBarButtonSystemItemCancel),
-							 @"save": @(UIBarButtonSystemItemSave),
-							 @"search": @(UIBarButtonSystemItemSearch)};
-
-	NSNumber *n = lookup[[buttonInfo[@"button"] lowercaseString]];
-	UIBarButtonSystemItem buttonSystemItem = n ? n.integerValue : UIBarButtonSystemItemDone;
-
-	return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:buttonSystemItem target:self action:@selector(buttonAction:)];
+				 @"cancel": @(UIBarButtonSystemItemCancel),
+				 @"edit": @(UIBarButtonSystemItemEdit),
+				 @"save": @(UIBarButtonSystemItemSave),
+				 @"add": @(UIBarButtonSystemItemAdd),
+				 @"compose": @(UIBarButtonSystemItemCompose),
+				 @"reply": @(UIBarButtonSystemItemReply),
+				 @"action": @(UIBarButtonSystemItemAction),
+				 @"organize": @(UIBarButtonSystemItemOrganize),
+				 @"bookmarks": @(UIBarButtonSystemItemBookmarks),
+				 @"search": @(UIBarButtonSystemItemSearch),
+				 @"refresh": @(UIBarButtonSystemItemRefresh),
+				 @"stop": @(UIBarButtonSystemItemStop),
+				 @"camera": @(UIBarButtonSystemItemCamera),
+				 @"trash": @(UIBarButtonSystemItemTrash),
+				 @"play": @(UIBarButtonSystemItemPlay),
+				 @"pause": @(UIBarButtonSystemItemPause),
+				 @"rewind": @(UIBarButtonSystemItemRewind),
+				 @"forward": @(UIBarButtonSystemItemFastForward),
+				 @"undo": @(UIBarButtonSystemItemUndo),
+				 @"redo": @(UIBarButtonSystemItemRedo)
+				 };
+	
+	NSNumber *buttonValue = lookup[[buttonInfo[@"button"] lowercaseString]];
+	if (buttonValue) {
+		UIBarButtonSystemItem buttonSystemItem = buttonValue.integerValue;
+		
+		return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:buttonSystemItem
+								     target:self
+								     action:@selector(buttonAction:)];
+	} else {
+		return [[UIBarButtonItem alloc] initWithTitle:buttonInfo[@"button"]
+							style:UIBarButtonItemStylePlain
+						       target:self
+						       action:@selector(buttonAction:)];
+	}
 }
 
 - (void)buttonAction:(id)sender
