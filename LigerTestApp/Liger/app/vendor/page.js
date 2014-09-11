@@ -2,8 +2,7 @@ var PAGE = {
     page: null,
     args: null,
 	toolbarItems: null,
-	userCanRefresh: false,
-	
+
     initialize: function(page) {
         this.page = page;
         this.bindEvents();
@@ -46,13 +45,6 @@ var PAGE = {
             PAGE.toolbar(PAGE.toolbarItems);
         }
     },
-
-	setupRefresh: function(){
-		LIGER.userCanRefresh(this.userCanRefresh);
-	},
-
-	refresh: function(user){},
-
 
     /**
      * Opens a new page.
@@ -105,7 +97,8 @@ var PAGE = {
      * @iOS Presents a UIViewController.
      * 
      * @param page The 'name' of the page to be open. Should not include html.
-     * @param args json that will be sent to openPageArguments
+     * @param args Arguments for the new page
+	 * @param options Options for the new page
      */
     openDialog: function(page, args, options){ LIGER.openDialog(page, args, options); },
 
@@ -114,8 +107,9 @@ var PAGE = {
      * @iOS Presents a UIViewController.
      * 
      * @param title The title of the page (title in UINavigationBar on iOS)
-     * @param page The 'name' of the page to be open. Should not include html.
-     * @param args json that will be sent to openPageArguments
+     * @param page The 'name' of the page to be open. Should not include .html.
+	 * @param args Arguments for the new page
+	 * @param options Options for the new page
      */
     openDialogWithTitle: function(title, page, args, options) { LIGER.openDialogWithTitle(title, page, args, options); },
 
@@ -142,12 +136,6 @@ var PAGE = {
      * @param items An array of hashes, one per item. They keys are icon: character, callback: javascript code in a string to be executed when the item is tapped.
      */
     toolbar: function(items) { LIGER.toolbar(items); },
-
-    /**
-     * Indicates whether this web view can be refreshed by the user or not
-     *
-     */
-    canRefresh: function() { LIGER.userCanRefresh(PAGE.userCanRefresh); },
 
     headerButtonTapped: function(button) {}
 	

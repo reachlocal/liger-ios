@@ -36,7 +36,7 @@ var DIALOG = {
 		});
 		
 		$("#closeDialog").click(function(){
-			PAGE.closeDialog({'dialog': ['closed', 'arguments', 'array']});
+			PAGE.closeDialog({'dialog': ['closed', 'the', 'dialog']});
 			return false;
 		});
 		

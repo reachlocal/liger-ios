@@ -1,1 +1,1 @@
-../../../../LigerMobile/Cordova/LGRCordovaViewController.h
+../../../../LigerMobile/HTML/Cordova/LGRCordovaViewController.h

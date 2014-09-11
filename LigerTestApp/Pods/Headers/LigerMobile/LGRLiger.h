@@ -1,1 +1,1 @@
-../../../../LigerMobile/Cordova/LGRLiger.h
+../../../../LigerMobile/HTML/Cordova/LGRLiger.h

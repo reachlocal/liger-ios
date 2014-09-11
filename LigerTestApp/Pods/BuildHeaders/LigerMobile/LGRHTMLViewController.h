@@ -1,1 +1,1 @@
-../../../../LigerMobile/Controllers/Generic/LGRHTMLViewController.h
+../../../../LigerMobile/HTML/LGRHTMLViewController.h

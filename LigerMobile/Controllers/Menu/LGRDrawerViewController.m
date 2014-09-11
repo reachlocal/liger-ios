@@ -373,4 +373,9 @@
 	[self.menu handleAppOpenURL:url];
 }
 
+- (void)childUpdates:(NSDictionary *)args
+{
+	// Do nothing
+}
+
 @end

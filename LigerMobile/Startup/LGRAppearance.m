@@ -16,6 +16,8 @@
 
 #import "UIColor+HTMLColors.h"
 
+@import WebKit;
+
 @interface UITableViewCell (LGRMenuViewCell)
 @property (nonatomic, weak) UIColor *labelColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, weak) UIColor *selectedLabelColor UI_APPEARANCE_SELECTOR;
@@ -113,7 +115,8 @@
 
 	// WebView (doesn't work properly so LGRWebViewController grabs this value
 	[[UIWebView appearance] setBackgroundColor:[UIColor colorWithCSS:app[@"webBackground"]]];
-	
+	[[WKWebView appearance] setBackgroundColor:[UIColor colorWithCSS:app[@"webBackground"]]];
+
 	// Menu
 	[[UITableView appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 	[[UITableView appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setBackgroundColor:[UIColor colorWithCSS:app[@"menuBackground"]]];
@@ -154,7 +157,8 @@
 
 	// WebView (doesn't work properly so LGRWebViewController grabs this value
 	[[UIWebView appearance] setBackgroundColor:[UIColor colorWithCSS:app[@"webBackground"]]];
-	
+	[[WKWebView appearance] setBackgroundColor:[UIColor colorWithCSS:app[@"webBackground"]]];
+
 	// Menu
 	[[UITableView appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 	[[UITableView appearanceWhenContainedIn:LGRAppMenuViewController.class, nil] setBackgroundColor:[UIColor colorWithCSS:app[@"menuBackground"]]];

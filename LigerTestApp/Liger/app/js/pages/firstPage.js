@@ -35,7 +35,7 @@ var FIRSTPAGE = {
         });
 
 		$("#refreshPage").click(function(){
-			PAGE.openPage('Refresh Page', 'refreshPage', {});
+			PAGE.openPage('Refresh Page', 'refreshPage', {}, {"right":{"button":"refresh"}});
 			return false;
 		});
 

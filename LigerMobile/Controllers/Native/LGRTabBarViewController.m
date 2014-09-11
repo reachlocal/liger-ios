@@ -152,4 +152,10 @@
 		}
 	}
 }
+
+- (void)childUpdates:(NSDictionary *)args
+{
+	// Do nothing
+}
+
 @end

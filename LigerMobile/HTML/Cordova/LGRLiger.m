@@ -11,31 +11,7 @@
 #import "LGRDrawerViewController.h"
 
 #import "LGRCordovaViewController.h"
-
-@interface LGRBlock : NSObject {
-	void (^_block)();
-}
-- (id)initWithBlock:(void (^)())block;
-- (void)invoke;
-@end
-
-@implementation LGRBlock
-
-- (id)initWithBlock:(void (^)())block
-{
-	self = [super init];
-	if (self) {
-		_block = block;
-	}
-	return self;
-}
-
-- (void)invoke
-{
-	_block();
-}
-
-@end
+#import "LGRBlock.h"
 
 NSString* checkString(NSString* string)
 {
@@ -239,24 +215,6 @@ NSDictionary* checkDictionary(id dictionary)
 		[toolbarItems addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
 	}
 	return toolbarItems;
-}
-
-#pragma mark - Refresh
-
-- (void)userCanRefresh:(CDVInvokedUrlCommand*)command
-{
-	if (command.arguments.count != 1) {
-		CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
-		[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-		return;
-	}
-
-	BOOL userCanRefresh = [command.arguments[0] boolValue];
-	
-	self.ligerViewController.userCanRefresh = userCanRefresh;
-
-	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 #pragma mark - helper methods

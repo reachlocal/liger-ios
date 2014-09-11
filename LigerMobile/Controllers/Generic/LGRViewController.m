@@ -109,7 +109,7 @@
 
 - (void)updateParent:(NSString*)destination args:(NSDictionary*)args success:(void (^)())success fail:(void (^)())fail
 {
-	if ([destination isKindOfClass:NSString.class]) {
+	if ([destination isKindOfClass:NSString.class] && destination.length > 0) {
 		LGRViewController *page = self.parentPage;
 		
 		while (page) {

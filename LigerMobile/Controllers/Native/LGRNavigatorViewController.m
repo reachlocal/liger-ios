@@ -36,7 +36,7 @@
 
 		NSArray *pageArray = self.args[@"pages"] ?: @[self.args];
 
-		LGRViewController *controller = nil;
+		LGRViewController *controller = self;
 		for (NSDictionary *page in pageArray) {
 			controller = [LGRPageFactory controllerForPage:page[@"page"]
 													 title:page[@"title"]
@@ -99,7 +99,7 @@
 		return;
 	}
 
-	if (rewindTo) {
+	if (rewindTo.length > 0) {
 		LGRViewController *page = sourcePage.parentPage;
 
 		while (page) {
@@ -230,4 +230,10 @@
 			[self.navigationBar removeGestureRecognizer:self.navigationBarGesture];
 	}
 }
+
+- (void)childUpdates:(NSDictionary *)args
+{
+	[self.parentPage childUpdates:args];
+}
+
 @end

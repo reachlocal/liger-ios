@@ -17,6 +17,5 @@
 - (void)closeDialog:(CDVInvokedUrlCommand*)command;
 - (void)toolbar:(CDVInvokedUrlCommand*)command;
 - (void)getPageArgs:(CDVInvokedUrlCommand*)command;
-- (void)userCanRefresh:(CDVInvokedUrlCommand*)command;
 
 @end

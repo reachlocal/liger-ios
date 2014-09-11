@@ -17,6 +17,12 @@ PAGE.refresh = function(user){
 	$('#refreshes').append('*');
 }
 
+PAGE.headerButtonTapped = function(button){
+	if (button == 'refresh'){
+		$('#refreshes').append('*');
+	}
+}
+
 var REFRESHPAGES = {
 	
 	initialize: function(){

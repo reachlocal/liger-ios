@@ -115,7 +115,7 @@ BOOL native(NSMutableDictionary* pages, Class class)
 		return [importedClass controllerForImportedPage:page title:title args:args options:options parent:parent];
 	}
 
-	if (title) {
+	if (title.length > 0) {
 		NSDictionary *navigatorArgs = @{@"page" : page,
 										@"title" : title ?: @"",
 										@"args": args ?: @{},
