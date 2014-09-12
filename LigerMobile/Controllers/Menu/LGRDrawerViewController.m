@@ -42,6 +42,8 @@
 		self.pages = [NSMutableDictionary dictionary];
         
         self.openGesture.edges = UIRectEdgeLeft;
+
+		[self addMenuController];
 	}
 	return self;
 }
@@ -54,13 +56,13 @@
 - (void)addPage:(LGRViewController*)controller
 {
 	if ([controller conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
-                                                                   style:UIBarButtonItemStylePlain
-                                                                  target:self
-                                                                  action:@selector(displayMenu:)];
-        id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) controller;
+		UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+																   style:UIBarButtonItemStylePlain
+																  target:self
+																  action:@selector(displayMenu:)];
+		id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) controller;
 		[page setMenuButton:button
-       navigationBarGesture:self.navigationBarGesture
+	   navigationBarGesture:self.navigationBarGesture
 				openGesture:self.openGesture
 			   closeGesture:self.closeGesture];
 		[page useGestures];
@@ -85,8 +87,6 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-
-	[self addMenuController];
 }
 
 - (void)resetApp
