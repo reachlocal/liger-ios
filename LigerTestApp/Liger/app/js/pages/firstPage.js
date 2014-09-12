@@ -40,7 +40,7 @@ var FIRSTPAGE = {
 		});
 
 		$("#toolbarPage").click(function(){
-			PAGE.openPage('Toolbar Page', 'toolbarPage', {});
+			PAGE.openPage('Toolbar Page', 'toolbarPage', {}, {'toolbarHidden': 'false'});
 			return false;
 		});
 

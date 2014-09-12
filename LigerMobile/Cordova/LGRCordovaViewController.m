@@ -30,8 +30,11 @@
 		self.wwwFolderName = @"app";
 		self.startPage = [page hasPrefix:@"http"] ? page : [page stringByAppendingString:@".html"];
 
-		NSArray *pagesWithToolbars = [LGRApp toolbars];
-		self.toolbarHidden = ![pagesWithToolbars containsObject:page];
+		if (options[@"toolbarHidden"]) {
+			self.toolbarHidden = [options[@"toolbarHidden"] boolValue];
+		} else {
+			self.toolbarHidden = YES;
+		}
 
 		self.evalQueue = [NSMutableArray arrayWithCapacity:2];
 	}
