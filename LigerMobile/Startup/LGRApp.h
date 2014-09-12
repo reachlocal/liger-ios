@@ -11,5 +11,4 @@
 
 + (NSDictionary*)root;
 + (NSDictionary*)appearance;
-+ (NSArray*)toolbars;
 @end

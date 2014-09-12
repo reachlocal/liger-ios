@@ -81,13 +81,6 @@
 	XCTAssertNotNil(appearance, @"No appearance in app.json");
 }
 
-- (void)testToolbar
-{
-	NSArray *pagesWithToolbars = [LGRApp toolbars];
-	XCTAssertNotNil(pagesWithToolbars, @"No toolbars in app.json");
-	XCTAssert([pagesWithToolbars isKindOfClass:NSArray.class], @"[LGRApp toolbars] didn't return an array");
-}
-
 - (void)testSetupPushNotifications
 {
 	UIRemoteNotificationType types = (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound);
