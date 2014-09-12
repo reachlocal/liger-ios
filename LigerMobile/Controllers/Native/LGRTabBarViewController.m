@@ -10,6 +10,8 @@
 #import "LGRPageFactory.h"
 #import "LGRDrawerViewController.h"
 
+#import "UIColor+HTMLColors.h"
+
 @interface LGRTabBarViewController () <LGRDrawerViewControllerDelegate, UITabBarControllerDelegate>
 @property(nonatomic, strong) UITabBarController *tab;
 @property(nonatomic, strong) UIPanGestureRecognizer *navigationBarGesture;
@@ -33,7 +35,6 @@
 
 	if (self) {
 		NSMutableArray *pages = [NSMutableArray array];
-
 		NSArray *pageArray = self.args[@"pages"];
 
 		for (NSDictionary *page in pageArray) {
@@ -44,11 +45,10 @@
 																	   parent:nil];
 
 			controller.collectionPage = self;
-			NSString *icon = [@"app" stringByAppendingPathComponent:page[@"options"][@"icon"]];
+			NSString *iconName = [@"app" stringByAppendingPathComponent:page[@"options"][@"icon"]];
 			controller.tabBarItem = [[UITabBarItem alloc] initWithTitle:controller.title
-																  image:[[UIImage imageNamed:icon] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
-																	tag:3];
-
+																  image:[UIImage imageNamed:iconName]
+																	tag:pages.count];
 			[pages addObject:controller];
 		}
 
@@ -59,6 +59,15 @@
 		self.tab = [[UITabBarController alloc] init];
 		self.tab.delegate = self;
 		[self.tab setViewControllers:pages animated:NO];
+
+		// Workaround to correct initial icon colors
+		NSInteger i = self.tab.viewControllers.count;
+		while (i--) {
+			[self.tab setSelectedIndex:i];
+		}
+
+		// Set tint color
+		[self.tab.tabBar setSelectedImageTintColor:[UIColor colorWithCSS:options[@"selectedImageTintColor"]]];
 
 		[self addChildViewController:self.tab];
 	}
@@ -138,12 +147,12 @@
 - (void)userInteractionEnabled:(BOOL)enabled
 {
 	[self.tab.tabBar setUserInteractionEnabled:enabled];
-    
+
 	if ([self.tab.selectedViewController conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
         id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) self.tab.selectedViewController;
 		[page userInteractionEnabled:enabled];
 	}
-	
+
 	if (self.closeGesture) {
 		if (enabled) {
 			[self.view removeGestureRecognizer:self.closeGesture];
