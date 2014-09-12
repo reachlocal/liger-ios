@@ -78,7 +78,29 @@
 
 - (void)testButtonFromDictionary
 {
-	NSArray *buttons = @[@{@"button":@"done"}, @{@"button":@"cancel"}, @{@"button":@"save"}, @{@"button":@"search"}];
+	NSArray *buttons = @[@{@"button":@"done"},
+			     @{@"button":@"cancel"},
+			     @{@"button":@"edit"},
+			     @{@"button":@"save"},
+			     @{@"button":@"add"},
+			     @{@"button":@"compose"},
+			     @{@"button":@"reply"},
+			     @{@"button":@"action"},
+			     @{@"button":@"organize"},
+			     @{@"button":@"bookmarks"},
+			     @{@"button":@"search"},
+			     @{@"button":@"refresh"},
+			     @{@"button":@"stop"},
+			     @{@"button":@"camera"},
+			     @{@"button":@"trash"},
+			     @{@"button":@"play"},
+			     @{@"button":@"pause"},
+			     @{@"button":@"rewind"},
+			     @{@"button":@"forward"},
+			     @{@"button":@"undo"},
+			     @{@"button":@"redo"},
+			     @{@"button":@"TESTING"}
+			     ];
 
 	for (NSDictionary* button in buttons) {
 		// UIBarButtonItem doesn't give access to the system button type so we can't test that

@@ -113,10 +113,29 @@
                       }
                     },
                     "options": {
-                      "icon": "/assets/icons/Liger-2.png"
+                      "icon": "/assets/icons/Liger-1.png"
+                    }
+                  },
+                  {
+                    "title": "Navigator Three",
+                    "page": "navigator",
+                    "accessibilityLabel": "navigatorThree",
+                    "args": {
+                      "title": "First Page",
+                      "page": "firstPage",
+                      "accessibilityLabel": "firstPage",
+                      "args": {
+                        "hello": "world"
+                      }
+                    },
+                    "options": {
+                      "icon": "/assets/icons/Liger-1.png"
                     }
                   }
                 ]
+              },
+              "options": {
+                "selectedImageTintColor": "#003333",
               }
             },
             {
