@@ -42,8 +42,6 @@
 		self.pages = [NSMutableDictionary dictionary];
         
         self.openGesture.edges = UIRectEdgeLeft;
-
-		[self addMenuController];
 	}
 	return self;
 }
@@ -70,6 +68,11 @@
 
 	[self addChildViewController:controller];
 	[self.view addSubview:controller.view];
+
+	// iOS 7 but not iOS 8 (8 doesn't need it so don't fire the event needlessly)
+	if (![self respondsToSelector:@selector(extensionContext)] && [self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+		[self setNeedsStatusBarAppearanceUpdate];
+	}
 }
 
 - (void)addMenuController
@@ -87,6 +90,8 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+
+	[self addMenuController];
 }
 
 - (void)resetApp
