@@ -12,13 +12,12 @@
 #import "LGRCordovaViewController.h"
 
 #import "OCMock.h"
-#import "XCTAsyncTestCase.h"
 
 @interface LGRHTMLViewController (Test)
 @property (readonly) LGRCordovaViewController *cordova;
 @end
 
-@interface LGRHTMLViewControllerTest : XCTAsyncTestCase
+@interface LGRHTMLViewControllerTest : XCTestCase
 @property (nonatomic, strong) LGRHTMLViewController *liger;
 @end
 

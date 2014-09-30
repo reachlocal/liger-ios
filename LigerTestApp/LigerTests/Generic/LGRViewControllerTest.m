@@ -281,7 +281,7 @@
 	id delegate = OCMPartialMock([realApp delegate]);
 	OCMStub([realApp delegate]).andReturn(delegate);
 
-	id rootPage = OCMPartialMock([[realApp delegate] rootPage]);
+	id rootPage = OCMPartialMock([delegate rootPage]);
 	OCMStub([delegate rootPage]).andReturn(rootPage);
 
 	OCMExpect([rootPage resetApp]);

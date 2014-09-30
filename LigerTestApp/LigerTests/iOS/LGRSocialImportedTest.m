@@ -10,11 +10,10 @@
 #import "LGRSocialImported.h"
 #import "OCMock.h"
 #import "LGRViewController.h"
-#import "XCTAsyncTestCase.h"
 
 @import Social;
 
-@interface LGRSocialImportedTest : XCTAsyncTestCase
+@interface LGRSocialImportedTest : XCTestCase
 
 @end
 
