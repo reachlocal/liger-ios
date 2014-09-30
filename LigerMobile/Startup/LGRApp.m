@@ -67,11 +67,6 @@
 	return [self app][@"appearance"];
 }
 
-+ (NSArray*)toolbars
-{
-	return [self app][@"pagesWithToolbars"];
-}
-
 + (NSDictionary*)app
 {
 	return [self shared].app;

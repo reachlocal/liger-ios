@@ -56,7 +56,7 @@
 															   args:@{@"page": @"firstPage"}
 															options:@{}];
 
-	XCTAssertNotNil(navigator, @"Navigator failed to instatiate");
+	XCTAssertNotNil(navigator, @"Navigator failed to instantiate");
 }
 
 - (void)testViewDidLoad

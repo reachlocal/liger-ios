@@ -68,7 +68,7 @@
 													  args: @{@"pages": @[navigatorOne, navigatorTwo]}
 												   options: @{}];
 
-	XCTAssertNotNil(tab, @"Tab failed to instatiate");
+	XCTAssertNotNil(tab, @"Tab failed to instantiate");
 }
 
 - (void)testInitWithoutPage
