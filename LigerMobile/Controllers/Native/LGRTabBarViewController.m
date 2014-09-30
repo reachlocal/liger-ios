@@ -161,4 +161,10 @@
 		}
 	}
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+	return [self.tab.selectedViewController preferredStatusBarStyle];
+}
+
 @end

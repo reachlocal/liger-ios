@@ -45,6 +45,7 @@
 		3281642F183A7A050059A464 /* LGRNativePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3281642D183A7A050059A464 /* LGRNativePagesViewController.m */; };
 		32816430183A7A050059A464 /* LGRNativePagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */; };
 		32AA814219019A56001EFAD5 /* LGRCordovaViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AA814119019A56001EFAD5 /* LGRCordovaViewControllerTest.m */; };
+		32CBB6D219A80DF60023684F /* LGRSocialImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CBB6D119A80DF60023684F /* LGRSocialImportedTest.m */; };
 		72C6F2A7199BC24A005C356D /* LGRTabBarViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C6F2A6199BC24A005C356D /* LGRTabBarViewControllerTest.m */; };
 		AF1EEEDD6AFF4623933D18AD /* libPods-LigerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6007059D8C44A7F95AE18FC /* libPods-LigerTests.a */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,7 @@
 		3281642D183A7A050059A464 /* LGRNativePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRNativePagesViewController.m; path = LigerViewControllers/LGRNativePagesViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LGRNativePagesViewController.xib; path = LigerViewControllers/LGRNativePagesViewController.xib; sourceTree = "<group>"; };
 		32AA814119019A56001EFAD5 /* LGRCordovaViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRCordovaViewControllerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		32CBB6D119A80DF60023684F /* LGRSocialImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRSocialImportedTest.m; sourceTree = "<group>"; };
 		3391277704124C03803DAF80 /* Pods-LigerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LigerTests.xcconfig"; path = "Pods/Pods-LigerTests.xcconfig"; sourceTree = "<group>"; };
 		72C6F2A6199BC24A005C356D /* LGRTabBarViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRTabBarViewControllerTest.m; sourceTree = "<group>"; };
 		77FEB30B8B4943AAAE6D47AA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				325991C01986C3240010DB7A /* LGRTwitterImportedTest.m */,
 				3243043818F74D7000565E2E /* LGRViewController+MessageUITest.m */,
 				325991C8198B433F0010DB7A /* LGRViewController+UIImagePickerControllerDelegateTest.m */,
+				32CBB6D119A80DF60023684F /* LGRSocialImportedTest.m */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				3243045418F74D7000565E2E /* LGRAppDelegateTest.m in Sources */,
 				3243044A18F74D7000565E2E /* LGREmailImportedTest.m in Sources */,
 				3243044818F74D7000565E2E /* LGRPageFactoryTest.m in Sources */,
+				32CBB6D219A80DF60023684F /* LGRSocialImportedTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

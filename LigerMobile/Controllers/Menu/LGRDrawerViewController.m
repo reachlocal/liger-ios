@@ -10,7 +10,6 @@
 #import "LGRPageFactory.h"
 #import "LGRViewController.h"
 
-#import "LGRAppearance.h"
 #import "LGRApp.h"
 
 #import "LGRAppMenuViewController.h"
@@ -55,13 +54,13 @@
 - (void)addPage:(LGRViewController*)controller
 {
 	if ([controller conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
-                                                                   style:UIBarButtonItemStylePlain
-                                                                  target:self
-                                                                  action:@selector(displayMenu:)];
-        id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) controller;
+		UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+																   style:UIBarButtonItemStylePlain
+																  target:self
+																  action:@selector(displayMenu:)];
+		id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) controller;
 		[page setMenuButton:button
-       navigationBarGesture:self.navigationBarGesture
+	   navigationBarGesture:self.navigationBarGesture
 				openGesture:self.openGesture
 			   closeGesture:self.closeGesture];
 		[page useGestures];
@@ -69,6 +68,11 @@
 
 	[self addChildViewController:controller];
 	[self.view addSubview:controller.view];
+
+	// iOS 7 but not iOS 8 (8 doesn't need it so don't fire the event needlessly)
+	if (![self respondsToSelector:@selector(extensionContext)] && [self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+		[self setNeedsStatusBarAppearanceUpdate];
+	}
 }
 
 - (void)addMenuController
@@ -353,11 +357,6 @@
 	return self.childViewControllers[1];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-	return [LGRAppearance statusBar];
-}
-
 - (void)pushNotificationTokenUpdated:(NSString *)token error:(NSError *)error
 {
 	[self.menu pushNotificationTokenUpdated:token error:error];
@@ -373,4 +372,8 @@
 	[self.menu handleAppOpenURL:url];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+	return [[self pageController] preferredStatusBarStyle];
+}
 @end

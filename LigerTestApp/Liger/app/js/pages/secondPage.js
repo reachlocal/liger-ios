@@ -34,7 +34,7 @@ var SECONDPAGE = {
 		$("#openPage, #closePage, #updateParent, #openDialog, #openDialogWithTitle").unbind();
 
 		$("#openPage").click(function(){
-			PAGE.openPage('Third Page', 'thirdPage', {'test1': 'test2'});
+            PAGE.openPage('Third Page', 'thirdPage', {'test1': 'test2'}, {});
 			return false;
         });
 
@@ -59,7 +59,7 @@ var SECONDPAGE = {
 		});
 
 		$("#openDialog").click(function(){
-			PAGE.openDialog('dialog', {'dialogtest1': 'dialogtest2'});
+			PAGE.openDialog('dialog', {'dialogtest1': 'dialogtest2'}, {});
 			return false;
 		});
 

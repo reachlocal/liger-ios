@@ -14,6 +14,7 @@
 #import "LGRDrawerViewController.h"
 #import "LGRViewController.h"
 #import "LGRPageFactory.h"
+#import "LGRAppearance.h"
 
 @interface LGRViewController()
 - (void)addButtons;
@@ -22,7 +23,7 @@
 @end
 
 @interface LGRViewControllerTest : XCTestCase
-@property (nonatomic, strong) LGRViewController *liger;
+@property (nonatomic, strong) LGRViewController *ligerViewController;
 @end
 
 @implementation LGRViewControllerTest
@@ -30,7 +31,7 @@
 - (void)setUp
 {
 	[super setUp];
-	self.liger = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{} options:@{}];
+	self.ligerViewController = [[LGRViewController alloc] initWithPage:@"testPage" title:nil args:@{} options:@{}];
 }
 
 - (void)testNativePage
@@ -42,14 +43,14 @@
 {
 	NSDictionary *args = @{@"test": @YES, @"version": @76};
 	NSDictionary *options = @{@"test": @"test"};
-	LGRViewController *liger = [[LGRViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args options:options];
+	LGRViewController *ligerViewController = [[LGRViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args options:options];
 	
-	XCTAssertEqual(liger.page, @"testPage", @"Page name is wrong");
-	XCTAssertEqual(liger.title, @"testTitle", @"Title is wrong");
-	XCTAssertEqualObjects(liger.args, args, @"Args are wrong");
-	XCTAssertEqualObjects(liger.options, options, @"Options are wrong");
-	XCTAssertNil(liger.parentPage, @"Parent shouldn't be set");
-	XCTAssertFalse(liger.userCanRefresh, @"User refresh should be false as default");
+	XCTAssertEqual(ligerViewController.page, @"testPage", @"Page name is wrong");
+	XCTAssertEqual(ligerViewController.title, @"testTitle", @"Title is wrong");
+	XCTAssertEqualObjects(ligerViewController.args, args, @"Args are wrong");
+	XCTAssertEqualObjects(ligerViewController.options, options, @"Options are wrong");
+	XCTAssertNil(ligerViewController.parentPage, @"Parent shouldn't be set");
+	XCTAssertFalse(ligerViewController.userCanRefresh, @"User refresh should be false as default");
 }
 
 - (void)testInitWithPageWithNib
@@ -103,13 +104,13 @@
 
 	for (NSDictionary* button in buttons) {
 		// UIBarButtonItem doesn't give access to the system button type so we can't test that
-		XCTAssertNotNil([self.liger buttonFromDictionary:button], @"Button failed to instantiate.");
+		XCTAssertNotNil([self.ligerViewController buttonFromDictionary:button], @"Button failed to instantiate.");
 	}
 }
 
 - (void)testButtonAction
 {
-	id liger = OCMPartialMock(self.liger);
+	id liger = OCMPartialMock(self.ligerViewController);
 	OCMExpect([liger buttonTapped:nil]);
 	[liger buttonAction:nil];
 
@@ -118,14 +119,14 @@
 
 - (void)testButtonTapped
 {
-	id liger = OCMPartialMock(self.liger);
+	id liger = OCMPartialMock(self.ligerViewController);
 
 	[liger buttonTapped:nil];
 }
 
 - (void)testOpenPage
 {
-	id page = OCMPartialMock(self.liger);
+	id page = OCMPartialMock(self.ligerViewController);
 	id collection = OCMPartialMock([[LGRViewController alloc] initWithPage:@"" title:@"" args:@{} options:@{}]);
 	OCMExpect([collection openPage:@"firstPage" title:@"First Page" args:@{} options:@{} parent:nil success:OCMOCK_ANY fail:OCMOCK_ANY]);
 
@@ -138,7 +139,7 @@
 
 - (void)testUpdateParent
 {
-	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
+	LGRViewController *liger = [OCMockObject partialMockForObject:self.ligerViewController];
 
 	id mock = [OCMockObject mockForClass:LGRViewController.class];
 	[[mock expect] childUpdates:OCMOCK_ANY];
@@ -151,7 +152,7 @@
 
 - (void)testUpdateParentDestination
 {
-	id liger = [OCMockObject partialMockForObject:self.liger];
+	id liger = [OCMockObject partialMockForObject:self.ligerViewController];
 
 	id test2 = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test2" title:@"" args:@{} options:@{}]];
 	id test = [OCMockObject partialMockForObject:[[LGRViewController alloc] initWithPage:@"test" title:@"" args:@{} options:@{}]];
@@ -167,10 +168,10 @@
 
 - (void)testClosePage
 {
-	id page = OCMPartialMock(self.liger);
+	id page = OCMPartialMock(self.ligerViewController);
 	id collection = OCMPartialMock([[LGRViewController alloc] init]);
 
-	OCMExpect([collection closePage:nil sourcePage:self.liger success:OCMOCK_ANY fail:OCMOCK_ANY]);
+	OCMExpect([collection closePage:nil sourcePage:self.ligerViewController success:OCMOCK_ANY fail:OCMOCK_ANY]);
 	OCMStub([page collectionPage]).andReturn(collection);
 
 	[page closePage:nil success:^{} fail:^{}];
@@ -180,14 +181,14 @@
 
 - (void)testClosePageWithSource
 {
-	id page = OCMPartialMock(self.liger);
+	id page = OCMPartialMock(self.ligerViewController);
 
 	[page closePage:nil sourcePage:nil success:^{} fail:^{}];
 }
 
 - (void)testOpenDialog
 {
-	id page = OCMPartialMock(self.liger);
+	id page = OCMPartialMock(self.ligerViewController);
 	id collection = OCMPartialMock([[LGRViewController alloc] init]);
 
 	OCMExpect([collection openDialog:@"firstPage"
@@ -206,7 +207,7 @@
 
 - (void)testOpenDialogWithoutCollection
 {
-	id page = OCMPartialMock(self.liger);
+	id page = OCMPartialMock(self.ligerViewController);
 	OCMExpect([page presentViewController:OCMOCK_ANY animated:YES completion:OCMOCK_ANY]).andDo(^(NSInvocation *invocation){
 		void (^completion)(void) = nil;
 		[invocation getArgument:&completion atIndex:4];
@@ -223,7 +224,7 @@
 
 - (void)testOpenDialogWithoutCollectionAndFail
 {
-	id page = OCMPartialMock(self.liger);
+	id page = OCMPartialMock(self.ligerViewController);
 	id factory = OCMClassMock(LGRPageFactory.class);
 
 	OCMExpect([factory controllerForPage:OCMOCK_ANY title:OCMOCK_ANY args:OCMOCK_ANY options:OCMOCK_ANY parent:OCMOCK_ANY]).andReturn(nil);
@@ -247,7 +248,7 @@
 }
 - (void)testCloseDialog
 {
-	id page = OCMPartialMock(self.liger);
+	id page = OCMPartialMock(self.ligerViewController);
 
 	id presenting = OCMPartialMock([[LGRViewController alloc] init]);
 	OCMExpect([presenting dismissViewControllerAnimated:YES completion:OCMOCK_ANY]).andDo(^(NSInvocation *invocation){
@@ -271,7 +272,7 @@
 
 - (void)testCloseDialogAndReset
 {
-	id page = OCMPartialMock(self.liger);
+	id page = OCMPartialMock(self.ligerViewController);
 
 	id realApp = OCMPartialMock([UIApplication sharedApplication]);
 	id app = OCMClassMock(UIApplication.class);
@@ -303,7 +304,7 @@
 
 - (void)testCloseDialogInternalFail
 {
-	id liger = OCMPartialMock(self.liger);
+	id liger = OCMPartialMock(self.ligerViewController);
 
 	OCMStub([liger presentingViewController]).andReturn(nil);
 
@@ -317,7 +318,7 @@
 
 - (void)testDialogClosed
 {
-	[self.liger dialogClosed:@{}];
+	[self.ligerViewController dialogClosed:@{}];
 }
 
 - (void)testChildUpdates
@@ -331,37 +332,117 @@
 
 - (void)testRefreshPage
 {
-	[self.liger refreshPage:YES];
-	[self.liger refreshPage:NO];
+	[self.ligerViewController refreshPage:YES];
+	[self.ligerViewController refreshPage:NO];
 }
 
 - (void)testPageWillAppear
 {
-	[self.liger pageWillAppear];
+	[self.ligerViewController pageWillAppear];
 }
 
 - (void)testUserCanRefresh
 {
-	XCTAssertEqual(self.liger.userCanRefresh, NO, @"Should be NO.");
-	self.liger.userCanRefresh = YES;
-	XCTAssertEqual(self.liger.userCanRefresh, YES, @"Should be YES.");
-	self.liger.userCanRefresh = NO;
-	XCTAssertEqual(self.liger.userCanRefresh, NO, @"Should be NO.");
+	XCTAssertEqual(self.ligerViewController.userCanRefresh, NO, @"Should be NO.");
+	self.ligerViewController.userCanRefresh = YES;
+	XCTAssertEqual(self.ligerViewController.userCanRefresh, YES, @"Should be YES.");
+	self.ligerViewController.userCanRefresh = NO;
+	XCTAssertEqual(self.ligerViewController.userCanRefresh, NO, @"Should be NO.");
 }
 
 - (void)testPushNotificationTokenUpdatedError
 {
-	[self.liger pushNotificationTokenUpdated:@"" error:nil];
+	[self.ligerViewController pushNotificationTokenUpdated:@"" error:nil];
 }
 
 - (void)testNotificationArrivedBackground
 {
-	[self.liger notificationArrived:@{} background:NO];
+	[self.ligerViewController notificationArrived:@{} background:NO];
 }
 
 - (void)testHandleAppOpenURL
 {
-	[self.liger handleAppOpenURL:[NSURL URLWithString:@"http://reachlocal.github.io/liger/"]];
+	[self.ligerViewController handleAppOpenURL:[NSURL URLWithString:@"http://reachlocal.github.io/liger/"]];
 }
 
+- (void)testPreferredStatusBarStyleLight
+{
+	id appearance = OCMClassMock(LGRAppearance.class);
+	OCMStub([appearance statusBar]).andReturn(UIStatusBarStyleDefault);
+
+	LGRViewController* ligerViewController = OCMPartialMock(self.ligerViewController);
+	NSDictionary *options = @{@"statusBar": @"light"};
+	OCMStub([ligerViewController options]).andReturn(options);
+
+	UIStatusBarStyle style = [ligerViewController preferredStatusBarStyle];
+	XCTAssertEqual(style, UIStatusBarStyleLightContent, @"Wrong status bar style");
+}
+
+- (void)testPreferredStatusBarStyleDark
+{
+	id appearance = OCMClassMock(LGRAppearance.class);
+	OCMStub([appearance statusBar]).andReturn(UIStatusBarStyleLightContent);
+
+	LGRViewController* ligerViewController = OCMPartialMock(self.ligerViewController);
+	NSDictionary *options = @{@"statusBar": @"DARK"};
+	OCMStub([ligerViewController options]).andReturn(options);
+
+	UIStatusBarStyle style = [ligerViewController preferredStatusBarStyle];
+	XCTAssertEqual(style, UIStatusBarStyleDefault, @"Wrong status bar style");
+}
+
+- (void)testPreferredStatusBarStyleAppearance
+{
+	id appearance = OCMClassMock(LGRAppearance.class);
+	OCMStub([appearance statusBar]).andReturn(UIStatusBarStyleLightContent);
+
+	LGRViewController* ligerViewController = OCMPartialMock(self.ligerViewController);
+	NSDictionary *options = @{};
+	OCMStub([ligerViewController options]).andReturn(options);
+
+	UIStatusBarStyle style = [ligerViewController preferredStatusBarStyle];
+	XCTAssertEqual(style, UIStatusBarStyleLightContent, @"Wrong status bar style");
+}
+
+- (void)testPreferredStatusBarStyleLightDialog
+{
+	id appearance = OCMClassMock(LGRAppearance.class);
+	OCMStub([appearance statusBarDialog]).andReturn(UIStatusBarStyleLightContent);
+
+	LGRViewController* ligerViewController = OCMPartialMock(self.ligerViewController);
+	NSDictionary *options = @{@"statusBarDialog": @"light"};
+	OCMStub([ligerViewController options]).andReturn(options);
+	OCMStub([ligerViewController presentingViewController]).andReturn(self.ligerViewController);
+
+	UIStatusBarStyle style = [ligerViewController preferredStatusBarStyle];
+	XCTAssertEqual(style, UIStatusBarStyleLightContent, @"Wrong status bar style");
+}
+
+- (void)testPreferredStatusBarStyleDarkDialog
+{
+	id appearance = OCMClassMock(LGRAppearance.class);
+	OCMStub([appearance statusBarDialog]).andReturn(UIStatusBarStyleDefault);
+
+	LGRViewController* ligerViewController = OCMPartialMock(self.ligerViewController);
+	NSDictionary *options = @{@"statusBarDialog": @"DARK"};
+	OCMStub([ligerViewController options]).andReturn(options);
+	OCMStub([ligerViewController presentingViewController]).andReturn(self.ligerViewController);
+
+	UIStatusBarStyle style = [ligerViewController preferredStatusBarStyle];
+	XCTAssertEqual(style, UIStatusBarStyleDefault, @"Wrong status bar style");
+}
+
+- (void)testPreferredStatusBarStyleAppearanceDialog
+{
+	id appearance = OCMClassMock(LGRAppearance.class);
+	OCMStub([appearance statusBarDialog]).andReturn(UIStatusBarStyleLightContent);
+
+	LGRViewController* ligerViewController = OCMPartialMock(self.ligerViewController);
+	NSDictionary *options = @{};
+	OCMStub([ligerViewController options]).andReturn(options);
+	OCMStub([ligerViewController presentingViewController]).andReturn(self.ligerViewController);
+
+	UIStatusBarStyle style = [ligerViewController preferredStatusBarStyle];
+	XCTAssertEqual(style, UIStatusBarStyleLightContent, @"Wrong status bar style");
+}
 @end
