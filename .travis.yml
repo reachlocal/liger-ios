@@ -1,12 +1,9 @@
 before_script:
   - export LANG=en_US.UTF-8
 before_install:
-# Uncomment the two following lines if the version of xctool on the build machiens
-# lag behind and that is causing the build to fail. Be aware that upgrading when
-# there's no new version available causes the build to exit witha non-zero and
-# thus fail.
-#  - brew update
-#  - brew upgrade xctool
+# Ensure xctool is updated.
+  - brew update
+  - if brew outdated | grep -qx xctool; then brew upgrade xctool; fi
   - cd $TRAVIS_BUILD_DIR/LigerTestApp
 language: objective-c
 install: ''
@@ -14,7 +11,7 @@ xcode_workspace: Liger.xcworkspace
 xcode_scheme: Liger
 # Build
 script:
-  - xctool -workspace Liger.xcworkspace -scheme Liger build test
+  - xctool build test
   - cd $TRAVIS_BUILD_DIR
   - ./ci/release.sh
 env:

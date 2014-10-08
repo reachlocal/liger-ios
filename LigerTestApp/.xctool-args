@@ -3,5 +3,6 @@
   "-workspace", "Liger.xcworkspace",
   "-scheme", "Liger",
   "-configuration", "Debug",
-  "-sdk", "iphonesimulator"
+  "-sdk", "iphonesimulator",
+  "-destination", "name=iPhone 6"
 ]
