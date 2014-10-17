@@ -162,7 +162,10 @@
 	__weak LGRDrawerViewController *me = self;
 	[self presentViewController:new animated:YES completion:^{
 		success();
-		[me toggleMenu];
+		CGRect frame = [self pageController].view.frame;
+
+		if (frame.origin.x > 0)
+			[me toggleMenu];
 	}];
 }
 
