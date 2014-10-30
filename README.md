@@ -9,5 +9,5 @@ Liger-iOS is intended to be used as a [cocoapod](http://www.cocoapods.org) in an
 To run the tests and generate coverage files, run this at the command line using the latest version of xctool/Xcode:
 
 ```bash
-xctool build test -destination 'OS=7.1,name=iPhone Retina (4-inch 64-bit)' GCC_GENERATE_TEST_COVERAGE_FILES=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES
+xctool build test GCC_GENERATE_TEST_COVERAGE_FILES=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES
 ```

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "04517BCEDC1A4AD0AFD82FEB"
+               BlueprintIdentifier = "93AA0AD2998E45D08AECEC01"
                BuildableName = "libPods-Liger-Cordova.a"
                BlueprintName = "Pods-Liger-Cordova"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -39,6 +39,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "93AA0AD2998E45D08AECEC01"
+            BuildableName = "libPods-Liger-Cordova.a"
+            BlueprintName = "Pods-Liger-Cordova"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
