@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -20,8 +21,8 @@
                         <navigationItem id="6KS-eV-HFn"/>
                     </items>
                 </navigationBar>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="LigerMobile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STD-Ix-sFX">
-                    <rect key="frame" x="0.0" y="258" width="600" height="86"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LigerMobile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="36" translatesAutoresizingMaskIntoConstraints="NO" id="STD-Ix-sFX">
+                    <rect key="frame" x="16" y="257" width="568" height="86"/>
                     <fontDescription key="fontDescription" type="system" pointSize="72"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -29,13 +30,21 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailingMargin" secondItem="STD-Ix-sFX" secondAttribute="trailing" constant="8" id="6ty-gU-16l"/>
                 <constraint firstAttribute="trailing" secondItem="Aud-M8-2eK" secondAttribute="trailing" id="ASY-Yc-Fd3"/>
                 <constraint firstItem="Aud-M8-2eK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Gxy-75-Cn3"/>
                 <constraint firstItem="Aud-M8-2eK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RMp-Oh-ufq"/>
                 <constraint firstAttribute="trailing" secondItem="STD-Ix-sFX" secondAttribute="trailing" id="gOE-Tq-XZS"/>
+                <constraint firstItem="STD-Ix-sFX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" constant="8" id="oal-Sd-21c"/>
                 <constraint firstAttribute="centerY" secondItem="STD-Ix-sFX" secondAttribute="centerY" id="ruN-RX-7k1"/>
                 <constraint firstItem="STD-Ix-sFX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="v6H-a6-eHO"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="gOE-Tq-XZS"/>
+                    <exclude reference="v6H-a6-eHO"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>
