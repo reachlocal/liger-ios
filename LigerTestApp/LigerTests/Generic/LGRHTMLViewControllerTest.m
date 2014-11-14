@@ -38,29 +38,11 @@
 	XCTAssertEqual(liger.title, @"Test Title", @"Title is wrong");
 	XCTAssertEqualObjects(liger.args, args, @"Args are wrong");
 	XCTAssertNil(liger.parentPage, @"Parent shouldn't be set");
-	XCTAssertFalse(liger.userCanRefresh, @"User refresh should be false as default");
 }
 
 - (void)testNativePage
 {
 	XCTAssertNil([LGRHTMLViewController nativePage], @"LGRHTMLViewController page should not have a name");
-}
-
-- (void)testRefreshPage
-{
-	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
-
-	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
-	
-	[[[(id)liger stub] andReturn:mock] cordova];
-	
-	[[mock expect] refreshPage:YES];
-	[[mock expect] refreshPage:NO];
-	
-	[liger refreshPage:YES];
-	[liger refreshPage:NO];
-	
-	XCTAssertNoThrow([mock verify], @"refreshPage should be sent to the cordova controller");
 }
 
 - (void)testDialogClosed
@@ -103,15 +85,6 @@
 	[liger pageWillAppear];
 
 	XCTAssertNoThrow([cordova verify], @"pageWillAppear should call cordova");
-}
-
-- (void)testUserCanRefresh
-{
-	XCTAssertEqual(self.liger.userCanRefresh, NO, @"Should be NO.");
-	self.liger.userCanRefresh = YES;
-	XCTAssertEqual(self.liger.userCanRefresh, YES, @"Should be YES.");
-	self.liger.userCanRefresh = NO;
-	XCTAssertEqual(self.liger.userCanRefresh, NO, @"Should be NO.");
 }
 
 - (void)testPushNotificationTokenUpdatedError

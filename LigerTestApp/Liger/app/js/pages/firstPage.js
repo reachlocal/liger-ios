@@ -35,7 +35,13 @@ var FIRSTPAGE = {
         });
 
 		$("#refreshPage").click(function(){
-			PAGE.openPage('Refresh Page', 'refreshPage', {});
+			PAGE.openPage('Refresh Page', 'refreshPage', {}, {"right":{"button":"refresh"}});
+			return false;
+		});
+
+		$("#refreshDialogPage").click(function(){
+			var refreshPage = {page:'refreshPage', title:'Refresh Page', args:{}, options:{"left":{"button":"done"}, "right":{"button":"refresh"}}};
+			PAGE.openDialog('navigator', refreshPage, {});
 			return false;
 		});
 

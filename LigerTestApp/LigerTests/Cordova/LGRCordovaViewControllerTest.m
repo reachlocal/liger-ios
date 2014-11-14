@@ -112,37 +112,6 @@
 	XCTAssertNoThrow([cordova verify], @"childUpdates should push to queue");
 }
 
-- (void)testUserCanRefresh
-{
-	id cordova = OCMPartialMock(self.cordova);
-	[[cordova reject] parentViewController];
-
-	[cordova setUserCanRefresh:[cordova userCanRefresh]];
-}
-
-- (void)testRefresh
-{
-	id cordova = OCMPartialMock(self.cordova);
-
-	[[cordova expect] refreshPage:YES];
-
-	[cordova refresh:nil];
-
-	XCTAssertNoThrow([cordova verify], @"refresh should call refresh page");
-}
-
-- (void)testRefreshPage
-{
-	id cordova = OCMPartialMock(self.cordova);
-
-	[[cordova expect] addToQueue:OCMOCK_ANY];
-	[[cordova expect] executeQueue];
-
-	[cordova refreshPage:YES];
-
-	XCTAssertNoThrow([cordova verify], @"refreshPage should push to queue");
-}
-
 - (void)testPushNotificationTokenUpdatedError
 {
 	id cordova = OCMPartialMock(self.cordova);

@@ -57,11 +57,6 @@
 @property (nonatomic, strong) LGRViewController *collectionPage;
 
 /**
- Used by the javascript API to add a refresh button that calls back to javascript when tapped.
- */
-@property (nonatomic, assign) BOOL userCanRefresh;
-
-/**
  Convenience initializer, calls initWithPage:title:args:options:NibName:bundle with nil for nib and bundle.
  */
 - (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options;
@@ -184,13 +179,6 @@
  @see updateParent:args:success:fail
  */
 - (void)childUpdates:(NSDictionary*)args;
-
-/**
- Callback coming from either a system callback or the refresh button in the navigation bar. Mostly used for HTML pages.
- 
- @param wasInitiatedByUser YES if the refresh button was tapped, NO otherwise.
- */
-- (void)refreshPage:(BOOL)wasInitiatedByUser;
 
 /**
  Callback for when the page will appear, same as viewWillAppear: but generic for both HTML and native.

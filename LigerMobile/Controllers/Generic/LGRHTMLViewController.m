@@ -43,24 +43,9 @@
 	[self.cordova childUpdates:args];
 }
 
-- (void)refreshPage:(BOOL)wasInitiatedByUser
-{
-	[self.cordova refreshPage:wasInitiatedByUser];
-}
-
 - (NSDictionary*)args
 {
 	return self.cordova.args;
-}
-
-- (void)setUserCanRefresh:(BOOL)userCanRefresh
-{
-	self.cordova.userCanRefresh = userCanRefresh;
-}
-
-- (BOOL)userCanRefresh
-{
-	return self.cordova.userCanRefresh;
 }
 
 - (void)pageWillAppear

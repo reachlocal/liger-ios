@@ -2,8 +2,7 @@ var PAGE = {
     page: null,
     args: null,
 	toolbarItems: null,
-	userCanRefresh: false,
-	
+
     initialize: function(page) {
         this.page = page;
         this.bindEvents();
@@ -46,13 +45,6 @@ var PAGE = {
             PAGE.toolbar(PAGE.toolbarItems);
         }
     },
-
-	setupRefresh: function(){
-		LIGER.userCanRefresh(this.userCanRefresh);
-	},
-
-	refresh: function(user){},
-
 
     /**
      * Opens a new page.
@@ -142,12 +134,6 @@ var PAGE = {
      * @param items An array of hashes, one per item. They keys are icon: character, callback: javascript code in a string to be executed when the item is tapped.
      */
     toolbar: function(items) { LIGER.toolbar(items); },
-
-    /**
-     * Indicates whether this web view can be refreshed by the user or not
-     *
-     */
-    canRefresh: function() { LIGER.userCanRefresh(PAGE.userCanRefresh); },
 
     headerButtonTapped: function(button) {}
 	
