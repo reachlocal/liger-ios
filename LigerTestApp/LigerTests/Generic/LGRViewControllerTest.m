@@ -50,7 +50,6 @@
 	XCTAssertEqualObjects(ligerViewController.args, args, @"Args are wrong");
 	XCTAssertEqualObjects(ligerViewController.options, options, @"Options are wrong");
 	XCTAssertNil(ligerViewController.parentPage, @"Parent shouldn't be set");
-	XCTAssertFalse(ligerViewController.userCanRefresh, @"User refresh should be false as default");
 }
 
 - (void)testInitWithPageWithNib
@@ -64,7 +63,6 @@
 	XCTAssertEqualObjects(liger.args, args, @"Args are wrong");
 	XCTAssertEqualObjects(liger.options, options, @"Options are wrong");
 	XCTAssertNil(liger.parentPage, @"Parent shouldn't be set");
-	XCTAssertFalse(liger.userCanRefresh, @"User refresh should be false as default");
 }
 
 - (void)testAddButtons
@@ -330,24 +328,9 @@
 	XCTAssertEqualObjects(liger.args, @{@"Updated": @YES}, @"Args don't match after call");
 }
 
-- (void)testRefreshPage
-{
-	[self.ligerViewController refreshPage:YES];
-	[self.ligerViewController refreshPage:NO];
-}
-
 - (void)testPageWillAppear
 {
 	[self.ligerViewController pageWillAppear];
-}
-
-- (void)testUserCanRefresh
-{
-	XCTAssertEqual(self.ligerViewController.userCanRefresh, NO, @"Should be NO.");
-	self.ligerViewController.userCanRefresh = YES;
-	XCTAssertEqual(self.ligerViewController.userCanRefresh, YES, @"Should be YES.");
-	self.ligerViewController.userCanRefresh = NO;
-	XCTAssertEqual(self.ligerViewController.userCanRefresh, NO, @"Should be NO.");
 }
 
 - (void)testPushNotificationTokenUpdatedError

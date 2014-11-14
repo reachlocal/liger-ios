@@ -42,7 +42,6 @@
 	NSDictionary *args = @{@"link" : @"http://reachlocal.github.io/liger/", @"allowZoom": @YES};
 	XCTAssertEqualObjects(self.browser.args, args, @"Args are wrong");
 	XCTAssertNil(self.browser.parentPage, @"Parent shouldn't be set");
-	XCTAssertFalse(self.browser.userCanRefresh, @"User refresh should be false as default");
 }
 
 - (void)testNativePage

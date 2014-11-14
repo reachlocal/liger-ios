@@ -42,6 +42,7 @@
 		325991C51986C47A0010DB7A /* LGRSinaWeiboImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 325991C41986C47A0010DB7A /* LGRSinaWeiboImportedTest.m */; };
 		325991C7198B41E30010DB7A /* LGRImageImportedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 325991C6198B41E30010DB7A /* LGRImageImportedTest.m */; };
 		325991C9198B433F0010DB7A /* LGRViewController+UIImagePickerControllerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 325991C8198B433F0010DB7A /* LGRViewController+UIImagePickerControllerDelegateTest.m */; };
+		327843881A16630A0007EC90 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 327843871A16630A0007EC90 /* LaunchScreen.xib */; };
 		3281642F183A7A050059A464 /* LGRNativePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3281642D183A7A050059A464 /* LGRNativePagesViewController.m */; };
 		32816430183A7A050059A464 /* LGRNativePagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */; };
 		32AA814219019A56001EFAD5 /* LGRCordovaViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AA814119019A56001EFAD5 /* LGRCordovaViewControllerTest.m */; };
@@ -99,6 +100,7 @@
 		325991C41986C47A0010DB7A /* LGRSinaWeiboImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRSinaWeiboImportedTest.m; sourceTree = "<group>"; };
 		325991C6198B41E30010DB7A /* LGRImageImportedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRImageImportedTest.m; sourceTree = "<group>"; };
 		325991C8198B433F0010DB7A /* LGRViewController+UIImagePickerControllerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LGRViewController+UIImagePickerControllerDelegateTest.m"; sourceTree = "<group>"; };
+		327843871A16630A0007EC90 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = Resources/LaunchScreen.xib; sourceTree = "<group>"; };
 		3281642C183A7A050059A464 /* LGRNativePagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = LGRNativePagesViewController.h; path = LigerViewControllers/LGRNativePagesViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3281642D183A7A050059A464 /* LGRNativePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = LGRNativePagesViewController.m; path = LigerViewControllers/LGRNativePagesViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3281642E183A7A050059A464 /* LGRNativePagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LGRNativePagesViewController.xib; path = LigerViewControllers/LGRNativePagesViewController.xib; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				321107761828674500AE0D71 /* cordova */,
 				32110732182866F600AE0D71 /* Images.xcassets */,
 				3281642B183A79C60059A464 /* LigerViewControllers */,
+				327843861A1662DD0007EC90 /* Resources */,
 				32110727182866F600AE0D71 /* Supporting Files */,
 			);
 			path = Liger;
@@ -295,6 +298,14 @@
 			path = Startup;
 			sourceTree = "<group>";
 		};
+		327843861A1662DD0007EC90 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				327843871A16630A0007EC90 /* LaunchScreen.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		3281642B183A79C60059A464 /* LigerViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,6 +400,7 @@
 				3211077A1828674D00AE0D71 /* app in Resources */,
 				3211072B182866F600AE0D71 /* InfoPlist.strings in Resources */,
 				32110733182866F600AE0D71 /* Images.xcassets in Resources */,
+				327843881A16630A0007EC90 /* LaunchScreen.xib in Resources */,
 				321107781828674500AE0D71 /* config.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -228,11 +228,6 @@
 	self.args = args;
 }
 
-- (void)refreshPage:(BOOL)wasInitiatedByUser
-{
-	
-}
-
 - (void)pageWillAppear
 {
 	

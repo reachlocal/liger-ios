@@ -65,9 +65,5 @@ var LIGER = {
 	
 	toolbar: function(items) {
 		cordova.exec(null, null, "Liger", "toolbar", [items]);
-	},
-
-	userCanRefresh: function(userCanRefresh) {
-		cordova.exec(null, null, "Liger", "userCanRefresh", [userCanRefresh]);
 	}
 };

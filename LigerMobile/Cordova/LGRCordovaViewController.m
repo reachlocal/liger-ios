@@ -18,7 +18,6 @@
 @end
 
 @implementation LGRCordovaViewController
-@synthesize userCanRefresh = _userCanRefresh;
 
 - (id)initWithPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options
 {
@@ -64,8 +63,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-
-	[self refreshPage:NO];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -108,40 +105,6 @@
 }
 
 #pragma mark - Refresh
-
-- (void)setUserCanRefresh:(BOOL)userCanRefresh
-{
-	if (userCanRefresh == _userCanRefresh)
-		return;
-
-	_userCanRefresh = userCanRefresh;
-
-	if (_userCanRefresh) {
-		self.parentViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
-	} else {
-		self.parentViewController.navigationItem.rightBarButtonItem = nil;
-	}
-}
-
-- (BOOL)userCanRefresh
-{
-	return _userCanRefresh;
-}
-
-- (void)refresh:(id)sender
-{
-	[self refreshPage:YES];
-}
-
-- (void)refreshPage:(BOOL)wasInitiatedByUser
-{
-	if (wasInitiatedByUser) {
-		NSString *js = [NSString stringWithFormat:@"PAGE.refresh(%@);", wasInitiatedByUser ? @"true" : @"false"];
-
-		[self addToQueue:js];
-		[self executeQueue];
-	}
-}
 
 - (void)pageWillAppear
 {
