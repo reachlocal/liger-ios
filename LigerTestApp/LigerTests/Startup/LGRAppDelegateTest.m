@@ -93,16 +93,18 @@ NSData* testToken()
 
 - (void)testDidReceiveRemoteNotification
 {
+	UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+	BOOL background = state == UIApplicationStateInactive || state == UIApplicationStateBackground;
+
 	id appDelegate = OCMPartialMock(self.delegate);
 
-	id rootPage = [OCMockObject partialMockForObject:[[LGRViewController alloc] init]];
-	[[[appDelegate stub] andReturn:rootPage] rootPage];
-
-	[[rootPage expect] notificationArrived:OCMOCK_ANY background:NO];
+	id rootPage = OCMPartialMock([[LGRViewController alloc] init]);
+	OCMStub([appDelegate rootPage]).andReturn(rootPage);
+	OCMExpect([rootPage notificationArrived:OCMOCK_ANY background:background]);
 
 	[appDelegate application:[UIApplication sharedApplication] didReceiveRemoteNotification:@{}];
 
-	XCTAssertNoThrow([rootPage verify], @"Verify failed");
+	OCMVerifyAll(rootPage);
 }
 
 - (void)testOpenURLSourceApplicationAnnotation
