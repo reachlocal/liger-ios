@@ -47,9 +47,9 @@ NSDictionary* reuseOptions(NSDictionary* options, NSIndexPath* path) {
 	}
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-	[super viewDidAppear:animated];
+	[super viewWillAppear:animated];
 	
 	if (!self.menu.indexPathForSelectedRow) {
 		[self openPage:self.menuItems[0][0][@"page"]
