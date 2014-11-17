@@ -20,10 +20,13 @@
 @property(assign) LGRAppDelegate *delegate;
 @end
 
-NSData* testToken()
-{
+NSData* testToken() {
 	int32_t hexData[8] = {0x26ea0f58, 0x99ac6bd8, 0xa3e0d6b5, 0x1f38a4ad, 0x3475c1e4, 0xeefbeee6, 0x2eca722c, 0xef0c3bf9};
 	return [NSData dataWithBytes:hexData length:32];
+}
+
+NSString* testTokenAsString() {
+	return @"26eaf5899ac6bd8a3e0d6b51f38a4ad3475c1e4eefbeee62eca722cefc3bf9";
 }
 
 @implementation LGRAppDelegateTest
@@ -68,7 +71,7 @@ NSData* testToken()
 	id rootPage = [OCMockObject partialMockForObject:[[LGRViewController alloc] init]];
 	[[[appDelegate stub] andReturn:rootPage] rootPage];
 
-	[[rootPage expect] pushNotificationTokenUpdated:OCMOCK_ANY error:OCMOCK_ANY];
+	[[rootPage expect] pushNotificationTokenUpdated:testTokenAsString() error:OCMOCK_ANY];
 
 	[appDelegate application:[UIApplication sharedApplication] didRegisterForRemoteNotificationsWithDeviceToken:testToken()];
 
