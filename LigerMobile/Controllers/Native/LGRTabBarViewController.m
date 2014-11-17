@@ -67,7 +67,7 @@
 		}
 
 		// Set tint color
-		[self.tab.tabBar setSelectedImageTintColor:[UIColor colorWithCSS:options[@"selectedImageTintColor"]]];
+		[self.tab.tabBar setSelectedImageTintColor:[UIColor colorWithCSS:options[@"selectedImageTintColor"] ?: @""]];
 
 		[self addChildViewController:self.tab];
 	}

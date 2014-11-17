@@ -45,7 +45,7 @@
 - (void)testResetApp
 {
 	[self.drawer resetApp];
-	[self.drawer.childViewControllers[0] viewDidAppear:NO]; // We have to fake calling this as drawer's view isn't hooked up to anything
+	[self.drawer.childViewControllers[0] viewWillAppear:NO]; // We have to fake calling this as drawer's view isn't hooked up to anything
 
 	XCTAssert(self.drawer.childViewControllers.count == 2, @"Wrong number of child controllers.");
 }
