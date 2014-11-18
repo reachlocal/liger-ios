@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LigerMobile"
-  s.version      = "0.1.1"
+  s.version      = "0.2.0"
   s.summary      = "A framework to help building HTML5 apps using native navigation."
 
   s.description  = <<-DESC
@@ -24,6 +24,6 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.dependency 'Cordova', '3.4.1'
+  s.dependency 'Cordova', '3.6.0'
   s.dependency 'UIColor-HTMLColors', '1.0.0'
 end
