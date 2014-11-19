@@ -26,7 +26,7 @@ var SYSTEM = {
 	},
 
 	addBindings: function(){
-		$("#browser,#mail,#message,#image,#twitter,#facebook,#sinaweibo,#tencentweibo").unbind();
+		$("#browser,#mail,#message,#image,#twitter,#facebook,#sinaweibo,#tencentweibo,#appSettings").unbind();
 
         $("#browser").click(function(){
 			PAGE.openDialogWithTitle('Browser', 'browser', {link: "http://daringfireball.net", allowZoom:true},
@@ -86,7 +86,7 @@ var SYSTEM = {
 		});
 
 		$("#appSettings").click(function (){
-			PAGE.openDialog('appSettings', {});
+			PAGE.openDialogWithTitle('App Settings', 'appSettings', {}, {"right":{"button":"done"}});
 			return false;
 		});
 	}

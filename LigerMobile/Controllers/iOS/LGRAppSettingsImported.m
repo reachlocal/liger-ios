@@ -13,7 +13,16 @@
 
 + (NSString*)importedPage
 {
-	return @"appSettings";
+	if ([LGRAppSettingsImported iOS8])
+		return @"appSettings";
+
+	return nil;
+}
+
++ (BOOL)iOS8
+{
+	// Only make appSettings available on iOS8+ (UIAlertController is iOS8+ only)
+	return !![UIAlertController class];
 }
 
 + (UIViewController*)controllerForImportedPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent

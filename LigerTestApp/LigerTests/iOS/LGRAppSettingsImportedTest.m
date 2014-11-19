@@ -11,6 +11,10 @@
 
 #import "OCMock.h"
 
+@interface LGRAppSettingsImported()
++ (BOOL)iOS8;
+@end
+
 @interface LGRAppSettingsImportedTest : XCTestCase
 
 @end
@@ -19,7 +23,6 @@
 
 - (void)testCreation
 {
-	//[[UIApplication sharedApplication] openURL:url];
 	id sharedApp = OCMPartialMock([UIApplication sharedApplication]);
 	id app = OCMClassMock(UIApplication.class);
 	OCMStub([app sharedApplication]).andReturn(sharedApp);
@@ -34,6 +37,17 @@
 - (void)testImportedPage
 {
 	XCTAssertEqualObjects([LGRAppSettingsImported importedPage], @"appSettings", @"LGREmailImported page should have a name");
+}
+
+- (void)testImportedPageiOS7
+{
+	id appSettingsImported = OCMClassMock(LGRAppSettingsImported.class);
+	OCMExpect([appSettingsImported iOS8]).andReturn(NO);
+
+	NSString *appSettings = [LGRAppSettingsImported importedPage];
+	XCTAssertNil(appSettings, @"LGRAppSettingsImported imported page shouldn't exist for version prior to iOS8");
+
+	OCMVerifyAll(appSettingsImported);
 }
 
 @end
