@@ -26,7 +26,7 @@ var SYSTEM = {
 	},
 
 	addBindings: function(){
-		$("#browser,#mail,#message,#image,#twitter,#facebook,#sinaweibo,#tencentweibo").unbind();
+		$("#browser,#mail,#message,#image,#twitter,#facebook,#sinaweibo,#tencentweibo,#appSettings").unbind();
 
         $("#browser").click(function(){
 			PAGE.openDialogWithTitle('Browser', 'browser', {link: "http://daringfireball.net", allowZoom:true},
@@ -77,11 +77,16 @@ var SYSTEM = {
 			 var args = {'text': 'Hello, we are testing sina weibo'};
 			 PAGE.openDialogWithTitle('Sina Weibo', 'sinaweibo', args);
 			 return false;
-		 });
+		});
 
 		$("#tencentweibo").click(function (){
 			var args = {'text': 'Hello, we are testing tencent weibo'};
 			PAGE.openDialogWithTitle('Tencent Weibo', 'tencentweibo', args);
+			return false;
+		});
+
+		$("#appSettings").click(function (){
+			PAGE.openDialogWithTitle('App Settings', 'appSettings', {}, {"right":{"button":"done"}});
 			return false;
 		});
 	}
