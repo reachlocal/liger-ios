@@ -60,11 +60,6 @@ NSDictionary* reuseOptions(NSDictionary* options, NSIndexPath* path) {
 	}
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-}
-
 #pragma mark - UITableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
