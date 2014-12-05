@@ -45,12 +45,7 @@ NSDictionary* reuseOptions(NSDictionary* options, NSIndexPath* path) {
 	if ([self is7OrHigher]) {
 		self.menu.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
 	}
-}
 
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-	
 	if (!self.menu.indexPathForSelectedRow) {
 		[self openPage:self.menuItems[0][0][@"page"]
 				 title:self.menuItems[0][0][@"name"]
