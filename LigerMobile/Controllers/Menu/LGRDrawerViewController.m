@@ -14,7 +14,6 @@
 
 #import "LGRAppMenuViewController.h"
 
-#define OPENWIDTH (320-57)
 // If we have this velocity or more we open/close the menu regardless of how far it has moved
 #define MINVELOCITY 50
 // If we haven't travelled at least this far, don't open the menu
@@ -28,6 +27,7 @@
 @property (nonatomic, strong) UIPanGestureRecognizer *closeGesture;
 @property (nonatomic, strong) NSMutableDictionary *pages;
 @property (nonatomic, strong) LGRViewController *menu;
+@property (readonly) CGFloat openWidth;
 @end
 
 @implementation LGRDrawerViewController
@@ -194,7 +194,7 @@
 						options:UIViewAnimationOptionCurveEaseInOut
 					 animations:^{
 						 if (frame.origin.x == 0) {
-							 controller.view.frame = CGRectOffset(frame, OPENWIDTH, 0);
+							 controller.view.frame = CGRectOffset(frame, self.openWidth, 0);
 						 } else {
 							 CGRect newFrame = frame;
 							 newFrame.origin.x = 0;
@@ -259,12 +259,12 @@
 		if (v.x > MINVELOCITY || p.x > MINPOINTSTOOPEN) {
 			CGRect frame = controller.view.frame;
 			[self userInteractionEnabled:NO controller:controller];
-			[UIView animateWithDuration:(OPENWIDTH - frame.origin.x)/v.x
+			[UIView animateWithDuration:(self.openWidth - frame.origin.x)/v.x
 								  delay:0.0f
 								options:UIViewAnimationOptionCurveEaseInOut
 							 animations:^{
 								 CGRect f = frame;
-								 f.origin.x = OPENWIDTH;
+								 f.origin.x = self.openWidth;
 								 controller.view.frame = f;
 							 }
 							 completion:^(BOOL finished) {
@@ -296,7 +296,7 @@
 - (void)menuClose:(UIPanGestureRecognizer*)recogniser
 {
 	CGPoint p = [recogniser translationInView:self.view];
-	p.x += OPENWIDTH;
+	p.x += self.openWidth;
 
 	if (p.x < 0)
 		p.x = 0;
@@ -308,12 +308,12 @@
 		if (v.x > MINVELOCITY || p.x > (recogniser.view.frame.size.width - MINPOINTSTOCLOSE)) {
 			CGRect frame = controller.view.frame;
 			[self userInteractionEnabled:NO controller:controller];
-			[UIView animateWithDuration:(OPENWIDTH - frame.origin.x)/v.x
+			[UIView animateWithDuration:(self.openWidth - frame.origin.x)/v.x
 								  delay:0.0f
 								options:UIViewAnimationOptionCurveEaseInOut
 							 animations:^{
 								 CGRect f = frame;
-								 f.origin.x = OPENWIDTH;
+								 f.origin.x = self.openWidth;
 								 controller.view.frame = f;
 							 }
 							 completion:^(BOOL finished) {
@@ -379,4 +379,17 @@
 {
 	return [[self pageController] preferredStatusBarStyle];
 }
+
+- (CGFloat)openWidth
+{
+	return self.view.bounds.size.width - [self pageVisibleWidth];
+}
+
+- (CGFloat)pageVisibleWidth
+{
+	// Approximate addition to width. Can't get the size/position of the menu button.
+	CGFloat width = (self.view.bounds.size.width - 320) / 15;
+	return 57 + floor(width);
+}
+
 @end
