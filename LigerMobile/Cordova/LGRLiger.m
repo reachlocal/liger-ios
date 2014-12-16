@@ -1,6 +1,6 @@
 //
 //  LGRLiger.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 2/25/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -50,7 +50,6 @@ NSDictionary* checkDictionary(id dictionary)
 }
 
 @interface LGRLiger ()
-@property (readonly) UINavigationController *navigationController;
 @property (readonly) LGRViewController* ligerViewController;
 @property (nonatomic, strong) NSMutableArray *toolbarCallbacks;
 @end
@@ -71,7 +70,7 @@ NSDictionary* checkDictionary(id dictionary)
 	NSDictionary *args = checkDictionary(command.arguments.count > 2 ? command.arguments[2] : @{});
 	NSDictionary *options = checkDictionary(command.arguments.count > 3 ? command.arguments[3] : @{});
 
-	[self.ligerViewController openPage:page title:title args:args options:options success:^{
+	[self.ligerViewController openPage:page title:title args:args options:options parent:self.ligerViewController success:^{
 		[self sendOK:command.callbackId];
 	} fail:^{
 		[self sendERROR:command.callbackId];
@@ -138,7 +137,7 @@ NSDictionary* checkDictionary(id dictionary)
 	NSDictionary *args = checkDictionary(command.arguments.count > 1 ? command.arguments[1] : @{});
 	NSDictionary *options = checkDictionary(command.arguments.count > 2 ? command.arguments[2] : @{});
 
-	[self.ligerViewController openDialog:page title:nil args:args options:options success:^{
+	[self.ligerViewController openDialog:page title:nil args:args options:options parent:self.ligerViewController success:^{
 		[self sendOK:command.callbackId];
 	} fail:^{
 		[self sendERROR:command.callbackId];
@@ -158,7 +157,7 @@ NSDictionary* checkDictionary(id dictionary)
 	NSDictionary *args = checkDictionary(command.arguments.count > 2 ? command.arguments[2] : @{});
 	NSDictionary *options = checkDictionary(command.arguments.count > 3 ? command.arguments[3] : @{});
 
-	[self.ligerViewController openDialog:page title:title args:args options:options success:^{
+	[self.ligerViewController openDialog:page title:title args:args options:options parent:self.ligerViewController success:^{
 		[self sendOK:command.callbackId];
 	} fail:^{
 		[self sendERROR:command.callbackId];
@@ -240,24 +239,6 @@ NSDictionary* checkDictionary(id dictionary)
 		[toolbarItems addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
 	}
 	return toolbarItems;
-}
-
-#pragma mark - Refresh
-
-- (void)userCanRefresh:(CDVInvokedUrlCommand*)command
-{
-	if (command.arguments.count != 1) {
-		CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
-		[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-		return;
-	}
-
-	BOOL userCanRefresh = [command.arguments[0] boolValue];
-	
-	self.ligerViewController.userCanRefresh = userCanRefresh;
-
-	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 #pragma mark - helper methods

@@ -1,64 +1,206 @@
 {
-  "appFormatVersion": 5,
+  "appFormatVersion": 6,
   "rootPage": {
-    "page": "appMenu",
-    "accessibilityLabel": "menu",
-    "args": [
-      [
-        {
-          "name": "Page tests",
-          "title": "First Page",
-          "page": "firstPage",
-          "accessibilityLabel": "firstPage",
-          "args" : {
-            "hello": "world"
-          }
-        },
-        {
-          "name": "Native Pages",
-          "title": "Native Page",
-          "page": "nativePages",
-          "accessibilityLabel": "nativePages"
-        },
-        {
-          "name": "System",
-          "title": "System Pages",
-          "page": "system",
-          "accessibilityLabel": "system"
-        }
-      ],
-      [
-        {
-          "name": "Dialog tests",
-          "page": "dialog",
-	      "title": "Dialog Page",
-          "detail": "static detail",
-          "accessibilityLabel": "dialog",
-          "dialog": "true"
-        },
-        {
-          "name": "Native Pages",
-          "page": "nativePages",
-		  "title": "Native Page",
-          "detail": "static detail",
-          "accessibilityLabel": "nativeDialog",
-          "dialog": "true"
-        },
-        {
-          "name": "Mail us",
-          "page": "email",
-          "args": {
-            "subject": "Liger",
-            "body": "Hi,\n\nI would like to tell you how much I like Liger.\n\n//Me",
-            "toRecipients": "liger@example.com",
-            "html": false
-          },
-          "detail": "We like mail",
-          "accessibilityLabel": "emailDialog",
-          "dialog": "true"
-        }
-      ]
-    ]
+    "page": "drawer",
+    "accessibilityLabel": "drawer",
+    "args": {
+      "page": "appMenu",
+      "accessibilityLabel": "menu",
+      "args": {
+        "menu": [
+          [
+            {
+              "name": "Page tests",
+              "page": "navigator",
+              "accessibilityLabel": "Menu1",
+              "args": {
+                "title": "First Page",
+                "page": "firstPage",
+                "accessibilityLabel": "firstPage",
+                "args": {
+                  "hello": "world"
+                }
+              }
+            },
+            {
+              "name": "Navigator stack test",
+              "page": "navigator",
+              "accessibilityLabel": "Menu2",
+              "args": {
+                "pages": [
+                  {
+                    "title": "First Page",
+                    "page": "firstPage",
+                    "accessibilityLabel": "firstPage",
+                    "args": {
+                      "hello": "world"
+                    }
+                  },
+                  {
+                    "title": "Second Page",
+                    "page": "secondPage",
+                    "accessibilityLabel": "secondPage",
+                    "args": {
+                      "hello": "world"
+                    }
+                  },
+                  {
+                    "title": "Third Page",
+                    "page": "thirdPage",
+                    "accessibilityLabel": "thirdPage",
+                    "args": {
+                      "hello": "world"
+                    }
+                  }
+                ]
+              },
+              "options": {
+                "cached": false
+              }
+            },
+            {
+              "name": "Tab Test",
+              "page": "tab",
+              "accessibilityLabel": "Menu3",
+              "args": {
+                "pages": [
+                  {
+                    "title": "Navigator One",
+                    "page": "navigator",
+                    "accessibilityLabel": "navigatorOne",
+                    "args": {
+                      "pages": [
+                        {
+                          "title": "First Page",
+                          "page": "firstPage",
+                          "accessibilityLabel": "firstPage",
+                          "args": {
+                            "hello": "world"
+                          }
+                        },
+                        {
+                          "title": "Second Page",
+                          "page": "secondPage",
+                          "accessibilityLabel": "secondPage",
+                          "args": {
+                            "hello": "world"
+                          }
+                        },
+                        {
+                          "title": "Third Page",
+                          "page": "thirdPage",
+                          "accessibilityLabel": "thirdPage",
+                          "args": {
+                            "hello": "world"
+                          }
+                        }
+                      ]
+                    },
+                    "options": {
+                      "icon": "/assets/icons/Liger-1.png"
+                    }
+                  },
+                  {
+                    "title": "Navigator Two",
+                    "page": "navigator",
+                    "accessibilityLabel": "navigatorTwo",
+                    "args": {
+                      "title": "First Page",
+                      "page": "firstPage",
+                      "accessibilityLabel": "firstPage",
+                      "args": {
+                        "hello": "world"
+                      }
+                    },
+                    "options": {
+                      "icon": "/assets/icons/Liger-1.png"
+                    }
+                  },
+                  {
+                    "title": "Navigator Three",
+                    "page": "navigator",
+                    "accessibilityLabel": "navigatorThree",
+                    "args": {
+                      "title": "First Page",
+                      "page": "firstPage",
+                      "accessibilityLabel": "firstPage",
+                      "args": {
+                        "hello": "world"
+                      }
+                    },
+                    "options": {
+                      "icon": "/assets/icons/Liger-1.png"
+                    }
+                  }
+                ]
+              },
+              "options": {
+                "selectedImageTintColor": "#003333",
+              }
+            },
+            {
+              "name": "Native Pages",
+              "page": "navigator",
+              "accessibilityLabel": "Menu4",
+              "args": {
+                "title": "Native Page",
+                "page": "nativePages",
+                "accessibilityLabel": "nativePages"
+              }
+            },
+            {
+              "name": "System",
+              "page": "navigator",
+              "accessibilityLabel": "Menu5",
+              "args": {
+                "title": "System Pages",
+                "page": "system",
+                "accessibilityLabel": "system"
+              }
+            }
+          ],
+          [
+            {
+              "name": "Dialog tests",
+              "detail": "static detail",
+              "page": "navigator",
+              "accessibilityLabel": "Menu6",
+              "dialog": "true",
+              "args": {
+                "page": "dialog",
+                "title": "Dialog Page",
+                "accessibilityLabel": "dialog"
+              }
+            },
+            {
+              "name": "Native Pages",
+              "detail": "static detail",
+              "page": "navigator",
+              "accessibilityLabel": "Menu7",
+              "dialog": "true",
+              "args": {
+                "page": "nativePages",
+                "title": "Native Page",
+                "accessibilityLabel": "nativeDialog"
+              }
+            },
+            {
+              "name": "Mail us",
+              "detail": "We like mail",
+              "page": "email",
+              "accessibilityLabel": "emailDialog",
+              "dialog": "true",
+              "args": {
+                "subject": "Liger",
+                "body": "Hi,\n\nI would like to tell you how much I like Liger.\n\n\/\/Me",
+                "toRecipients": "liger@example.com",
+                "html": false
+              }
+            }
+          ]
+        ]
+      }
+    }
   },
   "appearance": {
     "iOS": {
@@ -83,8 +225,5 @@
       "menu2Text": "",
       "menuSelected": ""
     }
-  },
-  "pagesWithToolbars": [
-    "toolbarPage"
-  ]
+  }
 }

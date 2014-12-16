@@ -1,6 +1,6 @@
 //
 //  LGRAppDelegate.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 1/11/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -22,11 +22,15 @@
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WebKitStoreWebDataForBackup"];
 
 	NSDictionary *notification = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-	NSDictionary *args = notification ? @{@"notification": notification} : @{};
+	NSMutableDictionary *args = [LGRApp.root[@"args"] mutableCopy] ?: [NSMutableDictionary dictionary];
+	if (notification)
+		args[@"notification"] = notification;
 
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.backgroundColor = UIColor.whiteColor;
-	self.window.rootViewController = [LGRPageFactory controllerForPage:@"Drawer" title:@"" args:args options:@{} parent:nil];
+	self.window.rootViewController = [LGRPageFactory controllerForPage:LGRApp.root[@"page"] title:LGRApp.root[@"title"] args:args options:LGRApp.root[@"options"] parent:nil];
+
+	NSAssert(self.window.rootViewController, @"Root page '%@' not found.", LGRApp.root[@"page"]);
 	[self.window makeKeyAndVisible];
 	
 	return YES;
@@ -41,7 +45,12 @@
 
 	NSString *token = @"";
 	for (NSUInteger i=0; i < length/4 + !!(length%4); i++) {
-		token = [token stringByAppendingFormat:@"%x", a[i]];
+		UInt8 *bytes = (UInt8*)&a[i];
+#ifdef __BIG__ENDIAN__
+		token = [token stringByAppendingFormat:@"%x%x%x%x", bytes[0], bytes[1], bytes[2], bytes[3]];
+#elif __LITTLE_ENDIAN__
+		token = [token stringByAppendingFormat:@"%x%x%x%x", bytes[3], bytes[2], bytes[1], bytes[0]];
+#endif
 	}
 
 	[[self rootPage] pushNotificationTokenUpdated:token error:nil];

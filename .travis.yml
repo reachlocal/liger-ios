@@ -1,8 +1,9 @@
 before_script:
   - export LANG=en_US.UTF-8
 before_install:
+# Ensure xctool is updated.
   - brew update
-  - brew upgrade xctool
+  - if brew outdated | grep -qx xctool; then brew upgrade xctool; fi
   - cd $TRAVIS_BUILD_DIR/LigerTestApp
 language: objective-c
 install: ''
@@ -10,7 +11,7 @@ xcode_workspace: Liger.xcworkspace
 xcode_scheme: Liger
 # Build
 script:
-  - xctool -workspace Liger.xcworkspace -scheme Liger build test
+  - xctool build test
   - cd $TRAVIS_BUILD_DIR
   - ./ci/release.sh
 env:

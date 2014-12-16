@@ -11,6 +11,10 @@ PAGE.childUpdates = function(args){
 	$('#args').append(JSON.stringify(args));
 }
 
+PAGE.headerButtonTapped = function(button){
+	PAGE.closeDialog({button: button});
+}
+
 var DIALOG = {
 	
 	initialize: function(){

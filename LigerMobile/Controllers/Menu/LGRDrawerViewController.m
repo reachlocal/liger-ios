@@ -1,6 +1,6 @@
 //
 //  LGRDrawerViewController.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 2/20/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -10,15 +10,10 @@
 #import "LGRPageFactory.h"
 #import "LGRViewController.h"
 
-#import "LGRMenuCell1.h"
-#import "LGRMenuCell2.h"
-
-#import "LGRAppearance.h"
 #import "LGRApp.h"
 
 #import "LGRAppMenuViewController.h"
 
-#define OPENWIDTH (320-57)
 // If we have this velocity or more we open/close the menu regardless of how far it has moved
 #define MINVELOCITY 50
 // If we haven't travelled at least this far, don't open the menu
@@ -27,10 +22,12 @@
 #define MINPOINTSTOCLOSE 120
 
 @interface LGRDrawerViewController ()
-@property (nonatomic, strong) UIPanGestureRecognizer *openGesture;
+@property (nonatomic, strong) UIPanGestureRecognizer *navigationBarGesture;
+@property (nonatomic, strong) UIScreenEdgePanGestureRecognizer *openGesture;
 @property (nonatomic, strong) UIPanGestureRecognizer *closeGesture;
 @property (nonatomic, strong) NSMutableDictionary *pages;
-@property (nonatomic, strong) LGRMenuViewController *menu;
+@property (nonatomic, strong) LGRViewController *menu;
+@property (readonly) CGFloat openWidth;
 @end
 
 @implementation LGRDrawerViewController
@@ -39,62 +36,50 @@
 {
 	self = [super initWithPage:page title:title args:args options:options];
 	if (self) {
-		self.openGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuOpen:)];
+		self.navigationBarGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuOpen:)];
+		self.openGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(menuOpen:)];
 		self.closeGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuClose:)];
 		self.pages = [NSMutableDictionary dictionary];
+        
+        self.openGesture.edges = UIRectEdgeLeft;
 	}
 	return self;
 }
 
 + (NSString*)nativePage
 {
-	return @"Drawer";
+	return @"drawer";
 }
 
-- (void)addPage:(UIViewController *)controller
+- (void)addPage:(LGRViewController*)controller
 {
-	UIViewController *page = ((UINavigationController*)controller).viewControllers[0];
-	page.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
-																			 style:UIBarButtonItemStylePlain
-																			target:self
-																			action:@selector(displayMenu:)];
+	if ([controller conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+		UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+																   style:UIBarButtonItemStylePlain
+																  target:self
+																  action:@selector(displayMenu:)];
+		id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) controller;
+		[page setMenuButton:button
+	   navigationBarGesture:self.navigationBarGesture
+				openGesture:self.openGesture
+			   closeGesture:self.closeGesture];
+		[page useGestures];
+	}
+
 	[self addChildViewController:controller];
 	[self.view addSubview:controller.view];
-	[((UINavigationController*)controller).navigationBar addGestureRecognizer:self.openGesture];
+
+	// iOS 7 but not iOS 8 (8 doesn't need it so don't fire the event needlessly)
+	if (![self respondsToSelector:@selector(extensionContext)] && [self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+		[self setNeedsStatusBarAppearanceUpdate];
+	}
 }
 
 - (void)addMenuController
 {
-	self.menu = [LGRPageFactory controllerForMenuPage:LGRApp.menuPage title:nil args:@{@"menu": LGRApp.menuItems} options:@{}];
-	self.menu.pages = self.pages;
+	self.menu = [LGRPageFactory controllerForPage:self.args[@"page"] title:self.args[@"title"] args:self.args[@"args"] options:self.args[@"options"] parent:nil];
+	self.menu.collectionPage = self;
 
-	__weak LGRDrawerViewController *me = self;
-
-	self.menu.displayController = ^(UIViewController *controller) {
-		if (![me pageController]) {
-			[me addPage:controller];
-			controller.view.frame = me.view.bounds;
-			return;
-		}
-		
-		if (controller == [me pageController]) {
-			[me toggleMenu];
-			return;
-		}
-		
-		[me addPage:controller];
-		controller.view.frame = CGRectOffset(me.view.bounds, me.view.bounds.size.width, 0);
-		
-		id top = ((UINavigationController*)controller).topViewController;
-		[top refreshPage:NO];
-		
-		[me fromRight:controller old:[me pageController]];
-	};
-	
-	self.menu.displayDialog = ^{
-		[me toggleMenu];
-	};
-	
 	[self addChildViewController:self.menu];
 	[self.view addSubview:self.menu.view];
 	[self.view sendSubviewToBack:self.menu.view];
@@ -104,14 +89,9 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+	[super viewDidLoad];
 
 	[self addMenuController];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 - (void)resetApp
@@ -122,8 +102,71 @@
 		[controller removeFromParentViewController];
 		[[controller view] removeFromSuperview];
 	}
-	
+
 	[self addMenuController];
+}
+
+#pragma mark - LGRViewController
+
+- (void)openPage:(NSString*)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail
+{
+	id cached = options[@"cached"];
+	BOOL useCache = [cached isKindOfClass:NSNumber.class] ? [cached boolValue] : YES;
+	NSString *reuseIdentifier = options[@"reuseIdentifier"];
+
+	LGRViewController *controller = useCache ? self.pages[reuseIdentifier] : nil;
+	if (!controller) {
+		controller = [LGRPageFactory controllerForPage:page title:title args:args options:options parent:parent];
+		if (controller)
+			self.pages[reuseIdentifier] = controller;
+	}
+
+	// Couldn't create a new view controller
+	if (!controller) {
+		fail();
+		return;
+	}
+
+	[self displayController:controller];
+	success();
+}
+
+- (void)displayController:(LGRViewController*)controller {
+	if (![self pageController]) {
+		[self addPage:controller];
+		controller.view.frame = self.view.bounds;
+		return;
+	}
+
+	if (controller == [self pageController]) {
+		[self toggleMenu];
+		return;
+	}
+
+	[self addPage:controller];
+	controller.view.frame = CGRectOffset(self.view.bounds, self.view.bounds.size.width, 0);
+
+	[self fromRight:controller old:[self pageController]];
+};
+
+- (void)openDialog:(NSString *)page title:(NSString*)title args:(NSDictionary*)args options:(NSDictionary*)options parent:(LGRViewController*)parent success:(void (^)())success fail:(void (^)())fail
+{
+	UIViewController *new = [LGRPageFactory controllerForDialogPage:page title:title args:args options:options parent:parent];
+
+	// Couldn't create a new view controller, possibly a broken plugin
+	if (!new) {
+		fail();
+		return;
+	}
+
+	__weak LGRDrawerViewController *me = self;
+	[self presentViewController:new animated:YES completion:^{
+		success();
+		CGRect frame = [self pageController].view.frame;
+
+		if (frame.origin.x > 0)
+			[me toggleMenu];
+	}];
 }
 
 #pragma mark - menu
@@ -151,7 +194,7 @@
 						options:UIViewAnimationOptionCurveEaseInOut
 					 animations:^{
 						 if (frame.origin.x == 0) {
-							 controller.view.frame = CGRectOffset(frame, OPENWIDTH, 0);
+							 controller.view.frame = CGRectOffset(frame, self.openWidth, 0);
 						 } else {
 							 CGRect newFrame = frame;
 							 newFrame.origin.x = 0;
@@ -167,7 +210,7 @@
 - (void)fromRight:(UIViewController*)new
 {
 	CGRect frame = self.view.bounds;
-	
+
 	[self userInteractionEnabled:NO controller:new];
 	new.view.frame = CGRectOffset(frame, frame.size.width, 0);
 	[UIView animateWithDuration:0.2f
@@ -204,24 +247,24 @@
 	if (recogniser.state == UIGestureRecognizerStateBegan)
 		[self.menu viewWillAppear:NO];
 
-	CGPoint p = [recogniser translationInView:self.view];	
-	
+	CGPoint p = [recogniser translationInView:self.view];
+
 	if (p.x < 0)
 		p.x = 0;
-	
+
 	if (recogniser.state == UIGestureRecognizerStateEnded) {
 		CGPoint v = [recogniser velocityInView:self.view];
-		
+
 		UIViewController *controller = [self pageController];
 		if (v.x > MINVELOCITY || p.x > MINPOINTSTOOPEN) {
 			CGRect frame = controller.view.frame;
 			[self userInteractionEnabled:NO controller:controller];
-			[UIView animateWithDuration:(OPENWIDTH - frame.origin.x)/v.x
+			[UIView animateWithDuration:(self.openWidth - frame.origin.x)/v.x
 								  delay:0.0f
 								options:UIViewAnimationOptionCurveEaseInOut
 							 animations:^{
 								 CGRect f = frame;
-								 f.origin.x = OPENWIDTH;
+								 f.origin.x = self.openWidth;
 								 controller.view.frame = f;
 							 }
 							 completion:^(BOOL finished) {
@@ -253,24 +296,24 @@
 - (void)menuClose:(UIPanGestureRecognizer*)recogniser
 {
 	CGPoint p = [recogniser translationInView:self.view];
-	p.x += OPENWIDTH;
-	
+	p.x += self.openWidth;
+
 	if (p.x < 0)
 		p.x = 0;
-	
+
 	if (recogniser.state == UIGestureRecognizerStateEnded) {
 		CGPoint v = [recogniser velocityInView:self.view];
-		
+
 		UIViewController *controller = [self pageController];
 		if (v.x > MINVELOCITY || p.x > (recogniser.view.frame.size.width - MINPOINTSTOCLOSE)) {
 			CGRect frame = controller.view.frame;
 			[self userInteractionEnabled:NO controller:controller];
-			[UIView animateWithDuration:(OPENWIDTH - frame.origin.x)/v.x
+			[UIView animateWithDuration:(self.openWidth - frame.origin.x)/v.x
 								  delay:0.0f
 								options:UIViewAnimationOptionCurveEaseInOut
 							 animations:^{
 								 CGRect f = frame;
-								 f.origin.x = OPENWIDTH;
+								 f.origin.x = self.openWidth;
 								 controller.view.frame = f;
 							 }
 							 completion:^(BOOL finished) {
@@ -301,34 +344,20 @@
 
 - (void)userInteractionEnabled:(BOOL)enabled controller:(UIViewController*)controller
 {
-	if (![controller isKindOfClass:UINavigationController.class])
-		return;
-	
-	UINavigationController *nav = (UINavigationController*)controller;
-	
-	UIViewController *viewController = nav.topViewController;
-	viewController.view.userInteractionEnabled = enabled;
-	
-	if (enabled) {
-		[nav.navigationBar addGestureRecognizer:self.openGesture];
-		[nav.view removeGestureRecognizer:self.closeGesture];
+	if ([controller conformsToProtocol:@protocol(LGRDrawerViewControllerDelegate)]) {
+        id<LGRDrawerViewControllerDelegate> page = (id<LGRDrawerViewControllerDelegate>) controller;
+		[page userInteractionEnabled:enabled];
 	} else {
-		[nav.navigationBar removeGestureRecognizer:self.openGesture];
-		[nav.view addGestureRecognizer:self.closeGesture];
+		return;
 	}
 }
 
-- (UINavigationController*)pageController
+- (LGRViewController*)pageController
 {
 	if(self.childViewControllers.count < 2)
 		return nil;
-
+	
 	return self.childViewControllers[1];
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return [LGRAppearance statusBar];
 }
 
 - (void)pushNotificationTokenUpdated:(NSString *)token error:(NSError *)error
@@ -344,6 +373,23 @@
 - (void)handleAppOpenURL:(NSURL*)url
 {
 	[self.menu handleAppOpenURL:url];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+	return [[self pageController] preferredStatusBarStyle];
+}
+
+- (CGFloat)openWidth
+{
+	return self.view.bounds.size.width - [self pageVisibleWidth];
+}
+
+- (CGFloat)pageVisibleWidth
+{
+	// Approximate addition to width. Can't get the size/position of the menu button.
+	CGFloat width = (self.view.bounds.size.width - 320) / 15;
+	return 57 + floor(width);
 }
 
 @end

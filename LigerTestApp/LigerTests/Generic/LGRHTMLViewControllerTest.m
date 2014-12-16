@@ -1,6 +1,6 @@
 //
 //  LGRHTMLViewControllerTest.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 11/26/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -12,13 +12,12 @@
 #import "LGRCordovaViewController.h"
 
 #import "OCMock.h"
-#import "XCTAsyncTestCase.h"
 
 @interface LGRHTMLViewController (Test)
 @property (readonly) LGRCordovaViewController *cordova;
 @end
 
-@interface LGRHTMLViewControllerTest : XCTAsyncTestCase
+@interface LGRHTMLViewControllerTest : XCTestCase
 @property (nonatomic, strong) LGRHTMLViewController *liger;
 @end
 
@@ -38,30 +37,12 @@
 	XCTAssertEqual(liger.page, @"testPage", @"Page name is wrong");
 	XCTAssertEqual(liger.title, @"Test Title", @"Title is wrong");
 	XCTAssertEqualObjects(liger.args, args, @"Args are wrong");
-	XCTAssertNil(liger.ligerParent, @"Parent shouldn't be set");
-	XCTAssertFalse(liger.userCanRefresh, @"User refresh should be false as default");
+	XCTAssertNil(liger.parentPage, @"Parent shouldn't be set");
 }
 
 - (void)testNativePage
 {
 	XCTAssertNil([LGRHTMLViewController nativePage], @"LGRHTMLViewController page should not have a name");
-}
-
-- (void)testRefreshPage
-{
-	LGRViewController *liger = [OCMockObject partialMockForObject:self.liger];
-
-	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
-	
-	[[[(id)liger stub] andReturn:mock] cordova];
-	
-	[[mock expect] refreshPage:YES];
-	[[mock expect] refreshPage:NO];
-	
-	[liger refreshPage:YES];
-	[liger refreshPage:NO];
-	
-	XCTAssertNoThrow([mock verify], @"refreshPage should be sent to the cordova controller");
 }
 
 - (void)testDialogClosed
@@ -106,15 +87,6 @@
 	XCTAssertNoThrow([cordova verify], @"pageWillAppear should call cordova");
 }
 
-- (void)testUserCanRefresh
-{
-	XCTAssertEqual(self.liger.userCanRefresh, NO, @"Should be NO.");
-	self.liger.userCanRefresh = YES;
-	XCTAssertEqual(self.liger.userCanRefresh, YES, @"Should be YES.");
-	self.liger.userCanRefresh = NO;
-	XCTAssertEqual(self.liger.userCanRefresh, NO, @"Should be NO.");
-}
-
 - (void)testPushNotificationTokenUpdatedError
 {
 	id liger = [OCMockObject partialMockForObject:self.liger];
@@ -155,6 +127,20 @@
 	[[mock expect] handleAppOpenURL:[NSURL URLWithString:@"test://test"]];
 
 	[menu handleAppOpenURL:[NSURL URLWithString:@"test://test"]];
+
+	XCTAssertNoThrow([mock verify], @"pushNotificationTokenUpdated:error should call cordova");
+}
+
+- (void)testButtonTapped
+{
+	id menu = [OCMockObject partialMockForObject:self.liger];
+
+	id mock = [OCMockObject mockForClass:LGRCordovaViewController.class];
+	[[[menu stub] andReturn:mock] cordova];
+
+	[[mock expect] buttonTapped:OCMOCK_ANY];
+
+	[menu buttonTapped:@{@"button": @"done"}];
 
 	XCTAssertNoThrow([mock verify], @"pushNotificationTokenUpdated:error should call cordova");
 }

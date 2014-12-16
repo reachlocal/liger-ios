@@ -1,6 +1,6 @@
 //
 //  LGRApp.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 10/1/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -8,7 +8,7 @@
 
 #import "LGRApp.h"
 
-#define VERSION @5
+#define VERSION @6
 
 @interface LGRApp ()
 @property (nonatomic, strong) NSDictionary *app;
@@ -57,25 +57,14 @@
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
 }
 
++ (NSDictionary*)root
+{
+	return [self app][@"rootPage"];
+}
+
 + (NSDictionary*)appearance
 {
 	return [self app][@"appearance"];
-}
-
-+ (NSArray*)menuItems
-{
-	return [self app][@"rootPage"][@"args"];
-}
-
-+ (NSString*)menuPage
-{
-	NSString *page = [self app][@"rootPage"][@"page"];
-	return page ? page : @"appMenu";
-}
-
-+ (NSArray*)toolbars
-{
-	return [self app][@"pagesWithToolbars"];
 }
 
 + (NSDictionary*)app

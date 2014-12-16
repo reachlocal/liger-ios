@@ -1,6 +1,6 @@
 //
 //  LGRAppMenuViewController.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 11/25/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -15,6 +15,14 @@
 @property (nonatomic, strong) IBOutlet UITableView *menu;
 @property (nonatomic, strong) NSArray *menuItems;
 @end
+
+NSDictionary* reuseOptions(NSDictionary* options, NSIndexPath* path) {
+	NSString *reuseIdentifier = [NSString stringWithFormat:@"Page %@ - %@", @(path.section), @(path.row)];
+	NSMutableDictionary *temp = options.mutableCopy ?: [NSMutableDictionary dictionaryWithCapacity:1];
+	temp[@"reuseIdentifier"] = reuseIdentifier;
+
+	return temp;
+}
 
 @implementation LGRAppMenuViewController
 
@@ -37,28 +45,19 @@
 	if ([self is7OrHigher]) {
 		self.menu.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
 	}
-}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
-	
 	if (!self.menu.indexPathForSelectedRow) {
 		[self openPage:self.menuItems[0][0][@"page"]
 				 title:self.menuItems[0][0][@"name"]
 				  args:self.menuItems[0][0][@"args"]
-			   options:self.menuItems[0][0][@"options"]
+			   options:reuseOptions(self.menuItems[0][0][@"options"], [NSIndexPath indexPathForRow:0 inSection:0])
+				parent:nil
 			   success:^{}
 				  fail:^{}];
 		[self.menu selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
 							   animated:YES
 						 scrollPosition:UITableViewScrollPositionMiddle];
 	}
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - UITableView
@@ -140,14 +139,23 @@
 {
 	NSDictionary *menuItem = self.menuItems[indexPath.section][indexPath.row];
 	BOOL dialog = [menuItem[@"dialog"] boolValue];
-	NSDictionary *args = menuItem[@"args"];
-	if (!args)
-		args = @{};
 
 	if (dialog) {
-		[self openDialog:menuItem[@"page"] title:menuItem[@"title"] args:args options:menuItem[@"options"] success:^{} fail:^{}];
+		[self openDialog:menuItem[@"page"]
+				   title:menuItem[@"title"]
+					args:menuItem[@"args"]
+				 options:menuItem[@"options"]
+				  parent:self
+				 success:^{}
+					fail:^{}];
 	} else {
-		[self openPage:menuItem[@"page"] title:menuItem[@"title"] args:args options:menuItem[@"options"] success:^{} fail:^{}];
+		[self openPage:menuItem[@"page"]
+				 title:menuItem[@"title"]
+				  args:menuItem[@"args"]
+			   options:reuseOptions(menuItem[@"options"], indexPath)
+				parent:nil
+			   success:^{}
+				  fail:^{}];
 	}
 	return;
 }

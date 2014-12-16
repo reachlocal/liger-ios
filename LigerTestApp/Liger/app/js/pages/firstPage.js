@@ -30,17 +30,23 @@ var FIRSTPAGE = {
 		$("#openPage, #refreshPage, #toolbarPage, #openDialog, #openDialogWithTitle").unbind();
         
         $("#openPage").click(function(){
-			PAGE.openPage('Second Page', 'secondPage', {'test1': 'test2'}, {"right":{"button":"save"}});
+			PAGE.openPage('Second Page', 'secondPage', {'test1': 'test2'}, {});
 			return false;
         });
 
 		$("#refreshPage").click(function(){
-			PAGE.openPage('Refresh Page', 'refreshPage', {});
+			PAGE.openPage('Refresh Page', 'refreshPage', {}, {"right":{"button":"refresh"}});
+			return false;
+		});
+
+		$("#refreshDialogPage").click(function(){
+			var refreshPage = {page:'refreshPage', title:'Refresh Page', args:{}, options:{"left":{"button":"done"}, "right":{"button":"refresh"}}};
+			PAGE.openDialog('navigator', refreshPage, {});
 			return false;
 		});
 
 		$("#toolbarPage").click(function(){
-			PAGE.openPage('Toolbar Page', 'toolbarPage', {});
+			PAGE.openPage('Toolbar Page', 'toolbarPage', {}, {'toolbar': 'true'});
 			return false;
 		});
 
@@ -50,7 +56,7 @@ var FIRSTPAGE = {
 		});
 
 		$("#openDialogWithTitle").click(function(){
-			PAGE.openDialogWithTitle('Dialog Page', 'dialog', {'dialogtest3': 'dialogtest4'});
+			PAGE.openDialogWithTitle('Dialog Page', 'dialog', {'dialogtest3': 'dialogtest4'}, {"left":{"button":"cancel"}, "right":{"button":"done"}});
 			return false;
 		});
 		

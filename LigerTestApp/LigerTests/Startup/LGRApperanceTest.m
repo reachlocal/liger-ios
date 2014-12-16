@@ -9,6 +9,11 @@
 #import "LGRAppearance.h"
 
 @import XCTest;
+#include "OCMock.h"
+
+@interface LGRAppearance()
++ (NSInteger)osMainVersion;
+@end
 
 @interface LGRApperanceTest : XCTestCase
 @end
@@ -29,7 +34,20 @@
 
 - (void)testSettingUpAppearance
 {
+	id appearance = OCMClassMock(LGRAppearance.class);
+	OCMExpect([appearance osMainVersion]).andReturn((NSInteger)6);
 	[LGRAppearance setupApperance];
+	OCMVerifyAll(appearance);
+	[appearance stopMocking];
+}
+
+- (void)testSettingUpAppearanceiOS7
+{
+	id appearance = OCMClassMock(LGRAppearance.class);
+	OCMExpect([appearance osMainVersion]).andReturn((NSInteger)7);
+	[LGRAppearance setupApperance];
+	OCMVerifyAll(appearance);
+	[appearance stopMocking];
 }
 
 - (void)testStatusBar

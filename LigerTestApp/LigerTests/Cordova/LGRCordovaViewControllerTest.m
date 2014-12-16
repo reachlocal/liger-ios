@@ -1,6 +1,6 @@
 //
 //  LGRCordovaViewControllerTest.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 4/18/14.
 //  Copyright (c) 2014 ReachLocal Inc. All rights reserved.
@@ -8,10 +8,8 @@
 
 @import XCTest;
 #import "LGRCordovaViewController.h"
-#import "LGRAppearance.h"
 
 #import "OCMock.h"
-#import "OCPartialMockObject.h"
 
 @interface LGRCordovaViewController()
 @property (nonatomic, strong) NSMutableArray *evalQueue;
@@ -34,7 +32,7 @@
 {
     [super setUp];
 
-	self.cordova = [[LGRCordovaViewController alloc] initWithPage:@"firstPage" title:@"title" args:@{}];
+	self.cordova = [[LGRCordovaViewController alloc] initWithPage:@"firstPage" title:@"title" args:@{} options:@{}];
 }
 
 - (void)tearDown
@@ -43,34 +41,56 @@
     [super tearDown];
 }
 
+- (void)testToolbarOptionTrue
+{
+	LGRCordovaViewController *cordova = [[LGRCordovaViewController alloc] initWithPage:@"firstPage" title:@"title" args:@{} options:@{@"toolbar": @"true"}];
+	// cordova must have an ancestor that is a navigation controller to set toolbar to be visible
+	UINavigationController *navigator = [UINavigationController alloc];
+	[navigator addChildViewController:cordova];
+	[cordova viewWillAppear:NO];
+
+	XCTAssertNotNil(cordova, @"cordova failed to instantiate");
+	XCTAssertNotNil(cordova.navigationController, @"navigationController should not be nil");
+	XCTAssertFalse([cordova.navigationController isToolbarHidden], @"Toolbar should be visible");
+}
+
+- (void)testToolbarOptionFalse
+{
+	LGRCordovaViewController *cordova = [[LGRCordovaViewController alloc] initWithPage:@"firstPage" title:@"title" args:@{} options:@{@"toolbar": @"false"}];
+	// cordova must have an ancestor that is a navigation controller to set toolbar to be visible
+	UINavigationController *navigator = [UINavigationController alloc];
+	[navigator addChildViewController:cordova];
+	[cordova viewWillAppear:NO];
+
+	XCTAssertNotNil(cordova, @"cordova failed to instantiate");
+	XCTAssertNotNil(cordova.navigationController, @"navigationController should not be nil");
+	XCTAssertTrue([cordova.navigationController isToolbarHidden], @"Toolbar should not be visible");
+}
+
 - (void)testWebViewDidStartLoad
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
-
-//  Couldn't get acceptingJS to be triggered for an expect for some reason
-//	[[cordova expect] setAcceptingJS:OCMOCK_ANY];
+	id cordova = OCMPartialMock(self.cordova);
+	OCMExpect([cordova setAcceptingJS:NO]);
 
 	[cordova webViewDidStartLoad:nil];
 
-//	XCTAssertNoThrow([cordova verify], @"xyz");
+	OCMVerifyAll(cordova);
 }
 
 - (void)testWebViewDidFinishLoad
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
-
-	//  Couldn't get acceptingJS to be triggered for an expect for some reason
-	//	[[cordova expect] setAcceptingJS:OCMOCK_ANY];
-	[[cordova expect] executeQueue];
+	id cordova = OCMPartialMock(self.cordova);
+	OCMExpect([cordova setAcceptingJS:YES]);
+	OCMExpect([cordova executeQueue]);
 
 	[cordova webViewDidFinishLoad:nil];
 
-	XCTAssertNoThrow([cordova verify], @"Should execute the queue");
+	OCMVerifyAll(cordova);
 }
 
 - (void)testDialogClosed
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 
 	[[cordova expect] addToQueue:OCMOCK_ANY];
 	[[cordova expect] executeQueue];
@@ -82,7 +102,7 @@
 
 - (void)testChildUpdates
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 
 	[[cordova expect] addToQueue:OCMOCK_ANY];
 	[[cordova expect] executeQueue];
@@ -92,39 +112,9 @@
 	XCTAssertNoThrow([cordova verify], @"childUpdates should push to queue");
 }
 
-- (void)testRefresh
-{
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
-
-	[[cordova expect] refreshPage:YES];
-
-	[cordova refresh:nil];
-
-	XCTAssertNoThrow([cordova verify], @"refresh should call refresh page");
-}
-
-- (void)testRefreshPage
-{
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
-
-	[[cordova expect] addToQueue:OCMOCK_ANY];
-	[[cordova expect] executeQueue];
-
-	[cordova refreshPage:YES];
-
-	XCTAssertNoThrow([cordova verify], @"refreshPage should push to queue");
-}
-
-- (void)testPreferredStatusBarStyle
-{
-	UIStatusBarStyle style = [self.cordova preferredStatusBarStyle];
-
-	XCTAssertEqual(style, [LGRAppearance statusBarDialog], @"Appearance and preferred should match.");
-}
-
 - (void)testPushNotificationTokenUpdatedError
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 
 	[[cordova expect] addToQueue:OCMOCK_ANY];
 	[[cordova expect] executeQueue];
@@ -136,7 +126,7 @@
 
 - (void)testNotificationArrivedBackground
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 
 	[[cordova expect] addToQueue:OCMOCK_ANY];
 	[[cordova expect] executeQueue];
@@ -148,7 +138,7 @@
 
 - (void)testHandleAppOpenURL
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 
 	[[cordova expect] addToQueue:OCMOCK_ANY];
 	[[cordova expect] executeQueue];
@@ -158,9 +148,21 @@
 	XCTAssertNoThrow([cordova verify], @"handleAppOpenURL: should push to queue");
 }
 
+- (void)testButtonTapped
+{
+	id cordova = OCMPartialMock(self.cordova);
+
+	[[cordova expect] addToQueue:OCMOCK_ANY];
+	[[cordova expect] executeQueue];
+
+	[cordova buttonTapped:@{@"button": @"left"}];
+
+	XCTAssertNoThrow([cordova verify], @"testButtonTapped: should push to queue");
+}
+
 - (void)testAddToQueue
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 	id mockArray = [OCMockObject partialMockForObject:[NSMutableArray array]];
 	[[mockArray expect] addObject:OCMOCK_ANY];
 
@@ -174,7 +176,7 @@
 
 - (void)testExecuteQueue
 {
-	id cordova = [OCMockObject partialMockForObject:self.cordova];
+	id cordova = OCMPartialMock(self.cordova);
 	[cordova addToQueue:@"Console.log('test');"];
 	[cordova setAcceptingJS:YES];
 

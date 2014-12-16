@@ -1,6 +1,6 @@
 //
 //  LGRBrowserViewControllerTest.m
-//  Liger
+//  LigerMobile
 //
 //  Created by John Gustafsson on 11/26/13.
 //  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
@@ -30,17 +30,18 @@
 {
 	[super setUp];
 
-	NSDictionary *args = @{@"link" : @"http://liger.com"};
-	self.browser = [[LGRBrowserViewController alloc] initWithPage:@"testPage" title:@"testTitle" args:args options:@{}];
+	NSDictionary *args = @{@"link" : @"http://reachlocal.github.io/liger/", @"allowZoom": @YES};
+	self.browser = [[LGRBrowserViewController alloc] initWithPage:@"browser" title:@"testTitle" args:args options:@{}];
 }
 
 - (void)testInitWithPage
 {
-	XCTAssertEqual(self.browser.page, @"testPage", @"Page name is wrong");
+	XCTAssertEqual(self.browser.page, @"browser", @"Page name is wrong");
 	XCTAssertEqual(self.browser.title, @"testTitle", @"Title is wrong");
-	XCTAssertEqualObjects(self.browser.args, @{@"link" : @"http://liger.com"}, @"Args are wrong");
-	XCTAssertNil(self.browser.ligerParent, @"Parent shouldn't be set");
-	XCTAssertFalse(self.browser.userCanRefresh, @"User refresh should be false as default");
+
+	NSDictionary *args = @{@"link" : @"http://reachlocal.github.io/liger/", @"allowZoom": @YES};
+	XCTAssertEqualObjects(self.browser.args, args, @"Args are wrong");
+	XCTAssertNil(self.browser.parentPage, @"Parent shouldn't be set");
 }
 
 - (void)testNativePage
@@ -48,11 +49,29 @@
 	XCTAssertEqualObjects([LGRBrowserViewController nativePage], @"browser", @"LGRBrowserViewController page should be named browser");
 }
 
-- (void)testInitWithNibNameBundle
+- (void)testViewDidLoad
 {
-	XCTAssertThrows([[LGRBrowserViewController alloc] initWithNibName:@"" bundle:nil],
-					@"Should throw an exception as initWithPage is the correct way to init a browser.");
+	id browser = OCMPartialMock(self.browser);
+	id web = OCMPartialMock([[UIWebView alloc] init]);
+	OCMExpect([web loadRequest:OCMOCK_ANY]);
+	OCMExpect([web setScalesPageToFit:YES]);
+	OCMStub([browser webView]).andReturn(web);
 
+	[browser viewDidLoad];
+
+	OCMVerifyAll(web);
+}
+
+- (void)testViewWillAppear
+{
+	id browser = OCMPartialMock(self.browser);
+	id nav = OCMPartialMock([[UINavigationController alloc] init]);
+	OCMExpect([nav setToolbarHidden:NO animated:YES]);
+	OCMStub([browser navigationController]).andReturn(nav);
+
+	[browser viewWillAppear:YES];
+
+	OCMVerifyAll(nav);
 }
 
 - (void)testWebViewDidStartLoad
@@ -136,5 +155,13 @@
 	XCTAssertNoThrow([web verify], @"");
 }
 
+- (void)testButtonTapped
+{
+	id browser = OCMPartialMock(self.browser);
+	OCMExpect([browser closeDialog:@{} success:OCMOCK_ANY fail:OCMOCK_ANY]);
 
+	[browser buttonTapped:@{@"button": @"done"}];
+
+	OCMVerifyAll(browser);
+}
 @end

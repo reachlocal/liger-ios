@@ -1,1 +1,0 @@
-../../../../LigerMobile/Startup/LGRAppDelegate.h
