@@ -40,7 +40,7 @@ fi
 # Debug output
 git remote -v
 git status
-git log --decorate --graph -n 3
+#git log --decorate --graph -n 3
 
 # Add github deploy key
 chmod 600 .travis/deploy_key.pem
