@@ -103,6 +103,8 @@
 		[[controller view] removeFromSuperview];
 	}
 
+	self.menu = nil;
+
 	[self addMenuController];
 }
 

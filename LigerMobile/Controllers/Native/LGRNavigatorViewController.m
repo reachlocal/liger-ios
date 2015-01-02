@@ -12,9 +12,9 @@
 
 @interface LGRNavigatorViewController () <LGRDrawerViewControllerDelegate>
 @property(nonatomic, strong) UINavigationController *navigator;
-@property(nonatomic, strong) UIPanGestureRecognizer *navigationBarGesture;
-@property(nonatomic, strong) UIScreenEdgePanGestureRecognizer *openGesture;
-@property(nonatomic, strong) UIPanGestureRecognizer *closeGesture;
+@property(nonatomic, weak) UIPanGestureRecognizer *navigationBarGesture;
+@property(nonatomic, weak) UIScreenEdgePanGestureRecognizer *openGesture;
+@property(nonatomic, weak) UIPanGestureRecognizer *closeGesture;
 @end
 
 @implementation LGRNavigatorViewController
