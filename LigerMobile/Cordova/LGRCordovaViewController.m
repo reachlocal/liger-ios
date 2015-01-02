@@ -116,7 +116,7 @@
 
 - (void)pushNotificationTokenUpdated:(NSString *)token error:(NSError *)error
 {
-	NSString *js = @"if(PAGE.pushNotificationTokenUpdated) PAGE.pushNotificationTokenUpdated('%@', 'iOSDeviceToken', '%@');";
+	NSString *js = @"if(PAGE.pushNotificationTokenUpdated) PAGE.pushNotificationTokenUpdated('%@', 'ios', '%@');";
 	js = [NSString stringWithFormat:js, token ? token : @"", error ? [error localizedDescription] : @""];
 
 	[self addToQueue:js];
