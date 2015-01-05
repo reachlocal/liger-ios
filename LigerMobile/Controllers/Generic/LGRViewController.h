@@ -54,7 +54,7 @@
 
  nil if a root page or not within a stack.
  */
-@property (nonatomic, strong) LGRViewController *collectionPage;
+@property (nonatomic, weak) LGRViewController *collectionPage;
 
 /**
  Convenience initializer, calls initWithPage:title:args:options:NibName:bundle with nil for nib and bundle.

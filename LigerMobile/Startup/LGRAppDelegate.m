@@ -61,6 +61,13 @@
 	[[self rootPage] pushNotificationTokenUpdated:nil error:error];
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+	UIApplicationState state = [application applicationState];
+
+	[[self rootPage] notificationArrived:notification.userInfo background:state == UIApplicationStateInactive || state == UIApplicationStateBackground];
+}
+
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
 {
 	UIApplicationState state = [application applicationState];
