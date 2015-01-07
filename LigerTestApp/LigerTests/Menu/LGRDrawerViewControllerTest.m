@@ -3,7 +3,7 @@
 //  LigerMobile
 //
 //  Created by John Gustafsson on 11/25/13.
-//  Copyright (c) 2013-2014 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
+//  Copyright (c) 2013-2015 ReachLocal Inc. All rights reserved.  https://github.com/reachlocal/liger-ios/blob/master/LICENSE
 //
 
 @import XCTest;
@@ -28,7 +28,26 @@
 
 - (void)setUp
 {
-	UIViewController* drawer = [LGRPageFactory controllerForPage:LGRApp.root[@"page"] title:LGRApp.root[@"title"] args:LGRApp.root[@"args"] options:LGRApp.root[@"options"] parent:nil];
+	NSDictionary *args = @{@"page": @"appMenu",
+						   @"accessibilityLabel": @"menu",
+						   @"args": @{
+								   @"menu": @[@[
+												  @{
+													  @"name": @"Page tests",
+													  @"page": @"navigator",
+													  @"accessibilityLabel": @"Menu1",
+													  @"args": @{
+															  @"title": @"First Page",
+															  @"page": @"firstPage",
+															  @"accessibilityLabel": @"firstPage",
+															  @"args": @{
+																	  @"hello": @"world"
+																	  }
+															  }
+													  }
+												  ],@[
+												  ]]}};
+	UIViewController* drawer = [LGRPageFactory controllerForPage:@"drawer" title:@"" args:args options:@{} parent:nil];
 	XCTAssertTrue([drawer isKindOfClass:LGRDrawerViewController.class], @"Drawer page creation failed.");
 
 	self.drawer = (LGRDrawerViewController*)drawer;
@@ -52,7 +71,7 @@
 
 - (void)testNativePage
 {
-	XCTAssertTrue([[LGRDrawerViewController nativePage] isEqualToString:@"drawer"], @"Native page wasn't named DrawerPage");
+	XCTAssertTrue([[LGRDrawerViewController nativePage] isEqualToString:@"drawer"], @"Native page wasn't named drawer");
 }
 
 - (void)testPushNotificationTokenUpdatedError

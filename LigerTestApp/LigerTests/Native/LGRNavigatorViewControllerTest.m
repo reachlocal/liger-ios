@@ -232,6 +232,7 @@
 	OCMVerifyAll(nav);
 	XCTAssertTrue(fail, @"Should have failed, popToViewController doesn't return an array.");
 }
+
 - (void)testOpenDialog
 {
 	id navigator = OCMPartialMock(self.navigator);

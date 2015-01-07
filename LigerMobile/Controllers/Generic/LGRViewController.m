@@ -204,9 +204,8 @@
 		// TODO is there a cleaner and more generic way to do this?
 		if ([args[@"resetApp"] boolValue]) {
 			LGRViewController *rootPage = [((LGRAppDelegate*)[[UIApplication sharedApplication] delegate]) rootPage];
-			if ([rootPage isKindOfClass:LGRDrawerViewController.class]) {
-				LGRDrawerViewController *drawer = (LGRDrawerViewController*)rootPage;
-				[drawer resetApp];
+			if ([rootPage respondsToSelector:@selector(resetApp)]) {
+				[(id)rootPage resetApp];
 			}
 		} else {
 			LGRViewController *page = self.collectionPage ?: self.parentPage;
