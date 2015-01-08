@@ -20,6 +20,7 @@
 		32110744182866F600AE0D71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32110742182866F600AE0D71 /* InfoPlist.strings */; };
 		321107781828674500AE0D71 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 321107771828674500AE0D71 /* config.xml */; };
 		3211077A1828674D00AE0D71 /* app in Resources */ = {isa = PBXBuildFile; fileRef = 321107791828674D00AE0D71 /* app */; };
+		32261D681A5DEA3A0024E5CF /* LGRTabContainerControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32261D671A5DEA3A0024E5CF /* LGRTabContainerControllerTest.m */; };
 		3237F794197EDE4A003AF021 /* LGRNavigatorViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3237F793197EDE4A003AF021 /* LGRNavigatorViewControllerTest.m */; };
 		3243044618F74D7000565E2E /* LGRLigerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043018F74D7000565E2E /* LGRLigerTest.m */; };
 		3243044718F74D7000565E2E /* LGRHTMLViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243043218F74D7000565E2E /* LGRHTMLViewControllerTest.m */; };
@@ -79,6 +80,7 @@
 		32110743182866F600AE0D71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		321107771828674500AE0D71 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		321107791828674D00AE0D71 /* app */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app; sourceTree = "<group>"; };
+		32261D671A5DEA3A0024E5CF /* LGRTabContainerControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRTabContainerControllerTest.m; sourceTree = "<group>"; };
 		3237F793197EDE4A003AF021 /* LGRNavigatorViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRNavigatorViewControllerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3243043018F74D7000565E2E /* LGRLigerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRLigerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3243043218F74D7000565E2E /* LGRHTMLViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LGRHTMLViewControllerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -297,6 +299,7 @@
 				3243044118F74D7000565E2E /* LGRBrowserViewControllerTest.m */,
 				3237F793197EDE4A003AF021 /* LGRNavigatorViewControllerTest.m */,
 				72C6F2A6199BC24A005C356D /* LGRTabBarViewControllerTest.m */,
+				32261D671A5DEA3A0024E5CF /* LGRTabContainerControllerTest.m */,
 			);
 			path = Native;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32261D681A5DEA3A0024E5CF /* LGRTabContainerControllerTest.m in Sources */,
 				325991C31986C42A0010DB7A /* LGRTencentWeiboImportedTest.m in Sources */,
 				3243045618F74D7000565E2E /* LGRAppTest.m in Sources */,
 				325991C9198B433F0010DB7A /* LGRViewController+UIImagePickerControllerDelegateTest.m in Sources */,
