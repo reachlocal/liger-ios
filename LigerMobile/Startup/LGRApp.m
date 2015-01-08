@@ -52,9 +52,22 @@
 	if (![[self app][@"notifications"] boolValue])
 		return;
 
-	UIRemoteNotificationType types = (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound);
-	[[UIApplication sharedApplication] cancelAllLocalNotifications];
-	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+	// TODO Make it possible to specify badge, sound, alert in app.json
+	UIApplication *application = [UIApplication sharedApplication];
+	if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
+		UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge |
+																							 UIUserNotificationTypeSound |
+																							 UIUserNotificationTypeAlert) categories:nil];
+		[[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+		[[UIApplication sharedApplication] registerForRemoteNotifications];
+
+		[application registerUserNotificationSettings:settings];
+		[application registerForRemoteNotifications];
+	} else {
+		UIRemoteNotificationType types = (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound);
+		[application cancelAllLocalNotifications];
+		[application registerForRemoteNotificationTypes:types];
+	}
 }
 
 + (NSDictionary*)root
