@@ -83,11 +83,16 @@
 
 - (void)testSetupPushNotifications
 {
-	UIRemoteNotificationType types = (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound);
+	UIUserNotificationType types = (UIUserNotificationTypeBadge |
+									UIUserNotificationTypeSound |
+									UIUserNotificationTypeAlert);
+
+	UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+
 
 	id sharedApp = [OCMockObject partialMockForObject:[UIApplication sharedApplication]];
-	[[sharedApp expect] cancelAllLocalNotifications];
-	[[sharedApp expect] registerForRemoteNotificationTypes:types];
+	OCMExpect([sharedApp registerUserNotificationSettings:settings]);
+	OCMExpect([sharedApp registerForRemoteNotifications]);
 
 	id app = [OCMockObject partialMockForObject:[LGRApp shared]];
 	[[[app stub] andReturn:@{@"notifications": @(YES)}] app];
@@ -97,7 +102,7 @@
 
 	[LGRApp setupPushNotifications];
 
-	XCTAssertNoThrow([sharedApp verify], @"Failed expect.");
+	OCMVerifyAll(sharedApp);
 
 	[sharedApp stopMocking];
 	[app2 stopMocking];
