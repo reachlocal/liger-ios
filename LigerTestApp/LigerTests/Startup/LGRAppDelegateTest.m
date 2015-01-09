@@ -21,7 +21,11 @@
 @end
 
 NSData* testToken() {
+#ifdef __BIG__ENDIAN__
 	int32_t hexData[8] = {0x260a0f58, 0x99ac6bd8, 0xa3e0d6b5, 0x1f38a4ad, 0x3475c1e4, 0xeefbeee6, 0x2eca722c, 0xef0c3bf9};
+#elif __LITTLE_ENDIAN__
+	int32_t hexData[8] = {0x580f0a26, 0xd86bac99, 0xb5d6e0a3, 0xada4381f, 0xe4c17534, 0xe6eefbee, 0x2c72ca2e, 0xf93b0cef};
+#endif
 	return [NSData dataWithBytes:hexData length:32];
 }
 
