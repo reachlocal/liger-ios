@@ -46,11 +46,7 @@
 	NSString *token = @"";
 	for (NSUInteger i=0; i < length/4 + !!(length%4); i++) {
 		UInt8 *bytes = (UInt8*)&a[i];
-#ifdef __BIG__ENDIAN__
-		token = [token stringByAppendingFormat:@"%x%x%x%x", bytes[0], bytes[1], bytes[2], bytes[3]];
-#elif __LITTLE_ENDIAN__
-		token = [token stringByAppendingFormat:@"%x%x%x%x", bytes[3], bytes[2], bytes[1], bytes[0]];
-#endif
+		token = [token stringByAppendingFormat:@"%02x%02x%02x%02x", bytes[0], bytes[1], bytes[2], bytes[3]];
 	}
 
 	[[self rootPage] pushNotificationTokenUpdated:token error:nil];
