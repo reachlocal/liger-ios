@@ -47,9 +47,28 @@ NSString* testTokenAsString() {
 	XCTAssertNotNil([[LGRAppDelegate alloc] init], @"Failed to init");
 }
 
-- (void)testTestToken
+- (void)testTestTokenAsString
 {
 	XCTAssertTrue([testTokenAsString() length] == 64, @"Test string should be 64 long");
+}
+
+- (void)testTestToken
+{
+	NSData *tt = testToken();
+
+	XCTAssertEqual([tt length], 32);
+	Byte b1 = 0x0;
+	Byte b2 = 0x0;
+	Byte b3 = 0x0;
+	Byte b4 = 0x0;
+	[tt getBytes:&b1 range:NSMakeRange(0, 1)];
+	[tt getBytes:&b2 range:NSMakeRange(1, 1)];
+	[tt getBytes:&b3 range:NSMakeRange(2, 1)];
+	[tt getBytes:&b4 range:NSMakeRange(3, 1)];
+	XCTAssertEqual(b1, 0x26);
+	XCTAssertEqual(b2, 0x0a);
+	XCTAssertEqual(b3, 0x0f);
+	XCTAssertEqual(b4, 0x58);
 }
 
 - (void)testDidFinishLaunchingWithOptions
