@@ -32,10 +32,9 @@
 					   options:options];
 
 	if (self) {
+		NSArray *pageArray = [self makePageArrayAndAddNotification];
+
 		NSMutableArray *pages = [NSMutableArray array];
-
-		NSArray *pageArray = self.args[@"pages"] ?: @[self.args];
-
 		LGRViewController *controller = nil;
 		for (NSDictionary *page in pageArray) {
 			controller = [LGRPageFactory controllerForPage:page[@"page"]
@@ -49,8 +48,7 @@
 				[pages addObject:controller];
 		}
 
-		// If we can't create any pages, consider the navigator uncreatable as well.
-		if (pages.count == 0)
+		if (pages.count == 0) // If we can't create any pages, consider the navigator failing as well.
 			return nil;
 
 		self.navigator = [[UINavigationController alloc] init];
@@ -60,6 +58,24 @@
 	}
 	return self;
 }
+
+- (NSArray*)makePageArrayAndAddNotification
+{
+	NSArray *pageArray = self.args[@"pages"] ?: @[self.args];
+
+	if (pageArray.count == 0) // If we can't create any pages, consider the navigator failing as well.
+		return @[];
+
+	if (self.args[@"notification"]) {
+		NSMutableArray *pageArrayWithNotification = [pageArray mutableCopy];
+		pageArrayWithNotification[0] = [pageArrayWithNotification[0] mutableCopy];
+		pageArrayWithNotification[0][@"args"] = pageArrayWithNotification[0][@"args"] ? [pageArrayWithNotification[0][@"args"] mutableCopy] : [NSMutableDictionary dictionary];
+		pageArrayWithNotification[0][@"args"][@"notification"] = self.args[@"notification"];
+		return pageArrayWithNotification;
+	}
+	return pageArray;
+}
+
 
 - (void)viewDidLoad
 {

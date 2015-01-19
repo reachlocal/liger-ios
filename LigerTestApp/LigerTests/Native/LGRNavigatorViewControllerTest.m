@@ -59,6 +59,17 @@
 	XCTAssertNotNil(navigator, @"Navigator failed to instantiate");
 }
 
+- (void)testInitWithPageWithNotification
+{
+	id navigator = [[LGRNavigatorViewController alloc] initWithPage:@"navigator"
+															  title:@"Title"
+															   args:@{@"page": @"firstPage", @"notification": @{ @"hello": @"world" }}
+															options:@{}];
+	LGRViewController *controller = [navigator rootPage];
+	XCTAssertEqualObjects([[controller args] objectForKey:@"notification"], @{@"hello": @"world"}, @"Notification not included in root controller's args.");
+}
+
+
 - (void)testViewDidLoad
 {
 	id navigator = OCMPartialMock(self.navigator);
