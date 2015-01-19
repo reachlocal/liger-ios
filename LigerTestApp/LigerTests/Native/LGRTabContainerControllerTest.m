@@ -18,6 +18,7 @@
 @property (nonatomic, strong) LGRViewController *tab;
 - (LGRViewController*)pageController;
 - (void)displayController:(LGRViewController*)controller;
+- (void)addTabController;
 @end
 
 @interface LGRTabContainerControllerTest : XCTestCase
@@ -30,6 +31,7 @@
 {
 	NSDictionary *args = @{@"page": @"appMenu",
 						   @"accessibilityLabel": @"menu",
+						   @"notification": @{@"hello": @"world"},
 						   @"args": @{
 								   @"menu": @[@[@{
 												  @"title": @"First Page",
@@ -164,4 +166,16 @@
 
 	OCMVerify([[tabContainer pageController] preferredStatusBarStyle]);
 }
+
+- (void)testAddTabController
+{
+	id tabContainer = OCMPartialMock(self.tabContainer);
+	OCMExpect([tabContainer addChildViewController:OCMOCK_ANY]);
+
+	[tabContainer addTabController];
+
+	OCMVerifyAll(tabContainer);
+	XCTAssertEqualObjects([[[tabContainer tab] args] objectForKey:@"notification"], @{@"hello": @"world"}, @"Notification not included in menu's args.");
+}
+
 @end

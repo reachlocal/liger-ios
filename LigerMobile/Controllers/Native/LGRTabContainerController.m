@@ -80,7 +80,12 @@
 
 - (void)addTabController
 {
-	self.tab = [LGRPageFactory controllerForPage:self.args[@"page"] title:self.args[@"title"] args:self.args[@"args"] options:self.args[@"options"] parent:nil];
+	NSMutableDictionary *args = [self.args[@"args"] mutableCopy];
+	if (self.args[@"notification"]) {
+		args[@"notification"] = self.args[@"notification"];
+	}
+
+	self.tab = [LGRPageFactory controllerForPage:self.args[@"page"] title:self.args[@"title"] args:args options:self.args[@"options"] parent:nil];
 	self.tab.collectionPage = self;
 
 	[self addChildViewController:self.tab];
