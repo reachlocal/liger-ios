@@ -73,8 +73,6 @@
 {
 	UIApplicationState state = [application applicationState];
 	[self notificationArrived:notification.userInfo state:state];
-
-	NSLog(@"Local Not: %ld", state);
 }
 
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
