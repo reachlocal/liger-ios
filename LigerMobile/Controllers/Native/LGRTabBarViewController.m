@@ -95,9 +95,9 @@
 	[self.rootPage pushNotificationTokenUpdated:token error:error];
 }
 
-- (void)notificationArrived:(NSDictionary *)userInfo background:(BOOL)background
+- (void)notificationArrived:(NSDictionary*)userInfo state:(UIApplicationState)state
 {
-	[self.rootPage notificationArrived:userInfo background:background];
+	[self.rootPage notificationArrived:userInfo state:state];
 }
 
 - (void)handleAppOpenURL:(NSURL *)url

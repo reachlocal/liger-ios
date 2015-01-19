@@ -190,9 +190,9 @@
 	[self.tab pushNotificationTokenUpdated:token error:error];
 }
 
-- (void)notificationArrived:(NSDictionary *)userInfo background:(BOOL)background
+- (void)notificationArrived:(NSDictionary*)userInfo state:(UIApplicationState)state
 {
-	[self.tab notificationArrived:userInfo background:background];
+	[self.tab notificationArrived:userInfo state:state];
 }
 
 - (void)handleAppOpenURL:(NSURL*)url

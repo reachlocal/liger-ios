@@ -60,9 +60,9 @@
 	[self.cordova pushNotificationTokenUpdated:token error:error];
 }
 
-- (void)notificationArrived:(NSDictionary *)userInfo background:(BOOL)background
+- (void)notificationArrived:(NSDictionary*)userInfo state:(UIApplicationState)state
 {
-	[self.cordova notificationArrived:userInfo background:background];
+	[self.cordova notificationArrived:userInfo state:state];
 }
 
 - (void)handleAppOpenURL:(NSURL*)url

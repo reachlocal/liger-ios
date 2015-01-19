@@ -130,12 +130,12 @@
 - (void)testNotificationArrivedBackground
 {
 	id tab = [OCMockObject partialMockForObject:self.tabContainer.tab];
-	[[tab expect] notificationArrived:OCMOCK_ANY background:YES];
+	[[tab expect] notificationArrived:OCMOCK_ANY state:UIApplicationStateBackground];
 
 	id tabContainer = [OCMockObject partialMockForObject:self.tabContainer];
 	[[[tabContainer stub] andReturn:tab] tab];
 
-	[tabContainer notificationArrived:@{} background:YES];
+	[tabContainer notificationArrived:@{} state:UIApplicationStateBackground];
 
 	XCTAssertNoThrow([tab verify], @"Verify failed");
 }

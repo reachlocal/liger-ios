@@ -88,7 +88,7 @@
 		return;
 	}
 
-	[[self rootPage] notificationArrived:userInfo background:state == UIApplicationStateInactive || state == UIApplicationStateBackground];
+	[[self rootPage] notificationArrived:userInfo state:state];
 }
 
 - (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation

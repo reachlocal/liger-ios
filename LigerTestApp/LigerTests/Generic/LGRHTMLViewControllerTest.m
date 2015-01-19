@@ -101,18 +101,20 @@
 	XCTAssertNoThrow([mock verify], @"pushNotificationTokenUpdated:error should call cordova");
 }
 
-- (void)testNotificationArrivedBackground
+- (void)testNotificationArrivedState
 {
 	id liger = [OCMockObject partialMockForObject:self.liger];
 
 	id cordova = [OCMockObject mockForClass:LGRCordovaViewController.class];
 	[[[liger stub] andReturn:cordova] cordova];
 
-	[[cordova expect] notificationArrived:OCMOCK_ANY background:YES];
-	[[cordova expect] notificationArrived:OCMOCK_ANY background:NO];
+	[[cordova expect] notificationArrived:OCMOCK_ANY state:UIApplicationStateActive];
+	[[cordova expect] notificationArrived:OCMOCK_ANY state:UIApplicationStateInactive];
+	[[cordova expect] notificationArrived:OCMOCK_ANY state:UIApplicationStateBackground];
 
-	[liger notificationArrived:@{@"example": @(NO)} background:YES];
-	[liger notificationArrived:@{@"example": @(NO)} background:NO];
+	[liger notificationArrived:@{@"example": @(NO)} state:UIApplicationStateActive];
+	[liger notificationArrived:@{@"example": @(NO)} state:UIApplicationStateInactive];
+	[liger notificationArrived:@{@"example": @(NO)} state:UIApplicationStateBackground];
 
 	XCTAssertNoThrow([cordova verify], @"notificationArrived:background should call cordova");
 }

@@ -149,14 +149,13 @@ NSString* testTokenAsString() {
 - (void)testDidReceiveLocalNotification
 {
 	UIApplicationState state = [[UIApplication sharedApplication] applicationState];
-	BOOL background = state == UIApplicationStateInactive || state == UIApplicationStateBackground;
 
 	id appDelegate = OCMPartialMock(self.delegate);
 	[appDelegate setWasStartedByNotification:NO];
 
 	id rootPage = OCMPartialMock([[LGRViewController alloc] init]);
 	OCMStub([appDelegate rootPage]).andReturn(rootPage);
-	OCMExpect([rootPage notificationArrived:@{@"hello": @"world"} background:background]);
+	OCMExpect([rootPage notificationArrived:@{@"hello": @"world"} state:state]);
 
 	UILocalNotification *notification = [[UILocalNotification alloc] init];
 	notification.userInfo = @{@"hello": @"world"};
@@ -168,14 +167,13 @@ NSString* testTokenAsString() {
 - (void)testDidReceiveRemoteNotification
 {
 	UIApplicationState state = [[UIApplication sharedApplication] applicationState];
-	BOOL background = state == UIApplicationStateInactive || state == UIApplicationStateBackground;
 
 	id appDelegate = OCMPartialMock(self.delegate);
 	[appDelegate setWasStartedByNotification:NO];
 
 	id rootPage = OCMPartialMock([[LGRViewController alloc] init]);
 	OCMStub([appDelegate rootPage]).andReturn(rootPage);
-	OCMExpect([rootPage notificationArrived:OCMOCK_ANY background:background]);
+	OCMExpect([rootPage notificationArrived:OCMOCK_ANY state:state]);
 
 	[appDelegate application:[UIApplication sharedApplication] didReceiveRemoteNotification:@{}];
 

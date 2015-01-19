@@ -89,15 +89,15 @@
 	XCTAssertNoThrow([menu verify], @"Verify failed");
 }
 
-- (void)testNotificationArrivedBackground
+- (void)testNotificationArrivedState
 {
 	id menu = [OCMockObject partialMockForObject:self.drawer.menu];
-	[[menu expect] notificationArrived:OCMOCK_ANY background:YES];
+	[[menu expect] notificationArrived:OCMOCK_ANY state:UIApplicationStateBackground];
 
 	id drawer = [OCMockObject partialMockForObject:self.drawer];
 	[[[drawer stub] andReturn:menu] menu];
 
-	[drawer notificationArrived:@{} background:YES];
+	[drawer notificationArrived:@{} state:UIApplicationStateBackground];
 
 	XCTAssertNoThrow([menu verify], @"Verify failed");
 }

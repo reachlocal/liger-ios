@@ -124,16 +124,46 @@
 	XCTAssertNoThrow([cordova verify], @"pushNotificationTokenUpdated:error: should push to queue");
 }
 
-- (void)testNotificationArrivedBackground
+- (void)testNotificationArrivedState
 {
 	id cordova = OCMPartialMock(self.cordova);
 
-	[[cordova expect] addToQueue:OCMOCK_ANY];
+	[[cordova expect] addToQueue:[OCMArg checkWithBlock:^BOOL(NSString *js) {
+		return [js containsString:@"ios_background"];
+	}]];
 	[[cordova expect] executeQueue];
 
-	[cordova notificationArrived:@{} background:YES];
+	[cordova notificationArrived:@{} state:UIApplicationStateBackground];
 
-	XCTAssertNoThrow([cordova verify], @"notificationArrived:background: should push to queue");
+	OCMVerifyAll(cordova);
+}
+
+- (void)testNotificationArrivedActive
+{
+	id cordova = OCMPartialMock(self.cordova);
+
+	[[cordova expect] addToQueue:[OCMArg checkWithBlock:^BOOL(NSString *js) {
+		return [js containsString:@"ios_active"];
+	}]];
+	[[cordova expect] executeQueue];
+
+	[cordova notificationArrived:@{} state:UIApplicationStateActive];
+
+	OCMVerifyAll(cordova);
+}
+
+- (void)testNotificationArrivedInactive
+{
+	id cordova = OCMPartialMock(self.cordova);
+
+	[[cordova expect] addToQueue:[OCMArg checkWithBlock:^BOOL(NSString *js) {
+		return [js containsString:@"ios_inactive"];
+	}]];
+	[[cordova expect] executeQueue];
+
+	[cordova notificationArrived:@{} state:UIApplicationStateInactive];
+
+	OCMVerifyAll(cordova);
 }
 
 - (void)testHandleAppOpenURL

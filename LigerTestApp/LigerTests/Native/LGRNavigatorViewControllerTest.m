@@ -321,15 +321,15 @@
 	OCMVerifyAll(rootPage);
 }
 
-- (void)testNotificationArrivedBackground
+- (void)testNotificationArrivedBackState
 {
 	id rootPage = OCMPartialMock(self.navigator.rootPage);
-	OCMExpect([rootPage notificationArrived:OCMOCK_ANY background:NO]);
+	OCMExpect([rootPage notificationArrived:OCMOCK_ANY state:UIApplicationStateBackground]);
 
 	id navigator = OCMPartialMock(self.navigator);
 	OCMStub([navigator rootPage]).andReturn(rootPage);
 
-	[navigator notificationArrived:@{} background:NO];
+	[navigator notificationArrived:@{} state:UIApplicationStateBackground];
 
 	OCMVerifyAll(rootPage);
 }

@@ -338,9 +338,9 @@
 	[self.ligerViewController pushNotificationTokenUpdated:@"" error:nil];
 }
 
-- (void)testNotificationArrivedBackground
+- (void)testNotificationArrivedState
 {
-	[self.ligerViewController notificationArrived:@{} background:NO];
+	[self.ligerViewController notificationArrived:@{}state:UIApplicationStateBackground];
 }
 
 - (void)testHandleAppOpenURL
