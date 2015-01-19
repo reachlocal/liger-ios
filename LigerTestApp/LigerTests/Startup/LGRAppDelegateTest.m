@@ -122,6 +122,24 @@ NSString* testTokenAsString() {
 	XCTAssertNoThrow([rootPage verify], @"Verify failed");
 }
 
+- (void)testDidReceiveLocalNotification
+{
+	UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+	BOOL background = state == UIApplicationStateInactive || state == UIApplicationStateBackground;
+
+	id appDelegate = OCMPartialMock(self.delegate);
+
+	id rootPage = OCMPartialMock([[LGRViewController alloc] init]);
+	OCMStub([appDelegate rootPage]).andReturn(rootPage);
+	OCMExpect([rootPage notificationArrived:@{@"hello": @"world"} background:background]);
+
+	UILocalNotification *notification = [[UILocalNotification alloc] init];
+	notification.userInfo = @{@"hello": @"world"};
+	[appDelegate application:[UIApplication sharedApplication] didReceiveLocalNotification:notification];
+
+	OCMVerifyAll(rootPage);
+}
+
 - (void)testDidReceiveRemoteNotification
 {
 	UIApplicationState state = [[UIApplication sharedApplication] applicationState];

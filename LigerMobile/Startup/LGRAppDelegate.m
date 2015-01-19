@@ -12,19 +12,31 @@
 #import "LGRPageFactory.h"
 #import "LGRViewController.h"
 
+@interface LGRAppDelegate()
+@property(assign) BOOL wasStartedByNotification;
+@end
+
 @implementation LGRAppDelegate
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
 	[LGRApp setupPushNotifications];
 	[LGRAppearance setupApperance];
-	
+
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WebKitStoreWebDataForBackup"];
 
-	NSDictionary *notification = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+	NSDictionary *remoteNotification = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
 	NSMutableDictionary *args = [LGRApp.root[@"args"] mutableCopy] ?: [NSMutableDictionary dictionary];
-	if (notification)
-		args[@"notification"] = notification;
+	if (remoteNotification) {
+		args[@"notification"] = remoteNotification;
+		self.wasStartedByNotification = YES;
+	}
+
+	UILocalNotification *localNotification = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey];
+	if (localNotification) {
+		args[@"notification"] = localNotification.userInfo;
+		self.wasStartedByNotification = YES;
+	}
 
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.backgroundColor = UIColor.whiteColor;
@@ -32,7 +44,7 @@
 
 	NSAssert(self.window.rootViewController, @"Root page '%@' not found.", LGRApp.root[@"page"]);
 	[self.window makeKeyAndVisible];
-	
+
 	return YES;
 }
 
@@ -60,13 +72,23 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
 	UIApplicationState state = [application applicationState];
+	[self notificationArrived:notification.userInfo state:state];
 
-	[[self rootPage] notificationArrived:notification.userInfo background:state == UIApplicationStateInactive || state == UIApplicationStateBackground];
+	NSLog(@"Local Not: %ld", state);
 }
 
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
 {
 	UIApplicationState state = [application applicationState];
+	[self notificationArrived:userInfo state:state];
+}
+
+- (void)notificationArrived:(NSDictionary*)userInfo state:(UIApplicationState)state
+{
+	if (self.wasStartedByNotification) {
+		self.wasStartedByNotification = NO;
+		return;
+	}
 
 	[[self rootPage] notificationArrived:userInfo background:state == UIApplicationStateInactive || state == UIApplicationStateBackground];
 }
