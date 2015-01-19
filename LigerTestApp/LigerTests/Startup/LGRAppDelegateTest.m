@@ -14,6 +14,7 @@
 
 @interface LGRAppDelegate ()
 - (LGRViewController*)rootPage;
+@property(assign) BOOL wasStartedByNotification;
 @end
 
 @interface LGRAppDelegateTest : XCTestCase
@@ -128,6 +129,7 @@ NSString* testTokenAsString() {
 	BOOL background = state == UIApplicationStateInactive || state == UIApplicationStateBackground;
 
 	id appDelegate = OCMPartialMock(self.delegate);
+	[appDelegate setWasStartedByNotification:NO];
 
 	id rootPage = OCMPartialMock([[LGRViewController alloc] init]);
 	OCMStub([appDelegate rootPage]).andReturn(rootPage);
@@ -146,6 +148,7 @@ NSString* testTokenAsString() {
 	BOOL background = state == UIApplicationStateInactive || state == UIApplicationStateBackground;
 
 	id appDelegate = OCMPartialMock(self.delegate);
+	[appDelegate setWasStartedByNotification:NO];
 
 	id rootPage = OCMPartialMock([[LGRViewController alloc] init]);
 	OCMStub([appDelegate rootPage]).andReturn(rootPage);
