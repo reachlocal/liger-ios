@@ -63,9 +63,6 @@
 {
 	NSArray *pageArray = self.args[@"pages"] ?: @[self.args];
 
-	if (pageArray.count == 0) // If we can't create any pages, consider the navigator failing as well.
-		return @[];
-
 	if (self.args[@"notification"]) {
 		NSMutableArray *pageArrayWithNotification = [pageArray mutableCopy];
 		pageArrayWithNotification[0] = [pageArrayWithNotification[0] mutableCopy];
