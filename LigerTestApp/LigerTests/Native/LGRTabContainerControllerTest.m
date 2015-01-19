@@ -175,7 +175,7 @@
 	[tabContainer addTabController];
 
 	OCMVerifyAll(tabContainer);
-	XCTAssertEqualObjects([[[tabContainer tab] args] objectForKey:@"notification"], @{@"hello": @"world"}, @"Notification not included in menu's args.");
+	XCTAssertEqualObjects([[[tabContainer tab] args] objectForKey:@"notification"], @{@"hello": @"world"}, @"Notification not included in tab's args.");
 }
 
 @end
