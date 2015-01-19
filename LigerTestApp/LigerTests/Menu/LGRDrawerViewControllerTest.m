@@ -18,6 +18,7 @@
 @interface LGRDrawerViewController ()
 @property (nonatomic, strong) LGRViewController *menu;
 - (LGRViewController*)pageController;
+- (void)addMenuController;
 @end
 
 @interface LGRDrawerViewControllerTest : XCTestCase
@@ -30,6 +31,7 @@
 {
 	NSDictionary *args = @{@"page": @"appMenu",
 						   @"accessibilityLabel": @"menu",
+						   @"notification": @{@"hello": @"world"},
 						   @"args": @{
 								   @"menu": @[@[
 												  @{
@@ -125,5 +127,16 @@
 	XCTAssertEqual(style, UIStatusBarStyleLightContent, @"Should be UIStatusBarStyleLightContent");
 
 	OCMVerify([[drawer pageController] preferredStatusBarStyle]);
+}
+
+- (void)testAddMenuController
+{
+	id drawer = OCMPartialMock(self.drawer);
+	OCMExpect([drawer addChildViewController:OCMOCK_ANY]);
+
+	[drawer addMenuController];
+
+	OCMVerifyAll(drawer);
+	XCTAssertEqualObjects([[[drawer menu] args] objectForKey:@"notification"], @{@"hello": @"world"}, @"Notification not included in menu's args.");
 }
 @end
