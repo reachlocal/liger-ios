@@ -12,8 +12,6 @@
 
 #import "LGRApp.h"
 
-#import "LGRAppMenuViewController.h"
-
 @interface LGRTabContainerView : UIView
 @property (nonatomic, strong) UIView *page;
 @property (nonatomic, strong) UIView *tab;
@@ -80,7 +78,7 @@
 	}
 }
 
-- (void)addMenuController
+- (void)addTabController
 {
 	self.tab = [LGRPageFactory controllerForPage:self.args[@"page"] title:self.args[@"title"] args:self.args[@"args"] options:self.args[@"options"] parent:nil];
 	self.tab.collectionPage = self;
@@ -93,7 +91,7 @@
 {
 	[super viewDidLoad];
 
-	[self addMenuController];
+	[self addTabController];
 }
 
 - (void)loadView
@@ -112,7 +110,7 @@
 
 	self.tab = nil;
 
-	[self addMenuController];
+	[self addTabController];
 }
 
 #pragma mark - LGRViewController
