@@ -77,7 +77,12 @@
 
 - (void)addMenuController
 {
-	self.menu = [LGRPageFactory controllerForPage:self.args[@"page"] title:self.args[@"title"] args:self.args[@"args"] options:self.args[@"options"] parent:nil];
+	NSMutableDictionary *args = [self.args[@"args"] mutableCopy];
+	if (self.args[@"notification"]) {
+		args[@"notification"] = self.args[@"notification"];
+	}
+
+	self.menu = [LGRPageFactory controllerForPage:self.args[@"page"] title:self.args[@"title"] args:args options:self.args[@"options"] parent:nil];
 	self.menu.collectionPage = self;
 
 	[self addChildViewController:self.menu];
@@ -367,9 +372,9 @@
 	[self.menu pushNotificationTokenUpdated:token error:error];
 }
 
-- (void)notificationArrived:(NSDictionary *)userInfo background:(BOOL)background
+- (void)notificationArrived:(NSDictionary*)userInfo state:(UIApplicationState)state
 {
-	[self.menu notificationArrived:userInfo background:background];
+	[self.menu notificationArrived:userInfo state:state];
 }
 
 - (void)handleAppOpenURL:(NSURL*)url

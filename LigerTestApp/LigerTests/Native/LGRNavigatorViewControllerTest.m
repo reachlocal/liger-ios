@@ -16,6 +16,8 @@
 @property(nonatomic, strong) UIPanGestureRecognizer *navigationBarGesture;
 @property(nonatomic, strong) UIScreenEdgePanGestureRecognizer *openGesture;
 @property(nonatomic, strong) UIPanGestureRecognizer *closeGesture;
+
+- (NSArray*)makePageArrayAndAddNotification;
 @end
 
 @interface LGRNavigatorViewControllerTest : XCTestCase
@@ -57,6 +59,36 @@
 															options:@{}];
 
 	XCTAssertNotNil(navigator, @"Navigator failed to instantiate");
+}
+
+- (void)testInitWithPageWithoutPage
+{
+	id navigator = [[LGRNavigatorViewController alloc] initWithPage:@"navigator"
+															  title:@"Title"
+															   args:@{}
+															options:@{}];
+
+	XCTAssertNil(navigator, @"Navigator shouldn't instantiate without at least one page in it");
+}
+
+- (void)testInitWithPageWithNotification
+{
+	id navigator = [[LGRNavigatorViewController alloc] initWithPage:@"navigator"
+															  title:@"Title"
+															   args:@{@"page": @"firstPage", @"notification": @{ @"hello": @"world" }}
+															options:@{}];
+	LGRViewController *controller = [navigator rootPage];
+	XCTAssertEqualObjects([[controller args] objectForKey:@"notification"], @{@"hello": @"world"}, @"Notification not included in root controller's args.");
+}
+
+- (void)testInitWithPageWithNotificationWithPageArray
+{
+	id navigator = [[LGRNavigatorViewController alloc] initWithPage:@"navigator"
+															  title:@"Title"
+															   args:@{@"pages" : @[@{@"page": @"firstPage"}], @"notification": @{ @"hello": @"world" }}
+															options:@{}];
+	LGRViewController *controller = [navigator rootPage];
+	XCTAssertEqualObjects([[controller args] objectForKey:@"notification"], @{@"hello": @"world"}, @"Notification not included in root controller's args.");
 }
 
 - (void)testViewDidLoad
@@ -289,15 +321,15 @@
 	OCMVerifyAll(rootPage);
 }
 
-- (void)testNotificationArrivedBackground
+- (void)testNotificationArrivedBackState
 {
 	id rootPage = OCMPartialMock(self.navigator.rootPage);
-	OCMExpect([rootPage notificationArrived:OCMOCK_ANY background:NO]);
+	OCMExpect([rootPage notificationArrived:OCMOCK_ANY state:UIApplicationStateBackground]);
 
 	id navigator = OCMPartialMock(self.navigator);
 	OCMStub([navigator rootPage]).andReturn(rootPage);
 
-	[navigator notificationArrived:@{} background:NO];
+	[navigator notificationArrived:@{} state:UIApplicationStateBackground];
 
 	OCMVerifyAll(rootPage);
 }
@@ -425,4 +457,12 @@
 
 	OCMVerify([[[navigator navigator] topViewController] preferredStatusBarStyle]);
 }
+
+- (void)testMakePageArrayAndAddNotification
+{
+	id navigator = OCMPartialMock(self.navigator);
+	NSArray *pages = [navigator makePageArrayAndAddNotification];
+	XCTAssertNotNil(pages);
+}
+
 @end

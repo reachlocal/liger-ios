@@ -18,6 +18,7 @@
 @interface LGRDrawerViewController ()
 @property (nonatomic, strong) LGRViewController *menu;
 - (LGRViewController*)pageController;
+- (void)addMenuController;
 @end
 
 @interface LGRDrawerViewControllerTest : XCTestCase
@@ -30,6 +31,7 @@
 {
 	NSDictionary *args = @{@"page": @"appMenu",
 						   @"accessibilityLabel": @"menu",
+						   @"notification": @{@"hello": @"world"},
 						   @"args": @{
 								   @"menu": @[@[
 												  @{
@@ -87,15 +89,15 @@
 	XCTAssertNoThrow([menu verify], @"Verify failed");
 }
 
-- (void)testNotificationArrivedBackground
+- (void)testNotificationArrivedState
 {
 	id menu = [OCMockObject partialMockForObject:self.drawer.menu];
-	[[menu expect] notificationArrived:OCMOCK_ANY background:YES];
+	[[menu expect] notificationArrived:OCMOCK_ANY state:UIApplicationStateBackground];
 
 	id drawer = [OCMockObject partialMockForObject:self.drawer];
 	[[[drawer stub] andReturn:menu] menu];
 
-	[drawer notificationArrived:@{} background:YES];
+	[drawer notificationArrived:@{} state:UIApplicationStateBackground];
 
 	XCTAssertNoThrow([menu verify], @"Verify failed");
 }
@@ -125,5 +127,16 @@
 	XCTAssertEqual(style, UIStatusBarStyleLightContent, @"Should be UIStatusBarStyleLightContent");
 
 	OCMVerify([[drawer pageController] preferredStatusBarStyle]);
+}
+
+- (void)testAddMenuController
+{
+	id drawer = OCMPartialMock(self.drawer);
+	OCMExpect([drawer addChildViewController:OCMOCK_ANY]);
+
+	[drawer addMenuController];
+
+	OCMVerifyAll(drawer);
+	XCTAssertEqualObjects([[[drawer menu] args] objectForKey:@"notification"], @{@"hello": @"world"}, @"Notification not included in menu's args.");
 }
 @end

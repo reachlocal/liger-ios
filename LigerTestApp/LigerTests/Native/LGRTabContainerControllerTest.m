@@ -18,6 +18,7 @@
 @property (nonatomic, strong) LGRViewController *tab;
 - (LGRViewController*)pageController;
 - (void)displayController:(LGRViewController*)controller;
+- (void)addTabController;
 @end
 
 @interface LGRTabContainerControllerTest : XCTestCase
@@ -30,6 +31,7 @@
 {
 	NSDictionary *args = @{@"page": @"appMenu",
 						   @"accessibilityLabel": @"menu",
+						   @"notification": @{@"hello": @"world"},
 						   @"args": @{
 								   @"menu": @[@[@{
 												  @"title": @"First Page",
@@ -128,12 +130,12 @@
 - (void)testNotificationArrivedBackground
 {
 	id tab = [OCMockObject partialMockForObject:self.tabContainer.tab];
-	[[tab expect] notificationArrived:OCMOCK_ANY background:YES];
+	[[tab expect] notificationArrived:OCMOCK_ANY state:UIApplicationStateBackground];
 
 	id tabContainer = [OCMockObject partialMockForObject:self.tabContainer];
 	[[[tabContainer stub] andReturn:tab] tab];
 
-	[tabContainer notificationArrived:@{} background:YES];
+	[tabContainer notificationArrived:@{} state:UIApplicationStateBackground];
 
 	XCTAssertNoThrow([tab verify], @"Verify failed");
 }
@@ -164,4 +166,16 @@
 
 	OCMVerify([[tabContainer pageController] preferredStatusBarStyle]);
 }
+
+- (void)testAddTabController
+{
+	id tabContainer = OCMPartialMock(self.tabContainer);
+	OCMExpect([tabContainer addChildViewController:OCMOCK_ANY]);
+
+	[tabContainer addTabController];
+
+	OCMVerifyAll(tabContainer);
+	XCTAssertEqualObjects([[[tabContainer tab] args] objectForKey:@"notification"], @{@"hello": @"world"}, @"Notification not included in tab's args.");
+}
+
 @end

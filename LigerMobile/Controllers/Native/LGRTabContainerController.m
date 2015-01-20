@@ -12,8 +12,6 @@
 
 #import "LGRApp.h"
 
-#import "LGRAppMenuViewController.h"
-
 @interface LGRTabContainerView : UIView
 @property (nonatomic, strong) UIView *page;
 @property (nonatomic, strong) UIView *tab;
@@ -80,9 +78,14 @@
 	}
 }
 
-- (void)addMenuController
+- (void)addTabController
 {
-	self.tab = [LGRPageFactory controllerForPage:self.args[@"page"] title:self.args[@"title"] args:self.args[@"args"] options:self.args[@"options"] parent:nil];
+	NSMutableDictionary *args = [self.args[@"args"] mutableCopy];
+	if (self.args[@"notification"]) {
+		args[@"notification"] = self.args[@"notification"];
+	}
+
+	self.tab = [LGRPageFactory controllerForPage:self.args[@"page"] title:self.args[@"title"] args:args options:self.args[@"options"] parent:nil];
 	self.tab.collectionPage = self;
 
 	[self addChildViewController:self.tab];
@@ -93,7 +96,7 @@
 {
 	[super viewDidLoad];
 
-	[self addMenuController];
+	[self addTabController];
 }
 
 - (void)loadView
@@ -112,7 +115,7 @@
 
 	self.tab = nil;
 
-	[self addMenuController];
+	[self addTabController];
 }
 
 #pragma mark - LGRViewController
@@ -187,9 +190,9 @@
 	[self.tab pushNotificationTokenUpdated:token error:error];
 }
 
-- (void)notificationArrived:(NSDictionary *)userInfo background:(BOOL)background
+- (void)notificationArrived:(NSDictionary*)userInfo state:(UIApplicationState)state
 {
-	[self.tab notificationArrived:userInfo background:background];
+	[self.tab notificationArrived:userInfo state:state];
 }
 
 - (void)handleAppOpenURL:(NSURL*)url

@@ -123,14 +123,16 @@
 	[self executeQueue];
 }
 
-- (void)notificationArrived:(NSDictionary *)userInfo background:(BOOL)background
+- (void)notificationArrived:(NSDictionary*)userInfo state:(UIApplicationState)state
 {
+	NSDictionary *states = @{@(UIApplicationStateActive): @"ios_active",
+							 @(UIApplicationStateInactive): @"ios_inactive",
+							 @(UIApplicationStateBackground): @"ios_background"};
 	NSError *error = nil;
 	NSData *json = [NSJSONSerialization dataWithJSONObject:userInfo options:0 error:&error];
 
 	NSString *js = @"if(PAGE.notificationArrived) PAGE.notificationArrived(%@, '%@');";
-	js = [NSString stringWithFormat:js, [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding],
-		  background ? @"true" : @"false"];
+	js = [NSString stringWithFormat:js, [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding], states[@(state)]];
 
 	[self addToQueue:js];
 	[self executeQueue];

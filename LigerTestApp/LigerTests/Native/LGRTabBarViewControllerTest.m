@@ -103,15 +103,15 @@
 	OCMVerifyAll(rootPage);
 }
 
-- (void)testNotificationArrivedBackground
+- (void)testNotificationArrivedState
 {
 	id rootPage = OCMPartialMock(self.tab.rootPage);
-	OCMExpect([rootPage notificationArrived:OCMOCK_ANY background:NO]);
+	OCMExpect([rootPage notificationArrived:OCMOCK_ANY state:UIApplicationStateBackground]);
 
 	id tab = OCMPartialMock(self.tab);
 	OCMStub([tab rootPage]).andReturn(rootPage);
 
-	[tab notificationArrived:@{} background:NO];
+	[tab notificationArrived:@{} state:UIApplicationStateBackground];
 
 	OCMVerifyAll(rootPage);
 }

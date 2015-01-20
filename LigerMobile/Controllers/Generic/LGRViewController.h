@@ -200,9 +200,9 @@
  A notification has arrived to the app.
  
  @param userInfo The notification that was sent to the app.
- @param background YES if the app was in the background when the notification arrived.
+ @param state The state of the app when the notification arrived
  */
-- (void)notificationArrived:(NSDictionary*)userInfo background:(BOOL)background;
+- (void)notificationArrived:(NSDictionary*)userInfo state:(UIApplicationState)state;
 
 /**
  Handle the situation were the app is started by an URL.

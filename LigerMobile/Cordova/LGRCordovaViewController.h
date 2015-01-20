@@ -18,7 +18,7 @@
 
 - (void)pageWillAppear;
 - (void)pushNotificationTokenUpdated:(NSString *)token error:(NSError *)error;
-- (void)notificationArrived:(NSDictionary *)userInfo background:(BOOL)background;
+- (void)notificationArrived:(NSDictionary *)userInfo state:(UIApplicationState)state;
 - (void)handleAppOpenURL:(NSURL*)url;
 - (void)buttonTapped:(NSDictionary*)button;
 

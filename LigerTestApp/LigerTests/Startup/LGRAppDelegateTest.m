@@ -14,6 +14,7 @@
 
 @interface LGRAppDelegate ()
 - (LGRViewController*)rootPage;
+@property(assign) BOOL wasStartedByNotification;
 @end
 
 @interface LGRAppDelegateTest : XCTestCase
@@ -92,6 +93,29 @@ NSString* testTokenAsString() {
 	[factory stopMocking];
 }
 
+- (void)testDidFinishLaunchingWithOptionsWithLocalNotification
+{
+	id appDelegate = OCMPartialMock(self.delegate);
+	id factory = OCMClassMock(LGRPageFactory.class);
+
+	__block NSDictionary* dict = nil;
+
+	OCMExpect([factory controllerForPage:OCMOCK_ANY title:OCMOCK_ANY args:OCMOCK_ANY options:OCMOCK_ANY parent:OCMOCK_ANY]).andDo(^(NSInvocation * invocation){
+		void* arg = nil;
+		[invocation getArgument:&arg atIndex:4];
+		NSDictionary *d = (NSDictionary*)(__bridge id)(arg);
+		dict = d.copy;
+	}).andReturn(self.delegate.rootPage);
+
+	UILocalNotification *notification = [[UILocalNotification alloc] init];
+	notification.userInfo = @{@"test": @"yes"};
+	[appDelegate application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:@{UIApplicationLaunchOptionsLocalNotificationKey:notification}];
+
+	OCMVerifyAll(factory);
+	XCTAssertEqualObjects(dict[@"notification"][@"test"], @"yes", @"Couldn't find notification");
+	[factory stopMocking];
+}
+
 - (void)testDidRegisterForRemoteNotificationsWithDeviceToken
 {
 	id appDelegate = OCMPartialMock(self.delegate);
@@ -122,20 +146,48 @@ NSString* testTokenAsString() {
 	XCTAssertNoThrow([rootPage verify], @"Verify failed");
 }
 
-- (void)testDidReceiveRemoteNotification
+- (void)testDidReceiveLocalNotification
 {
 	UIApplicationState state = [[UIApplication sharedApplication] applicationState];
-	BOOL background = state == UIApplicationStateInactive || state == UIApplicationStateBackground;
 
 	id appDelegate = OCMPartialMock(self.delegate);
+	[appDelegate setWasStartedByNotification:NO];
 
 	id rootPage = OCMPartialMock([[LGRViewController alloc] init]);
 	OCMStub([appDelegate rootPage]).andReturn(rootPage);
-	OCMExpect([rootPage notificationArrived:OCMOCK_ANY background:background]);
+	OCMExpect([rootPage notificationArrived:@{@"hello": @"world"} state:state]);
+
+	UILocalNotification *notification = [[UILocalNotification alloc] init];
+	notification.userInfo = @{@"hello": @"world"};
+	[appDelegate application:[UIApplication sharedApplication] didReceiveLocalNotification:notification];
+
+	OCMVerifyAll(rootPage);
+}
+
+- (void)testDidReceiveRemoteNotification
+{
+	UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+
+	id appDelegate = OCMPartialMock(self.delegate);
+	[appDelegate setWasStartedByNotification:NO];
+
+	id rootPage = OCMPartialMock([[LGRViewController alloc] init]);
+	OCMStub([appDelegate rootPage]).andReturn(rootPage);
+	OCMExpect([rootPage notificationArrived:OCMOCK_ANY state:state]);
 
 	[appDelegate application:[UIApplication sharedApplication] didReceiveRemoteNotification:@{}];
 
 	OCMVerifyAll(rootPage);
+}
+
+- (void)testNotificationArrived
+{
+	id appDelegate = OCMPartialMock(self.delegate);
+	[appDelegate setWasStartedByNotification:YES];
+
+	[appDelegate application:[UIApplication sharedApplication] didReceiveRemoteNotification:@{}];
+
+	XCTAssertFalse([appDelegate wasStartedByNotification]);
 }
 
 - (void)testOpenURLSourceApplicationAnnotation

@@ -237,7 +237,7 @@
 	
 }
 
-- (void)notificationArrived:(NSDictionary*)userInfo background:(BOOL)background
+- (void)notificationArrived:(NSDictionary*)userInfo state:(UIApplicationState)state
 {
 	
 }
