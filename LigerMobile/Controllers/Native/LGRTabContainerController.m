@@ -15,6 +15,7 @@
 @interface LGRTabContainerView : UIView
 @property (nonatomic, strong) UIView *page;
 @property (nonatomic, strong) UIView *tab;
+@property (assign) CGFloat tabHeight;
 @end
 
 @implementation LGRTabContainerView
@@ -34,12 +35,12 @@
 - (void)layoutSubviews
 {
 	CGRect pageRect = self.bounds;
-	pageRect.size.height -= 75;
+	pageRect.size.height -= self.tabHeight;
 	self.page.frame = pageRect;
 
 	CGRect tabRect = self.bounds;
-	tabRect.origin.y = tabRect.size.height - 75;
-	tabRect.size.height = 75;
+	tabRect.origin.y = tabRect.size.height - self.tabHeight;
+	tabRect.size.height = self.tabHeight;
 	self.tab.frame = tabRect;
 }
 
@@ -58,6 +59,8 @@
 	self = [super initWithPage:page title:title args:args options:options];
 	if (self) {
 		self.pages = [NSMutableDictionary dictionary];
+		CGFloat tabHeight = [options[@"tabHeight"] doubleValue] ?: 44;
+		[[self tabContainerView] setTabHeight:tabHeight];
 	}
 	return self;
 }
