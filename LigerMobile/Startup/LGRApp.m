@@ -41,7 +41,6 @@
 		NSAssert([json[@"appFormatVersion"] isEqualToNumber:VERSION], @"Wrong app format version of app.json, please see documentation for updating to the latest format. Do not update appFormatVersion without updating the rest of the file.");
 		NSAssert(json[@"appearance"], @"No appearance in app.json.");
 		NSAssert(json[@"rootPage"], @"No rootpage in app.json.");
-		NSAssert([json[@"rootPage"][@"args"] count] > 0, @"Your rootPage should have arguments (args) in app.json");
 		self.app = json;
 	}
 	return self;
